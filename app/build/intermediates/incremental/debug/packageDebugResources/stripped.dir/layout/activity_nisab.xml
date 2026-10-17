@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical">
+
+    <ScrollView android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1">
+        <LinearLayout android:orientation="vertical" android:padding="20dp"
+            android:layout_width="match_parent" android:layout_height="wrap_content">
+
+            <TextView android:text="Step 4 of 4" android:textSize="13sp" android:textColor="#176B52"
+                android:layout_width="match_parent" android:layout_height="wrap_content"/>
+            <TextView android:text="Nisab" android:textSize="28sp" android:textStyle="bold" android:textColor="#176B52"
+                android:layout_width="match_parent" android:layout_height="wrap_content"/>
+            <TextView android:text="Nisab is the minimum wealth at which Zakat becomes due. It is the value of 87.48 g of gold or 612.36 g of silver. Choose which one to use as your Nisab basis. The threshold is calculated from the price you set in the Gold or Silver step."
+                android:layout_marginTop="6dp" android:layout_marginBottom="12dp"
+                android:layout_width="match_parent" android:layout_height="wrap_content"/>
+
+            <RadioGroup android:id="@+id/nisabGroup" android:layout_width="match_parent" android:layout_height="wrap_content">
+                <RadioButton android:id="@+id/goldOption" android:textSize="16sp" android:padding="8dp"
+                    android:layout_width="match_parent" android:layout_height="wrap_content"/>
+                <RadioButton android:id="@+id/silverOption" android:textSize="16sp" android:padding="8dp" android:layout_marginTop="8dp"
+                    android:layout_width="match_parent" android:layout_height="wrap_content"/>
+            </RadioGroup>
+
+            <TextView android:text="The silver Nisab is lower, so more people reach it; the gold Nisab is higher. Scholars follow different opinions, so use the basis recommended by the scholar or method you follow."
+                android:textSize="12sp" android:layout_marginTop="12dp"
+                android:layout_width="match_parent" android:layout_height="wrap_content"/>
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout android:orientation="horizontal" android:padding="12dp"
+        android:layout_width="match_parent" android:layout_height="wrap_content">
+        <Button android:id="@+id/previousButton" style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:text="Previous" android:layout_marginEnd="6dp"
+            android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content"/>
+        <Button android:id="@+id/calculateButton" android:text="Calculate" android:layout_marginStart="6dp"
+            android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content"/>
+    </LinearLayout>
+</LinearLayout>

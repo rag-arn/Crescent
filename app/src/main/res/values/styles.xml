@@ -1,0 +1,9 @@
+<resources>
+    <style name="Theme.Crescent" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">#176B52</item>
+        <item name="colorPrimaryVariant">#0E4937</item>
+        <item name="colorSecondary">#D5A83B</item>
+        <item name="android:fontFamily">sans</item>
+        <item name="android:windowLightStatusBar">false</item>
+    </style>
+</resources>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical">
+
+    <ScrollView android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1">
+        <LinearLayout android:orientation="vertical" android:padding="20dp"
+            android:layout_width="match_parent" android:layout_height="wrap_content">
+
+            <TextView android:id="@+id/stepText" android:textSize="13sp" android:textColor="#176B52"
+                android:layout_width="match_parent" android:layout_height="wrap_content"/>
+            <TextView android:id="@+id/titleText" android:textSize="28sp" android:textStyle="bold" android:textColor="#176B52"
+                android:layout_width="match_parent" android:layout_height="wrap_content"/>
+            <TextView android:id="@+id/introText" android:layout_marginTop="6dp"
+                android:layout_width="match_parent" android:layout_height="wrap_content"/>
+
+            <TextView android:id="@+id/priceLabel" android:textStyle="bold" android:layout_marginTop="16dp"
+                android:layout_width="match_parent" android:layout_height="wrap_content"/>
+            <LinearLayout android:orientation="horizontal" android:gravity="center_vertical"
+                android:layout_width="match_parent" android:layout_height="wrap_content">
+                <EditText android:id="@+id/priceInput" android:hint="Price (৳)" android:inputType="numberDecimal"
+                    android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content"/>
+                <Spinner android:id="@+id/priceUnitSpinner"
+                    android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content"/>
+            </LinearLayout>
+            <TextView android:id="@+id/priceStatus" android:textSize="13sp" android:lineSpacingExtra="3dp"
+                android:layout_width="match_parent" android:layout_height="wrap_content"/>
+            <LinearLayout android:orientation="horizontal" android:layout_marginTop="4dp"
+                android:layout_width="match_parent" android:layout_height="wrap_content">
+                <Button android:id="@+id/refreshPriceButton" style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:text="Refresh price" android:layout_marginEnd="6dp"
+                    android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content"/>
+                <Button android:id="@+id/useLivePriceButton" style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:text="Use live price" android:layout_marginStart="6dp"
+                    android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+            <LinearLayout android:id="@+id/rowsContainer" android:orientation="vertical" android:layout_marginTop="8dp"
+                android:layout_width="match_parent" android:layout_height="wrap_content"/>
+
+            <Button android:id="@+id/addMoreButton" style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:text="+ Add more" android:layout_marginTop="8dp"
+                android:layout_width="match_parent" android:layout_height="wrap_content"/>
+
+            <TextView android:id="@+id/totalText" android:textSize="18sp" android:textStyle="bold"
+                android:layout_marginTop="16dp" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+
+            <TextView android:text="The live price is the international spot price (USD per troy ounce) converted to BDT, so it can differ from local jeweller (BAJUS) rates; edit the price above to use your local rate. A troy ounce is 31.1035 g; a regular ounce is 28.3495 g."
+                android:textSize="12sp" android:layout_marginTop="12dp"
+                android:layout_width="match_parent" android:layout_height="wrap_content"/>
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout android:orientation="horizontal" android:padding="12dp"
+        android:layout_width="match_parent" android:layout_height="wrap_content">
+        <Button android:id="@+id/previousButton" style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:text="Previous" android:layout_marginEnd="6dp"
+            android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content"/>
+        <Button android:id="@+id/nextButton" android:text="Next" android:layout_marginStart="6dp"
+            android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content"/>
+    </LinearLayout>
+</LinearLayout>
