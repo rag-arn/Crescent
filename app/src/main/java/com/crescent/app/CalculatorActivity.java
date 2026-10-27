@@ -45,10 +45,50 @@ public class CalculatorActivity extends AppCompatActivity {
         b.pdfButton.setOnClickListener(v -> {
             // Always recalculate so the PDF reflects the current inputs; abort if the Nisab is invalid.
             if (!calculate(false)) return;
-            Intent i = new Intent(this, PdfGenerationService.class);
-            i.putExtra("report", breakdown + "\n\nEstimated Zakat: " + taka(zakat) + "\n\nCheck the calculation with an expert. This may not be 100% correct.");
-            androidx.core.content.ContextCompat.startForegroundService(this, i);
+            b.pdfButton.setEnabled(false);
+            final String report = pdfReport();
+            final android.content.Context app = getApplicationContext();
+            new Thread(() -> {
+                java.io.File file = null;
+                String error = null;
+                try { file = PdfReportWriter.generateToCache(app, report); } catch (Exception ex) { error = ex.getMessage(); }
+                final java.io.File out = file;
+                final String err = error;
+                runOnUiThread(() -> {
+                    if (isFinishing() || isDestroyed()) { if (out != null) out.delete(); return; }
+                    b.pdfButton.setEnabled(true);
+                    if (out == null) {
+                        android.widget.Toast.makeText(this, "Could not generate PDF" + (err == null ? "." : ": " + err), android.widget.Toast.LENGTH_LONG).show();
+                        return;
+                    }
+                    startActivity(new Intent(this, PdfPreviewActivity.class).putExtra(PdfPreviewActivity.EXTRA_PDF_PATH, out.getAbsolutePath()));
+                });
+            }).start();
         });
+    }
+
+    /** Structured report understood by PdfReportWriter (TITLE / DATE / VERDICT / H / R / T / NOTE / WARN). */
+    private String pdfReport() {
+        double business = number(b.businessInput), investments = number(b.investmentInput), other = number(b.liabilityInput);
+        double net = Math.max(0, assets - liabilities);
+        boolean due = net >= nisab;
+        StringBuilder r = new StringBuilder();
+        r.append("TITLE|Zakat Calculation Report\n");
+        r.append("DATE|Generated: ").append(java.text.DateFormat.getDateTimeInstance().format(new java.util.Date())).append("\n");
+        r.append("VERDICT|").append(due ? "1" : "0").append("|").append(due ? "Zakat is due: " + taka(zakat) : "Zakat is not due")
+                .append("|Net wealth (").append(taka(net)).append(due ? ") is at or above the Nisab (" : ") is below the Nisab (").append(taka(nisab)).append(").\n");
+        r.append("H|Assets\n");
+        r.append("R|Gold|").append(taka(gold)).append("\nR|Silver|").append(taka(silver)).append("\nR|Cash in hand|").append(taka(cashHand))
+                .append("\nR|Cash in bank|").append(taka(cashBank)).append("\nR|Cash receivable|").append(taka(cashReceivable))
+                .append("\nR|Business stock|").append(taka(business)).append("\nR|Investments|").append(taka(investments))
+                .append("\nT|Total assets|").append(taka(assets)).append("\n");
+        r.append("H|Liabilities\n");
+        r.append("R|Cash payable|").append(taka(cashPayable)).append("\nR|Other short-term liabilities|").append(taka(other))
+                .append("\nT|Total liabilities|").append(taka(liabilities)).append("\n");
+        r.append("H|Zakat\n");
+        r.append("R|Net wealth|").append(taka(net)).append("\nR|Nisab threshold|").append(taka(nisab)).append("\nR|Zakat rate|2.5%\nT|Zakat payable|").append(taka(zakat)).append("\n");
+        r.append("WARN|Check the calculation with an expert. This may not be 100% correct.");
+        return r.toString();
     }
 
     private boolean calculate(boolean save) {

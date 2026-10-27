@@ -4,6 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewOutlineProvider;
+import android.graphics.Outline;
 import android.widget.PopupMenu;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
@@ -37,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
 
         setupSystemBars();
         setupClicks();
+        makeLogoRound();
     }
 
     @Override protected void onResume() {
@@ -57,6 +61,16 @@ public class MainActivity extends AppCompatActivity {
         WindowInsetsControllerCompat c = WindowCompat.getInsetsController(getWindow(), b.getRoot());
         c.setAppearanceLightStatusBars(false);       // light icons on the dark teal header
         c.setAppearanceLightNavigationBars(true);    // dark icons on the cream bottom bar
+    }
+
+    /** Clips the logo image into a circle, whatever shape the PNG itself has. */
+    private void makeLogoRound() {
+        b.logoImage.setOutlineProvider(new ViewOutlineProvider() {
+            @Override public void getOutline(View view, Outline outline) {
+                outline.setOval(0, 0, view.getWidth(), view.getHeight());
+            }
+        });
+        b.logoImage.setClipToOutline(true);
     }
 
     private void soon(String what) { Toast.makeText(this, what + " is coming soon.", Toast.LENGTH_SHORT).show(); }

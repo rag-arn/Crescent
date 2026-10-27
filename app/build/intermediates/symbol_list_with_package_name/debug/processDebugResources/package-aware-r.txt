@@ -2951,7 +2951,6 @@ drawable ic_heart
 drawable ic_history
 drawable ic_info
 drawable ic_keyboard_black_24dp
-drawable ic_logo
 drawable ic_m3_chip_check
 drawable ic_m3_chip_checked_circle
 drawable ic_m3_chip_close
@@ -2966,6 +2965,8 @@ drawable ic_search_black_24
 drawable ic_settings
 drawable ic_wallet
 drawable indeterminate_static
+drawable logo
+drawable logo3
 drawable m3_avd_hide_password
 drawable m3_avd_show_password
 drawable m3_bottom_sheet_drag_handle
@@ -3198,7 +3199,9 @@ id direct
 id disableHome
 id disablePostScroll
 id disableScroll
+id discardButton
 id disjoint
+id downloadButton
 id dragDown
 id dragEnd
 id dragLeft
@@ -3286,6 +3289,7 @@ id linear
 id listMode
 id list_item
 id logoContainer
+id logoImage
 id m3_side_sheet
 id marquee
 id masked
@@ -3390,6 +3394,7 @@ id open_search_view_toolbar_container
 id outline
 id outward
 id packed
+id pagesContainer
 id paidText
 id parallax
 id parent
@@ -3407,6 +3412,7 @@ id pin
 id position
 id postLayout
 id pressed
+id previewScroll
 id previousButton
 id priceInfoButton
 id priceInput
@@ -3414,6 +3420,7 @@ id priceLabel
 id priceStatus
 id priceUnitSpinner
 id profileButton
+id progress
 id progress_circular
 id progress_horizontal
 id puritySpinner
@@ -3693,6 +3700,7 @@ layout activity_info
 layout activity_main
 layout activity_metal
 layout activity_nisab
+layout activity_pdf_preview
 layout activity_result
 layout custom_dialog
 layout design_bottom_navigation_item

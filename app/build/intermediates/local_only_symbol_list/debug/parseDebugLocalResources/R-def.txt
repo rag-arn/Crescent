@@ -30,12 +30,13 @@ drawable ic_gem
 drawable ic_heart
 drawable ic_history
 drawable ic_info
-drawable ic_logo
 drawable ic_menu
 drawable ic_person
 drawable ic_pie
 drawable ic_settings
 drawable ic_wallet
+drawable logo
+drawable logo3
 drawable progress_amber
 id addAssetText
 id addMoreButton
@@ -57,6 +58,8 @@ id commercialSub
 id dialogMessage
 id dialogOk
 id dialogTitle
+id discardButton
+id downloadButton
 id goldOption
 id headerBar
 id historyText
@@ -68,6 +71,7 @@ id liabilityAmount
 id liabilityInput
 id liabilitySub
 id logoContainer
+id logoImage
 id menuButton
 id metalAmount
 id metalSub
@@ -80,9 +84,11 @@ id nisabGroup
 id nisabInput
 id nisabStatus
 id nisabSub
+id pagesContainer
 id paidText
 id payButton
 id pdfButton
+id previewScroll
 id previousButton
 id priceInfoButton
 id priceInput
@@ -90,6 +96,7 @@ id priceLabel
 id priceStatus
 id priceUnitSpinner
 id profileButton
+id progress
 id puritySpinner
 id recalcButton
 id recalcText
@@ -121,6 +128,7 @@ layout activity_info
 layout activity_main
 layout activity_metal
 layout activity_nisab
+layout activity_pdf_preview
 layout activity_result
 layout dialog_info
 layout item_metal_row

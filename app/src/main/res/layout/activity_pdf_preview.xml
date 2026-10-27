@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:background="@color/warm_cream"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <LinearLayout android:id="@+id/headerBar" android:orientation="vertical"
+        android:background="@drawable/bg_brand_header" android:paddingStart="20dp" android:paddingEnd="20dp"
+        android:paddingTop="14dp" android:paddingBottom="12dp"
+        android:layout_width="match_parent" android:layout_height="wrap_content">
+        <TextView android:text="Your report" android:textSize="11sp" android:textStyle="bold" android:textAllCaps="true" android:letterSpacing="0.1"
+            android:textColor="@color/soft_cyan" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+        <TextView android:text="PDF preview" android:textSize="24sp" android:textStyle="bold" android:textColor="@color/warm_cream"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+    </LinearLayout>
+    <View android:background="#4DE3A83F" android:layout_width="match_parent" android:layout_height="1dp"/>
+
+    <FrameLayout android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1">
+        <ScrollView android:id="@+id/previewScroll" android:background="#FFD9D2C3"
+            android:layout_width="match_parent" android:layout_height="match_parent">
+            <LinearLayout android:id="@+id/pagesContainer" android:orientation="vertical" android:padding="12dp"
+                android:layout_width="match_parent" android:layout_height="wrap_content"/>
+        </ScrollView>
+        <ProgressBar android:id="@+id/progress" android:layout_gravity="center"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+    </FrameLayout>
+
+    <View android:background="@color/warm_sand" android:layout_width="match_parent" android:layout_height="1dp"/>
+    <LinearLayout android:id="@+id/bottomBar" android:orientation="horizontal" android:background="@color/warm_cream" android:padding="12dp"
+        android:layout_width="match_parent" android:layout_height="wrap_content">
+        <Button android:id="@+id/discardButton" style="@style/Widget.Crescent.Button.Outlined" android:text="Discard" android:layout_marginEnd="6dp"
+            android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content"/>
+        <Button android:id="@+id/downloadButton" style="@style/Widget.Crescent.Button" android:text="Download" android:layout_marginStart="6dp"
+            android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content"/>
+    </LinearLayout>
+</LinearLayout>

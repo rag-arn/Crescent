@@ -16,7 +16,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-/** Final step: calculation table, verdict, snapshot saving and PDF download. */
+/** Final step: calculation table, verdict, snapshot saving and PDF generation / preview. */
 public class ResultActivity extends AppCompatActivity {
     public static final String DISCLAIMER = "Check the calculation with an expert. This may not be 100% correct.";
     private static final String NOTE = "This estimate is 2.5% of net wealth and assumes your wealth has stayed at or above the Nisab for one full lunar year (hawl) and that all entered assets are zakatable. Rules vary by school of thought and circumstances.";
@@ -117,9 +117,7 @@ public class ResultActivity extends AppCompatActivity {
             for (String[] l : lines) r.append(l[0]).append("|").append(l[1]).append("|").append(l[3]).append("\n");
             r.append("NOTE|").append(NOTE).append("\n");
             r.append("WARN|").append(DISCLAIMER);          // always the last, bold red line
-            Intent i = new Intent(this, PdfGenerationService.class);
-            i.putExtra("report", r.toString());
-            androidx.core.content.ContextCompat.startForegroundService(this, i);
+            generatePdfAndPreview(r.toString());
         });
 
         // ----- save snapshot once (not again after rotation) -----
@@ -136,6 +134,34 @@ public class ResultActivity extends AppCompatActivity {
             repo.saveAsset("Cash", cashHand); repo.saveAsset("Bank savings", cashBank); repo.saveAsset("Cash receivable", cashReceivable);
             repo.saveAsset("Gold", gold); repo.saveAsset("Silver", silver); repo.saveAsset("Commercial goods", commercial);
         }
+    }
+
+    /** Builds the PDF off the main thread, then opens the preview (Download / Discard). Nothing is saved to Downloads here. */
+    private void generatePdfAndPreview(String report) {
+        b.pdfButton.setEnabled(false);
+        final android.content.Context app = getApplicationContext();
+        new Thread(() -> {
+            java.io.File file = null;
+            String error = null;
+            try {
+                file = PdfReportWriter.generateToCache(app, report);
+            } catch (Exception e) {
+                error = e.getMessage();
+            }
+            final java.io.File out = file;
+            final String err = error;
+            runOnUiThread(() -> {
+                if (isFinishing() || isDestroyed()) { if (out != null) out.delete(); return; }
+                b.pdfButton.setEnabled(true);
+                if (out == null) {
+                    Toast.makeText(this, "Could not generate PDF" + (err == null ? "." : ": " + err), Toast.LENGTH_LONG).show();
+                    return;
+                }
+                Intent i = new Intent(this, PdfPreviewActivity.class);
+                i.putExtra(PdfPreviewActivity.EXTRA_PDF_PATH, out.getAbsolutePath());
+                startActivity(i);
+            });
+        }).start();
     }
 
     private int dp(int v) { return Math.round(v * getResources().getDisplayMetrics().density); }

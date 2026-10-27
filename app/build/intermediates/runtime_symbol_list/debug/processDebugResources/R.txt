@@ -2950,7 +2950,6 @@ int drawable ic_heart 0x7f0700a3
 int drawable ic_history 0x7f0700a4
 int drawable ic_info 0x7f0700a5
 int drawable ic_keyboard_black_24dp 0x7f0700a6
-int drawable ic_logo 0x7f0700a7
 int drawable ic_m3_chip_check 0x7f0700a8
 int drawable ic_m3_chip_checked_circle 0x7f0700a9
 int drawable ic_m3_chip_close 0x7f0700aa
@@ -2965,6 +2964,8 @@ int drawable ic_search_black_24 0x7f0700b2
 int drawable ic_settings 0x7f0700b3
 int drawable ic_wallet 0x7f0700b4
 int drawable indeterminate_static 0x7f0700b5
+int drawable logo 0x7f070102
+int drawable logo3 0x7f070103
 int drawable m3_avd_hide_password 0x7f0700b6
 int drawable m3_avd_show_password 0x7f0700b7
 int drawable m3_bottom_sheet_drag_handle 0x7f0700b8
@@ -3197,7 +3198,9 @@ int id direct 0x7f080098
 int id disableHome 0x7f080099
 int id disablePostScroll 0x7f08009a
 int id disableScroll 0x7f08009b
+int id discardButton 0x7f080212
 int id disjoint 0x7f08009c
+int id downloadButton 0x7f080213
 int id dragDown 0x7f08009d
 int id dragEnd 0x7f08009e
 int id dragLeft 0x7f08009f
@@ -3285,6 +3288,7 @@ int id linear 0x7f0800f0
 int id listMode 0x7f0800f1
 int id list_item 0x7f0800f2
 int id logoContainer 0x7f0800f3
+int id logoImage 0x7f080211
 int id m3_side_sheet 0x7f0800f4
 int id marquee 0x7f0800f5
 int id masked 0x7f0800f6
@@ -3389,6 +3393,7 @@ int id open_search_view_toolbar_container 0x7f080158
 int id outline 0x7f080159
 int id outward 0x7f08015a
 int id packed 0x7f08015b
+int id pagesContainer 0x7f080214
 int id paidText 0x7f08015c
 int id parallax 0x7f08015d
 int id parent 0x7f08015e
@@ -3406,6 +3411,7 @@ int id pin 0x7f080169
 int id position 0x7f08016a
 int id postLayout 0x7f08016b
 int id pressed 0x7f08016c
+int id previewScroll 0x7f080215
 int id previousButton 0x7f08016d
 int id priceInfoButton 0x7f08016e
 int id priceInput 0x7f08016f
@@ -3413,6 +3419,7 @@ int id priceLabel 0x7f080170
 int id priceStatus 0x7f080171
 int id priceUnitSpinner 0x7f080172
 int id profileButton 0x7f080173
+int id progress 0x7f080216
 int id progress_circular 0x7f080174
 int id progress_horizontal 0x7f080175
 int id puritySpinner 0x7f080176
@@ -3692,6 +3699,7 @@ int layout activity_info 0x7f0b0020
 int layout activity_main 0x7f0b0021
 int layout activity_metal 0x7f0b0022
 int layout activity_nisab 0x7f0b0023
+int layout activity_pdf_preview 0x7f0b0076
 int layout activity_result 0x7f0b0024
 int layout custom_dialog 0x7f0b0025
 int layout design_bottom_navigation_item 0x7f0b0026

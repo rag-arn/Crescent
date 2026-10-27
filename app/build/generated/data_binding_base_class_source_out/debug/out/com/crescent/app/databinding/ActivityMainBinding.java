@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -54,6 +55,9 @@ public final class ActivityMainBinding implements ViewBinding {
 
   @NonNull
   public final FrameLayout logoContainer;
+
+  @NonNull
+  public final ImageView logoImage;
 
   @NonNull
   public final ImageButton menuButton;
@@ -111,13 +115,14 @@ public final class ActivityMainBinding implements ViewBinding {
       @NonNull TextView cashAmount, @NonNull TextView cashSub, @NonNull TextView commercialAmount,
       @NonNull TextView commercialSub, @NonNull TextView lastCalculatedText,
       @NonNull TextView liabilityAmount, @NonNull TextView liabilitySub,
-      @NonNull FrameLayout logoContainer, @NonNull ImageButton menuButton,
-      @NonNull TextView metalAmount, @NonNull TextView metalSub, @NonNull LinearLayout navAssets,
-      @NonNull LinearLayout navHistory, @NonNull LinearLayout navHome,
-      @NonNull LinearLayout navSettings, @NonNull TextView nisabStatus, @NonNull TextView nisabSub,
-      @NonNull TextView paidText, @NonNull LinearLayout payButton,
-      @NonNull FrameLayout profileButton, @NonNull LinearLayout recalcButton,
-      @NonNull TextView recalcText, @NonNull TextView targetText, @NonNull TextView zakatAmount,
+      @NonNull FrameLayout logoContainer, @NonNull ImageView logoImage,
+      @NonNull ImageButton menuButton, @NonNull TextView metalAmount, @NonNull TextView metalSub,
+      @NonNull LinearLayout navAssets, @NonNull LinearLayout navHistory,
+      @NonNull LinearLayout navHome, @NonNull LinearLayout navSettings,
+      @NonNull TextView nisabStatus, @NonNull TextView nisabSub, @NonNull TextView paidText,
+      @NonNull LinearLayout payButton, @NonNull FrameLayout profileButton,
+      @NonNull LinearLayout recalcButton, @NonNull TextView recalcText,
+      @NonNull TextView targetText, @NonNull TextView zakatAmount,
       @NonNull ProgressBar zakatProgress) {
     this.rootView = rootView;
     this.addAssetText = addAssetText;
@@ -131,6 +136,7 @@ public final class ActivityMainBinding implements ViewBinding {
     this.liabilityAmount = liabilityAmount;
     this.liabilitySub = liabilitySub;
     this.logoContainer = logoContainer;
+    this.logoImage = logoImage;
     this.menuButton = menuButton;
     this.metalAmount = metalAmount;
     this.metalSub = metalSub;
@@ -243,6 +249,12 @@ public final class ActivityMainBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.logoImage;
+      ImageView logoImage = ViewBindings.findChildViewById(rootView, id);
+      if (logoImage == null) {
+        break missingId;
+      }
+
       id = R.id.menuButton;
       ImageButton menuButton = ViewBindings.findChildViewById(rootView, id);
       if (menuButton == null) {
@@ -347,9 +359,9 @@ public final class ActivityMainBinding implements ViewBinding {
 
       return new ActivityMainBinding((LinearLayout) rootView, addAssetText, bottomNav, brandHeader,
           cashAmount, cashSub, commercialAmount, commercialSub, lastCalculatedText, liabilityAmount,
-          liabilitySub, logoContainer, menuButton, metalAmount, metalSub, navAssets, navHistory,
-          navHome, navSettings, nisabStatus, nisabSub, paidText, payButton, profileButton,
-          recalcButton, recalcText, targetText, zakatAmount, zakatProgress);
+          liabilitySub, logoContainer, logoImage, menuButton, metalAmount, metalSub, navAssets,
+          navHistory, navHome, navSettings, nisabStatus, nisabSub, paidText, payButton,
+          profileButton, recalcButton, recalcText, targetText, zakatAmount, zakatProgress);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

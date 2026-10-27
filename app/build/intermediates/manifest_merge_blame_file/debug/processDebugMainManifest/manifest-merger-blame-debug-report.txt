@@ -11,200 +11,189 @@
 11    <uses-permission android:name="android.permission.INTERNET" />
 11-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:2:5-66
 11-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:2:22-64
-12    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
-12-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:3:5-76
-12-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:3:22-74
-13    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
-13-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:4:5-76
-13-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:4:22-74
-14    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC" />
-14-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:5:5-86
-14-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:5:22-84
-15    <uses-permission
-15-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:6:5-107
-16        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
-16-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:6:22-78
-17        android:maxSdkVersion="28" />
-17-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:6:79-105
-18
-19    <permission
-19-->[androidx.core:core:1.13.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/3f3017fc4f4f06b45931d5652c6ff987/transformed/core-1.13.0/AndroidManifest.xml:22:5-24:47
-20        android:name="com.crescent.app.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
-20-->[androidx.core:core:1.13.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/3f3017fc4f4f06b45931d5652c6ff987/transformed/core-1.13.0/AndroidManifest.xml:23:9-81
-21        android:protectionLevel="signature" />
-21-->[androidx.core:core:1.13.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/3f3017fc4f4f06b45931d5652c6ff987/transformed/core-1.13.0/AndroidManifest.xml:24:9-44
-22
-23    <uses-permission android:name="com.crescent.app.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
-23-->[androidx.core:core:1.13.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/3f3017fc4f4f06b45931d5652c6ff987/transformed/core-1.13.0/AndroidManifest.xml:26:5-97
-23-->[androidx.core:core:1.13.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/3f3017fc4f4f06b45931d5652c6ff987/transformed/core-1.13.0/AndroidManifest.xml:26:22-94
-24
-25    <application
-25-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:7:5-20:19
-26        android:allowBackup="true"
-26-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:7:18-44
-27        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
-27-->[androidx.core:core:1.13.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/3f3017fc4f4f06b45931d5652c6ff987/transformed/core-1.13.0/AndroidManifest.xml:28:18-86
-28        android:debuggable="true"
-29        android:extractNativeLibs="false"
-30        android:label="Crescent"
-30-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:7:45-69
-31        android:supportsRtl="true"
-31-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:7:108-134
-32        android:testOnly="true"
-33        android:theme="@style/Theme.Crescent" >
-33-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:7:70-107
+12    <uses-permission
+12-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:3:5-107
+13        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+13-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:3:22-78
+14        android:maxSdkVersion="28" />
+14-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:3:79-105
+15
+16    <permission
+16-->[androidx.core:core:1.13.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/3f3017fc4f4f06b45931d5652c6ff987/transformed/core-1.13.0/AndroidManifest.xml:22:5-24:47
+17        android:name="com.crescent.app.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+17-->[androidx.core:core:1.13.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/3f3017fc4f4f06b45931d5652c6ff987/transformed/core-1.13.0/AndroidManifest.xml:23:9-81
+18        android:protectionLevel="signature" />
+18-->[androidx.core:core:1.13.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/3f3017fc4f4f06b45931d5652c6ff987/transformed/core-1.13.0/AndroidManifest.xml:24:9-44
+19
+20    <uses-permission android:name="com.crescent.app.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+20-->[androidx.core:core:1.13.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/3f3017fc4f4f06b45931d5652c6ff987/transformed/core-1.13.0/AndroidManifest.xml:26:5-97
+20-->[androidx.core:core:1.13.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/3f3017fc4f4f06b45931d5652c6ff987/transformed/core-1.13.0/AndroidManifest.xml:26:22-94
+21
+22    <application
+22-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:4:5-17:19
+23        android:allowBackup="true"
+23-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:4:18-44
+24        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+24-->[androidx.core:core:1.13.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/3f3017fc4f4f06b45931d5652c6ff987/transformed/core-1.13.0/AndroidManifest.xml:28:18-86
+25        android:debuggable="true"
+26        android:extractNativeLibs="false"
+27        android:label="Crescent"
+27-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:4:45-69
+28        android:supportsRtl="true"
+28-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:4:108-134
+29        android:testOnly="true"
+30        android:theme="@style/Theme.Crescent" >
+30-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:4:70-107
+31        <activity
+31-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:5:9-77
+32            android:name="com.crescent.app.HistoryActivity"
+32-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:5:19-50
+33            android:exported="false" />
+33-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:5:51-75
 34        <activity
-34-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:8:9-77
-35            android:name="com.crescent.app.HistoryActivity"
-35-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:8:19-50
+34-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:6:9-74
+35            android:name="com.crescent.app.InfoActivity"
+35-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:6:19-47
 36            android:exported="false" />
-36-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:8:51-75
+36-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:6:48-72
 37        <activity
-37-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:9:9-74
-38            android:name="com.crescent.app.InfoActivity"
-38-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:9:19-47
-39            android:exported="false" />
-39-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:9:48-72
-40        <activity
-40-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:10:9-136
-41            android:name="com.crescent.app.GoldActivity"
-41-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:10:19-47
-42            android:configChanges="orientation|screenSize|keyboardHidden"
-42-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:10:73-134
-43            android:exported="false" />
-43-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:10:48-72
-44        <activity
-44-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:11:9-138
-45            android:name="com.crescent.app.SilverActivity"
-45-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:11:19-49
-46            android:configChanges="orientation|screenSize|keyboardHidden"
-46-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:11:75-136
+37-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:7:9-136
+38            android:name="com.crescent.app.GoldActivity"
+38-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:7:19-47
+39            android:configChanges="orientation|screenSize|keyboardHidden"
+39-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:7:73-134
+40            android:exported="false" />
+40-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:7:48-72
+41        <activity
+41-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:8:9-138
+42            android:name="com.crescent.app.SilverActivity"
+42-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:8:19-49
+43            android:configChanges="orientation|screenSize|keyboardHidden"
+43-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:8:75-136
+44            android:exported="false" />
+44-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:8:50-74
+45        <activity
+45-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:9:9-74
+46            android:name="com.crescent.app.CashActivity"
+46-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:9:19-47
 47            android:exported="false" />
-47-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:11:50-74
+47-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:9:48-72
 48        <activity
-48-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:12:9-74
-49            android:name="com.crescent.app.CashActivity"
-49-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:12:19-47
+48-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:10:9-80
+49            android:name="com.crescent.app.CommercialActivity"
+49-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:10:19-53
 50            android:exported="false" />
-50-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:12:48-72
+50-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:10:54-78
 51        <activity
-51-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:13:9-80
-52            android:name="com.crescent.app.CommercialActivity"
-52-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:13:19-53
+51-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:11:9-75
+52            android:name="com.crescent.app.NisabActivity"
+52-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:11:19-48
 53            android:exported="false" />
-53-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:13:54-78
+53-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:11:49-73
 54        <activity
-54-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:14:9-75
-55            android:name="com.crescent.app.NisabActivity"
-55-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:14:19-48
+54-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:12:9-76
+55            android:name="com.crescent.app.ResultActivity"
+55-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:12:19-49
 56            android:exported="false" />
-56-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:14:49-73
+56-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:12:50-74
 57        <activity
-57-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:15:9-76
-58            android:name="com.crescent.app.ResultActivity"
-58-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:15:19-49
+57-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:13:9-80
+58            android:name="com.crescent.app.PdfPreviewActivity"
+58-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:13:19-53
 59            android:exported="false" />
-59-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:15:50-74
+59-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:13:54-78
 60        <activity
-60-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:16:9-18:20
+60-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:14:9-16:20
 61            android:name="com.crescent.app.MainActivity"
-61-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:16:19-47
+61-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:14:19-47
 62            android:exported="true" >
-62-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:16:48-71
+62-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:14:48-71
 63            <intent-filter>
-63-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:17:13-154
+63-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:15:13-154
 64                <action android:name="android.intent.action.MAIN" />
-64-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:17:28-79
-64-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:17:36-77
+64-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:15:28-79
+64-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:15:36-77
 65
 66                <category android:name="android.intent.category.LAUNCHER" />
-66-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:17:79-138
-66-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:17:89-136
+66-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:15:79-138
+66-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:15:89-136
 67            </intent-filter>
 68        </activity>
 69
 70        <service
-70-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:19:9-122
-71            android:name="com.crescent.app.PdfGenerationService"
-71-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:19:18-54
-72            android:exported="false"
-72-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:19:55-79
-73            android:foregroundServiceType="dataSync" />
-73-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:19:80-120
-74        <service
-74-->[androidx.room:room-runtime:2.6.1] /Users/ragarnob/.gradle/caches/9.6.0/transforms/8e16e2b8154e71202a7c19e438d8bd46/transformed/room-runtime-2.6.1/AndroidManifest.xml:24:9-28:63
-75            android:name="androidx.room.MultiInstanceInvalidationService"
-75-->[androidx.room:room-runtime:2.6.1] /Users/ragarnob/.gradle/caches/9.6.0/transforms/8e16e2b8154e71202a7c19e438d8bd46/transformed/room-runtime-2.6.1/AndroidManifest.xml:25:13-74
-76            android:directBootAware="true"
-76-->[androidx.room:room-runtime:2.6.1] /Users/ragarnob/.gradle/caches/9.6.0/transforms/8e16e2b8154e71202a7c19e438d8bd46/transformed/room-runtime-2.6.1/AndroidManifest.xml:26:13-43
-77            android:exported="false" />
-77-->[androidx.room:room-runtime:2.6.1] /Users/ragarnob/.gradle/caches/9.6.0/transforms/8e16e2b8154e71202a7c19e438d8bd46/transformed/room-runtime-2.6.1/AndroidManifest.xml:27:13-37
-78
-79        <provider
-79-->[androidx.emoji2:emoji2:1.3.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/6f26e65c97a6e47f82837c3c2df416cd/transformed/emoji2-1.3.0/AndroidManifest.xml:24:9-32:20
-80            android:name="androidx.startup.InitializationProvider"
-80-->[androidx.emoji2:emoji2:1.3.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/6f26e65c97a6e47f82837c3c2df416cd/transformed/emoji2-1.3.0/AndroidManifest.xml:25:13-67
-81            android:authorities="com.crescent.app.androidx-startup"
-81-->[androidx.emoji2:emoji2:1.3.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/6f26e65c97a6e47f82837c3c2df416cd/transformed/emoji2-1.3.0/AndroidManifest.xml:26:13-68
-82            android:exported="false" >
-82-->[androidx.emoji2:emoji2:1.3.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/6f26e65c97a6e47f82837c3c2df416cd/transformed/emoji2-1.3.0/AndroidManifest.xml:27:13-37
-83            <meta-data
-83-->[androidx.emoji2:emoji2:1.3.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/6f26e65c97a6e47f82837c3c2df416cd/transformed/emoji2-1.3.0/AndroidManifest.xml:29:13-31:52
-84                android:name="androidx.emoji2.text.EmojiCompatInitializer"
-84-->[androidx.emoji2:emoji2:1.3.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/6f26e65c97a6e47f82837c3c2df416cd/transformed/emoji2-1.3.0/AndroidManifest.xml:30:17-75
-85                android:value="androidx.startup" />
-85-->[androidx.emoji2:emoji2:1.3.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/6f26e65c97a6e47f82837c3c2df416cd/transformed/emoji2-1.3.0/AndroidManifest.xml:31:17-49
-86            <meta-data
-86-->[androidx.lifecycle:lifecycle-process:2.6.2] /Users/ragarnob/.gradle/caches/9.6.0/transforms/177f35ab890af29b52fec6084fdf1dec/transformed/lifecycle-process-2.6.2/AndroidManifest.xml:29:13-31:52
-87                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
-87-->[androidx.lifecycle:lifecycle-process:2.6.2] /Users/ragarnob/.gradle/caches/9.6.0/transforms/177f35ab890af29b52fec6084fdf1dec/transformed/lifecycle-process-2.6.2/AndroidManifest.xml:30:17-78
-88                android:value="androidx.startup" />
-88-->[androidx.lifecycle:lifecycle-process:2.6.2] /Users/ragarnob/.gradle/caches/9.6.0/transforms/177f35ab890af29b52fec6084fdf1dec/transformed/lifecycle-process-2.6.2/AndroidManifest.xml:31:17-49
-89            <meta-data
-89-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/ragarnob/.gradle/caches/9.6.0/transforms/8af33cdc14182247197ece64c64e40c5/transformed/profileinstaller-1.3.1/AndroidManifest.xml:29:13-31:52
-90                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
-90-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/ragarnob/.gradle/caches/9.6.0/transforms/8af33cdc14182247197ece64c64e40c5/transformed/profileinstaller-1.3.1/AndroidManifest.xml:30:17-85
-91                android:value="androidx.startup" />
-91-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/ragarnob/.gradle/caches/9.6.0/transforms/8af33cdc14182247197ece64c64e40c5/transformed/profileinstaller-1.3.1/AndroidManifest.xml:31:17-49
-92        </provider>
-93
-94        <receiver
-94-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/ragarnob/.gradle/caches/9.6.0/transforms/8af33cdc14182247197ece64c64e40c5/transformed/profileinstaller-1.3.1/AndroidManifest.xml:34:9-52:20
-95            android:name="androidx.profileinstaller.ProfileInstallReceiver"
-95-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/ragarnob/.gradle/caches/9.6.0/transforms/8af33cdc14182247197ece64c64e40c5/transformed/profileinstaller-1.3.1/AndroidManifest.xml:35:13-76
-96            android:directBootAware="false"
-96-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/ragarnob/.gradle/caches/9.6.0/transforms/8af33cdc14182247197ece64c64e40c5/transformed/profileinstaller-1.3.1/AndroidManifest.xml:36:13-44
-97            android:enabled="true"
-97-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/ragarnob/.gradle/caches/9.6.0/transforms/8af33cdc14182247197ece64c64e40c5/transformed/profileinstaller-1.3.1/AndroidManifest.xml:37:13-35
-98            android:exported="true"
-98-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/ragarnob/.gradle/caches/9.6.0/transforms/8af33cdc14182247197ece64c64e40c5/transformed/profileinstaller-1.3.1/AndroidManifest.xml:38:13-36
-99            android:permission="android.permission.DUMP" >
-99-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/ragarnob/.gradle/caches/9.6.0/transforms/8af33cdc14182247197ece64c64e40c5/transformed/profileinstaller-1.3.1/AndroidManifest.xml:39:13-57
-100            <intent-filter>
-100-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/ragarnob/.gradle/caches/9.6.0/transforms/8af33cdc14182247197ece64c64e40c5/transformed/profileinstaller-1.3.1/AndroidManifest.xml:40:13-42:29
-101                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
-101-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/ragarnob/.gradle/caches/9.6.0/transforms/8af33cdc14182247197ece64c64e40c5/transformed/profileinstaller-1.3.1/AndroidManifest.xml:41:17-91
-101-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/ragarnob/.gradle/caches/9.6.0/transforms/8af33cdc14182247197ece64c64e40c5/transformed/profileinstaller-1.3.1/AndroidManifest.xml:41:25-88
-102            </intent-filter>
-103            <intent-filter>
-103-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/ragarnob/.gradle/caches/9.6.0/transforms/8af33cdc14182247197ece64c64e40c5/transformed/profileinstaller-1.3.1/AndroidManifest.xml:43:13-45:29
-104                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
-104-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/ragarnob/.gradle/caches/9.6.0/transforms/8af33cdc14182247197ece64c64e40c5/transformed/profileinstaller-1.3.1/AndroidManifest.xml:44:17-85
-104-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/ragarnob/.gradle/caches/9.6.0/transforms/8af33cdc14182247197ece64c64e40c5/transformed/profileinstaller-1.3.1/AndroidManifest.xml:44:25-82
-105            </intent-filter>
-106            <intent-filter>
-106-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/ragarnob/.gradle/caches/9.6.0/transforms/8af33cdc14182247197ece64c64e40c5/transformed/profileinstaller-1.3.1/AndroidManifest.xml:46:13-48:29
-107                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
-107-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/ragarnob/.gradle/caches/9.6.0/transforms/8af33cdc14182247197ece64c64e40c5/transformed/profileinstaller-1.3.1/AndroidManifest.xml:47:17-88
-107-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/ragarnob/.gradle/caches/9.6.0/transforms/8af33cdc14182247197ece64c64e40c5/transformed/profileinstaller-1.3.1/AndroidManifest.xml:47:25-85
-108            </intent-filter>
-109            <intent-filter>
-109-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/ragarnob/.gradle/caches/9.6.0/transforms/8af33cdc14182247197ece64c64e40c5/transformed/profileinstaller-1.3.1/AndroidManifest.xml:49:13-51:29
-110                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
-110-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/ragarnob/.gradle/caches/9.6.0/transforms/8af33cdc14182247197ece64c64e40c5/transformed/profileinstaller-1.3.1/AndroidManifest.xml:50:17-95
-110-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/ragarnob/.gradle/caches/9.6.0/transforms/8af33cdc14182247197ece64c64e40c5/transformed/profileinstaller-1.3.1/AndroidManifest.xml:50:25-92
-111            </intent-filter>
-112        </receiver>
-113    </application>
-114
-115</manifest>
+70-->[androidx.room:room-runtime:2.6.1] /Users/ragarnob/.gradle/caches/9.6.0/transforms/8e16e2b8154e71202a7c19e438d8bd46/transformed/room-runtime-2.6.1/AndroidManifest.xml:24:9-28:63
+71            android:name="androidx.room.MultiInstanceInvalidationService"
+71-->[androidx.room:room-runtime:2.6.1] /Users/ragarnob/.gradle/caches/9.6.0/transforms/8e16e2b8154e71202a7c19e438d8bd46/transformed/room-runtime-2.6.1/AndroidManifest.xml:25:13-74
+72            android:directBootAware="true"
+72-->[androidx.room:room-runtime:2.6.1] /Users/ragarnob/.gradle/caches/9.6.0/transforms/8e16e2b8154e71202a7c19e438d8bd46/transformed/room-runtime-2.6.1/AndroidManifest.xml:26:13-43
+73            android:exported="false" />
+73-->[androidx.room:room-runtime:2.6.1] /Users/ragarnob/.gradle/caches/9.6.0/transforms/8e16e2b8154e71202a7c19e438d8bd46/transformed/room-runtime-2.6.1/AndroidManifest.xml:27:13-37
+74
+75        <provider
+75-->[androidx.emoji2:emoji2:1.3.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/6f26e65c97a6e47f82837c3c2df416cd/transformed/emoji2-1.3.0/AndroidManifest.xml:24:9-32:20
+76            android:name="androidx.startup.InitializationProvider"
+76-->[androidx.emoji2:emoji2:1.3.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/6f26e65c97a6e47f82837c3c2df416cd/transformed/emoji2-1.3.0/AndroidManifest.xml:25:13-67
+77            android:authorities="com.crescent.app.androidx-startup"
+77-->[androidx.emoji2:emoji2:1.3.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/6f26e65c97a6e47f82837c3c2df416cd/transformed/emoji2-1.3.0/AndroidManifest.xml:26:13-68
+78            android:exported="false" >
+78-->[androidx.emoji2:emoji2:1.3.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/6f26e65c97a6e47f82837c3c2df416cd/transformed/emoji2-1.3.0/AndroidManifest.xml:27:13-37
+79            <meta-data
+79-->[androidx.emoji2:emoji2:1.3.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/6f26e65c97a6e47f82837c3c2df416cd/transformed/emoji2-1.3.0/AndroidManifest.xml:29:13-31:52
+80                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+80-->[androidx.emoji2:emoji2:1.3.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/6f26e65c97a6e47f82837c3c2df416cd/transformed/emoji2-1.3.0/AndroidManifest.xml:30:17-75
+81                android:value="androidx.startup" />
+81-->[androidx.emoji2:emoji2:1.3.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/6f26e65c97a6e47f82837c3c2df416cd/transformed/emoji2-1.3.0/AndroidManifest.xml:31:17-49
+82            <meta-data
+82-->[androidx.lifecycle:lifecycle-process:2.6.2] /Users/ragarnob/.gradle/caches/9.6.0/transforms/177f35ab890af29b52fec6084fdf1dec/transformed/lifecycle-process-2.6.2/AndroidManifest.xml:29:13-31:52
+83                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+83-->[androidx.lifecycle:lifecycle-process:2.6.2] /Users/ragarnob/.gradle/caches/9.6.0/transforms/177f35ab890af29b52fec6084fdf1dec/transformed/lifecycle-process-2.6.2/AndroidManifest.xml:30:17-78
+84                android:value="androidx.startup" />
+84-->[androidx.lifecycle:lifecycle-process:2.6.2] /Users/ragarnob/.gradle/caches/9.6.0/transforms/177f35ab890af29b52fec6084fdf1dec/transformed/lifecycle-process-2.6.2/AndroidManifest.xml:31:17-49
+85            <meta-data
+85-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/ragarnob/.gradle/caches/9.6.0/transforms/8af33cdc14182247197ece64c64e40c5/transformed/profileinstaller-1.3.1/AndroidManifest.xml:29:13-31:52
+86                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+86-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/ragarnob/.gradle/caches/9.6.0/transforms/8af33cdc14182247197ece64c64e40c5/transformed/profileinstaller-1.3.1/AndroidManifest.xml:30:17-85
+87                android:value="androidx.startup" />
+87-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/ragarnob/.gradle/caches/9.6.0/transforms/8af33cdc14182247197ece64c64e40c5/transformed/profileinstaller-1.3.1/AndroidManifest.xml:31:17-49
+88        </provider>
+89
+90        <receiver
+90-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/ragarnob/.gradle/caches/9.6.0/transforms/8af33cdc14182247197ece64c64e40c5/transformed/profileinstaller-1.3.1/AndroidManifest.xml:34:9-52:20
+91            android:name="androidx.profileinstaller.ProfileInstallReceiver"
+91-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/ragarnob/.gradle/caches/9.6.0/transforms/8af33cdc14182247197ece64c64e40c5/transformed/profileinstaller-1.3.1/AndroidManifest.xml:35:13-76
+92            android:directBootAware="false"
+92-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/ragarnob/.gradle/caches/9.6.0/transforms/8af33cdc14182247197ece64c64e40c5/transformed/profileinstaller-1.3.1/AndroidManifest.xml:36:13-44
+93            android:enabled="true"
+93-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/ragarnob/.gradle/caches/9.6.0/transforms/8af33cdc14182247197ece64c64e40c5/transformed/profileinstaller-1.3.1/AndroidManifest.xml:37:13-35
+94            android:exported="true"
+94-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/ragarnob/.gradle/caches/9.6.0/transforms/8af33cdc14182247197ece64c64e40c5/transformed/profileinstaller-1.3.1/AndroidManifest.xml:38:13-36
+95            android:permission="android.permission.DUMP" >
+95-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/ragarnob/.gradle/caches/9.6.0/transforms/8af33cdc14182247197ece64c64e40c5/transformed/profileinstaller-1.3.1/AndroidManifest.xml:39:13-57
+96            <intent-filter>
+96-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/ragarnob/.gradle/caches/9.6.0/transforms/8af33cdc14182247197ece64c64e40c5/transformed/profileinstaller-1.3.1/AndroidManifest.xml:40:13-42:29
+97                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
+97-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/ragarnob/.gradle/caches/9.6.0/transforms/8af33cdc14182247197ece64c64e40c5/transformed/profileinstaller-1.3.1/AndroidManifest.xml:41:17-91
+97-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/ragarnob/.gradle/caches/9.6.0/transforms/8af33cdc14182247197ece64c64e40c5/transformed/profileinstaller-1.3.1/AndroidManifest.xml:41:25-88
+98            </intent-filter>
+99            <intent-filter>
+99-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/ragarnob/.gradle/caches/9.6.0/transforms/8af33cdc14182247197ece64c64e40c5/transformed/profileinstaller-1.3.1/AndroidManifest.xml:43:13-45:29
+100                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
+100-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/ragarnob/.gradle/caches/9.6.0/transforms/8af33cdc14182247197ece64c64e40c5/transformed/profileinstaller-1.3.1/AndroidManifest.xml:44:17-85
+100-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/ragarnob/.gradle/caches/9.6.0/transforms/8af33cdc14182247197ece64c64e40c5/transformed/profileinstaller-1.3.1/AndroidManifest.xml:44:25-82
+101            </intent-filter>
+102            <intent-filter>
+102-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/ragarnob/.gradle/caches/9.6.0/transforms/8af33cdc14182247197ece64c64e40c5/transformed/profileinstaller-1.3.1/AndroidManifest.xml:46:13-48:29
+103                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
+103-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/ragarnob/.gradle/caches/9.6.0/transforms/8af33cdc14182247197ece64c64e40c5/transformed/profileinstaller-1.3.1/AndroidManifest.xml:47:17-88
+103-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/ragarnob/.gradle/caches/9.6.0/transforms/8af33cdc14182247197ece64c64e40c5/transformed/profileinstaller-1.3.1/AndroidManifest.xml:47:25-85
+104            </intent-filter>
+105            <intent-filter>
+105-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/ragarnob/.gradle/caches/9.6.0/transforms/8af33cdc14182247197ece64c64e40c5/transformed/profileinstaller-1.3.1/AndroidManifest.xml:49:13-51:29
+106                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
+106-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/ragarnob/.gradle/caches/9.6.0/transforms/8af33cdc14182247197ece64c64e40c5/transformed/profileinstaller-1.3.1/AndroidManifest.xml:50:17-95
+106-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/ragarnob/.gradle/caches/9.6.0/transforms/8af33cdc14182247197ece64c64e40c5/transformed/profileinstaller-1.3.1/AndroidManifest.xml:50:25-92
+107            </intent-filter>
+108        </receiver>
+109    </application>
+110
+111</manifest>
