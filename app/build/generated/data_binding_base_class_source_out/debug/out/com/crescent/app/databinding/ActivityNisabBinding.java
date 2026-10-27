@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -28,6 +29,9 @@ public final class ActivityNisabBinding implements ViewBinding {
   public final RadioButton goldOption;
 
   @NonNull
+  public final ImageButton infoButton;
+
+  @NonNull
   public final RadioGroup nisabGroup;
 
   @NonNull
@@ -37,11 +41,13 @@ public final class ActivityNisabBinding implements ViewBinding {
   public final RadioButton silverOption;
 
   private ActivityNisabBinding(@NonNull LinearLayout rootView, @NonNull Button calculateButton,
-      @NonNull RadioButton goldOption, @NonNull RadioGroup nisabGroup,
-      @NonNull Button previousButton, @NonNull RadioButton silverOption) {
+      @NonNull RadioButton goldOption, @NonNull ImageButton infoButton,
+      @NonNull RadioGroup nisabGroup, @NonNull Button previousButton,
+      @NonNull RadioButton silverOption) {
     this.rootView = rootView;
     this.calculateButton = calculateButton;
     this.goldOption = goldOption;
+    this.infoButton = infoButton;
     this.nisabGroup = nisabGroup;
     this.previousButton = previousButton;
     this.silverOption = silverOption;
@@ -86,6 +92,12 @@ public final class ActivityNisabBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.infoButton;
+      ImageButton infoButton = ViewBindings.findChildViewById(rootView, id);
+      if (infoButton == null) {
+        break missingId;
+      }
+
       id = R.id.nisabGroup;
       RadioGroup nisabGroup = ViewBindings.findChildViewById(rootView, id);
       if (nisabGroup == null) {
@@ -105,7 +117,7 @@ public final class ActivityNisabBinding implements ViewBinding {
       }
 
       return new ActivityNisabBinding((LinearLayout) rootView, calculateButton, goldOption,
-          nisabGroup, previousButton, silverOption);
+          infoButton, nisabGroup, previousButton, silverOption);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

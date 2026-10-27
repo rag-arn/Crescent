@@ -6,21 +6,25 @@
         <LinearLayout android:orientation="vertical" android:padding="20dp"
             android:layout_width="match_parent" android:layout_height="wrap_content">
 
-            <TextView android:text="Step 3 of 4" android:textSize="13sp" android:textColor="#176B52"
+            <TextView android:text="Step 3 of 5" android:textSize="13sp" android:textColor="#176B52"
                 android:layout_width="match_parent" android:layout_height="wrap_content"/>
-            <TextView android:text="Cash" android:textSize="28sp" android:textStyle="bold" android:textColor="#176B52"
-                android:layout_width="match_parent" android:layout_height="wrap_content"/>
-            <TextView android:text="Enter all amounts in Bangladeshi Taka (৳). Cash payable is deducted from your total assets; cash receivable is added."
-                android:layout_marginTop="6dp" android:layout_marginBottom="12dp"
-                android:layout_width="match_parent" android:layout_height="wrap_content"/>
+            <LinearLayout android:orientation="horizontal" android:gravity="center_vertical"
+                android:layout_width="match_parent" android:layout_height="wrap_content">
+                <TextView android:text="Cash" android:textSize="28sp" android:textStyle="bold" android:textColor="#176B52"
+                    android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content"/>
+                <ImageButton android:id="@+id/infoButton" style="?android:attr/borderlessButtonStyle"
+                    android:src="@android:drawable/ic_dialog_info" android:tint="#176B52"
+                    android:contentDescription="About cash"
+                    android:layout_width="44dp" android:layout_height="44dp"/>
+            </LinearLayout>
 
             <EditText android:id="@+id/cashHandInput" android:hint="Cash in hand (৳)" android:inputType="numberDecimal"
-                android:layout_width="match_parent" android:layout_height="wrap_content"/>
+                android:layout_marginTop="12dp" android:layout_width="match_parent" android:layout_height="wrap_content"/>
             <EditText android:id="@+id/cashBankInput" android:hint="Cash in bank (৳)" android:inputType="numberDecimal"
                 android:layout_width="match_parent" android:layout_height="wrap_content"/>
-            <EditText android:id="@+id/cashPayableInput" android:hint="Cash payable — money you owe (৳)" android:inputType="numberDecimal"
+            <EditText android:id="@+id/cashPayableInput" android:hint="Cash payable: money you owe (৳)" android:inputType="numberDecimal"
                 android:layout_width="match_parent" android:layout_height="wrap_content"/>
-            <EditText android:id="@+id/cashReceivableInput" android:hint="Cash receivable — money owed to you (৳)" android:inputType="numberDecimal"
+            <EditText android:id="@+id/cashReceivableInput" android:hint="Cash receivable: money owed to you (৳)" android:inputType="numberDecimal"
                 android:layout_width="match_parent" android:layout_height="wrap_content"/>
         </LinearLayout>
     </ScrollView>

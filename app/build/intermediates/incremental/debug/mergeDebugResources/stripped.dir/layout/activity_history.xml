@@ -1,4 +1,0 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical" android:padding="20dp" android:layout_width="match_parent" android:layout_height="match_parent">
- <TextView android:text="Yearly History" android:textSize="26sp" android:textStyle="bold" android:textColor="#176B52" android:layout_width="match_parent" android:layout_height="wrap_content"/>
- <TextView android:id="@+id/historyText" android:text="No snapshots saved yet." android:textSize="16sp" android:layout_marginTop="16dp" android:layout_width="match_parent" android:layout_height="wrap_content"/>
-</LinearLayout>

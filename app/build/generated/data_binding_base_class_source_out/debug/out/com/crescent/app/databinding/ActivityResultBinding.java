@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TextView;
@@ -26,7 +27,7 @@ public final class ActivityResultBinding implements ViewBinding {
   public final Button homeButton;
 
   @NonNull
-  public final TextView noteText;
+  public final ImageButton infoButton;
 
   @NonNull
   public final Button pdfButton;
@@ -44,12 +45,12 @@ public final class ActivityResultBinding implements ViewBinding {
   public final TextView verdictText;
 
   private ActivityResultBinding(@NonNull LinearLayout rootView, @NonNull Button homeButton,
-      @NonNull TextView noteText, @NonNull Button pdfButton, @NonNull Button previousButton,
+      @NonNull ImageButton infoButton, @NonNull Button pdfButton, @NonNull Button previousButton,
       @NonNull TableLayout resultTable, @NonNull MaterialCardView verdictCard,
       @NonNull TextView verdictText) {
     this.rootView = rootView;
     this.homeButton = homeButton;
-    this.noteText = noteText;
+    this.infoButton = infoButton;
     this.pdfButton = pdfButton;
     this.previousButton = previousButton;
     this.resultTable = resultTable;
@@ -90,9 +91,9 @@ public final class ActivityResultBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.noteText;
-      TextView noteText = ViewBindings.findChildViewById(rootView, id);
-      if (noteText == null) {
+      id = R.id.infoButton;
+      ImageButton infoButton = ViewBindings.findChildViewById(rootView, id);
+      if (infoButton == null) {
         break missingId;
       }
 
@@ -126,7 +127,7 @@ public final class ActivityResultBinding implements ViewBinding {
         break missingId;
       }
 
-      return new ActivityResultBinding((LinearLayout) rootView, homeButton, noteText, pdfButton,
+      return new ActivityResultBinding((LinearLayout) rootView, homeButton, infoButton, pdfButton,
           previousButton, resultTable, verdictCard, verdictText);
     }
     String missingId = rootView.getResources().getResourceName(id);

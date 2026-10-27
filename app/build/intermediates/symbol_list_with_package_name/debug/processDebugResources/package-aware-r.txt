@@ -3122,6 +3122,7 @@ id clip_horizontal
 id clip_vertical
 id clockwise
 id collapseActionView
+id commercialInput
 id compress
 id confirm_button
 id container
@@ -3216,7 +3217,7 @@ id ignoreRequest
 id image
 id indeterminate
 id info
-id introText
+id infoButton
 id investmentInput
 id invisible
 id inward
@@ -3308,7 +3309,6 @@ id nisabInput
 id noScroll
 id none
 id normal
-id noteText
 id notification_background
 id notification_main_column
 id notification_main_column_container
@@ -3347,6 +3347,7 @@ id position
 id postLayout
 id pressed
 id previousButton
+id priceInfoButton
 id priceInput
 id priceLabel
 id priceStatus
@@ -3462,6 +3463,7 @@ id textinput_suffix_text
 id time
 id title
 id titleDividerNoCustom
+id titleInfoButton
 id titleText
 id title_template
 id toggle
@@ -3617,6 +3619,7 @@ layout abc_select_dialog_material
 layout abc_tooltip
 layout activity_calculator
 layout activity_cash
+layout activity_commercial
 layout activity_history
 layout activity_info
 layout activity_main

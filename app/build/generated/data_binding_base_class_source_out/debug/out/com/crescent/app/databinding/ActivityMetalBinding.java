@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -26,13 +27,13 @@ public final class ActivityMetalBinding implements ViewBinding {
   public final Button addMoreButton;
 
   @NonNull
-  public final TextView introText;
-
-  @NonNull
   public final Button nextButton;
 
   @NonNull
   public final Button previousButton;
+
+  @NonNull
+  public final ImageButton priceInfoButton;
 
   @NonNull
   public final EditText priceInput;
@@ -56,6 +57,9 @@ public final class ActivityMetalBinding implements ViewBinding {
   public final TextView stepText;
 
   @NonNull
+  public final ImageButton titleInfoButton;
+
+  @NonNull
   public final TextView titleText;
 
   @NonNull
@@ -65,16 +69,18 @@ public final class ActivityMetalBinding implements ViewBinding {
   public final Button useLivePriceButton;
 
   private ActivityMetalBinding(@NonNull LinearLayout rootView, @NonNull Button addMoreButton,
-      @NonNull TextView introText, @NonNull Button nextButton, @NonNull Button previousButton,
-      @NonNull EditText priceInput, @NonNull TextView priceLabel, @NonNull TextView priceStatus,
+      @NonNull Button nextButton, @NonNull Button previousButton,
+      @NonNull ImageButton priceInfoButton, @NonNull EditText priceInput,
+      @NonNull TextView priceLabel, @NonNull TextView priceStatus,
       @NonNull Spinner priceUnitSpinner, @NonNull Button refreshPriceButton,
-      @NonNull LinearLayout rowsContainer, @NonNull TextView stepText, @NonNull TextView titleText,
+      @NonNull LinearLayout rowsContainer, @NonNull TextView stepText,
+      @NonNull ImageButton titleInfoButton, @NonNull TextView titleText,
       @NonNull TextView totalText, @NonNull Button useLivePriceButton) {
     this.rootView = rootView;
     this.addMoreButton = addMoreButton;
-    this.introText = introText;
     this.nextButton = nextButton;
     this.previousButton = previousButton;
+    this.priceInfoButton = priceInfoButton;
     this.priceInput = priceInput;
     this.priceLabel = priceLabel;
     this.priceStatus = priceStatus;
@@ -82,6 +88,7 @@ public final class ActivityMetalBinding implements ViewBinding {
     this.refreshPriceButton = refreshPriceButton;
     this.rowsContainer = rowsContainer;
     this.stepText = stepText;
+    this.titleInfoButton = titleInfoButton;
     this.titleText = titleText;
     this.totalText = totalText;
     this.useLivePriceButton = useLivePriceButton;
@@ -120,12 +127,6 @@ public final class ActivityMetalBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.introText;
-      TextView introText = ViewBindings.findChildViewById(rootView, id);
-      if (introText == null) {
-        break missingId;
-      }
-
       id = R.id.nextButton;
       Button nextButton = ViewBindings.findChildViewById(rootView, id);
       if (nextButton == null) {
@@ -135,6 +136,12 @@ public final class ActivityMetalBinding implements ViewBinding {
       id = R.id.previousButton;
       Button previousButton = ViewBindings.findChildViewById(rootView, id);
       if (previousButton == null) {
+        break missingId;
+      }
+
+      id = R.id.priceInfoButton;
+      ImageButton priceInfoButton = ViewBindings.findChildViewById(rootView, id);
+      if (priceInfoButton == null) {
         break missingId;
       }
 
@@ -180,6 +187,12 @@ public final class ActivityMetalBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.titleInfoButton;
+      ImageButton titleInfoButton = ViewBindings.findChildViewById(rootView, id);
+      if (titleInfoButton == null) {
+        break missingId;
+      }
+
       id = R.id.titleText;
       TextView titleText = ViewBindings.findChildViewById(rootView, id);
       if (titleText == null) {
@@ -198,9 +211,10 @@ public final class ActivityMetalBinding implements ViewBinding {
         break missingId;
       }
 
-      return new ActivityMetalBinding((LinearLayout) rootView, addMoreButton, introText, nextButton,
-          previousButton, priceInput, priceLabel, priceStatus, priceUnitSpinner, refreshPriceButton,
-          rowsContainer, stepText, titleText, totalText, useLivePriceButton);
+      return new ActivityMetalBinding((LinearLayout) rootView, addMoreButton, nextButton,
+          previousButton, priceInfoButton, priceInput, priceLabel, priceStatus, priceUnitSpinner,
+          refreshPriceButton, rowsContainer, stepText, titleInfoButton, titleText, totalText,
+          useLivePriceButton);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

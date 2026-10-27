@@ -3121,6 +3121,7 @@ int id clip_horizontal 0x7f080071
 int id clip_vertical 0x7f080072
 int id clockwise 0x7f080073
 int id collapseActionView 0x7f080074
+int id commercialInput 0x7f0801f0
 int id compress 0x7f080075
 int id confirm_button 0x7f080076
 int id container 0x7f080077
@@ -3215,7 +3216,7 @@ int id ignoreRequest 0x7f0800cf
 int id image 0x7f0800d0
 int id indeterminate 0x7f0800d1
 int id info 0x7f0800d2
-int id introText 0x7f0800d3
+int id infoButton 0x7f0801f1
 int id investmentInput 0x7f0800d4
 int id invisible 0x7f0800d5
 int id inward 0x7f0800d6
@@ -3307,7 +3308,6 @@ int id nisabInput 0x7f08012b
 int id noScroll 0x7f08012c
 int id none 0x7f08012d
 int id normal 0x7f08012e
-int id noteText 0x7f08012f
 int id notification_background 0x7f080130
 int id notification_main_column 0x7f080131
 int id notification_main_column_container 0x7f080132
@@ -3346,6 +3346,7 @@ int id position 0x7f080152
 int id postLayout 0x7f080153
 int id pressed 0x7f080154
 int id previousButton 0x7f080155
+int id priceInfoButton 0x7f0801f2
 int id priceInput 0x7f080156
 int id priceLabel 0x7f080157
 int id priceStatus 0x7f080158
@@ -3461,6 +3462,7 @@ int id textinput_suffix_text 0x7f0801c5
 int id time 0x7f0801c6
 int id title 0x7f0801c7
 int id titleDividerNoCustom 0x7f0801c8
+int id titleInfoButton 0x7f0801f3
 int id titleText 0x7f0801c9
 int id title_template 0x7f0801ca
 int id toggle 0x7f0801cb
@@ -3616,6 +3618,7 @@ int layout abc_select_dialog_material 0x7f0b001a
 int layout abc_tooltip 0x7f0b001b
 int layout activity_calculator 0x7f0b001c
 int layout activity_cash 0x7f0b001d
+int layout activity_commercial 0x7f0b0074
 int layout activity_history 0x7f0b001e
 int layout activity_info 0x7f0b001f
 int layout activity_main 0x7f0b0020

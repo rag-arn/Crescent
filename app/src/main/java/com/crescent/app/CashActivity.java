@@ -6,7 +6,7 @@ import android.widget.EditText;
 import androidx.appcompat.app.AppCompatActivity;
 import com.crescent.app.databinding.ActivityCashBinding;
 
-/** Step 3: cash in hand, in bank, payable (deducted) and receivable (added). Next: Nisab. */
+/** Step 3: cash in hand, in bank, payable (deducted) and receivable (added). Next: Commercial goods. */
 public class CashActivity extends AppCompatActivity {
     private ActivityCashBinding b;
 
@@ -23,9 +23,13 @@ public class CashActivity extends AppCompatActivity {
         super.onCreate(state);
         b = ActivityCashBinding.inflate(getLayoutInflater());
         setContentView(b.getRoot());
+        b.infoButton.setOnClickListener(v -> InfoDialog.show(this, "About cash",
+                "Enter all amounts in Bangladeshi Taka (৳).\n\n"
+                        + "Cash payable is money you owe; it is deducted from your total assets.\n"
+                        + "Cash receivable is money owed to you that you expect to receive; it is added to your assets."));
         b.previousButton.setOnClickListener(v -> finish());
         b.nextButton.setOnClickListener(v -> {
-            Intent i = new Intent(this, NisabActivity.class);
+            Intent i = new Intent(this, CommercialActivity.class);
             Bundle carried = getIntent().getExtras();
             if (carried != null) i.putExtras(carried);
             i.putExtra("cash_hand", number(b.cashHandInput));

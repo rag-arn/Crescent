@@ -44,6 +44,7 @@ public class ResultActivity extends AppCompatActivity {
         double silver = in.getDoubleExtra("silver_value_bdt", 0), silverGrams = in.getDoubleExtra("silver_pure_grams", 0);
         double cashHand = in.getDoubleExtra("cash_hand", 0), cashBank = in.getDoubleExtra("cash_bank", 0);
         double cashPayable = in.getDoubleExtra("cash_payable", 0), cashReceivable = in.getDoubleExtra("cash_receivable", 0);
+        double commercial = in.getDoubleExtra("commercial_goods", 0);
         String basis = in.getStringExtra("nisab_basis");
         double nisab = in.getDoubleExtra("nisab_amount", 0);
         double nisabGrams = in.getDoubleExtra("nisab_grams", 0), nisabPrice = in.getDoubleExtra("nisab_price_per_gram", 0);
@@ -53,6 +54,7 @@ public class ResultActivity extends AppCompatActivity {
             finish();
             return;
         }
+        b.infoButton.setOnClickListener(v -> InfoDialog.show(this, "About this estimate", NOTE));
         b.previousButton.setOnClickListener(v -> finish());
         b.homeButton.setOnClickListener(v -> {
             Intent h = new Intent(this, MainActivity.class);
@@ -62,7 +64,7 @@ public class ResultActivity extends AppCompatActivity {
         });
 
         // ----- calculation -----
-        double assets = gold + silver + cashHand + cashBank + cashReceivable;
+        double assets = gold + silver + cashHand + cashBank + cashReceivable + commercial;
         double net = Math.max(0, assets - cashPayable);          // cash payable is deducted from total assets
         boolean due = net >= nisab;
         double zakat = due ? net * 0.025 : 0;
@@ -74,6 +76,7 @@ public class ResultActivity extends AppCompatActivity {
         row("Cash in hand", cashHand);
         row("Cash in bank", cashBank);
         row("Cash receivable", cashReceivable);
+        row("Commercial goods", commercial);
         total("Total assets", assets);
         section("Deductions");
         row("Cash payable", cashPayable);
@@ -97,7 +100,6 @@ public class ResultActivity extends AppCompatActivity {
                 : "Your net wealth (" + taka(net) + ") is below the Nisab (" + taka(nisab) + ").";
         b.verdictText.setText(headline + "\n\n" + detail);
         b.verdictCard.setCardBackgroundColor(due ? 0x33176B52 : 0x33888888);
-        b.noteText.setText(NOTE);
         renderTable();
 
         // ----- PDF -----
@@ -131,7 +133,7 @@ public class ResultActivity extends AppCompatActivity {
             repo.saveSnapshot(new Snapshot(System.currentTimeMillis(), Calendar.getInstance().get(Calendar.YEAR),
                     assets, cashPayable, net, nisab, zakat, plain.toString()));
             repo.saveAsset("Cash", cashHand); repo.saveAsset("Bank savings", cashBank); repo.saveAsset("Cash receivable", cashReceivable);
-            repo.saveAsset("Gold", gold); repo.saveAsset("Silver", silver);
+            repo.saveAsset("Gold", gold); repo.saveAsset("Silver", silver); repo.saveAsset("Commercial goods", commercial);
         }
     }
 

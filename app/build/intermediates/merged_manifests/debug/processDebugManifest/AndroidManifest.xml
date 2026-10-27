@@ -49,6 +49,9 @@
             android:name="com.crescent.app.CashActivity"
             android:exported="false" />
         <activity
+            android:name="com.crescent.app.CommercialActivity"
+            android:exported="false" />
+        <activity
             android:name="com.crescent.app.NisabActivity"
             android:exported="false" />
         <activity

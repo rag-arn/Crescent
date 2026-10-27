@@ -48,22 +48,14 @@ public abstract class MetalActivity extends AppCompatActivity {
     protected abstract double[] purityFractions();   // same length as purityNames()
     protected abstract Class<?> nextActivity();
 
-    protected static final int TOTAL_STEPS = 4;
+    protected static final int TOTAL_STEPS = 5;
     private static final String PRICE_URL = "https://api.gold-api.com/price/";
     private static final String FX_URL = "https://open.er-api.com/v6/latest/USD";
     private static final double TROY_OUNCE_GRAMS = 31.1034768;
     private static final double BHORI_GRAMS = 11.664;
 
-    private static final String[] UNIT_NAMES = {
-            "Gram (g)", "Milligram (mg)", "Kilogram (kg)", "Metric ton",
-            "Bhori / Tola", "Ana", "Roti",
-            "Troy ounce (oz t)", "Troy pound", "Ounce (regular)", "Pound (lb)"
-    };
-    private static final double[] UNIT_GRAMS = {
-            1, 0.001, 1000, 1000000,
-            BHORI_GRAMS, 0.729, 0.1215,
-            TROY_OUNCE_GRAMS, 373.2417, 28.3495, 453.5924
-    };
+    private static final String[] UNIT_NAMES = {"Gram (g)", "Kilogram (kg)", "Bhori / Tola", "Ana", "Roti"};
+    private static final double[] UNIT_GRAMS = {1, 1000, BHORI_GRAMS, 0.729, 0.1215};
 
     private class Row {
         View view; EditText amount; Spinner unit, purity; TextView value;
@@ -103,7 +95,14 @@ public abstract class MetalActivity extends AppCompatActivity {
 
         b.stepText.setText("Step " + stepNumber() + " of " + TOTAL_STEPS);
         b.titleText.setText(metalTitle());
-        b.introText.setText("Enter the " + metalTitle().toLowerCase(Locale.US) + " you own. Choose the unit and purity for each entry. Values are converted to Taka (৳) using the price below, which you can edit.");
+        final String purityWord = metalKey().equals("gold") ? "karat" : "purity";
+        b.titleInfoButton.setOnClickListener(v -> InfoDialog.show(this, metalTitle(),
+                "Enter the " + metalTitle().toLowerCase(Locale.US) + " you own. For each entry, choose the unit and " + purityWord
+                        + ", then tap “+ Add more” for another entry. Values are converted to Taka (৳) using the price shown."));
+        b.priceInfoButton.setOnClickListener(v -> InfoDialog.show(this, "About the price",
+                "The live price is the international spot price (USD per troy ounce) converted to BDT, so it can differ from local jeweller (BAJUS) rates.\n\n"
+                        + "Edit the price in any unit to use your local rate; the other units update automatically. “Use live price” restores the live value and “Refresh price” fetches it again.\n\n"
+                        + "The price is for " + priceBasisText() + "; each entry is adjusted for its " + purityWord + "."));
         b.priceLabel.setText("Price of " + priceBasisText() + " (৳) per:");
         b.priceUnitSpinner.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, UNIT_NAMES));
 

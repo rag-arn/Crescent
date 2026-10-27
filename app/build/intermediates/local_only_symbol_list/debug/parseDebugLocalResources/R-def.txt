@@ -11,18 +11,19 @@ id cashBankInput
 id cashHandInput
 id cashPayableInput
 id cashReceivableInput
+id commercialInput
 id goldOption
 id historyText
 id homeButton
-id introText
+id infoButton
 id investmentInput
 id liabilityInput
 id nextButton
 id nisabGroup
 id nisabInput
-id noteText
 id pdfButton
 id previousButton
+id priceInfoButton
 id priceInput
 id priceLabel
 id priceStatus
@@ -37,6 +38,7 @@ id rowsContainer
 id silverOption
 id stepText
 id summaryText
+id titleInfoButton
 id titleText
 id totalText
 id unitSpinner
@@ -45,6 +47,7 @@ id verdictCard
 id verdictText
 layout activity_calculator
 layout activity_cash
+layout activity_commercial
 layout activity_history
 layout activity_info
 layout activity_main

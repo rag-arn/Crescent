@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -33,6 +34,9 @@ public final class ActivityCashBinding implements ViewBinding {
   public final EditText cashReceivableInput;
 
   @NonNull
+  public final ImageButton infoButton;
+
+  @NonNull
   public final Button nextButton;
 
   @NonNull
@@ -40,13 +44,14 @@ public final class ActivityCashBinding implements ViewBinding {
 
   private ActivityCashBinding(@NonNull LinearLayout rootView, @NonNull EditText cashBankInput,
       @NonNull EditText cashHandInput, @NonNull EditText cashPayableInput,
-      @NonNull EditText cashReceivableInput, @NonNull Button nextButton,
-      @NonNull Button previousButton) {
+      @NonNull EditText cashReceivableInput, @NonNull ImageButton infoButton,
+      @NonNull Button nextButton, @NonNull Button previousButton) {
     this.rootView = rootView;
     this.cashBankInput = cashBankInput;
     this.cashHandInput = cashHandInput;
     this.cashPayableInput = cashPayableInput;
     this.cashReceivableInput = cashReceivableInput;
+    this.infoButton = infoButton;
     this.nextButton = nextButton;
     this.previousButton = previousButton;
   }
@@ -102,6 +107,12 @@ public final class ActivityCashBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.infoButton;
+      ImageButton infoButton = ViewBindings.findChildViewById(rootView, id);
+      if (infoButton == null) {
+        break missingId;
+      }
+
       id = R.id.nextButton;
       Button nextButton = ViewBindings.findChildViewById(rootView, id);
       if (nextButton == null) {
@@ -115,7 +126,7 @@ public final class ActivityCashBinding implements ViewBinding {
       }
 
       return new ActivityCashBinding((LinearLayout) rootView, cashBankInput, cashHandInput,
-          cashPayableInput, cashReceivableInput, nextButton, previousButton);
+          cashPayableInput, cashReceivableInput, infoButton, nextButton, previousButton);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));
