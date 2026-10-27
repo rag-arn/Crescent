@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
@@ -13,14 +14,13 @@ import androidx.annotation.Nullable;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.crescent.app.R;
-import com.google.android.material.card.MaterialCardView;
 import java.lang.NullPointerException;
 import java.lang.Override;
 import java.lang.String;
 
 public final class ItemMetalRowBinding implements ViewBinding {
   @NonNull
-  private final MaterialCardView rootView;
+  private final LinearLayout rootView;
 
   @NonNull
   public final EditText amountInput;
@@ -37,7 +37,7 @@ public final class ItemMetalRowBinding implements ViewBinding {
   @NonNull
   public final Spinner unitSpinner;
 
-  private ItemMetalRowBinding(@NonNull MaterialCardView rootView, @NonNull EditText amountInput,
+  private ItemMetalRowBinding(@NonNull LinearLayout rootView, @NonNull EditText amountInput,
       @NonNull Spinner puritySpinner, @NonNull Button removeButton, @NonNull TextView rowValue,
       @NonNull Spinner unitSpinner) {
     this.rootView = rootView;
@@ -50,7 +50,7 @@ public final class ItemMetalRowBinding implements ViewBinding {
 
   @Override
   @NonNull
-  public MaterialCardView getRoot() {
+  public LinearLayout getRoot() {
     return rootView;
   }
 
@@ -105,7 +105,7 @@ public final class ItemMetalRowBinding implements ViewBinding {
         break missingId;
       }
 
-      return new ItemMetalRowBinding((MaterialCardView) rootView, amountInput, puritySpinner,
+      return new ItemMetalRowBinding((LinearLayout) rootView, amountInput, puritySpinner,
           removeButton, rowValue, unitSpinner);
     }
     String missingId = rootView.getResources().getResourceName(id);

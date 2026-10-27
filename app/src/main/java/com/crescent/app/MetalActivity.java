@@ -54,8 +54,8 @@ public abstract class MetalActivity extends AppCompatActivity {
     private static final double TROY_OUNCE_GRAMS = 31.1034768;
     private static final double BHORI_GRAMS = 11.664;
 
-    private static final String[] UNIT_NAMES = {"Gram (g)", "Kilogram (kg)", "Bhori / Tola", "Ana", "Roti"};
-    private static final double[] UNIT_GRAMS = {1, 1000, BHORI_GRAMS, 0.729, 0.1215};
+    private static final String[] UNIT_NAMES = {"Gram (g)", "Kilogram (kg)", "Bhori / Tola", "Ana", "Roti", "Troy ounce (oz t)"};
+    private static final double[] UNIT_GRAMS = {1, 1000, BHORI_GRAMS, 0.729, 0.1215, TROY_OUNCE_GRAMS};
 
     private class Row {
         View view; EditText amount; Spinner unit, purity; TextView value;
@@ -91,6 +91,7 @@ public abstract class MetalActivity extends AppCompatActivity {
         super.onCreate(state);
         b = ActivityMetalBinding.inflate(getLayoutInflater());
         setContentView(b.getRoot());
+        Ui.insets(this, b.getRoot(), b.headerBar, b.bottomBar);
         prefs = getSharedPreferences("crescent_prices", MODE_PRIVATE);
 
         b.stepText.setText("Step " + stepNumber() + " of " + TOTAL_STEPS);
@@ -101,6 +102,7 @@ public abstract class MetalActivity extends AppCompatActivity {
                         + ", then tap “+ Add more” for another entry. Values are converted to Taka (৳) using the price shown."));
         b.priceInfoButton.setOnClickListener(v -> InfoDialog.show(this, "About the price",
                 "The live price is the international spot price (USD per troy ounce) converted to BDT, so it can differ from local jeweller (BAJUS) rates.\n\n"
+                        + "A troy ounce is 31.1035 g, which is the unit international gold and silver prices are quoted in (a regular ounce is 28.3495 g).\n\n"
                         + "Edit the price in any unit to use your local rate; the other units update automatically. “Use live price” restores the live value and “Refresh price” fetches it again.\n\n"
                         + "The price is for " + priceBasisText() + "; each entry is adjusted for its " + purityWord + "."));
         b.priceLabel.setText("Price of " + priceBasisText() + " (৳) per:");
@@ -213,7 +215,7 @@ public abstract class MetalActivity extends AppCompatActivity {
     }
 
     private void refreshStatus() {
-        b.priceStatus.setText((manualOverride ? "✎ Using your own price.\n" : "") + sourceText);
+        b.priceStatus.setText((manualOverride ? "Using your own price.\n" : "") + sourceText);
     }
 
     private void useLivePrice() {

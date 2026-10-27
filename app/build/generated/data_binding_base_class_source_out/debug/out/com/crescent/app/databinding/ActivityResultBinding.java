@@ -24,6 +24,12 @@ public final class ActivityResultBinding implements ViewBinding {
   private final LinearLayout rootView;
 
   @NonNull
+  public final LinearLayout bottomBar;
+
+  @NonNull
+  public final LinearLayout headerBar;
+
+  @NonNull
   public final Button homeButton;
 
   @NonNull
@@ -44,11 +50,13 @@ public final class ActivityResultBinding implements ViewBinding {
   @NonNull
   public final TextView verdictText;
 
-  private ActivityResultBinding(@NonNull LinearLayout rootView, @NonNull Button homeButton,
-      @NonNull ImageButton infoButton, @NonNull Button pdfButton, @NonNull Button previousButton,
-      @NonNull TableLayout resultTable, @NonNull MaterialCardView verdictCard,
-      @NonNull TextView verdictText) {
+  private ActivityResultBinding(@NonNull LinearLayout rootView, @NonNull LinearLayout bottomBar,
+      @NonNull LinearLayout headerBar, @NonNull Button homeButton, @NonNull ImageButton infoButton,
+      @NonNull Button pdfButton, @NonNull Button previousButton, @NonNull TableLayout resultTable,
+      @NonNull MaterialCardView verdictCard, @NonNull TextView verdictText) {
     this.rootView = rootView;
+    this.bottomBar = bottomBar;
+    this.headerBar = headerBar;
     this.homeButton = homeButton;
     this.infoButton = infoButton;
     this.pdfButton = pdfButton;
@@ -85,6 +93,18 @@ public final class ActivityResultBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
+      id = R.id.bottomBar;
+      LinearLayout bottomBar = ViewBindings.findChildViewById(rootView, id);
+      if (bottomBar == null) {
+        break missingId;
+      }
+
+      id = R.id.headerBar;
+      LinearLayout headerBar = ViewBindings.findChildViewById(rootView, id);
+      if (headerBar == null) {
+        break missingId;
+      }
+
       id = R.id.homeButton;
       Button homeButton = ViewBindings.findChildViewById(rootView, id);
       if (homeButton == null) {
@@ -127,8 +147,8 @@ public final class ActivityResultBinding implements ViewBinding {
         break missingId;
       }
 
-      return new ActivityResultBinding((LinearLayout) rootView, homeButton, infoButton, pdfButton,
-          previousButton, resultTable, verdictCard, verdictText);
+      return new ActivityResultBinding((LinearLayout) rootView, bottomBar, headerBar, homeButton,
+          infoButton, pdfButton, previousButton, resultTable, verdictCard, verdictText);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

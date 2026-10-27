@@ -27,6 +27,7 @@ public class NisabActivity extends AppCompatActivity {
         super.onCreate(state);
         b = ActivityNisabBinding.inflate(getLayoutInflater());
         setContentView(b.getRoot());
+        Ui.insets(this, b.getRoot(), b.headerBar, b.bottomBar);
         goldPrice = getIntent().getDoubleExtra("gold_price_per_gram", 0);
         silverPrice = getIntent().getDoubleExtra("silver_price_per_gram", 0);
 

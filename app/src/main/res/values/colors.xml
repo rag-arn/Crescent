@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Crescent palette -->
+    <color name="amber_gold">#E3A83F</color>
+    <color name="warm_cream">#F3EDE0</color>
+    <color name="slate_teal">#5B7B7A</color>
+    <color name="warm_sand">#D6BE8B</color>
+    <color name="soft_cyan">#B4D5D4</color>
+    <color name="dark_teal">#3B5453</color>
+    <color name="hint_teal">#995B7B7A</color>
+</resources>

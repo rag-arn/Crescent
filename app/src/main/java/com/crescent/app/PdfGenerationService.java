@@ -114,7 +114,7 @@ public class PdfGenerationService extends Service {
     private static class ReportWriter {
         // A4 portrait = 595 x 842 points. Compact sizes so the whole report fits on one page.
         static final int W = 595, H = 842, M = 40, TOP = 34, BOTTOM = 800, ROW = 19;
-        static final int GREEN = 0xFF176B52, DARK = 0xFF222222, GRAY = 0xFF666666, RED = 0xFFB71C1C;
+        static final int GREEN = 0xFF5B7B7A, DARK = 0xFF3B5453, GRAY = 0xFF5B7B7A, RED = 0xFFB71C1C, AMBER = 0xFFE3A83F;
         final PdfDocument doc = new PdfDocument();
         final Paint text = new Paint(Paint.ANTI_ALIAS_FLAG);
         final Paint shape = new Paint();
@@ -182,7 +182,7 @@ public class PdfGenerationService extends Service {
             style(10, GRAY, false);
             c.drawText(t, M, y + 10, text);
             y += 15;
-            shape.setColor(GREEN);
+            shape.setColor(AMBER);
             c.drawRect(M, y, W - M, y + 2, shape);
             y += 12;
         }
@@ -193,9 +193,9 @@ public class PdfGenerationService extends Service {
             List<String> d = wrap(detail, inner);
             float h = 14 + 20 + d.size() * 13 + 6;
             ensure(h + 12);
-            shape.setColor(due ? 0xFFE3F2EA : 0xFFEEEEEE);
+            shape.setColor(due ? 0xFFE1EEED : 0xFFF3EDE0);
             c.drawRect(M, y, W - M, y + h, shape);
-            shape.setColor(due ? GREEN : 0xFF888888);
+            shape.setColor(due ? AMBER : 0xFFD6BE8B);
             c.drawRect(M, y, M + 5, y + h, shape);
             style(15, DARK, true);
             c.drawText(fit(headline, inner), M + 18, y + 24, text);
@@ -219,9 +219,9 @@ public class PdfGenerationService extends Service {
             boolean alt = false;
             for (String[] r : rows) {
                 boolean total = r[0].equals("T");
-                shape.setColor(total ? 0xFFD9EBE3 : (alt ? 0xFFF2F6F4 : 0xFFFFFFFF));
+                shape.setColor(total ? 0xFFE1EEED : (alt ? 0xFFF3EDE0 : 0xFFFFFFFF));
                 c.drawRect(left, y, right, y + ROW, shape);
-                shape.setColor(0xFFDDDDDD);
+                shape.setColor(0xFFE6DABD);
                 c.drawRect(left, y + ROW - 0.5f, right, y + ROW, shape);
                 style(10.5f, DARK, total);
                 String value = r[2];
@@ -235,7 +235,7 @@ public class PdfGenerationService extends Service {
             }
             shape.setStyle(Paint.Style.STROKE);
             shape.setStrokeWidth(0.8f);
-            shape.setColor(0xFFB8CFC6);
+            shape.setColor(0xFFD6BE8B);
             c.drawRect(left, top, right, y, shape);
             shape.setStyle(Paint.Style.FILL);
             y += 12;

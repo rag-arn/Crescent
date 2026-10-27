@@ -20,11 +20,20 @@ public final class ActivityHistoryBinding implements ViewBinding {
   private final LinearLayout rootView;
 
   @NonNull
+  public final LinearLayout headerBar;
+
+  @NonNull
   public final TextView historyText;
 
-  private ActivityHistoryBinding(@NonNull LinearLayout rootView, @NonNull TextView historyText) {
+  @NonNull
+  public final LinearLayout rootLayout;
+
+  private ActivityHistoryBinding(@NonNull LinearLayout rootView, @NonNull LinearLayout headerBar,
+      @NonNull TextView historyText, @NonNull LinearLayout rootLayout) {
     this.rootView = rootView;
+    this.headerBar = headerBar;
     this.historyText = historyText;
+    this.rootLayout = rootLayout;
   }
 
   @Override
@@ -54,13 +63,22 @@ public final class ActivityHistoryBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
+      id = R.id.headerBar;
+      LinearLayout headerBar = ViewBindings.findChildViewById(rootView, id);
+      if (headerBar == null) {
+        break missingId;
+      }
+
       id = R.id.historyText;
       TextView historyText = ViewBindings.findChildViewById(rootView, id);
       if (historyText == null) {
         break missingId;
       }
 
-      return new ActivityHistoryBinding((LinearLayout) rootView, historyText);
+      LinearLayout rootLayout = (LinearLayout) rootView;
+
+      return new ActivityHistoryBinding((LinearLayout) rootView, headerBar, historyText,
+          rootLayout);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

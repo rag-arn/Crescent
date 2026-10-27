@@ -22,6 +22,9 @@ public final class ActivityCashBinding implements ViewBinding {
   private final LinearLayout rootView;
 
   @NonNull
+  public final LinearLayout bottomBar;
+
+  @NonNull
   public final EditText cashBankInput;
 
   @NonNull
@@ -34,6 +37,9 @@ public final class ActivityCashBinding implements ViewBinding {
   public final EditText cashReceivableInput;
 
   @NonNull
+  public final LinearLayout headerBar;
+
+  @NonNull
   public final ImageButton infoButton;
 
   @NonNull
@@ -42,15 +48,18 @@ public final class ActivityCashBinding implements ViewBinding {
   @NonNull
   public final Button previousButton;
 
-  private ActivityCashBinding(@NonNull LinearLayout rootView, @NonNull EditText cashBankInput,
-      @NonNull EditText cashHandInput, @NonNull EditText cashPayableInput,
-      @NonNull EditText cashReceivableInput, @NonNull ImageButton infoButton,
-      @NonNull Button nextButton, @NonNull Button previousButton) {
+  private ActivityCashBinding(@NonNull LinearLayout rootView, @NonNull LinearLayout bottomBar,
+      @NonNull EditText cashBankInput, @NonNull EditText cashHandInput,
+      @NonNull EditText cashPayableInput, @NonNull EditText cashReceivableInput,
+      @NonNull LinearLayout headerBar, @NonNull ImageButton infoButton, @NonNull Button nextButton,
+      @NonNull Button previousButton) {
     this.rootView = rootView;
+    this.bottomBar = bottomBar;
     this.cashBankInput = cashBankInput;
     this.cashHandInput = cashHandInput;
     this.cashPayableInput = cashPayableInput;
     this.cashReceivableInput = cashReceivableInput;
+    this.headerBar = headerBar;
     this.infoButton = infoButton;
     this.nextButton = nextButton;
     this.previousButton = previousButton;
@@ -83,6 +92,12 @@ public final class ActivityCashBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
+      id = R.id.bottomBar;
+      LinearLayout bottomBar = ViewBindings.findChildViewById(rootView, id);
+      if (bottomBar == null) {
+        break missingId;
+      }
+
       id = R.id.cashBankInput;
       EditText cashBankInput = ViewBindings.findChildViewById(rootView, id);
       if (cashBankInput == null) {
@@ -107,6 +122,12 @@ public final class ActivityCashBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.headerBar;
+      LinearLayout headerBar = ViewBindings.findChildViewById(rootView, id);
+      if (headerBar == null) {
+        break missingId;
+      }
+
       id = R.id.infoButton;
       ImageButton infoButton = ViewBindings.findChildViewById(rootView, id);
       if (infoButton == null) {
@@ -125,8 +146,9 @@ public final class ActivityCashBinding implements ViewBinding {
         break missingId;
       }
 
-      return new ActivityCashBinding((LinearLayout) rootView, cashBankInput, cashHandInput,
-          cashPayableInput, cashReceivableInput, infoButton, nextButton, previousButton);
+      return new ActivityCashBinding((LinearLayout) rootView, bottomBar, cashBankInput,
+          cashHandInput, cashPayableInput, cashReceivableInput, headerBar, infoButton, nextButton,
+          previousButton);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

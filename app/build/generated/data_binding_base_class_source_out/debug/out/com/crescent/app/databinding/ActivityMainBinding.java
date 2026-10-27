@@ -4,8 +4,11 @@ package com.crescent.app.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ScrollView;
+import android.widget.FrameLayout;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.viewbinding.ViewBinding;
@@ -17,28 +20,139 @@ import java.lang.String;
 
 public final class ActivityMainBinding implements ViewBinding {
   @NonNull
-  private final ScrollView rootView;
+  private final LinearLayout rootView;
 
   @NonNull
-  public final Button btnCalculator;
+  public final TextView addAssetText;
 
   @NonNull
-  public final Button btnHistory;
+  public final LinearLayout bottomNav;
 
   @NonNull
-  public final Button btnInfo;
+  public final LinearLayout brandHeader;
 
-  private ActivityMainBinding(@NonNull ScrollView rootView, @NonNull Button btnCalculator,
-      @NonNull Button btnHistory, @NonNull Button btnInfo) {
+  @NonNull
+  public final TextView cashAmount;
+
+  @NonNull
+  public final TextView cashSub;
+
+  @NonNull
+  public final TextView commercialAmount;
+
+  @NonNull
+  public final TextView commercialSub;
+
+  @NonNull
+  public final TextView lastCalculatedText;
+
+  @NonNull
+  public final TextView liabilityAmount;
+
+  @NonNull
+  public final TextView liabilitySub;
+
+  @NonNull
+  public final FrameLayout logoContainer;
+
+  @NonNull
+  public final ImageButton menuButton;
+
+  @NonNull
+  public final TextView metalAmount;
+
+  @NonNull
+  public final TextView metalSub;
+
+  @NonNull
+  public final LinearLayout navAssets;
+
+  @NonNull
+  public final LinearLayout navHistory;
+
+  @NonNull
+  public final LinearLayout navHome;
+
+  @NonNull
+  public final LinearLayout navSettings;
+
+  @NonNull
+  public final TextView nisabStatus;
+
+  @NonNull
+  public final TextView nisabSub;
+
+  @NonNull
+  public final TextView paidText;
+
+  @NonNull
+  public final LinearLayout payButton;
+
+  @NonNull
+  public final FrameLayout profileButton;
+
+  @NonNull
+  public final LinearLayout recalcButton;
+
+  @NonNull
+  public final TextView recalcText;
+
+  @NonNull
+  public final TextView targetText;
+
+  @NonNull
+  public final TextView zakatAmount;
+
+  @NonNull
+  public final ProgressBar zakatProgress;
+
+  private ActivityMainBinding(@NonNull LinearLayout rootView, @NonNull TextView addAssetText,
+      @NonNull LinearLayout bottomNav, @NonNull LinearLayout brandHeader,
+      @NonNull TextView cashAmount, @NonNull TextView cashSub, @NonNull TextView commercialAmount,
+      @NonNull TextView commercialSub, @NonNull TextView lastCalculatedText,
+      @NonNull TextView liabilityAmount, @NonNull TextView liabilitySub,
+      @NonNull FrameLayout logoContainer, @NonNull ImageButton menuButton,
+      @NonNull TextView metalAmount, @NonNull TextView metalSub, @NonNull LinearLayout navAssets,
+      @NonNull LinearLayout navHistory, @NonNull LinearLayout navHome,
+      @NonNull LinearLayout navSettings, @NonNull TextView nisabStatus, @NonNull TextView nisabSub,
+      @NonNull TextView paidText, @NonNull LinearLayout payButton,
+      @NonNull FrameLayout profileButton, @NonNull LinearLayout recalcButton,
+      @NonNull TextView recalcText, @NonNull TextView targetText, @NonNull TextView zakatAmount,
+      @NonNull ProgressBar zakatProgress) {
     this.rootView = rootView;
-    this.btnCalculator = btnCalculator;
-    this.btnHistory = btnHistory;
-    this.btnInfo = btnInfo;
+    this.addAssetText = addAssetText;
+    this.bottomNav = bottomNav;
+    this.brandHeader = brandHeader;
+    this.cashAmount = cashAmount;
+    this.cashSub = cashSub;
+    this.commercialAmount = commercialAmount;
+    this.commercialSub = commercialSub;
+    this.lastCalculatedText = lastCalculatedText;
+    this.liabilityAmount = liabilityAmount;
+    this.liabilitySub = liabilitySub;
+    this.logoContainer = logoContainer;
+    this.menuButton = menuButton;
+    this.metalAmount = metalAmount;
+    this.metalSub = metalSub;
+    this.navAssets = navAssets;
+    this.navHistory = navHistory;
+    this.navHome = navHome;
+    this.navSettings = navSettings;
+    this.nisabStatus = nisabStatus;
+    this.nisabSub = nisabSub;
+    this.paidText = paidText;
+    this.payButton = payButton;
+    this.profileButton = profileButton;
+    this.recalcButton = recalcButton;
+    this.recalcText = recalcText;
+    this.targetText = targetText;
+    this.zakatAmount = zakatAmount;
+    this.zakatProgress = zakatProgress;
   }
 
   @Override
   @NonNull
-  public ScrollView getRoot() {
+  public LinearLayout getRoot() {
     return rootView;
   }
 
@@ -63,25 +177,179 @@ public final class ActivityMainBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
-      id = R.id.btnCalculator;
-      Button btnCalculator = ViewBindings.findChildViewById(rootView, id);
-      if (btnCalculator == null) {
+      id = R.id.addAssetText;
+      TextView addAssetText = ViewBindings.findChildViewById(rootView, id);
+      if (addAssetText == null) {
         break missingId;
       }
 
-      id = R.id.btnHistory;
-      Button btnHistory = ViewBindings.findChildViewById(rootView, id);
-      if (btnHistory == null) {
+      id = R.id.bottomNav;
+      LinearLayout bottomNav = ViewBindings.findChildViewById(rootView, id);
+      if (bottomNav == null) {
         break missingId;
       }
 
-      id = R.id.btnInfo;
-      Button btnInfo = ViewBindings.findChildViewById(rootView, id);
-      if (btnInfo == null) {
+      id = R.id.brandHeader;
+      LinearLayout brandHeader = ViewBindings.findChildViewById(rootView, id);
+      if (brandHeader == null) {
         break missingId;
       }
 
-      return new ActivityMainBinding((ScrollView) rootView, btnCalculator, btnHistory, btnInfo);
+      id = R.id.cashAmount;
+      TextView cashAmount = ViewBindings.findChildViewById(rootView, id);
+      if (cashAmount == null) {
+        break missingId;
+      }
+
+      id = R.id.cashSub;
+      TextView cashSub = ViewBindings.findChildViewById(rootView, id);
+      if (cashSub == null) {
+        break missingId;
+      }
+
+      id = R.id.commercialAmount;
+      TextView commercialAmount = ViewBindings.findChildViewById(rootView, id);
+      if (commercialAmount == null) {
+        break missingId;
+      }
+
+      id = R.id.commercialSub;
+      TextView commercialSub = ViewBindings.findChildViewById(rootView, id);
+      if (commercialSub == null) {
+        break missingId;
+      }
+
+      id = R.id.lastCalculatedText;
+      TextView lastCalculatedText = ViewBindings.findChildViewById(rootView, id);
+      if (lastCalculatedText == null) {
+        break missingId;
+      }
+
+      id = R.id.liabilityAmount;
+      TextView liabilityAmount = ViewBindings.findChildViewById(rootView, id);
+      if (liabilityAmount == null) {
+        break missingId;
+      }
+
+      id = R.id.liabilitySub;
+      TextView liabilitySub = ViewBindings.findChildViewById(rootView, id);
+      if (liabilitySub == null) {
+        break missingId;
+      }
+
+      id = R.id.logoContainer;
+      FrameLayout logoContainer = ViewBindings.findChildViewById(rootView, id);
+      if (logoContainer == null) {
+        break missingId;
+      }
+
+      id = R.id.menuButton;
+      ImageButton menuButton = ViewBindings.findChildViewById(rootView, id);
+      if (menuButton == null) {
+        break missingId;
+      }
+
+      id = R.id.metalAmount;
+      TextView metalAmount = ViewBindings.findChildViewById(rootView, id);
+      if (metalAmount == null) {
+        break missingId;
+      }
+
+      id = R.id.metalSub;
+      TextView metalSub = ViewBindings.findChildViewById(rootView, id);
+      if (metalSub == null) {
+        break missingId;
+      }
+
+      id = R.id.navAssets;
+      LinearLayout navAssets = ViewBindings.findChildViewById(rootView, id);
+      if (navAssets == null) {
+        break missingId;
+      }
+
+      id = R.id.navHistory;
+      LinearLayout navHistory = ViewBindings.findChildViewById(rootView, id);
+      if (navHistory == null) {
+        break missingId;
+      }
+
+      id = R.id.navHome;
+      LinearLayout navHome = ViewBindings.findChildViewById(rootView, id);
+      if (navHome == null) {
+        break missingId;
+      }
+
+      id = R.id.navSettings;
+      LinearLayout navSettings = ViewBindings.findChildViewById(rootView, id);
+      if (navSettings == null) {
+        break missingId;
+      }
+
+      id = R.id.nisabStatus;
+      TextView nisabStatus = ViewBindings.findChildViewById(rootView, id);
+      if (nisabStatus == null) {
+        break missingId;
+      }
+
+      id = R.id.nisabSub;
+      TextView nisabSub = ViewBindings.findChildViewById(rootView, id);
+      if (nisabSub == null) {
+        break missingId;
+      }
+
+      id = R.id.paidText;
+      TextView paidText = ViewBindings.findChildViewById(rootView, id);
+      if (paidText == null) {
+        break missingId;
+      }
+
+      id = R.id.payButton;
+      LinearLayout payButton = ViewBindings.findChildViewById(rootView, id);
+      if (payButton == null) {
+        break missingId;
+      }
+
+      id = R.id.profileButton;
+      FrameLayout profileButton = ViewBindings.findChildViewById(rootView, id);
+      if (profileButton == null) {
+        break missingId;
+      }
+
+      id = R.id.recalcButton;
+      LinearLayout recalcButton = ViewBindings.findChildViewById(rootView, id);
+      if (recalcButton == null) {
+        break missingId;
+      }
+
+      id = R.id.recalcText;
+      TextView recalcText = ViewBindings.findChildViewById(rootView, id);
+      if (recalcText == null) {
+        break missingId;
+      }
+
+      id = R.id.targetText;
+      TextView targetText = ViewBindings.findChildViewById(rootView, id);
+      if (targetText == null) {
+        break missingId;
+      }
+
+      id = R.id.zakatAmount;
+      TextView zakatAmount = ViewBindings.findChildViewById(rootView, id);
+      if (zakatAmount == null) {
+        break missingId;
+      }
+
+      id = R.id.zakatProgress;
+      ProgressBar zakatProgress = ViewBindings.findChildViewById(rootView, id);
+      if (zakatProgress == null) {
+        break missingId;
+      }
+
+      return new ActivityMainBinding((LinearLayout) rootView, addAssetText, bottomNav, brandHeader,
+          cashAmount, cashSub, commercialAmount, commercialSub, lastCalculatedText, liabilityAmount,
+          liabilitySub, logoContainer, menuButton, metalAmount, metalSub, navAssets, navHistory,
+          navHome, navSettings, nisabStatus, nisabSub, paidText, payButton, profileButton,
+          recalcButton, recalcText, targetText, zakatAmount, zakatProgress);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

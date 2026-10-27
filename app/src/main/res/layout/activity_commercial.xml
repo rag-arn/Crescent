@@ -1,34 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical">
+    android:orientation="vertical" android:background="@color/warm_cream"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <LinearLayout android:id="@+id/headerBar" android:orientation="horizontal" android:gravity="center_vertical"
+        android:background="@drawable/bg_brand_header" android:paddingStart="20dp" android:paddingEnd="10dp"
+        android:paddingTop="14dp" android:paddingBottom="12dp"
+        android:layout_width="match_parent" android:layout_height="wrap_content">
+        <LinearLayout android:orientation="vertical" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content">
+            <TextView android:text="Step 4 of 5" android:textSize="11sp" android:textStyle="bold" android:textAllCaps="true" android:letterSpacing="0.1"
+                android:textColor="@color/soft_cyan" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+            <TextView android:text="Commercial Goods" android:textSize="24sp" android:textStyle="bold" android:textColor="@color/warm_cream"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+        </LinearLayout>
+        <ImageButton android:id="@+id/infoButton" style="?android:attr/borderlessButtonStyle"
+            android:src="@drawable/ic_info" android:tint="@color/amber_gold" android:padding="10dp"
+            android:contentDescription="About commercial goods" android:layout_width="44dp" android:layout_height="44dp"/>
+    </LinearLayout>
+    <View android:background="#4DE3A83F" android:layout_width="match_parent" android:layout_height="1dp"/>
 
     <ScrollView android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1">
-        <LinearLayout android:orientation="vertical" android:padding="20dp"
+        <LinearLayout android:orientation="vertical" android:padding="16dp"
             android:layout_width="match_parent" android:layout_height="wrap_content">
-
-            <TextView android:text="Step 4 of 5" android:textSize="13sp" android:textColor="#176B52"
+            <TextView android:text="Worth of commercial goods (৳)" android:textSize="12sp" android:textStyle="bold" android:textColor="@color/slate_teal"
+                android:layout_marginTop="0dp" android:layout_marginBottom="4dp" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+            <EditText android:id="@+id/commercialInput" style="@style/Widget.Crescent.EditText" android:hint="0" android:inputType="numberDecimal"
                 android:layout_width="match_parent" android:layout_height="wrap_content"/>
-            <TextView android:text="Commercial Goods" android:textSize="28sp" android:textStyle="bold" android:textColor="#176B52"
-                android:layout_width="match_parent" android:layout_height="wrap_content"/>
-
-            <LinearLayout android:orientation="horizontal" android:gravity="center_vertical" android:layout_marginTop="16dp"
-                android:layout_width="match_parent" android:layout_height="wrap_content">
-                <EditText android:id="@+id/commercialInput" android:hint="Worth of commercial goods (৳)" android:inputType="numberDecimal"
-                    android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content"/>
-                <ImageButton android:id="@+id/infoButton" style="?android:attr/borderlessButtonStyle"
-                    android:src="@android:drawable/ic_dialog_info" android:tint="#176B52"
-                    android:contentDescription="About commercial goods"
-                    android:layout_width="48dp" android:layout_height="48dp"/>
-            </LinearLayout>
         </LinearLayout>
     </ScrollView>
-
-    <LinearLayout android:orientation="horizontal" android:padding="12dp"
+    <View android:background="@color/warm_sand" android:layout_width="match_parent" android:layout_height="1dp"/>
+    <LinearLayout android:id="@+id/bottomBar" android:orientation="horizontal" android:background="@color/warm_cream" android:padding="12dp"
         android:layout_width="match_parent" android:layout_height="wrap_content">
-        <Button android:id="@+id/previousButton" style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-            android:text="Previous" android:layout_marginEnd="6dp"
+        <Button android:id="@+id/previousButton" style="@style/Widget.Crescent.Button.Outlined" android:text="Previous" android:layout_marginEnd="6dp"
             android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content"/>
-        <Button android:id="@+id/nextButton" android:text="Next" android:layout_marginStart="6dp"
+        <Button android:id="@+id/nextButton" style="@style/Widget.Crescent.Button" android:text="Next" android:layout_marginStart="6dp"
             android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content"/>
     </LinearLayout>
 </LinearLayout>
