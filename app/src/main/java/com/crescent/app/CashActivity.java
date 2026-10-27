@@ -23,6 +23,7 @@ public class CashActivity extends AppCompatActivity {
         super.onCreate(state);
         b = ActivityCashBinding.inflate(getLayoutInflater());
         setContentView(b.getRoot());
+        Ui.insets(this, b.getRoot(), b.headerBar, b.bottomBar);
         b.infoButton.setOnClickListener(v -> InfoDialog.show(this, "About cash",
                 "Enter all amounts in Bangladeshi Taka (৳).\n\n"
                         + "Cash payable is money you owe; it is deducted from your total assets.\n"

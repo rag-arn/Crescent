@@ -1,11 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="amber_gold">#E3A83F</color>
+    <color name="dark_teal">#3B5453</color>
+    <color name="hint_teal">#995B7B7A</color>
+    <color name="slate_teal">#5B7B7A</color>
+    <color name="soft_cyan">#B4D5D4</color>
+    <color name="warm_cream">#F3EDE0</color>
+    <color name="warm_sand">#D6BE8B</color>
     <string name="app_name">Crescent</string>
-    <style name="Theme.Crescent" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <item name="colorPrimary">#176B52</item>
-        <item name="colorPrimaryVariant">#0E4937</item>
-        <item name="colorSecondary">#D5A83B</item>
+    <style name="Theme.Crescent" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="colorPrimary">@color/slate_teal</item>
+        <item name="colorPrimaryVariant">@color/dark_teal</item>
+        <item name="colorOnPrimary">@color/warm_cream</item>
+        <item name="colorSecondary">@color/amber_gold</item>
+        <item name="colorSecondaryVariant">@color/amber_gold</item>
+        <item name="colorOnSecondary">@color/dark_teal</item>
+        <item name="colorSurface">@color/warm_cream</item>
+        <item name="colorOnSurface">@color/dark_teal</item>
+        <item name="colorControlNormal">@color/slate_teal</item>
+        <item name="colorControlActivated">@color/slate_teal</item>
+        <item name="android:colorBackground">@color/warm_cream</item>
+        <item name="android:windowBackground">@color/warm_cream</item>
+        <item name="android:textColorPrimary">@color/dark_teal</item>
+        <item name="android:textColorSecondary">@color/slate_teal</item>
+        <item name="android:textColorHint">@color/hint_teal</item>
+        <item name="android:navigationBarColor">@color/warm_cream</item>
         <item name="android:fontFamily">sans</item>
         <item name="android:windowLightStatusBar">false</item>
+    </style>
+    <style name="Widget.Crescent.Button" parent="Widget.MaterialComponents.Button">
+        <item name="backgroundTint">@color/amber_gold</item>
+        <item name="android:textColor">@color/dark_teal</item>
+        <item name="cornerRadius">12dp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:letterSpacing">0</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="android:minHeight">48dp</item>
+    </style>
+    <style name="Widget.Crescent.Button.Outlined" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="strokeColor">@color/slate_teal</item>
+        <item name="android:textColor">@color/slate_teal</item>
+        <item name="cornerRadius">12dp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:letterSpacing">0</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="android:minHeight">48dp</item>
+    </style>
+    <style name="Widget.Crescent.Button.Text" parent="Widget.MaterialComponents.Button.TextButton">
+        <item name="android:textColor">@color/slate_teal</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:letterSpacing">0</item>
+    </style>
+    <style name="Widget.Crescent.EditText" parent="Widget.AppCompat.EditText">
+        <item name="android:background">@drawable/bg_input</item>
+        <item name="android:padding">12dp</item>
+        <item name="android:textColor">@color/dark_teal</item>
+        <item name="android:textColorHint">@color/hint_teal</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:minHeight">48dp</item>
     </style>
 </resources>

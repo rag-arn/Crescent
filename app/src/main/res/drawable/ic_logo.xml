@@ -1,0 +1,43 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="256dp"
+    android:height="256dp"
+    android:viewportWidth="100"
+    android:viewportHeight="100">
+
+    <!-- Light Cream Background -->
+    <path
+        android:fillColor="#F3EDE0"
+        android:pathData="M0,0h100v100h-100z" />
+
+    <!-- Golden Yellow Crescent Moon -->
+    <path
+        android:fillColor="#E3A83F"
+        android:pathData="M 64.5,30.3
+                          C 53.8,20.4 36.8,21.0 26.8,31.7
+                          C 16.8,42.4 17.5,59.3 28.2,69.3
+                          C 38.9,79.3 55.8,78.6 65.8,67.9
+                          C 70.3,63.1 72.8,56.9 72.8,50.4
+                          C 72.8,49.2 72.7,48.0 72.5,46.8
+                          C 70.5,58.3 59.8,66.2 48.3,64.2
+                          C 36.8,62.2 28.9,51.5 30.9,40.0
+                          C 32.4,31.4 38.8,24.6 47.4,22.7
+                          C 53.4,21.4 59.7,24.2 64.5,30.3 Z" />
+
+    <!-- Dark Teal Organic Leaf -->
+    <path
+        android:fillColor="#5B7B7A"
+        android:pathData="M 41.5,39.2
+                          C 41.5,39.2 50.8,46.5 57.0,60.0
+                          C 52.0,64.2 44.5,63.8 39.8,59.2
+                          C 35.1,54.6 34.6,47.1 38.8,42.1
+                          Z" />
+
+    <!-- Dark Teal Vertical Diamond -->
+    <path
+        android:fillColor="#5B7B7A"
+        android:pathData="M 59.8,38.8
+                          L 64.1,45.8
+                          L 59.8,52.8
+                          L 55.5,45.8 Z" />
+
+</vector>

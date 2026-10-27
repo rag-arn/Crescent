@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.widget.EditText;
 import androidx.appcompat.app.AppCompatActivity;
 import com.crescent.app.databinding.ActivityCommercialBinding;
-import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 /** Step 4: market value of commercial goods held for sale. Next: Nisab. */
 public class CommercialActivity extends AppCompatActivity {
@@ -29,12 +28,9 @@ public class CommercialActivity extends AppCompatActivity {
         super.onCreate(state);
         b = ActivityCommercialBinding.inflate(getLayoutInflater());
         setContentView(b.getRoot());
+        Ui.insets(this, b.getRoot(), b.headerBar, b.bottomBar);
 
-        b.infoButton.setOnClickListener(v -> new MaterialAlertDialogBuilder(this)
-                .setTitle("Commercial goods")
-                .setMessage(INFO_TEXT)
-                .setPositiveButton("Got it", null)
-                .show());
+        b.infoButton.setOnClickListener(v -> InfoDialog.show(this, "Commercial goods", INFO_TEXT));
 
         b.previousButton.setOnClickListener(v -> finish());
         b.nextButton.setOnClickListener(v -> {

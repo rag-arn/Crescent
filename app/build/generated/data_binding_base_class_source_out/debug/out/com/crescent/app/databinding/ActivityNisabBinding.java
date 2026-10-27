@@ -23,10 +23,16 @@ public final class ActivityNisabBinding implements ViewBinding {
   private final LinearLayout rootView;
 
   @NonNull
+  public final LinearLayout bottomBar;
+
+  @NonNull
   public final Button calculateButton;
 
   @NonNull
   public final RadioButton goldOption;
+
+  @NonNull
+  public final LinearLayout headerBar;
 
   @NonNull
   public final ImageButton infoButton;
@@ -40,13 +46,16 @@ public final class ActivityNisabBinding implements ViewBinding {
   @NonNull
   public final RadioButton silverOption;
 
-  private ActivityNisabBinding(@NonNull LinearLayout rootView, @NonNull Button calculateButton,
-      @NonNull RadioButton goldOption, @NonNull ImageButton infoButton,
+  private ActivityNisabBinding(@NonNull LinearLayout rootView, @NonNull LinearLayout bottomBar,
+      @NonNull Button calculateButton, @NonNull RadioButton goldOption,
+      @NonNull LinearLayout headerBar, @NonNull ImageButton infoButton,
       @NonNull RadioGroup nisabGroup, @NonNull Button previousButton,
       @NonNull RadioButton silverOption) {
     this.rootView = rootView;
+    this.bottomBar = bottomBar;
     this.calculateButton = calculateButton;
     this.goldOption = goldOption;
+    this.headerBar = headerBar;
     this.infoButton = infoButton;
     this.nisabGroup = nisabGroup;
     this.previousButton = previousButton;
@@ -80,6 +89,12 @@ public final class ActivityNisabBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
+      id = R.id.bottomBar;
+      LinearLayout bottomBar = ViewBindings.findChildViewById(rootView, id);
+      if (bottomBar == null) {
+        break missingId;
+      }
+
       id = R.id.calculateButton;
       Button calculateButton = ViewBindings.findChildViewById(rootView, id);
       if (calculateButton == null) {
@@ -89,6 +104,12 @@ public final class ActivityNisabBinding implements ViewBinding {
       id = R.id.goldOption;
       RadioButton goldOption = ViewBindings.findChildViewById(rootView, id);
       if (goldOption == null) {
+        break missingId;
+      }
+
+      id = R.id.headerBar;
+      LinearLayout headerBar = ViewBindings.findChildViewById(rootView, id);
+      if (headerBar == null) {
         break missingId;
       }
 
@@ -116,8 +137,8 @@ public final class ActivityNisabBinding implements ViewBinding {
         break missingId;
       }
 
-      return new ActivityNisabBinding((LinearLayout) rootView, calculateButton, goldOption,
-          infoButton, nisabGroup, previousButton, silverOption);
+      return new ActivityNisabBinding((LinearLayout) rootView, bottomBar, calculateButton,
+          goldOption, headerBar, infoButton, nisabGroup, previousButton, silverOption);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

@@ -12,6 +12,7 @@ import java.util.Locale;
 public class HistoryActivity extends AppCompatActivity {
     @Override protected void onCreate(Bundle state) {
         super.onCreate(state); setContentView(R.layout.activity_history);
+        Ui.insets(this, findViewById(R.id.rootLayout), findViewById(R.id.headerBar), null);
         TextView out=findViewById(R.id.historyText);
         new CrescentRepository(this).snapshots(items -> runOnUiThread(() -> {
             if (items.isEmpty()) { out.setText("No snapshots saved yet. Complete a Zakat calculation to save one."); return; }

@@ -27,6 +27,12 @@ public final class ActivityMetalBinding implements ViewBinding {
   public final Button addMoreButton;
 
   @NonNull
+  public final LinearLayout bottomBar;
+
+  @NonNull
+  public final LinearLayout headerBar;
+
+  @NonNull
   public final Button nextButton;
 
   @NonNull
@@ -69,15 +75,17 @@ public final class ActivityMetalBinding implements ViewBinding {
   public final Button useLivePriceButton;
 
   private ActivityMetalBinding(@NonNull LinearLayout rootView, @NonNull Button addMoreButton,
-      @NonNull Button nextButton, @NonNull Button previousButton,
-      @NonNull ImageButton priceInfoButton, @NonNull EditText priceInput,
-      @NonNull TextView priceLabel, @NonNull TextView priceStatus,
+      @NonNull LinearLayout bottomBar, @NonNull LinearLayout headerBar, @NonNull Button nextButton,
+      @NonNull Button previousButton, @NonNull ImageButton priceInfoButton,
+      @NonNull EditText priceInput, @NonNull TextView priceLabel, @NonNull TextView priceStatus,
       @NonNull Spinner priceUnitSpinner, @NonNull Button refreshPriceButton,
       @NonNull LinearLayout rowsContainer, @NonNull TextView stepText,
       @NonNull ImageButton titleInfoButton, @NonNull TextView titleText,
       @NonNull TextView totalText, @NonNull Button useLivePriceButton) {
     this.rootView = rootView;
     this.addMoreButton = addMoreButton;
+    this.bottomBar = bottomBar;
+    this.headerBar = headerBar;
     this.nextButton = nextButton;
     this.previousButton = previousButton;
     this.priceInfoButton = priceInfoButton;
@@ -124,6 +132,18 @@ public final class ActivityMetalBinding implements ViewBinding {
       id = R.id.addMoreButton;
       Button addMoreButton = ViewBindings.findChildViewById(rootView, id);
       if (addMoreButton == null) {
+        break missingId;
+      }
+
+      id = R.id.bottomBar;
+      LinearLayout bottomBar = ViewBindings.findChildViewById(rootView, id);
+      if (bottomBar == null) {
+        break missingId;
+      }
+
+      id = R.id.headerBar;
+      LinearLayout headerBar = ViewBindings.findChildViewById(rootView, id);
+      if (headerBar == null) {
         break missingId;
       }
 
@@ -211,10 +231,10 @@ public final class ActivityMetalBinding implements ViewBinding {
         break missingId;
       }
 
-      return new ActivityMetalBinding((LinearLayout) rootView, addMoreButton, nextButton,
-          previousButton, priceInfoButton, priceInput, priceLabel, priceStatus, priceUnitSpinner,
-          refreshPriceButton, rowsContainer, stepText, titleInfoButton, titleText, totalText,
-          useLivePriceButton);
+      return new ActivityMetalBinding((LinearLayout) rootView, addMoreButton, bottomBar, headerBar,
+          nextButton, previousButton, priceInfoButton, priceInput, priceLabel, priceStatus,
+          priceUnitSpinner, refreshPriceButton, rowsContainer, stepText, titleInfoButton, titleText,
+          totalText, useLivePriceButton);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

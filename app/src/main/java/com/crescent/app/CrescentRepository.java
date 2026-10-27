@@ -12,6 +12,7 @@ public class CrescentRepository {
     public CrescentRepository(Context context) { dao = CrescentDatabase.get(context).dao(); }
     public void saveSnapshot(Snapshot snapshot) { executor.execute(() -> dao.insertSnapshot(snapshot)); }
     public void snapshots(Result<List<Snapshot>> result) { executor.execute(() -> result.onResult(dao.getSnapshots())); }
+    public void assets(Result<List<Asset>> result) { executor.execute(() -> result.onResult(dao.getAssets())); }
     public void saveAsset(String category, double amount) { executor.execute(() -> dao.putAsset(new Asset(category, amount, System.currentTimeMillis()))); }
     public void savePrice(PriceRecord price) { executor.execute(() -> dao.putPrice(price)); }
 }

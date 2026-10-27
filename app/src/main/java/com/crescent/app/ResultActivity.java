@@ -38,6 +38,7 @@ public class ResultActivity extends AppCompatActivity {
         super.onCreate(state);
         b = ActivityResultBinding.inflate(getLayoutInflater());
         setContentView(b.getRoot());
+        Ui.insets(this, b.getRoot(), b.headerBar, b.bottomBar);
 
         Intent in = getIntent();
         double gold = in.getDoubleExtra("gold_value_bdt", 0), goldGrams = in.getDoubleExtra("gold_pure_grams", 0);
@@ -99,7 +100,7 @@ public class ResultActivity extends AppCompatActivity {
                 ? "Your net wealth (" + taka(net) + ") is at or above the Nisab (" + taka(nisab) + ")."
                 : "Your net wealth (" + taka(net) + ") is below the Nisab (" + taka(nisab) + ").";
         b.verdictText.setText(headline + "\n\n" + detail);
-        b.verdictCard.setCardBackgroundColor(due ? 0x33176B52 : 0x33888888);
+        b.verdictCard.setCardBackgroundColor(due ? 0x80B4D5D4 : 0x4DD6BE8B);
         renderTable();
 
         // ----- PDF -----
@@ -143,6 +144,7 @@ public class ResultActivity extends AppCompatActivity {
         TextView t = new TextView(this);
         t.setText(text);
         t.setTextSize(15);
+        t.setTextColor(0xFF3B5453);
         t.setPadding(dp(8), dp(7), dp(8), dp(7));
         if (bold) t.setTypeface(t.getTypeface(), android.graphics.Typeface.BOLD);
         return t;
@@ -153,8 +155,8 @@ public class ResultActivity extends AppCompatActivity {
             TableRow tr = new TableRow(this);
             if (l[0].equals("H")) {
                 TextView h = cell(l[1], true);
-                h.setTextColor(0xFFFFFFFF);
-                h.setBackgroundColor(0xFF176B52);
+                h.setTextColor(0xFFF3EDE0);
+                h.setBackgroundColor(0xFF5B7B7A);
                 TableRow.LayoutParams lp = new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT);
                 lp.span = 2;
                 lp.topMargin = dp(12);
@@ -163,7 +165,7 @@ public class ResultActivity extends AppCompatActivity {
                 boolean bold = l[0].equals("T");
                 TextView a = cell(l[1], bold), v = cell(l[2], bold);
                 v.setGravity(Gravity.END);
-                if (bold) { a.setBackgroundColor(0x1A176B52); v.setBackgroundColor(0x1A176B52); }
+                if (bold) { a.setBackgroundColor(0x4DB4D5D4); v.setBackgroundColor(0x4DB4D5D4); }
                 tr.addView(a);
                 tr.addView(v);
             }

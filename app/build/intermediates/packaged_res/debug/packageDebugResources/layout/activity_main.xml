@@ -1,28 +1,255 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent" android:background="#F5F7F4">
-    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="24dp">
-        <TextView android:text="☾ Crescent" android:textColor="#176B52" android:textSize="32sp" android:textStyle="bold" android:layout_width="match_parent" android:layout_height="wrap_content"/>
-        <TextView android:text="Your wealth. Your responsibility. Your records." android:textColor="#52645C" android:textSize="15sp" android:layout_marginTop="8dp" android:layout_marginBottom="28dp" android:layout_width="match_parent" android:layout_height="wrap_content"/>
-        <com.google.android.material.card.MaterialCardView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginBottom="14dp">
-            <LinearLayout android:padding="20dp" android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content">
-                <TextView android:text="Zakat Calculator" android:textSize="20sp" android:textStyle="bold" android:layout_width="match_parent" android:layout_height="wrap_content"/>
-                <TextView android:text="Enter assets and liabilities to estimate your Zakat." android:layout_marginTop="6dp" android:layout_width="match_parent" android:layout_height="wrap_content"/>
-                <Button android:id="@+id/btnCalculator" android:text="Calculate Zakat" android:layout_marginTop="12dp" android:layout_width="match_parent" android:layout_height="wrap_content"/>
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
-        <com.google.android.material.card.MaterialCardView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginBottom="14dp">
-            <LinearLayout android:padding="20dp" android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content">
-                <TextView android:text="History" android:textSize="20sp" android:textStyle="bold" android:layout_width="match_parent" android:layout_height="wrap_content"/>
-                <TextView android:text="Review saved yearly snapshots." android:layout_marginTop="6dp" android:layout_width="match_parent" android:layout_height="wrap_content"/>
-                <Button android:id="@+id/btnHistory" android:text="View History" android:layout_marginTop="12dp" android:layout_width="match_parent" android:layout_height="wrap_content"/>
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
-        <com.google.android.material.card.MaterialCardView android:layout_width="match_parent" android:layout_height="wrap_content">
-            <LinearLayout android:padding="20dp" android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content">
-                <TextView android:text="About Zakat" android:textSize="20sp" android:textStyle="bold" android:layout_width="match_parent" android:layout_height="wrap_content"/>
-                <TextView android:text="Learn about Nisab, calculation, and important considerations." android:layout_marginTop="6dp" android:layout_width="match_parent" android:layout_height="wrap_content"/>
-                <Button android:id="@+id/btnInfo" android:text="Read Information" android:layout_marginTop="12dp" android:layout_width="match_parent" android:layout_height="wrap_content"/>
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:background="@color/warm_cream"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <!-- Brand header: logo (res/drawable/ic_logo.xml) + app name -->
+    <LinearLayout android:id="@+id/brandHeader" android:orientation="vertical" android:gravity="center_horizontal"
+        android:background="@drawable/bg_brand_header" android:paddingTop="16dp" android:paddingBottom="12dp"
+        android:paddingStart="24dp" android:paddingEnd="24dp"
+        android:layout_width="match_parent" android:layout_height="wrap_content">
+        <LinearLayout android:orientation="horizontal" android:gravity="center_vertical"
+            android:layout_width="wrap_content" android:layout_height="wrap_content">
+            <FrameLayout android:id="@+id/logoContainer" android:background="@drawable/bg_logo_placeholder"
+                android:clipToOutline="true" android:layout_width="40dp" android:layout_height="40dp">
+                <ImageView android:src="@drawable/ic_logo" android:importantForAccessibility="no"
+                    android:layout_width="match_parent" android:layout_height="match_parent"/>
+            </FrameLayout>
+            <TextView android:text="CRESCENT" android:textSize="20sp" android:textStyle="bold" android:letterSpacing="0.1"
+                android:textColor="@color/warm_cream" android:layout_marginStart="10dp"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+        </LinearLayout>
+        <TextView android:text="Purify &amp; Track Your Wealth" android:textSize="10sp" android:textAllCaps="true" android:letterSpacing="0.15"
+            android:textColor="@color/soft_cyan" android:layout_marginTop="2dp"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"/>
     </LinearLayout>
-</ScrollView>
+    <View android:background="#4DE3A83F" android:layout_width="match_parent" android:layout_height="1dp"/>
+
+    <!-- App bar -->
+    <LinearLayout android:orientation="horizontal" android:gravity="center_vertical" android:background="@color/slate_teal"
+        android:paddingStart="12dp" android:paddingEnd="20dp" android:paddingTop="10dp" android:paddingBottom="10dp"
+        android:layout_width="match_parent" android:layout_height="wrap_content">
+        <ImageButton android:id="@+id/menuButton" style="?android:attr/borderlessButtonStyle"
+            android:src="@drawable/ic_menu" android:tint="@color/warm_cream" android:padding="8dp"
+            android:contentDescription="Menu" android:layout_width="40dp" android:layout_height="40dp"/>
+        <LinearLayout android:orientation="vertical" android:layout_marginStart="6dp"
+            android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content">
+            <TextView android:text="Zakat Dashboard" android:textSize="16sp" android:textStyle="bold" android:textColor="@color/warm_cream"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+            <LinearLayout android:orientation="horizontal" android:layout_width="wrap_content" android:layout_height="wrap_content">
+                <TextView android:text="Last calculated:" android:textSize="11sp" android:textColor="@color/soft_cyan"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                <TextView android:id="@+id/lastCalculatedText" android:text="—" android:textSize="11sp" android:textStyle="bold"
+                    android:textColor="@color/amber_gold" android:layout_marginStart="4dp"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+            </LinearLayout>
+        </LinearLayout>
+        <!-- Profile placeholder (not available yet) -->
+        <FrameLayout android:id="@+id/profileButton" android:background="@drawable/bg_avatar" android:clickable="true" android:focusable="true"
+            android:contentDescription="Profile" android:layout_width="32dp" android:layout_height="32dp">
+            <ImageView android:src="@drawable/ic_person" android:tint="@color/dark_teal" android:padding="6dp" android:importantForAccessibility="no"
+                android:layout_width="match_parent" android:layout_height="match_parent"/>
+        </FrameLayout>
+    </LinearLayout>
+    <View android:background="#33D6BE8B" android:layout_width="match_parent" android:layout_height="1dp"/>
+
+    <ScrollView android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:fillViewport="false">
+        <LinearLayout android:orientation="vertical" android:padding="16dp"
+            android:layout_width="match_parent" android:layout_height="wrap_content">
+
+            <!-- Summary card -->
+            <LinearLayout android:orientation="vertical" android:padding="16dp" android:background="@drawable/bg_summary_card"
+                android:layout_width="match_parent" android:layout_height="wrap_content">
+                <LinearLayout android:orientation="horizontal" android:gravity="top"
+                    android:layout_width="match_parent" android:layout_height="wrap_content">
+                    <LinearLayout android:orientation="vertical" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content">
+                        <TextView android:text="Net Eligible Zakat" android:textSize="12sp" android:textStyle="bold" android:textAllCaps="true"
+                            android:letterSpacing="0.08" android:textColor="@color/soft_cyan"
+                            android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                        <TextView android:id="@+id/zakatAmount" android:text="৳0" android:textSize="30sp" android:textStyle="bold"
+                            android:textColor="@color/amber_gold" android:layout_marginTop="2dp"
+                            android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                    </LinearLayout>
+                    <TextView android:text="2.5% Rate" android:textSize="11sp" android:textStyle="bold" android:textColor="@color/amber_gold"
+                        android:background="@drawable/bg_chip" android:paddingStart="10dp" android:paddingEnd="10dp" android:paddingTop="4dp" android:paddingBottom="4dp"
+                        android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                </LinearLayout>
+                <LinearLayout android:orientation="horizontal" android:layout_marginTop="16dp"
+                    android:layout_width="match_parent" android:layout_height="wrap_content">
+                    <TextView android:id="@+id/paidText" android:text="Paid: —" android:textSize="12sp" android:textColor="@color/soft_cyan"
+                        android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content"/>
+                    <TextView android:id="@+id/targetText" android:text="Target: ৳0" android:textSize="12sp" android:textColor="@color/soft_cyan"
+                        android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                </LinearLayout>
+                <ProgressBar android:id="@+id/zakatProgress" style="?android:attr/progressBarStyleHorizontal"
+                    android:progressDrawable="@drawable/progress_amber" android:max="100" android:progress="0"
+                    android:layout_marginTop="6dp" android:layout_width="match_parent" android:layout_height="10dp"/>
+            </LinearLayout>
+
+            <!-- Nisab banner -->
+            <LinearLayout android:orientation="horizontal" android:gravity="center_vertical" android:padding="12dp"
+                android:background="@drawable/bg_nisab_banner" android:layout_marginTop="16dp"
+                android:layout_width="match_parent" android:layout_height="wrap_content">
+                <FrameLayout android:background="@drawable/bg_icon_box" android:layout_width="36dp" android:layout_height="36dp">
+                    <ImageView android:src="@drawable/ic_coins" android:tint="@color/amber_gold" android:layout_gravity="center"
+                        android:importantForAccessibility="no" android:layout_width="18dp" android:layout_height="18dp"/>
+                </FrameLayout>
+                <LinearLayout android:orientation="vertical" android:layout_marginStart="10dp"
+                    android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content">
+                    <TextView android:text="Current Nisab Value" android:textSize="12sp" android:textStyle="bold" android:textColor="@color/dark_teal"
+                        android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                    <TextView android:id="@+id/nisabSub" android:text="Complete a calculation to see it" android:textSize="11sp"
+                        android:textColor="@color/slate_teal" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                </LinearLayout>
+                <TextView android:id="@+id/nisabStatus" android:text="—" android:textSize="12sp" android:textStyle="bold" android:textColor="@color/slate_teal"
+                    android:background="@drawable/bg_pill" android:paddingStart="8dp" android:paddingEnd="8dp" android:paddingTop="4dp" android:paddingBottom="4dp"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+            <!-- Asset breakdown -->
+            <LinearLayout android:orientation="horizontal" android:gravity="center_vertical" android:layout_marginTop="16dp"
+                android:layout_width="match_parent" android:layout_height="wrap_content">
+                <TextView android:text="Asset Breakdown" android:textSize="14sp" android:textStyle="bold" android:textColor="@color/dark_teal"
+                    android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content"/>
+                <!-- Not available yet -->
+                <TextView android:id="@+id/addAssetText" android:text="Add Asset" android:textSize="12sp" android:textStyle="bold" android:textColor="@color/slate_teal"
+                    android:alpha="0.5" android:padding="4dp" android:clickable="true" android:focusable="true"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+            </LinearLayout>
+            <LinearLayout android:orientation="horizontal" android:layout_marginTop="8dp"
+                android:layout_width="match_parent" android:layout_height="wrap_content">
+                <LinearLayout android:orientation="vertical" android:padding="12dp" android:background="@drawable/bg_asset_card"
+                    android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content"
+                    android:layout_marginStart="0dp" android:layout_marginEnd="5dp">
+                    <LinearLayout android:orientation="horizontal" android:gravity="center_vertical"
+                        android:layout_width="match_parent" android:layout_height="wrap_content">
+                        <TextView android:text="Cash &amp; Savings" android:textSize="12sp" android:textStyle="bold" android:textColor="@color/slate_teal"
+                            android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content"/>
+                        <ImageView android:src="@drawable/ic_wallet" android:tint="@color/amber_gold"
+                            android:importantForAccessibility="no" android:layout_width="16dp" android:layout_height="16dp"/>
+                    </LinearLayout>
+                    <TextView android:id="@+id/cashAmount" android:text="৳0" android:textSize="16sp" android:textStyle="bold"
+                        android:textColor="@color/dark_teal" android:layout_marginTop="4dp"
+                        android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                    <TextView android:id="@+id/cashSub" android:text="—" android:textSize="10sp" android:textColor="@color/slate_teal" android:alpha="0.8"
+                        android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                </LinearLayout>
+                <LinearLayout android:orientation="vertical" android:padding="12dp" android:background="@drawable/bg_asset_card"
+                    android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp" android:layout_marginEnd="0dp">
+                    <LinearLayout android:orientation="horizontal" android:gravity="center_vertical"
+                        android:layout_width="match_parent" android:layout_height="wrap_content">
+                        <TextView android:text="Gold &amp; Silver" android:textSize="12sp" android:textStyle="bold" android:textColor="@color/slate_teal"
+                            android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content"/>
+                        <ImageView android:src="@drawable/ic_gem" android:tint="@color/amber_gold"
+                            android:importantForAccessibility="no" android:layout_width="16dp" android:layout_height="16dp"/>
+                    </LinearLayout>
+                    <TextView android:id="@+id/metalAmount" android:text="৳0" android:textSize="16sp" android:textStyle="bold"
+                        android:textColor="@color/dark_teal" android:layout_marginTop="4dp"
+                        android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                    <TextView android:id="@+id/metalSub" android:text="—" android:textSize="10sp" android:textColor="@color/slate_teal" android:alpha="0.8"
+                        android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout android:orientation="horizontal" android:layout_marginTop="10dp"
+                android:layout_width="match_parent" android:layout_height="wrap_content">
+                <LinearLayout android:orientation="vertical" android:padding="12dp" android:background="@drawable/bg_asset_card"
+                    android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content"
+                    android:layout_marginStart="0dp" android:layout_marginEnd="5dp">
+                    <LinearLayout android:orientation="horizontal" android:gravity="center_vertical"
+                        android:layout_width="match_parent" android:layout_height="wrap_content">
+                        <TextView android:text="Commercial Goods" android:textSize="12sp" android:textStyle="bold" android:textColor="@color/slate_teal"
+                            android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content"/>
+                        <ImageView android:src="@drawable/ic_bag" android:tint="@color/amber_gold"
+                            android:importantForAccessibility="no" android:layout_width="16dp" android:layout_height="16dp"/>
+                    </LinearLayout>
+                    <TextView android:id="@+id/commercialAmount" android:text="৳0" android:textSize="16sp" android:textStyle="bold"
+                        android:textColor="@color/dark_teal" android:layout_marginTop="4dp"
+                        android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                    <TextView android:id="@+id/commercialSub" android:text="—" android:textSize="10sp" android:textColor="@color/slate_teal" android:alpha="0.8"
+                        android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                </LinearLayout>
+                <LinearLayout android:orientation="vertical" android:padding="12dp" android:background="@drawable/bg_asset_card"
+                    android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp" android:layout_marginEnd="0dp">
+                    <LinearLayout android:orientation="horizontal" android:gravity="center_vertical"
+                        android:layout_width="match_parent" android:layout_height="wrap_content">
+                        <TextView android:text="Liabilities" android:textSize="12sp" android:textStyle="bold" android:textColor="@color/slate_teal"
+                            android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content"/>
+                        <ImageView android:src="@drawable/ic_arrow_down_right" android:tint="@color/slate_teal"
+                            android:importantForAccessibility="no" android:layout_width="16dp" android:layout_height="16dp"/>
+                    </LinearLayout>
+                    <TextView android:id="@+id/liabilityAmount" android:text="৳0" android:textSize="16sp" android:textStyle="bold"
+                        android:textColor="@color/slate_teal" android:layout_marginTop="4dp"
+                        android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                    <TextView android:id="@+id/liabilitySub" android:text="—" android:textSize="10sp" android:textColor="@color/slate_teal" android:alpha="0.8"
+                        android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Quick actions -->
+            <LinearLayout android:orientation="horizontal" android:layout_marginTop="16dp"
+                android:layout_width="match_parent" android:layout_height="wrap_content">
+                <LinearLayout android:id="@+id/recalcButton" android:orientation="horizontal" android:gravity="center"
+                    android:paddingTop="10dp" android:paddingBottom="10dp" android:background="@drawable/bg_btn_amber"
+                    android:clickable="true" android:focusable="true" android:foreground="?attr/selectableItemBackground"
+                    android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:layout_marginEnd="4dp">
+                    <ImageView android:src="@drawable/ic_calculator" android:tint="@color/dark_teal" android:importantForAccessibility="no"
+                        android:layout_width="16dp" android:layout_height="16dp"/>
+                    <TextView android:id="@+id/recalcText" android:text="Calculate Zakat" android:textSize="12sp" android:textStyle="bold"
+                        android:textColor="@color/dark_teal" android:layout_marginStart="6dp"
+                        android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                </LinearLayout>
+                <!-- Not available yet -->
+                <LinearLayout android:id="@+id/payButton" android:orientation="horizontal" android:gravity="center"
+                    android:paddingTop="10dp" android:paddingBottom="10dp" android:background="@drawable/bg_btn_slate" android:alpha="0.6"
+                    android:clickable="true" android:focusable="true" android:foreground="?attr/selectableItemBackground"
+                    android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:layout_marginStart="4dp">
+                    <ImageView android:src="@drawable/ic_heart" android:tint="@color/soft_cyan" android:importantForAccessibility="no"
+                        android:layout_width="16dp" android:layout_height="16dp"/>
+                    <TextView android:text="Pay Zakat" android:textSize="12sp" android:textStyle="bold" android:textColor="@color/warm_cream"
+                        android:layout_marginStart="6dp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- Bottom navigation -->
+    <View android:background="@color/warm_sand" android:layout_width="match_parent" android:layout_height="1dp"/>
+    <LinearLayout android:id="@+id/bottomNav" android:orientation="horizontal" android:background="@color/warm_cream"
+        android:paddingStart="12dp" android:paddingEnd="12dp" android:paddingTop="6dp" android:paddingBottom="6dp"
+        android:layout_width="match_parent" android:layout_height="wrap_content">
+        <LinearLayout android:id="@+id/navHome" android:orientation="vertical" android:gravity="center" android:padding="6dp"
+            android:clickable="true" android:focusable="true" android:foreground="?attr/selectableItemBackground"
+            android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content">
+            <ImageView android:src="@drawable/ic_dashboard" android:tint="@color/amber_gold" android:importantForAccessibility="no"
+                android:layout_width="22dp" android:layout_height="22dp"/>
+            <TextView android:text="Home" android:textSize="10sp" android:textStyle="bold" android:textColor="@color/dark_teal"
+                android:layout_marginTop="2dp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+        </LinearLayout>
+        <LinearLayout android:id="@+id/navAssets" android:orientation="vertical" android:gravity="center" android:padding="6dp"
+            android:clickable="true" android:focusable="true" android:foreground="?attr/selectableItemBackground" android:alpha="0.7"
+            android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content">
+            <ImageView android:src="@drawable/ic_pie" android:tint="@color/slate_teal" android:importantForAccessibility="no"
+                android:layout_width="22dp" android:layout_height="22dp"/>
+            <TextView android:text="Assets" android:textSize="10sp" android:textStyle="normal" android:textColor="@color/slate_teal"
+                android:layout_marginTop="2dp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+        </LinearLayout>
+        <LinearLayout android:id="@+id/navHistory" android:orientation="vertical" android:gravity="center" android:padding="6dp"
+            android:clickable="true" android:focusable="true" android:foreground="?attr/selectableItemBackground" android:alpha="0.7"
+            android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content">
+            <ImageView android:src="@drawable/ic_history" android:tint="@color/slate_teal" android:importantForAccessibility="no"
+                android:layout_width="22dp" android:layout_height="22dp"/>
+            <TextView android:text="History" android:textSize="10sp" android:textStyle="normal" android:textColor="@color/slate_teal"
+                android:layout_marginTop="2dp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+        </LinearLayout>
+        <LinearLayout android:id="@+id/navSettings" android:orientation="vertical" android:gravity="center" android:padding="6dp"
+            android:clickable="true" android:focusable="true" android:foreground="?attr/selectableItemBackground" android:alpha="0.7"
+            android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content">
+            <ImageView android:src="@drawable/ic_settings" android:tint="@color/slate_teal" android:importantForAccessibility="no"
+                android:layout_width="22dp" android:layout_height="22dp"/>
+            <TextView android:text="Settings" android:textSize="10sp" android:textStyle="normal" android:textColor="@color/slate_teal"
+                android:layout_marginTop="2dp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
