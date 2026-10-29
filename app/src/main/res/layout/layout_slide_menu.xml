@@ -1,24 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:background="@drawable/bg_dash_screen"
-    android:elevation="18dp"
-    android:clickable="true"
-    android:focusable="true"
-    android:visibility="invisible"
-    android:layout_gravity="start"
-    android:layout_width="300dp"
-    android:layout_height="match_parent">
+    android:orientation="vertical" android:background="@drawable/bg_dash_screen" android:elevation="18dp"
+    android:clickable="true" android:focusable="true" android:visibility="invisible"
+    android:layout_gravity="start" android:layout_width="300dp" android:layout_height="match_parent">
 
-    <!-- Menu Header with Star Pattern -->
-    <FrameLayout
-        android:id="@+id/menuHeader"
-        android:paddingTop="42dp"
-        android:paddingBottom="16dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+    <FrameLayout android:id="@+id/menuHeader" android:paddingTop="42dp" android:paddingBottom="16dp" android:layout_width="match_parent" android:layout_height="wrap_content">
         <ImageView android:src="@drawable/ic_pattern_star" android:alpha="0.8" android:layout_gravity="end|top" android:importantForAccessibility="no" android:layout_width="160dp" android:layout_height="120dp"/>
-        <ImageButton android:id="@+id/menuCloseButton" style="?android:attr/borderlessButtonStyle" android:src="@drawable/ic_back_arrow" android:tint="@color/sage_text" android:contentDescription="Close menu" android:layout_gravity="start|center_vertical" android:layout_marginStart="12dp" android:layout_width="44dp" android:layout_height="44dp"/>
+        <ImageButton android:id="@+id/menuCloseButton" style="?android:attr/borderlessButtonStyle" android:src="@drawable/ic_back_arrow" android:tint="@color/sage_text" android:layout_gravity="start|center_vertical" android:layout_marginStart="12dp" android:layout_width="44dp" android:layout_height="44dp"/>
         <LinearLayout android:orientation="vertical" android:layout_gravity="center" android:gravity="center_horizontal" android:layout_width="wrap_content" android:layout_height="wrap_content">
             <TextView android:text="SETTINGS &amp; MORE" android:textSize="10sp" android:textStyle="bold" android:letterSpacing="0.14" android:textColor="@color/sage_text_soft" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
             <TextView android:text="Menu" android:fontFamily="serif" android:textSize="22sp" android:textStyle="bold" android:textColor="@color/sage_text" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
@@ -26,14 +14,12 @@
     </FrameLayout>
     <View android:background="@color/sage_card_stroke" android:layout_width="match_parent" android:layout_height="1dp"/>
 
-    <!-- Menu Body -->
     <ScrollView android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1">
         <LinearLayout android:orientation="vertical" android:padding="16dp" android:layout_width="match_parent" android:layout_height="wrap_content">
 
-            <!-- Profile Card -->
-            <LinearLayout android:id="@+id/menuProfileCard" android:orientation="horizontal" android:gravity="center_vertical" android:padding="14dp" android:background="@drawable/bg_dash_card" android:elevation="2dp" android:layout_width="match_parent" android:layout_height="wrap_content">
+            <LinearLayout android:id="@+id/menuProfileCard" android:orientation="horizontal" android:gravity="center_vertical" android:padding="14dp" android:background="@drawable/bg_dash_card" android:elevation="2dp" android:clickable="true" android:focusable="true" android:foreground="?attr/selectableItemBackground" android:layout_width="match_parent" android:layout_height="wrap_content">
                 <FrameLayout android:background="@drawable/bg_dash_logo_ring" android:layout_width="42dp" android:layout_height="42dp">
-                    <ImageView android:src="@drawable/ic_person" android:tint="@color/sage_text" android:padding="9dp" android:importantForAccessibility="no" android:layout_width="match_parent" android:layout_height="match_parent"/>
+                    <ImageView android:src="@drawable/ic_person" android:tint="@color/sage_text" android:padding="9dp" android:layout_width="match_parent" android:layout_height="match_parent"/>
                 </FrameLayout>
                 <LinearLayout android:orientation="vertical" android:layout_marginStart="12dp" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content">
                     <TextView android:id="@+id/profileNameText" android:text="Profile" android:textSize="15sp" android:textStyle="bold" android:maxLines="1" android:textColor="@color/sage_text" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
@@ -43,35 +29,39 @@
 
             <TextView android:text="Shortcuts" android:textSize="11sp" android:textStyle="bold" android:textAllCaps="true" android:letterSpacing="0.08" android:textColor="@color/sage_text_soft" android:layout_marginTop="24dp" android:layout_marginBottom="8dp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
 
-            <LinearLayout android:id="@+id/menuAboutZakat" android:orientation="horizontal" android:gravity="center_vertical" android:padding="12dp" android:background="@drawable/bg_dash_card" android:elevation="2dp" android:clickable="true" android:focusable="true" android:foreground="?attr/selectableItemBackground" android:layout_width="match_parent" android:layout_height="wrap_content">
-                <ImageView android:src="@drawable/ic_info" android:tint="@color/sage_text" android:layout_gravity="center" android:importantForAccessibility="no" android:layout_width="24dp" android:layout_height="24dp"/>
+            <LinearLayout android:id="@+id/menuNotifications" android:orientation="horizontal" android:gravity="center_vertical" android:padding="12dp" android:background="@drawable/bg_dash_card" android:elevation="2dp" android:clickable="true" android:focusable="true" android:foreground="?attr/selectableItemBackground" android:layout_width="match_parent" android:layout_height="wrap_content">
+                <ImageView android:src="@drawable/ic_bell" android:tint="@color/amber_gold" android:layout_gravity="center" android:layout_width="24dp" android:layout_height="24dp"/>
+                <LinearLayout android:orientation="vertical" android:layout_marginStart="12dp" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content">
+                    <TextView android:text="Notifications" android:textSize="15sp" android:textStyle="bold" android:textColor="@color/sage_text" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                    <TextView android:text="Alerts &amp; updates" android:textSize="11sp" android:textColor="@color/sage_text_soft" android:layout_marginTop="2dp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout android:id="@+id/menuAboutZakat" android:orientation="horizontal" android:gravity="center_vertical" android:padding="12dp" android:background="@drawable/bg_dash_card" android:elevation="2dp" android:layout_marginTop="8dp" android:clickable="true" android:focusable="true" android:foreground="?attr/selectableItemBackground" android:layout_width="match_parent" android:layout_height="wrap_content">
+                <ImageView android:src="@drawable/ic_info" android:tint="@color/sage_text" android:layout_gravity="center" android:layout_width="24dp" android:layout_height="24dp"/>
                 <LinearLayout android:orientation="vertical" android:layout_marginStart="12dp" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content">
                     <TextView android:text="About Zakat" android:textSize="15sp" android:textStyle="bold" android:textColor="@color/sage_text" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
-                    <TextView android:text="Learn Nisab rules &amp; calculation method" android:textSize="11sp" android:textColor="@color/sage_text_soft" android:layout_marginTop="2dp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
                 </LinearLayout>
             </LinearLayout>
 
             <LinearLayout android:id="@+id/menuCalculate" android:orientation="horizontal" android:gravity="center_vertical" android:padding="12dp" android:background="@drawable/bg_dash_card" android:elevation="2dp" android:layout_marginTop="8dp" android:clickable="true" android:focusable="true" android:foreground="?attr/selectableItemBackground" android:layout_width="match_parent" android:layout_height="wrap_content">
-                <ImageView android:src="@drawable/ic_calculator" android:tint="@color/sage_text" android:layout_gravity="center" android:importantForAccessibility="no" android:layout_width="24dp" android:layout_height="24dp"/>
+                <ImageView android:src="@drawable/ic_calculator" android:tint="@color/sage_text" android:layout_gravity="center" android:layout_width="24dp" android:layout_height="24dp"/>
                 <LinearLayout android:orientation="vertical" android:layout_marginStart="12dp" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content">
                     <TextView android:text="Calculate Zakat" android:textSize="15sp" android:textStyle="bold" android:textColor="@color/sage_text" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
-                    <TextView android:text="Run the 5-step wealth &amp; Nisab wizard" android:textSize="11sp" android:textColor="@color/sage_text_soft" android:layout_marginTop="2dp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
                 </LinearLayout>
             </LinearLayout>
 
             <LinearLayout android:id="@+id/menuHistory" android:orientation="horizontal" android:gravity="center_vertical" android:padding="12dp" android:background="@drawable/bg_dash_card" android:elevation="2dp" android:layout_marginTop="8dp" android:clickable="true" android:focusable="true" android:foreground="?attr/selectableItemBackground" android:layout_width="match_parent" android:layout_height="wrap_content">
-                <ImageView android:src="@drawable/ic_history" android:tint="@color/sage_text" android:layout_gravity="center" android:importantForAccessibility="no" android:layout_width="24dp" android:layout_height="24dp"/>
+                <ImageView android:src="@drawable/ic_history" android:tint="@color/sage_text" android:layout_gravity="center" android:layout_width="24dp" android:layout_height="24dp"/>
                 <LinearLayout android:orientation="vertical" android:layout_marginStart="12dp" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content">
                     <TextView android:text="Calculation History" android:textSize="15sp" android:textStyle="bold" android:textColor="@color/sage_text" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
-                    <TextView android:text="Review past Zakat snapshots" android:textSize="11sp" android:textColor="@color/sage_text_soft" android:layout_marginTop="2dp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
                 </LinearLayout>
             </LinearLayout>
 
             <TextView android:text="Settings &amp; More" android:textSize="11sp" android:textStyle="bold" android:textAllCaps="true" android:letterSpacing="0.08" android:textColor="@color/sage_text_soft" android:layout_marginTop="24dp" android:layout_marginBottom="8dp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
 
-            <!-- Become an Expert -->
             <LinearLayout android:id="@+id/menuBecomeExpert" android:orientation="horizontal" android:gravity="center_vertical" android:padding="12dp" android:background="@drawable/bg_dash_card" android:elevation="2dp" android:clickable="true" android:focusable="true" android:foreground="?attr/selectableItemBackground" android:layout_width="match_parent" android:layout_height="wrap_content">
-                <ImageView android:src="@drawable/ic_gem" android:tint="@color/amber_gold" android:layout_gravity="center" android:importantForAccessibility="no" android:layout_width="24dp" android:layout_height="24dp"/>
+                <ImageView android:src="@drawable/ic_gem" android:tint="@color/amber_gold" android:layout_width="24dp" android:layout_height="24dp"/>
                 <LinearLayout android:orientation="vertical" android:layout_marginStart="12dp" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content">
                     <TextView android:text="Become an Expert" android:textSize="15sp" android:textStyle="bold" android:textColor="@color/sage_text" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
                     <TextView android:text="Set up your profile to receive messages" android:textSize="11sp" android:textColor="@color/sage_text_soft" android:layout_marginTop="2dp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
@@ -85,9 +75,8 @@
                 </LinearLayout>
             </LinearLayout>
 
-            <!-- Sign Out -->
             <LinearLayout android:id="@+id/menuSignOut" android:orientation="horizontal" android:gravity="center_vertical" android:padding="12dp" android:background="@drawable/bg_dash_card" android:elevation="2dp" android:layout_marginTop="8dp" android:clickable="true" android:focusable="true" android:foreground="?attr/selectableItemBackground" android:layout_width="match_parent" android:layout_height="wrap_content">
-                <ImageView android:src="@drawable/ic_arrow_down_right" android:rotation="90" android:tint="#B71C1C" android:layout_gravity="center" android:importantForAccessibility="no" android:layout_width="24dp" android:layout_height="24dp"/>
+                <ImageView android:src="@drawable/ic_arrow_down_right" android:rotation="90" android:tint="#B71C1C" android:layout_width="24dp" android:layout_height="24dp"/>
                 <LinearLayout android:orientation="vertical" android:layout_marginStart="12dp" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content">
                     <TextView android:text="Sign Out" android:textSize="15sp" android:textStyle="bold" android:textColor="#B71C1C" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
                 </LinearLayout>
@@ -96,7 +85,7 @@
         </LinearLayout>
     </ScrollView>
 
-    <!-- Menu Footer -->
+    <!-- Restored menuFooter -->
     <View android:background="@color/sage_card_stroke" android:layout_width="match_parent" android:layout_height="1dp"/>
     <LinearLayout android:id="@+id/menuFooter" android:orientation="vertical" android:gravity="center" android:padding="12dp" android:background="@color/sage_card" android:layout_width="match_parent" android:layout_height="wrap_content">
         <TextView android:text="Crescent • Purify &amp; Track Your Wealth" android:textSize="11sp" android:textStyle="bold" android:textColor="@color/sage_text" android:layout_width="wrap_content" android:layout_height="wrap_content"/>

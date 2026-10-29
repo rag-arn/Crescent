@@ -80,22 +80,27 @@ public class MainActivity extends AppCompatActivity {
         setContentView(b.getRoot());
         repo = new CrescentRepository(getApplicationContext());
 
-        // Handle Guest vs Email vs Google Profile Data Safely
-        if (currentUser.isAnonymous()) {
-            b.slideMenu.profileNameText.setText("Guest");
-            b.slideMenu.profileEmailText.setText("Anonymous Session");
-        } else {
-            String name = currentUser.getDisplayName();
-            String email = currentUser.getEmail();
+        String name = "Guest";
+        String email = "";
 
-            // If they signed up with Email/Password, name might be null at first
+        if (!currentUser.isAnonymous()) {
+            name = currentUser.getDisplayName();
+            email = currentUser.getEmail() != null ? currentUser.getEmail() : "";
             if (name == null || name.isEmpty()) {
-                name = email != null ? email.split("@")[0] : "User";
+                name = email.contains("@") ? email.split("@")[0] : "User";
             }
-
-            b.slideMenu.profileNameText.setText(name);
-            b.slideMenu.profileEmailText.setText(email != null ? email : "No email linked");
         }
+
+        b.slideMenu.profileNameText.setText(name);
+        b.slideMenu.profileEmailText.setText(email.isEmpty() ? "Anonymous Session" : email);
+
+        java.util.Map<String, Object> data = new java.util.HashMap<>();
+        data.put("uid", currentUser.getUid());
+        data.put("name", name);
+        data.put("email", email);
+        com.google.firebase.firestore.FirebaseFirestore.getInstance()
+                .collection("users").document(currentUser.getUid())
+                .set(data, com.google.firebase.firestore.SetOptions.merge());
 
         setupSystemBars();
         setupSlideMenu();
@@ -252,40 +257,36 @@ public class MainActivity extends AppCompatActivity {
     private void soon(String what) { Toast.makeText(this, what + " is coming soon.", Toast.LENGTH_SHORT).show(); }
 
     private void setupClicks() {
-        // Status Card
         b.dashboard.payNowBtn.setOnClickListener(v -> soon("Payment Gateway"));
         b.dashboard.detailedBreakdownBtn.setOnClickListener(v -> startActivity(new Intent(this, HistoryActivity.class)));
 
-        // 2x2 Grid
         b.dashboard.gridCalculate.setOnClickListener(v -> startActivity(new Intent(this, GoldActivity.class)));
         b.dashboard.gridHistory.setOnClickListener(v -> startActivity(new Intent(this, HistoryActivity.class)));
         b.dashboard.gridAssets.setOnClickListener(v -> soon("Asset Breakdown"));
-        b.dashboard.gridChat.setOnClickListener(v -> soon("Chat with Expert"));
+        b.dashboard.gridChat.setOnClickListener(v -> startActivity(new Intent(this, ExpertListActivity.class)));
 
-        // Bottom Nav
         b.dashboard.navHome.setOnClickListener(v -> { /* already here */ });
         b.dashboard.navCalculate.setOnClickListener(v -> startActivity(new Intent(this, GoldActivity.class)));
-        b.dashboard.navChat.setOnClickListener(v -> soon("Chat with Expert"));
+        b.dashboard.navChat.setOnClickListener(v -> soon("Chat Inbox (Phase 3)"));
         b.dashboard.navSettings.setOnClickListener(v -> soon("Settings"));
 
-        // Slide menu triggers
         b.dashboard.menuButton.setOnClickListener(v -> toggleMenu());
         b.slideMenu.menuCloseButton.setOnClickListener(v -> closeMenu(null));
         b.drawerScrim.setOnClickListener(v -> closeMenu(null));
 
-        // Slide-out menu items
+        b.slideMenu.menuProfileCard.setOnClickListener(v -> closeMenu(() -> startActivity(new Intent(this, ProfileActivity.class))));
+        b.slideMenu.menuNotifications.setOnClickListener(v -> closeMenu(() -> startActivity(new Intent(this, NotificationsActivity.class))));
         b.slideMenu.menuAboutZakat.setOnClickListener(v -> closeMenu(() -> startActivity(new Intent(this, InfoActivity.class))));
         b.slideMenu.menuCalculate.setOnClickListener(v -> closeMenu(() -> startActivity(new Intent(this, GoldActivity.class))));
         b.slideMenu.menuHistory.setOnClickListener(v -> closeMenu(() -> startActivity(new Intent(this, HistoryActivity.class))));
 
-        b.slideMenu.menuBecomeExpert.setOnClickListener(v -> closeMenu(() -> soon("Expert Registration form")));
+        b.slideMenu.menuBecomeExpert.setOnClickListener(v -> closeMenu(() -> startActivity(new Intent(this, ExpertRegistrationActivity.class))));
         b.slideMenu.menuSettings.setOnClickListener(v -> closeMenu(() -> soon("Settings")));
 
-        // Sign Out Logic
         b.slideMenu.menuSignOut.setOnClickListener(v -> closeMenu(() -> {
             mAuth.signOut();
-            GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).build();
-            GoogleSignIn.getClient(this, gso).signOut().addOnCompleteListener(task -> {
+            com.google.android.gms.auth.api.signin.GoogleSignInOptions gso = new com.google.android.gms.auth.api.signin.GoogleSignInOptions.Builder(com.google.android.gms.auth.api.signin.GoogleSignInOptions.DEFAULT_SIGN_IN).build();
+            com.google.android.gms.auth.api.signin.GoogleSignIn.getClient(this, gso).signOut().addOnCompleteListener(task -> {
                 startActivity(new Intent(MainActivity.this, LoginActivity.class));
                 finish();
             });

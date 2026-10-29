@@ -9,9 +9,6 @@
         android:targetSdkVersion="35" />
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission
-        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
-        android:maxSdkVersion="28" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
 
@@ -38,11 +35,9 @@
             android:exported="false" />
         <activity
             android:name="com.crescent.app.GoldActivity"
-            android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false" />
         <activity
             android:name="com.crescent.app.SilverActivity"
-            android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false" />
         <activity
             android:name="com.crescent.app.CashActivity"
@@ -59,9 +54,22 @@
         <activity
             android:name="com.crescent.app.PdfPreviewActivity"
             android:exported="false" />
-        <!-- New Login Activity -->
         <activity
             android:name="com.crescent.app.LoginActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.crescent.app.ExpertRegistrationActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.crescent.app.ExpertListActivity"
+            android:exported="false" />
+
+        <!-- NEW ACTIVITIES -->
+        <activity
+            android:name="com.crescent.app.ProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.crescent.app.NotificationsActivity"
             android:exported="false" />
         <activity
             android:name="com.crescent.app.MainActivity"

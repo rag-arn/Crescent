@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:1:1-20:12
-INJECTED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:1:1-20:12
-INJECTED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:1:1-20:12
-INJECTED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:1:1-20:12
+ADDED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:1:1-25:12
+INJECTED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:1:1-25:12
+INJECTED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:1:1-25:12
+INJECTED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:1:1-25:12
 MERGED from [androidx.databinding:viewbinding:8.7.3] /Users/ragarnob/.gradle/caches/9.6.0/transforms/b63a0b73e398b4ba842f79b12cfec50c/transformed/viewbinding-8.7.3/AndroidManifest.xml:2:1-7:12
 MERGED from [com.google.android.material:material:1.12.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/6f03cb364c5c5a28ff6d7c1820918f85/transformed/material-1.12.0/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.appcompat:appcompat-resources:1.7.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/b6c22429288e9e0768c2c626c7046801/transformed/appcompat-resources-1.7.0/AndroidManifest.xml:2:1-7:12
@@ -93,15 +93,9 @@ MERGED from [com.google.android.recaptcha:recaptcha:18.4.0] /Users/ragarnob/.gra
 MERGED from [com.google.android.recaptcha:recaptcha:18.4.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/f728a74518ae3082575984a38b19ca85/transformed/recaptcha-18.4.0/AndroidManifest.xml:7:5-67
 	android:name
 		ADDED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:2:22-64
-uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
-ADDED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:3:5-107
-	android:maxSdkVersion
-		ADDED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:3:79-105
-	android:name
-		ADDED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:3:22-78
 application
-ADDED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:4:5-19:19
-INJECTED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:4:5-19:19
+ADDED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:3:5-24:19
+INJECTED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:3:5-24:19
 MERGED from [com.google.android.material:material:1.12.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/6f03cb364c5c5a28ff6d7c1820918f85/transformed/material-1.12.0/AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.material:material:1.12.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/6f03cb364c5c5a28ff6d7c1820918f85/transformed/material-1.12.0/AndroidManifest.xml:22:5-20
 MERGED from [androidx.constraintlayout:constraintlayout:2.0.1] /Users/ragarnob/.gradle/caches/9.6.0/transforms/515adaf2cee57704cf14d14230d7ae26/transformed/constraintlayout-2.0.1/AndroidManifest.xml:9:5-20
@@ -155,93 +149,113 @@ MERGED from [androidx.startup:startup-runtime:1.1.1] /Users/ragarnob/.gradle/cac
 	android:appComponentFactory
 		ADDED from [androidx.core:core:1.13.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/cba8d24994c6ecae1510091f855b8172/transformed/core-1.13.0/AndroidManifest.xml:28:18-86
 	android:supportsRtl
-		ADDED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:4:108-134
+		ADDED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:3:108-134
 	android:label
-		ADDED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:4:45-69
+		ADDED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:3:45-69
 	android:allowBackup
-		ADDED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:4:18-44
+		ADDED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:3:18-44
 	android:theme
-		ADDED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:4:70-107
+		ADDED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:3:70-107
 activity#com.crescent.app.HistoryActivity
-ADDED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:5:9-77
+ADDED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:4:9-77
 	android:exported
-		ADDED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:5:51-75
+		ADDED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:4:51-75
 	android:name
-		ADDED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:5:19-50
+		ADDED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:4:19-50
 activity#com.crescent.app.InfoActivity
+ADDED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:5:9-74
+	android:exported
+		ADDED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:5:48-72
+	android:name
+		ADDED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:5:19-47
+activity#com.crescent.app.GoldActivity
 ADDED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:6:9-74
 	android:exported
 		ADDED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:6:48-72
 	android:name
 		ADDED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:6:19-47
-activity#com.crescent.app.GoldActivity
-ADDED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:7:9-136
-	android:exported
-		ADDED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:7:48-72
-	android:configChanges
-		ADDED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:7:73-134
-	android:name
-		ADDED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:7:19-47
 activity#com.crescent.app.SilverActivity
-ADDED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:8:9-138
+ADDED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:7:9-76
 	android:exported
-		ADDED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:8:50-74
-	android:configChanges
-		ADDED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:8:75-136
+		ADDED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:7:50-74
 	android:name
-		ADDED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:8:19-49
+		ADDED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:7:19-49
 activity#com.crescent.app.CashActivity
-ADDED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:9:9-74
+ADDED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:8:9-74
 	android:exported
-		ADDED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:9:48-72
+		ADDED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:8:48-72
 	android:name
-		ADDED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:9:19-47
+		ADDED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:8:19-47
 activity#com.crescent.app.CommercialActivity
-ADDED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:10:9-80
+ADDED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:9:9-80
 	android:exported
-		ADDED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:10:54-78
+		ADDED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:9:54-78
 	android:name
-		ADDED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:10:19-53
+		ADDED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:9:19-53
 activity#com.crescent.app.NisabActivity
-ADDED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:11:9-75
+ADDED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:10:9-75
 	android:exported
-		ADDED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:11:49-73
+		ADDED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:10:49-73
 	android:name
-		ADDED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:11:19-48
+		ADDED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:10:19-48
 activity#com.crescent.app.ResultActivity
-ADDED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:12:9-76
+ADDED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:11:9-76
 	android:exported
-		ADDED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:12:50-74
+		ADDED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:11:50-74
 	android:name
-		ADDED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:12:19-49
+		ADDED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:11:19-49
 activity#com.crescent.app.PdfPreviewActivity
-ADDED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:13:9-80
+ADDED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:12:9-80
 	android:exported
-		ADDED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:13:54-78
+		ADDED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:12:54-78
 	android:name
-		ADDED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:13:19-53
+		ADDED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:12:19-53
 activity#com.crescent.app.LoginActivity
-ADDED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:15:9-75
+ADDED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:13:9-75
 	android:exported
-		ADDED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:15:49-73
+		ADDED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:13:49-73
 	android:name
-		ADDED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:15:19-48
+		ADDED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:13:19-48
+activity#com.crescent.app.ExpertRegistrationActivity
+ADDED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:14:9-88
+	android:exported
+		ADDED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:14:62-86
+	android:name
+		ADDED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:14:19-61
+activity#com.crescent.app.ExpertListActivity
+ADDED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:15:9-80
+	android:exported
+		ADDED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:15:54-78
+	android:name
+		ADDED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:15:19-53
+activity#com.crescent.app.ProfileActivity
+ADDED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:18:9-77
+	android:exported
+		ADDED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:18:51-75
+	android:name
+		ADDED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:18:19-50
+activity#com.crescent.app.NotificationsActivity
+ADDED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:19:9-83
+	android:exported
+		ADDED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:19:57-81
+	android:name
+		ADDED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:19:19-56
 activity#com.crescent.app.MainActivity
-ADDED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:16:9-18:20
+ADDED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:21:9-23:20
 	android:exported
-		ADDED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:16:48-71
+		ADDED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:21:48-71
 	android:name
-		ADDED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:16:19-47
+		ADDED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:21:19-47
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:17:13-154
+ADDED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:22:13-154
 action#android.intent.action.MAIN
-ADDED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:17:28-79
+ADDED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:22:28-79
 	android:name
-		ADDED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:17:36-77
+		ADDED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:22:36-77
 category#android.intent.category.LAUNCHER
-ADDED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:17:79-138
+ADDED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:22:79-138
 	android:name
-		ADDED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:17:89-136
+		ADDED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:22:89-136
 uses-sdk
 INJECTED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml

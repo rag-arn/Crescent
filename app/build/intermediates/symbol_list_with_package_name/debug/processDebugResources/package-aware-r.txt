@@ -2995,6 +2995,7 @@ drawable ic_arrow_back_black_24
 drawable ic_arrow_down_right
 drawable ic_back_arrow
 drawable ic_bag
+drawable ic_bell
 drawable ic_calculator
 drawable ic_call_answer
 drawable ic_call_answer_low
@@ -3197,10 +3198,12 @@ id auto
 id autoComplete
 id autoCompleteToEnd
 id autoCompleteToStart
+id backButton
 id barrier
 id baseline
 id beginOnFirstDraw
 id beginning
+id bioInput
 id blocking
 id bottom
 id bottomBar
@@ -3215,6 +3218,7 @@ id browser_actions_menu_view
 id businessInput
 id buttonPanel
 id calculateButton
+id cancelBtn
 id cancel_button
 id cashBankInput
 id cashHandInput
@@ -3238,6 +3242,7 @@ id clockwise
 id collapseActionView
 id commercialInput
 id compress
+id confirmBtn
 id confirm_button
 id container
 id content
@@ -3295,6 +3300,7 @@ id elastic
 id emailInput
 id embed
 id emptyCard
+id emptyText
 id end
 id endToStart
 id englishDateText
@@ -3304,6 +3310,13 @@ id escape
 id exitUntilCollapsed
 id expand_activities_button
 id expanded_menu
+id expertBio
+id expertName
+id expertRating
+id expertRatingBar
+id expertRatingCount
+id expertRatingLayout
+id expertsContainer
 id fade
 id fill
 id fill_horizontal
@@ -3374,6 +3387,7 @@ id line3
 id linear
 id listMode
 id list_item
+id loadingProgress
 id loginProgress
 id logoContainer
 id logoImage
@@ -3410,6 +3424,7 @@ id menuCloseButton
 id menuFooter
 id menuHeader
 id menuHistory
+id menuNotifications
 id menuProfileCard
 id menuSettings
 id menuSignOut
@@ -3468,6 +3483,7 @@ id normal
 id notification_background
 id notification_main_column
 id notification_main_column_container
+id notificationsContainer
 id off
 id on
 id open_search_bar_text_view
@@ -3512,7 +3528,9 @@ id priceInput
 id priceLabel
 id priceStatus
 id priceUnitSpinner
+id profileEmail
 id profileEmailText
+id profileName
 id profileNameText
 id progress
 id progress_circular
@@ -3593,6 +3611,7 @@ id stepText
 id stop
 id stretch
 id submenuarrow
+id submitBtn
 id submit_area
 id summaryText
 id tabMode
@@ -3649,6 +3668,7 @@ id transition_scene_layoutid_cache
 id transition_transform
 id triangle
 id unchecked
+id understandCheckbox
 id uniform
 id unitSpinner
 id unlabeled
@@ -3792,13 +3812,17 @@ layout abc_tooltip
 layout activity_calculator
 layout activity_cash
 layout activity_commercial
+layout activity_expert_list
+layout activity_expert_registration
 layout activity_history
 layout activity_info
 layout activity_login
 layout activity_main
 layout activity_metal
 layout activity_nisab
+layout activity_notifications
 layout activity_pdf_preview
+layout activity_profile
 layout activity_result
 layout browser_actions_context_menu_page
 layout browser_actions_context_menu_row
@@ -3818,9 +3842,11 @@ layout design_navigation_menu
 layout design_navigation_menu_item
 layout design_text_input_end_icon
 layout design_text_input_start_icon
+layout dialog_expert_confirm
 layout dialog_info
 layout ime_base_split_test_activity
 layout ime_secondary_split_test_activity
+layout item_expert
 layout item_metal_row
 layout layout_dashboard
 layout layout_slide_menu

@@ -2994,6 +2994,7 @@ int drawable ic_arrow_back_black_24 0x7f0700ae
 int drawable ic_arrow_down_right 0x7f0700af
 int drawable ic_back_arrow 0x7f0700b0
 int drawable ic_bag 0x7f0700b1
+int drawable ic_bell 0x7f070124
 int drawable ic_calculator 0x7f0700b2
 int drawable ic_call_answer 0x7f0700b3
 int drawable ic_call_answer_low 0x7f0700b4
@@ -3196,10 +3197,12 @@ int id auto 0x7f080052
 int id autoComplete 0x7f080053
 int id autoCompleteToEnd 0x7f080054
 int id autoCompleteToStart 0x7f080055
+int id backButton 0x7f080237
 int id barrier 0x7f080056
 int id baseline 0x7f080057
 int id beginOnFirstDraw 0x7f080058
 int id beginning 0x7f080059
+int id bioInput 0x7f080238
 int id blocking 0x7f08005a
 int id bottom 0x7f08005b
 int id bottomBar 0x7f08005c
@@ -3214,6 +3217,7 @@ int id browser_actions_menu_view 0x7f080064
 int id businessInput 0x7f080065
 int id buttonPanel 0x7f080066
 int id calculateButton 0x7f080067
+int id cancelBtn 0x7f080240
 int id cancel_button 0x7f080068
 int id cashBankInput 0x7f080069
 int id cashHandInput 0x7f08006a
@@ -3237,6 +3241,7 @@ int id clockwise 0x7f08007b
 int id collapseActionView 0x7f08007c
 int id commercialInput 0x7f08007d
 int id compress 0x7f08007e
+int id confirmBtn 0x7f080241
 int id confirm_button 0x7f08007f
 int id container 0x7f080080
 int id content 0x7f080081
@@ -3294,6 +3299,7 @@ int id elastic 0x7f0800b4
 int id emailInput 0x7f08022f
 int id embed 0x7f0800b5
 int id emptyCard 0x7f0800b6
+int id emptyText 0x7f080239
 int id end 0x7f0800b7
 int id endToStart 0x7f0800b8
 int id englishDateText 0x7f0800b9
@@ -3303,6 +3309,13 @@ int id escape 0x7f0800bc
 int id exitUntilCollapsed 0x7f0800bd
 int id expand_activities_button 0x7f0800be
 int id expanded_menu 0x7f0800bf
+int id expertBio 0x7f08023a
+int id expertName 0x7f08023b
+int id expertRating 0x7f08023c
+int id expertRatingBar 0x7f080242
+int id expertRatingCount 0x7f080243
+int id expertRatingLayout 0x7f080244
+int id expertsContainer 0x7f08023d
 int id fade 0x7f0800c0
 int id fill 0x7f0800c1
 int id fill_horizontal 0x7f0800c2
@@ -3373,6 +3386,7 @@ int id line3 0x7f080100
 int id linear 0x7f080101
 int id listMode 0x7f080102
 int id list_item 0x7f080103
+int id loadingProgress 0x7f08023e
 int id loginProgress 0x7f08022a
 int id logoContainer 0x7f080104
 int id logoImage 0x7f080105
@@ -3409,6 +3423,7 @@ int id menuCloseButton 0x7f080122
 int id menuFooter 0x7f080123
 int id menuHeader 0x7f080124
 int id menuHistory 0x7f080125
+int id menuNotifications 0x7f080245
 int id menuProfileCard 0x7f080126
 int id menuSettings 0x7f080127
 int id menuSignOut 0x7f08022c
@@ -3467,6 +3482,7 @@ int id normal 0x7f08015b
 int id notification_background 0x7f08015c
 int id notification_main_column 0x7f08015d
 int id notification_main_column_container 0x7f08015e
+int id notificationsContainer 0x7f080246
 int id off 0x7f08015f
 int id on 0x7f080160
 int id open_search_bar_text_view 0x7f080161
@@ -3511,7 +3527,9 @@ int id priceInput 0x7f080186
 int id priceLabel 0x7f080187
 int id priceStatus 0x7f080188
 int id priceUnitSpinner 0x7f080189
+int id profileEmail 0x7f080247
 int id profileEmailText 0x7f08022d
+int id profileName 0x7f080248
 int id profileNameText 0x7f08022e
 int id progress 0x7f08018a
 int id progress_circular 0x7f08018b
@@ -3592,6 +3610,7 @@ int id stepText 0x7f0801d5
 int id stop 0x7f0801d6
 int id stretch 0x7f0801d7
 int id submenuarrow 0x7f0801d8
+int id submitBtn 0x7f08023f
 int id submit_area 0x7f0801d9
 int id summaryText 0x7f0801da
 int id tabMode 0x7f0801db
@@ -3648,6 +3667,7 @@ int id transition_scene_layoutid_cache 0x7f08020c
 int id transition_transform 0x7f08020d
 int id triangle 0x7f08020e
 int id unchecked 0x7f08020f
+int id understandCheckbox 0x7f080249
 int id uniform 0x7f080210
 int id unitSpinner 0x7f080211
 int id unlabeled 0x7f080212
@@ -3791,13 +3811,17 @@ int layout abc_tooltip 0x7f0b001b
 int layout activity_calculator 0x7f0b001c
 int layout activity_cash 0x7f0b001d
 int layout activity_commercial 0x7f0b001e
+int layout activity_expert_list 0x7f0b007c
+int layout activity_expert_registration 0x7f0b007d
 int layout activity_history 0x7f0b001f
 int layout activity_info 0x7f0b0020
 int layout activity_login 0x7f0b007b
 int layout activity_main 0x7f0b0021
 int layout activity_metal 0x7f0b0022
 int layout activity_nisab 0x7f0b0023
+int layout activity_notifications 0x7f0b007f
 int layout activity_pdf_preview 0x7f0b0024
+int layout activity_profile 0x7f0b0080
 int layout activity_result 0x7f0b0025
 int layout browser_actions_context_menu_page 0x7f0b0026
 int layout browser_actions_context_menu_row 0x7f0b0027
@@ -3817,9 +3841,11 @@ int layout design_navigation_menu 0x7f0b0034
 int layout design_navigation_menu_item 0x7f0b0035
 int layout design_text_input_end_icon 0x7f0b0036
 int layout design_text_input_start_icon 0x7f0b0037
+int layout dialog_expert_confirm 0x7f0b0081
 int layout dialog_info 0x7f0b0038
 int layout ime_base_split_test_activity 0x7f0b0039
 int layout ime_secondary_split_test_activity 0x7f0b003a
+int layout item_expert 0x7f0b007e
 int layout item_metal_row 0x7f0b003b
 int layout layout_dashboard 0x7f0b003c
 int layout layout_slide_menu 0x7f0b003d
