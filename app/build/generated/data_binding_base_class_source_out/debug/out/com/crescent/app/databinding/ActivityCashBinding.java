@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import androidx.annotation.NonNull;
@@ -37,7 +38,7 @@ public final class ActivityCashBinding implements ViewBinding {
   public final EditText cashReceivableInput;
 
   @NonNull
-  public final LinearLayout headerBar;
+  public final FrameLayout headerBar;
 
   @NonNull
   public final ImageButton infoButton;
@@ -51,7 +52,7 @@ public final class ActivityCashBinding implements ViewBinding {
   private ActivityCashBinding(@NonNull LinearLayout rootView, @NonNull LinearLayout bottomBar,
       @NonNull EditText cashBankInput, @NonNull EditText cashHandInput,
       @NonNull EditText cashPayableInput, @NonNull EditText cashReceivableInput,
-      @NonNull LinearLayout headerBar, @NonNull ImageButton infoButton, @NonNull Button nextButton,
+      @NonNull FrameLayout headerBar, @NonNull ImageButton infoButton, @NonNull Button nextButton,
       @NonNull Button previousButton) {
     this.rootView = rootView;
     this.bottomBar = bottomBar;
@@ -123,7 +124,7 @@ public final class ActivityCashBinding implements ViewBinding {
       }
 
       id = R.id.headerBar;
-      LinearLayout headerBar = ViewBindings.findChildViewById(rootView, id);
+      FrameLayout headerBar = ViewBindings.findChildViewById(rootView, id);
       if (headerBar == null) {
         break missingId;
       }

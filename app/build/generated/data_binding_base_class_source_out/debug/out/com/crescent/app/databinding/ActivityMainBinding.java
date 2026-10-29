@@ -5,11 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
-import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.ProgressBar;
-import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.viewbinding.ViewBinding;
@@ -24,25 +19,7 @@ public final class ActivityMainBinding implements ViewBinding {
   private final FrameLayout rootView;
 
   @NonNull
-  public final TextView addAssetText;
-
-  @NonNull
-  public final LinearLayout bottomNav;
-
-  @NonNull
-  public final LinearLayout brandHeader;
-
-  @NonNull
-  public final TextView cashAmount;
-
-  @NonNull
-  public final TextView cashSub;
-
-  @NonNull
-  public final TextView commercialAmount;
-
-  @NonNull
-  public final TextView commercialSub;
+  public final LayoutDashboardBinding dashboard;
 
   @NonNull
   public final FrameLayout drawerRoot;
@@ -51,162 +28,16 @@ public final class ActivityMainBinding implements ViewBinding {
   public final View drawerScrim;
 
   @NonNull
-  public final TextView lastCalculatedText;
+  public final LayoutSlideMenuBinding slideMenu;
 
-  @NonNull
-  public final TextView liabilityAmount;
-
-  @NonNull
-  public final TextView liabilitySub;
-
-  @NonNull
-  public final FrameLayout logoContainer;
-
-  @NonNull
-  public final ImageView logoImage;
-
-  @NonNull
-  public final LinearLayout mainContent;
-
-  @NonNull
-  public final LinearLayout menuAboutZakat;
-
-  @NonNull
-  public final ImageButton menuButton;
-
-  @NonNull
-  public final LinearLayout menuCalculate;
-
-  @NonNull
-  public final ImageButton menuCloseButton;
-
-  @NonNull
-  public final LinearLayout menuFooter;
-
-  @NonNull
-  public final LinearLayout menuHeader;
-
-  @NonNull
-  public final LinearLayout menuHistory;
-
-  @NonNull
-  public final LinearLayout menuProfileCard;
-
-  @NonNull
-  public final LinearLayout menuSettings;
-
-  @NonNull
-  public final TextView metalAmount;
-
-  @NonNull
-  public final TextView metalSub;
-
-  @NonNull
-  public final LinearLayout navAssets;
-
-  @NonNull
-  public final LinearLayout navHistory;
-
-  @NonNull
-  public final LinearLayout navHome;
-
-  @NonNull
-  public final LinearLayout navSettings;
-
-  @NonNull
-  public final TextView nisabStatus;
-
-  @NonNull
-  public final TextView nisabSub;
-
-  @NonNull
-  public final TextView paidText;
-
-  @NonNull
-  public final LinearLayout payButton;
-
-  @NonNull
-  public final FrameLayout profileButton;
-
-  @NonNull
-  public final LinearLayout recalcButton;
-
-  @NonNull
-  public final TextView recalcText;
-
-  @NonNull
-  public final LinearLayout sideMenu;
-
-  @NonNull
-  public final TextView targetText;
-
-  @NonNull
-  public final TextView zakatAmount;
-
-  @NonNull
-  public final ProgressBar zakatProgress;
-
-  private ActivityMainBinding(@NonNull FrameLayout rootView, @NonNull TextView addAssetText,
-      @NonNull LinearLayout bottomNav, @NonNull LinearLayout brandHeader,
-      @NonNull TextView cashAmount, @NonNull TextView cashSub, @NonNull TextView commercialAmount,
-      @NonNull TextView commercialSub, @NonNull FrameLayout drawerRoot, @NonNull View drawerScrim,
-      @NonNull TextView lastCalculatedText, @NonNull TextView liabilityAmount,
-      @NonNull TextView liabilitySub, @NonNull FrameLayout logoContainer,
-      @NonNull ImageView logoImage, @NonNull LinearLayout mainContent,
-      @NonNull LinearLayout menuAboutZakat, @NonNull ImageButton menuButton,
-      @NonNull LinearLayout menuCalculate, @NonNull ImageButton menuCloseButton,
-      @NonNull LinearLayout menuFooter, @NonNull LinearLayout menuHeader,
-      @NonNull LinearLayout menuHistory, @NonNull LinearLayout menuProfileCard,
-      @NonNull LinearLayout menuSettings, @NonNull TextView metalAmount, @NonNull TextView metalSub,
-      @NonNull LinearLayout navAssets, @NonNull LinearLayout navHistory,
-      @NonNull LinearLayout navHome, @NonNull LinearLayout navSettings,
-      @NonNull TextView nisabStatus, @NonNull TextView nisabSub, @NonNull TextView paidText,
-      @NonNull LinearLayout payButton, @NonNull FrameLayout profileButton,
-      @NonNull LinearLayout recalcButton, @NonNull TextView recalcText,
-      @NonNull LinearLayout sideMenu, @NonNull TextView targetText, @NonNull TextView zakatAmount,
-      @NonNull ProgressBar zakatProgress) {
+  private ActivityMainBinding(@NonNull FrameLayout rootView,
+      @NonNull LayoutDashboardBinding dashboard, @NonNull FrameLayout drawerRoot,
+      @NonNull View drawerScrim, @NonNull LayoutSlideMenuBinding slideMenu) {
     this.rootView = rootView;
-    this.addAssetText = addAssetText;
-    this.bottomNav = bottomNav;
-    this.brandHeader = brandHeader;
-    this.cashAmount = cashAmount;
-    this.cashSub = cashSub;
-    this.commercialAmount = commercialAmount;
-    this.commercialSub = commercialSub;
+    this.dashboard = dashboard;
     this.drawerRoot = drawerRoot;
     this.drawerScrim = drawerScrim;
-    this.lastCalculatedText = lastCalculatedText;
-    this.liabilityAmount = liabilityAmount;
-    this.liabilitySub = liabilitySub;
-    this.logoContainer = logoContainer;
-    this.logoImage = logoImage;
-    this.mainContent = mainContent;
-    this.menuAboutZakat = menuAboutZakat;
-    this.menuButton = menuButton;
-    this.menuCalculate = menuCalculate;
-    this.menuCloseButton = menuCloseButton;
-    this.menuFooter = menuFooter;
-    this.menuHeader = menuHeader;
-    this.menuHistory = menuHistory;
-    this.menuProfileCard = menuProfileCard;
-    this.menuSettings = menuSettings;
-    this.metalAmount = metalAmount;
-    this.metalSub = metalSub;
-    this.navAssets = navAssets;
-    this.navHistory = navHistory;
-    this.navHome = navHome;
-    this.navSettings = navSettings;
-    this.nisabStatus = nisabStatus;
-    this.nisabSub = nisabSub;
-    this.paidText = paidText;
-    this.payButton = payButton;
-    this.profileButton = profileButton;
-    this.recalcButton = recalcButton;
-    this.recalcText = recalcText;
-    this.sideMenu = sideMenu;
-    this.targetText = targetText;
-    this.zakatAmount = zakatAmount;
-    this.zakatProgress = zakatProgress;
+    this.slideMenu = slideMenu;
   }
 
   @Override
@@ -236,47 +67,12 @@ public final class ActivityMainBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
-      id = R.id.addAssetText;
-      TextView addAssetText = ViewBindings.findChildViewById(rootView, id);
-      if (addAssetText == null) {
+      id = R.id.dashboard;
+      View dashboard = ViewBindings.findChildViewById(rootView, id);
+      if (dashboard == null) {
         break missingId;
       }
-
-      id = R.id.bottomNav;
-      LinearLayout bottomNav = ViewBindings.findChildViewById(rootView, id);
-      if (bottomNav == null) {
-        break missingId;
-      }
-
-      id = R.id.brandHeader;
-      LinearLayout brandHeader = ViewBindings.findChildViewById(rootView, id);
-      if (brandHeader == null) {
-        break missingId;
-      }
-
-      id = R.id.cashAmount;
-      TextView cashAmount = ViewBindings.findChildViewById(rootView, id);
-      if (cashAmount == null) {
-        break missingId;
-      }
-
-      id = R.id.cashSub;
-      TextView cashSub = ViewBindings.findChildViewById(rootView, id);
-      if (cashSub == null) {
-        break missingId;
-      }
-
-      id = R.id.commercialAmount;
-      TextView commercialAmount = ViewBindings.findChildViewById(rootView, id);
-      if (commercialAmount == null) {
-        break missingId;
-      }
-
-      id = R.id.commercialSub;
-      TextView commercialSub = ViewBindings.findChildViewById(rootView, id);
-      if (commercialSub == null) {
-        break missingId;
-      }
+      LayoutDashboardBinding binding_dashboard = LayoutDashboardBinding.bind(dashboard);
 
       FrameLayout drawerRoot = (FrameLayout) rootView;
 
@@ -286,205 +82,15 @@ public final class ActivityMainBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.lastCalculatedText;
-      TextView lastCalculatedText = ViewBindings.findChildViewById(rootView, id);
-      if (lastCalculatedText == null) {
+      id = R.id.slideMenu;
+      View slideMenu = ViewBindings.findChildViewById(rootView, id);
+      if (slideMenu == null) {
         break missingId;
       }
+      LayoutSlideMenuBinding binding_slideMenu = LayoutSlideMenuBinding.bind(slideMenu);
 
-      id = R.id.liabilityAmount;
-      TextView liabilityAmount = ViewBindings.findChildViewById(rootView, id);
-      if (liabilityAmount == null) {
-        break missingId;
-      }
-
-      id = R.id.liabilitySub;
-      TextView liabilitySub = ViewBindings.findChildViewById(rootView, id);
-      if (liabilitySub == null) {
-        break missingId;
-      }
-
-      id = R.id.logoContainer;
-      FrameLayout logoContainer = ViewBindings.findChildViewById(rootView, id);
-      if (logoContainer == null) {
-        break missingId;
-      }
-
-      id = R.id.logoImage;
-      ImageView logoImage = ViewBindings.findChildViewById(rootView, id);
-      if (logoImage == null) {
-        break missingId;
-      }
-
-      id = R.id.mainContent;
-      LinearLayout mainContent = ViewBindings.findChildViewById(rootView, id);
-      if (mainContent == null) {
-        break missingId;
-      }
-
-      id = R.id.menuAboutZakat;
-      LinearLayout menuAboutZakat = ViewBindings.findChildViewById(rootView, id);
-      if (menuAboutZakat == null) {
-        break missingId;
-      }
-
-      id = R.id.menuButton;
-      ImageButton menuButton = ViewBindings.findChildViewById(rootView, id);
-      if (menuButton == null) {
-        break missingId;
-      }
-
-      id = R.id.menuCalculate;
-      LinearLayout menuCalculate = ViewBindings.findChildViewById(rootView, id);
-      if (menuCalculate == null) {
-        break missingId;
-      }
-
-      id = R.id.menuCloseButton;
-      ImageButton menuCloseButton = ViewBindings.findChildViewById(rootView, id);
-      if (menuCloseButton == null) {
-        break missingId;
-      }
-
-      id = R.id.menuFooter;
-      LinearLayout menuFooter = ViewBindings.findChildViewById(rootView, id);
-      if (menuFooter == null) {
-        break missingId;
-      }
-
-      id = R.id.menuHeader;
-      LinearLayout menuHeader = ViewBindings.findChildViewById(rootView, id);
-      if (menuHeader == null) {
-        break missingId;
-      }
-
-      id = R.id.menuHistory;
-      LinearLayout menuHistory = ViewBindings.findChildViewById(rootView, id);
-      if (menuHistory == null) {
-        break missingId;
-      }
-
-      id = R.id.menuProfileCard;
-      LinearLayout menuProfileCard = ViewBindings.findChildViewById(rootView, id);
-      if (menuProfileCard == null) {
-        break missingId;
-      }
-
-      id = R.id.menuSettings;
-      LinearLayout menuSettings = ViewBindings.findChildViewById(rootView, id);
-      if (menuSettings == null) {
-        break missingId;
-      }
-
-      id = R.id.metalAmount;
-      TextView metalAmount = ViewBindings.findChildViewById(rootView, id);
-      if (metalAmount == null) {
-        break missingId;
-      }
-
-      id = R.id.metalSub;
-      TextView metalSub = ViewBindings.findChildViewById(rootView, id);
-      if (metalSub == null) {
-        break missingId;
-      }
-
-      id = R.id.navAssets;
-      LinearLayout navAssets = ViewBindings.findChildViewById(rootView, id);
-      if (navAssets == null) {
-        break missingId;
-      }
-
-      id = R.id.navHistory;
-      LinearLayout navHistory = ViewBindings.findChildViewById(rootView, id);
-      if (navHistory == null) {
-        break missingId;
-      }
-
-      id = R.id.navHome;
-      LinearLayout navHome = ViewBindings.findChildViewById(rootView, id);
-      if (navHome == null) {
-        break missingId;
-      }
-
-      id = R.id.navSettings;
-      LinearLayout navSettings = ViewBindings.findChildViewById(rootView, id);
-      if (navSettings == null) {
-        break missingId;
-      }
-
-      id = R.id.nisabStatus;
-      TextView nisabStatus = ViewBindings.findChildViewById(rootView, id);
-      if (nisabStatus == null) {
-        break missingId;
-      }
-
-      id = R.id.nisabSub;
-      TextView nisabSub = ViewBindings.findChildViewById(rootView, id);
-      if (nisabSub == null) {
-        break missingId;
-      }
-
-      id = R.id.paidText;
-      TextView paidText = ViewBindings.findChildViewById(rootView, id);
-      if (paidText == null) {
-        break missingId;
-      }
-
-      id = R.id.payButton;
-      LinearLayout payButton = ViewBindings.findChildViewById(rootView, id);
-      if (payButton == null) {
-        break missingId;
-      }
-
-      id = R.id.profileButton;
-      FrameLayout profileButton = ViewBindings.findChildViewById(rootView, id);
-      if (profileButton == null) {
-        break missingId;
-      }
-
-      id = R.id.recalcButton;
-      LinearLayout recalcButton = ViewBindings.findChildViewById(rootView, id);
-      if (recalcButton == null) {
-        break missingId;
-      }
-
-      id = R.id.recalcText;
-      TextView recalcText = ViewBindings.findChildViewById(rootView, id);
-      if (recalcText == null) {
-        break missingId;
-      }
-
-      id = R.id.sideMenu;
-      LinearLayout sideMenu = ViewBindings.findChildViewById(rootView, id);
-      if (sideMenu == null) {
-        break missingId;
-      }
-
-      id = R.id.targetText;
-      TextView targetText = ViewBindings.findChildViewById(rootView, id);
-      if (targetText == null) {
-        break missingId;
-      }
-
-      id = R.id.zakatAmount;
-      TextView zakatAmount = ViewBindings.findChildViewById(rootView, id);
-      if (zakatAmount == null) {
-        break missingId;
-      }
-
-      id = R.id.zakatProgress;
-      ProgressBar zakatProgress = ViewBindings.findChildViewById(rootView, id);
-      if (zakatProgress == null) {
-        break missingId;
-      }
-
-      return new ActivityMainBinding((FrameLayout) rootView, addAssetText, bottomNav, brandHeader,
-          cashAmount, cashSub, commercialAmount, commercialSub, drawerRoot, drawerScrim,
-          lastCalculatedText, liabilityAmount, liabilitySub, logoContainer, logoImage, mainContent,
-          menuAboutZakat, menuButton, menuCalculate, menuCloseButton, menuFooter, menuHeader,
-          menuHistory, menuProfileCard, menuSettings, metalAmount, metalSub, navAssets, navHistory,
-          navHome, navSettings, nisabStatus, nisabSub, paidText, payButton, profileButton,
-          recalcButton, recalcText, sideMenu, targetText, zakatAmount, zakatProgress);
+      return new ActivityMainBinding((FrameLayout) rootView, binding_dashboard, drawerRoot,
+          drawerScrim, binding_slideMenu);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

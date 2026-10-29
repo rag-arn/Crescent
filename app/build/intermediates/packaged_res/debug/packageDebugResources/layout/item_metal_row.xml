@@ -17,6 +17,6 @@
             android:layout_width="wrap_content" android:layout_height="wrap_content"/>
     </LinearLayout>
 
-    <TextView android:id="@+id/rowValue" android:text="—" android:textSize="13sp" android:textStyle="bold" android:textColor="@color/slate_teal"
+    <TextView android:id="@+id/rowValue" android:text="—" android:textSize="13sp" android:textStyle="bold" android:textColor="@color/sage_text"
         android:layout_marginTop="4dp" android:layout_width="match_parent" android:layout_height="wrap_content"/>
 </LinearLayout>

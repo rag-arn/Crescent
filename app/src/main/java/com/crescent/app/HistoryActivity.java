@@ -111,7 +111,6 @@ public class HistoryActivity extends AppCompatActivity {
                     card.setForeground(ContextCompat.getDrawable(HistoryActivity.this, outValue.resourceId));
                 }
 
-                // Icon box on the left
                 FrameLayout iconBox = new FrameLayout(HistoryActivity.this);
                 iconBox.setBackgroundResource(R.drawable.bg_icon_box);
                 LinearLayout.LayoutParams iconLp = new LinearLayout.LayoutParams(dp(40), dp(40));
@@ -120,11 +119,10 @@ public class HistoryActivity extends AppCompatActivity {
 
                 ImageView icon = new ImageView(HistoryActivity.this);
                 icon.setImageResource(R.drawable.ic_history);
-                icon.setColorFilter(ContextCompat.getColor(HistoryActivity.this, R.color.amber_gold));
+                icon.setColorFilter(ContextCompat.getColor(HistoryActivity.this, R.color.sage_button));
                 FrameLayout.LayoutParams imgLp = new FrameLayout.LayoutParams(dp(20), dp(20), Gravity.CENTER);
                 iconBox.addView(icon, imgLp);
 
-                // Two-line text container (bigger date on top, smaller total asset below)
                 LinearLayout textCol = new LinearLayout(HistoryActivity.this);
                 textCol.setOrientation(LinearLayout.VERTICAL);
                 LinearLayout.LayoutParams colLp = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f);
@@ -133,12 +131,12 @@ public class HistoryActivity extends AppCompatActivity {
                 TextView dateTv = new TextView(HistoryActivity.this);
                 dateTv.setTextSize(TypedValue.COMPLEX_UNIT_SP, 17);
                 dateTv.setTypeface(dateTv.getTypeface(), Typeface.BOLD);
-                dateTv.setTextColor(ContextCompat.getColor(HistoryActivity.this, R.color.dark_teal));
+                dateTv.setTextColor(ContextCompat.getColor(HistoryActivity.this, R.color.sage_text));
                 textCol.addView(dateTv);
 
                 TextView assetTv = new TextView(HistoryActivity.this);
                 assetTv.setTextSize(TypedValue.COMPLEX_UNIT_SP, 13);
-                assetTv.setTextColor(ContextCompat.getColor(HistoryActivity.this, R.color.slate_teal));
+                assetTv.setTextColor(ContextCompat.getColor(HistoryActivity.this, R.color.sage_text_soft));
                 LinearLayout.LayoutParams subLp = new LinearLayout.LayoutParams(
                         ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
                 subLp.topMargin = dp(4);

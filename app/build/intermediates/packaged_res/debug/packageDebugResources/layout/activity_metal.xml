@@ -1,72 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:background="@color/warm_cream"
+    android:orientation="vertical" android:background="@drawable/bg_dash_screen"
     android:layout_width="match_parent" android:layout_height="match_parent">
 
-    <LinearLayout android:id="@+id/headerBar" android:orientation="horizontal" android:gravity="center_vertical"
-        android:background="@drawable/bg_brand_header" android:paddingStart="20dp" android:paddingEnd="10dp"
-        android:paddingTop="14dp" android:paddingBottom="12dp"
-        android:layout_width="match_parent" android:layout_height="wrap_content">
-        <LinearLayout android:orientation="vertical" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content">
-            <TextView android:id="@+id/stepText" android:text="" android:textSize="11sp" android:textStyle="bold" android:textAllCaps="true" android:letterSpacing="0.1"
-                android:textColor="@color/soft_cyan" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
-            <TextView android:id="@+id/titleText" android:text="" android:textSize="24sp" android:textStyle="bold" android:textColor="@color/warm_cream"
-                android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+    <FrameLayout android:id="@+id/headerBar" android:layout_width="match_parent" android:layout_height="wrap_content">
+        <ImageView android:src="@drawable/ic_pattern_star" android:alpha="0.8" android:layout_gravity="end|top" android:importantForAccessibility="no" android:layout_width="160dp" android:layout_height="120dp"/>
+        <LinearLayout android:orientation="horizontal" android:gravity="center_vertical" android:paddingStart="20dp" android:paddingEnd="10dp" android:paddingTop="14dp" android:paddingBottom="12dp" android:layout_width="match_parent" android:layout_height="wrap_content">
+            <LinearLayout android:orientation="vertical" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content">
+                <TextView android:id="@+id/stepText" android:text="" android:textSize="11sp" android:textStyle="bold" android:textAllCaps="true" android:letterSpacing="0.1" android:textColor="@color/sage_text_soft" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                <TextView android:id="@+id/titleText" android:text="" android:fontFamily="serif" android:textSize="26sp" android:textStyle="bold" android:textColor="@color/sage_text" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+            </LinearLayout>
+            <ImageButton android:id="@+id/titleInfoButton" style="?android:attr/borderlessButtonStyle" android:src="@drawable/ic_info" android:tint="@color/sage_text_soft" android:padding="10dp" android:layout_width="44dp" android:layout_height="44dp"/>
         </LinearLayout>
-        <ImageButton android:id="@+id/titleInfoButton" style="?android:attr/borderlessButtonStyle"
-            android:src="@drawable/ic_info" android:tint="@color/amber_gold" android:padding="10dp"
-            android:contentDescription="How to enter your holdings" android:layout_width="44dp" android:layout_height="44dp"/>
-    </LinearLayout>
-    <View android:background="#4DE3A83F" android:layout_width="match_parent" android:layout_height="1dp"/>
+    </FrameLayout>
 
     <ScrollView android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1">
-        <LinearLayout android:orientation="vertical" android:padding="16dp"
-            android:layout_width="match_parent" android:layout_height="wrap_content">
-            <LinearLayout android:orientation="horizontal" android:gravity="center_vertical"
-                android:layout_width="match_parent" android:layout_height="wrap_content">
-                <TextView android:id="@+id/priceLabel" android:textSize="14sp" android:textStyle="bold" android:textColor="@color/dark_teal"
-                    android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content"/>
-                <ImageButton android:id="@+id/priceInfoButton" style="?android:attr/borderlessButtonStyle"
-                    android:src="@drawable/ic_info" android:tint="@color/slate_teal" android:padding="10dp"
-                    android:contentDescription="About the price" android:layout_width="40dp" android:layout_height="40dp"/>
+        <LinearLayout android:orientation="vertical" android:padding="16dp" android:layout_width="match_parent" android:layout_height="wrap_content">
+            <LinearLayout android:orientation="horizontal" android:gravity="center_vertical" android:layout_width="match_parent" android:layout_height="wrap_content">
+                <TextView android:id="@+id/priceLabel" android:textSize="14sp" android:textStyle="bold" android:textColor="@color/sage_text" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content"/>
+                <ImageButton android:id="@+id/priceInfoButton" style="?android:attr/borderlessButtonStyle" android:src="@drawable/ic_info" android:tint="@color/sage_text_soft" android:padding="10dp" android:layout_width="40dp" android:layout_height="40dp"/>
             </LinearLayout>
-            <LinearLayout android:orientation="horizontal" android:gravity="center_vertical" android:layout_marginTop="4dp"
-                android:layout_width="match_parent" android:layout_height="wrap_content">
-                <EditText android:id="@+id/priceInput" style="@style/Widget.Crescent.EditText" android:hint="Price (৳)" android:inputType="numberDecimal"
-                    android:layout_marginEnd="8dp" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content"/>
+            <LinearLayout android:orientation="horizontal" android:gravity="center_vertical" android:layout_marginTop="4dp" android:layout_width="match_parent" android:layout_height="wrap_content">
+                <EditText android:id="@+id/priceInput" style="@style/Widget.Crescent.EditText" android:hint="Price (৳)" android:inputType="numberDecimal" android:layout_marginEnd="8dp" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content"/>
                 <Spinner android:id="@+id/priceUnitSpinner" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content"/>
             </LinearLayout>
-            <TextView android:id="@+id/priceStatus" android:textSize="12sp" android:textColor="@color/slate_teal" android:lineSpacingExtra="3dp"
-                android:layout_marginTop="6dp" android:layout_width="match_parent" android:layout_height="wrap_content"/>
-            <LinearLayout android:orientation="horizontal" android:layout_marginTop="8dp"
-                android:layout_width="match_parent" android:layout_height="wrap_content">
-                <Button android:id="@+id/refreshPriceButton" style="@style/Widget.Crescent.Button.Outlined" android:text="Refresh price" android:layout_marginEnd="6dp"
-                    android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content"/>
-                <Button android:id="@+id/useLivePriceButton" style="@style/Widget.Crescent.Button.Outlined" android:text="Use live price" android:layout_marginStart="6dp"
-                    android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content"/>
+            <TextView android:id="@+id/priceStatus" android:textSize="12sp" android:textColor="@color/sage_text_soft" android:lineSpacingExtra="3dp" android:layout_marginTop="6dp" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+            <LinearLayout android:orientation="horizontal" android:layout_marginTop="8dp" android:layout_width="match_parent" android:layout_height="wrap_content">
+                <Button android:id="@+id/refreshPriceButton" style="@style/Widget.Crescent.Button.Outlined" android:text="Refresh price" android:layout_marginEnd="6dp" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content"/>
+                <Button android:id="@+id/useLivePriceButton" style="@style/Widget.Crescent.Button.Outlined" android:text="Use live price" android:layout_marginStart="6dp" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content"/>
             </LinearLayout>
 
-            <LinearLayout android:id="@+id/rowsContainer" android:orientation="vertical" android:layout_marginTop="4dp"
-                android:layout_width="match_parent" android:layout_height="wrap_content"/>
+            <LinearLayout android:id="@+id/rowsContainer" android:orientation="vertical" android:layout_marginTop="4dp" android:layout_width="match_parent" android:layout_height="wrap_content"/>
 
-            <Button android:id="@+id/addMoreButton" style="@style/Widget.Crescent.Button.Outlined" android:text="+ Add more" android:layout_marginTop="12dp"
-                android:layout_width="match_parent" android:layout_height="wrap_content"/>
+            <Button android:id="@+id/addMoreButton" style="@style/Widget.Crescent.Button.Outlined" android:text="+ Add more" android:layout_marginTop="12dp" android:layout_width="match_parent" android:layout_height="wrap_content"/>
 
-            <LinearLayout android:orientation="vertical" android:padding="16dp" android:background="@drawable/bg_summary_card" android:layout_marginTop="16dp"
-                android:layout_width="match_parent" android:layout_height="wrap_content">
-                <TextView android:text="Total" android:textSize="12sp" android:textStyle="bold" android:textAllCaps="true" android:letterSpacing="0.08"
-                    android:textColor="@color/soft_cyan" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
-                <TextView android:id="@+id/totalText" android:textSize="17sp" android:textStyle="bold" android:textColor="@color/amber_gold" android:layout_marginTop="2dp"
-                    android:layout_width="match_parent" android:layout_height="wrap_content"/>
+            <LinearLayout android:orientation="vertical" android:padding="16dp" android:background="@drawable/bg_summary_card" android:layout_marginTop="16dp" android:layout_width="match_parent" android:layout_height="wrap_content">
+                <TextView android:text="Total" android:textSize="12sp" android:textStyle="bold" android:textAllCaps="true" android:letterSpacing="0.08" android:textColor="@color/sage_text_soft" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                <TextView android:id="@+id/totalText" android:textSize="17sp" android:textStyle="bold" android:textColor="@color/sage_text" android:layout_marginTop="2dp" android:layout_width="match_parent" android:layout_height="wrap_content"/>
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
-    <View android:background="@color/warm_sand" android:layout_width="match_parent" android:layout_height="1dp"/>
-    <LinearLayout android:id="@+id/bottomBar" android:orientation="horizontal" android:background="@color/warm_cream" android:padding="12dp"
-        android:layout_width="match_parent" android:layout_height="wrap_content">
-        <Button android:id="@+id/previousButton" style="@style/Widget.Crescent.Button.Outlined" android:text="Previous" android:layout_marginEnd="6dp"
-            android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content"/>
-        <Button android:id="@+id/nextButton" style="@style/Widget.Crescent.Button" android:text="Next" android:layout_marginStart="6dp"
-            android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content"/>
+    <View android:background="@color/sage_card_stroke" android:layout_width="match_parent" android:layout_height="1dp"/>
+    <LinearLayout android:id="@+id/bottomBar" android:orientation="horizontal" android:background="@color/sage_card" android:padding="12dp" android:layout_width="match_parent" android:layout_height="wrap_content">
+        <Button android:id="@+id/previousButton" style="@style/Widget.Crescent.Button.Outlined" android:text="Previous" android:layout_marginEnd="6dp" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content"/>
+        <Button android:id="@+id/nextButton" style="@style/Widget.Crescent.Button" android:text="Next" android:layout_marginStart="6dp" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content"/>
     </LinearLayout>
 </LinearLayout>

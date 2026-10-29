@@ -3,35 +3,45 @@
     <color name="amber_gold">#E3A83F</color>
     <color name="dark_teal">#3B5453</color>
     <color name="hint_teal">#995B7B7A</color>
+    <color name="sage_bottom">#F5F1E4</color>
+    <color name="sage_button">#8DAA94</color>
+    <color name="sage_card">#F6F1E2</color>
+    <color name="sage_card_stroke">#E4DCC3</color>
+    <color name="sage_ornament">#FFFFFF</color>
+    <color name="sage_ring">#8DAA94</color>
+    <color name="sage_ring_track">#E2D8BC</color>
+    <color name="sage_text">#2F4A3C</color>
+    <color name="sage_text_soft">#5F7566</color>
+    <color name="sage_top">#BCD1BE</color>
     <color name="slate_teal">#5B7B7A</color>
     <color name="soft_cyan">#B4D5D4</color>
     <color name="warm_cream">#F3EDE0</color>
     <color name="warm_sand">#D6BE8B</color>
     <string name="app_name">Crescent</string>
     <style name="Theme.Crescent" parent="Theme.MaterialComponents.Light.NoActionBar">
-        <item name="colorPrimary">@color/slate_teal</item>
-        <item name="colorPrimaryVariant">@color/dark_teal</item>
-        <item name="colorOnPrimary">@color/warm_cream</item>
-        <item name="colorSecondary">@color/amber_gold</item>
-        <item name="colorSecondaryVariant">@color/amber_gold</item>
-        <item name="colorOnSecondary">@color/dark_teal</item>
-        <item name="colorSurface">@color/warm_cream</item>
-        <item name="colorOnSurface">@color/dark_teal</item>
-        <item name="colorControlNormal">@color/slate_teal</item>
-        <item name="colorControlActivated">@color/slate_teal</item>
-        <item name="android:colorBackground">@color/warm_cream</item>
-        <item name="android:windowBackground">@color/warm_cream</item>
-        <item name="android:textColorPrimary">@color/dark_teal</item>
-        <item name="android:textColorSecondary">@color/slate_teal</item>
-        <item name="android:textColorHint">@color/hint_teal</item>
-        <item name="android:navigationBarColor">@color/warm_cream</item>
+        <item name="colorPrimary">@color/sage_text</item>
+        <item name="colorPrimaryVariant">@color/sage_text</item>
+        <item name="colorOnPrimary">#FFFFFF</item>
+        <item name="colorSecondary">@color/sage_text</item>
+        <item name="colorSecondaryVariant">@color/sage_text</item>
+        <item name="colorOnSecondary">#FFFFFF</item>
+        <item name="colorSurface">@color/sage_card</item>
+        <item name="colorOnSurface">@color/sage_text</item>
+        <item name="colorControlNormal">@color/sage_text_soft</item>
+        <item name="colorControlActivated">@color/sage_text</item>
+        <item name="android:colorBackground">@color/sage_bottom</item>
+        <item name="android:windowBackground">@color/sage_bottom</item>
+        <item name="android:textColorPrimary">@color/sage_text</item>
+        <item name="android:textColorSecondary">@color/sage_text_soft</item>
+        <item name="android:textColorHint">@color/sage_text_soft</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
         <item name="android:fontFamily">sans</item>
-        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:windowLightStatusBar">true</item>
     </style>
     <style name="Widget.Crescent.Button" parent="Widget.MaterialComponents.Button">
-        <item name="backgroundTint">@color/amber_gold</item>
-        <item name="android:textColor">@color/dark_teal</item>
-        <item name="cornerRadius">12dp</item>
+        <item name="backgroundTint">@color/sage_text</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="cornerRadius">16dp</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textSize">14sp</item>
         <item name="android:textAllCaps">false</item>
@@ -41,9 +51,9 @@
         <item name="android:minHeight">48dp</item>
     </style>
     <style name="Widget.Crescent.Button.Outlined" parent="Widget.MaterialComponents.Button.OutlinedButton">
-        <item name="strokeColor">@color/slate_teal</item>
-        <item name="android:textColor">@color/slate_teal</item>
-        <item name="cornerRadius">12dp</item>
+        <item name="strokeColor">@color/sage_text</item>
+        <item name="android:textColor">@color/sage_text</item>
+        <item name="cornerRadius">16dp</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textSize">14sp</item>
         <item name="android:textAllCaps">false</item>
@@ -53,7 +63,7 @@
         <item name="android:minHeight">48dp</item>
     </style>
     <style name="Widget.Crescent.Button.Text" parent="Widget.MaterialComponents.Button.TextButton">
-        <item name="android:textColor">@color/slate_teal</item>
+        <item name="android:textColor">@color/sage_text</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textAllCaps">false</item>
         <item name="android:letterSpacing">0</item>
@@ -61,8 +71,8 @@
     <style name="Widget.Crescent.EditText" parent="Widget.AppCompat.EditText">
         <item name="android:background">@drawable/bg_input</item>
         <item name="android:padding">12dp</item>
-        <item name="android:textColor">@color/dark_teal</item>
-        <item name="android:textColorHint">@color/hint_teal</item>
+        <item name="android:textColor">@color/sage_text</item>
+        <item name="android:textColorHint">@color/sage_text_soft</item>
         <item name="android:textSize">15sp</item>
         <item name="android:minHeight">48dp</item>
     </style>

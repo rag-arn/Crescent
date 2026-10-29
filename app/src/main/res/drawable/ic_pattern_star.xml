@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="160dp"
+    android:height="120dp"
+    android:viewportWidth="160"
+    android:viewportHeight="120">
+    <!-- 8-point star (two squares) -->
+    <path android:strokeColor="#FFFFFF" android:strokeWidth="1.2" android:strokeAlpha="0.55"
+        android:pathData="M110,10 L145,10 L145,45 L110,45 Z"/>
+    <path android:strokeColor="#FFFFFF" android:strokeWidth="1.2" android:strokeAlpha="0.55"
+        android:pathData="M127.5,0 L152.2,24.7 L127.5,49.4 L102.8,24.7 Z"/>
+    <path android:strokeColor="#FFFFFF" android:strokeWidth="1.2" android:strokeAlpha="0.45"
+        android:pathData="M127.5,14 L138,24.7 L127.5,35.4 L117,24.7 Z"/>
+    <!-- second star, lower-right -->
+    <path android:strokeColor="#FFFFFF" android:strokeWidth="1.2" android:strokeAlpha="0.4"
+        android:pathData="M135,55 L165,55 L165,85 L135,85 Z"/>
+    <path android:strokeColor="#FFFFFF" android:strokeWidth="1.2" android:strokeAlpha="0.4"
+        android:pathData="M150,45 L171.2,66.2 L150,87.4 L128.8,66.2 Z"/>
+    <!-- third star, left -->
+    <path android:strokeColor="#FFFFFF" android:strokeWidth="1.2" android:strokeAlpha="0.35"
+        android:pathData="M75,22 L101,22 L101,48 L75,48 Z"/>
+    <path android:strokeColor="#FFFFFF" android:strokeWidth="1.2" android:strokeAlpha="0.35"
+        android:pathData="M88,12 L106.4,30.4 L88,48.8 L69.6,30.4 Z"/>
+    <!-- little sparkles -->
+    <path android:fillColor="#FFFFFF" android:fillAlpha="0.7"
+        android:pathData="M30,18 l2,5 l5,2 l-5,2 l-2,5 l-2,-5 l-5,-2 l5,-2 z"/>
+    <path android:fillColor="#FFFFFF" android:fillAlpha="0.5"
+        android:pathData="M58,60 l1.4,3.6 l3.6,1.4 l-3.6,1.4 l-1.4,3.6 l-1.4,-3.6 l-3.6,-1.4 l3.6,-1.4 z"/>
+</vector>

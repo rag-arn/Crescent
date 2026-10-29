@@ -16,14 +16,12 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-/** Final step: calculation table, verdict, snapshot saving and PDF generation / preview. */
 public class ResultActivity extends AppCompatActivity {
     public static final String DISCLAIMER = "Check the calculation with an expert. This may not be 100% correct.";
     private static final String NOTE = "This estimate is 2.5% of net wealth and assumes your wealth has stayed at or above the Nisab for one full lunar year (hawl) and that all entered assets are zakatable. Rules vary by school of thought and circumstances.";
 
     private ActivityResultBinding b;
     private final NumberFormat nf = NumberFormat.getNumberInstance(new Locale("en", "BD"));
-    /** Table lines shared by the screen and the PDF: {type, label, screenValue, pdfValue}; type = H (section), R (row), T (total row). */
     private final List<String[]> lines = new ArrayList<>();
 
     private String taka(double v) { return "৳" + nf.format(Math.round(v)); }
@@ -70,9 +68,8 @@ public class ResultActivity extends AppCompatActivity {
             return;
         }
 
-        // ----- calculation -----
         double assets = gold + silver + cashHand + cashBank + cashReceivable + commercial;
-        double net = Math.max(0, assets - cashPayable);          // cash payable is deducted from total assets
+        double net = Math.max(0, assets - cashPayable);
         boolean due = net >= nisab;
         double zakat = due ? net * 0.025 : 0;
         String basisName = basis.equals("gold") ? "Gold" : "Silver";
@@ -100,16 +97,14 @@ public class ResultActivity extends AppCompatActivity {
         rowText("R", "Zakat rate", "2.5%");
         total("Zakat payable", zakat);
 
-        // ----- verdict -----
         String headline = due ? "Zakat is due: " + taka(zakat) : "Zakat is not due";
         String detail = due
                 ? "Your net wealth (" + taka(net) + ") is at or above the Nisab (" + taka(nisab) + ")."
                 : "Your net wealth (" + taka(net) + ") is below the Nisab (" + taka(nisab) + ").";
         b.verdictText.setText(headline + "\n\n" + detail);
-        b.verdictCard.setCardBackgroundColor(due ? 0x80B4D5D4 : 0x4DD6BE8B);
+        b.verdictCard.setCardBackgroundColor(due ? 0x80BCD1BE : 0x80E4DCC3);
         renderTable();
 
-        // ----- PDF -----
         final String pdfHeadline = due ? "Zakat is due: " + bdt(zakat) : "Zakat is not due";
         final String pdfDetail = due
                 ? "Net wealth (" + bdt(net) + ") is at or above the Nisab (" + bdt(nisab) + ")."
@@ -122,11 +117,10 @@ public class ResultActivity extends AppCompatActivity {
             r.append("VERDICT|").append(dueFinal ? "1" : "0").append("|").append(pdfHeadline).append("|").append(pdfDetail).append("\n");
             for (String[] l : lines) r.append(l[0]).append("|").append(l[1]).append("|").append(l[3]).append("\n");
             r.append("NOTE|").append(NOTE).append("\n");
-            r.append("WARN|").append(DISCLAIMER);          // always the last, bold red line
+            r.append("WARN|").append(DISCLAIMER);
             generatePdfAndPreview(r.toString());
         });
 
-        // ----- save snapshot once (not again after rotation) -----
         if (state == null) {
             CrescentRepository repo = new CrescentRepository(getApplicationContext());
             StringBuilder plain = new StringBuilder("CRESCENT — ZAKAT ESTIMATE\n");
@@ -142,7 +136,6 @@ public class ResultActivity extends AppCompatActivity {
         }
     }
 
-    /** Reconstructs the detailed Result screen from a saved History Snapshot without re-saving it. */
     private void renderFromHistory(Intent in) {
         long createdAt = in.getLongExtra("snapshot_created_at", System.currentTimeMillis());
         double assets = in.getDoubleExtra("snapshot_assets", 0);
@@ -160,7 +153,7 @@ public class ResultActivity extends AppCompatActivity {
                 ? "Your net wealth (" + taka(net) + ") is at or above the Nisab (" + taka(nisab) + ")."
                 : "Your net wealth (" + taka(net) + ") is below the Nisab (" + taka(nisab) + ").";
         b.verdictText.setText(headline + "\n\n" + detail);
-        b.verdictCard.setCardBackgroundColor(due ? 0x80B4D5D4 : 0x4DD6BE8B);
+        b.verdictCard.setCardBackgroundColor(due ? 0x80BCD1BE : 0x80E4DCC3);
         renderTable();
 
         final String pdfHeadline = due ? "Zakat is due: " + bdt(zakat) : "Zakat is not due";
@@ -181,7 +174,6 @@ public class ResultActivity extends AppCompatActivity {
         });
     }
 
-    /** Parses the saved breakdown text back into structured table sections and rows. */
     private void parseBreakdownLines(String breakdown, double assets, double liabilities, double net, double nisab, double zakat, boolean due) {
         if (breakdown != null && !breakdown.trim().isEmpty()) {
             for (String raw : breakdown.split("\\n")) {
@@ -237,7 +229,6 @@ public class ResultActivity extends AppCompatActivity {
         return upper.substring(0, 1).toUpperCase(Locale.US) + upper.substring(1).toLowerCase(Locale.US);
     }
 
-    /** Builds the PDF off the main thread, then opens the preview (Download / Discard). Nothing is saved to Downloads here. */
     private void generatePdfAndPreview(String report) {
         b.pdfButton.setEnabled(false);
         final android.content.Context app = getApplicationContext();
@@ -271,7 +262,7 @@ public class ResultActivity extends AppCompatActivity {
         TextView t = new TextView(this);
         t.setText(text);
         t.setTextSize(15);
-        t.setTextColor(0xFF3B5453);
+        t.setTextColor(0xFF2F4A3C); // sage_text
         t.setPadding(dp(8), dp(7), dp(8), dp(7));
         if (bold) t.setTypeface(t.getTypeface(), android.graphics.Typeface.BOLD);
         return t;
@@ -282,8 +273,8 @@ public class ResultActivity extends AppCompatActivity {
             TableRow tr = new TableRow(this);
             if (l[0].equals("H")) {
                 TextView h = cell(l[1], true);
-                h.setTextColor(0xFFF3EDE0);
-                h.setBackgroundColor(0xFF5B7B7A);
+                h.setTextColor(0xFFFFFFFF);
+                h.setBackgroundColor(0xFF8DAA94); // sage_button
                 TableRow.LayoutParams lp = new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT);
                 lp.span = 2;
                 lp.topMargin = dp(12);
@@ -292,7 +283,7 @@ public class ResultActivity extends AppCompatActivity {
                 boolean bold = l[0].equals("T");
                 TextView a = cell(l[1], bold), v = cell(l[2], bold);
                 v.setGravity(Gravity.END);
-                if (bold) { a.setBackgroundColor(0x4DB4D5D4); v.setBackgroundColor(0x4DB4D5D4); }
+                if (bold) { a.setBackgroundColor(0x4DBCD1BE); v.setBackgroundColor(0x4DBCD1BE); }
                 tr.addView(a);
                 tr.addView(v);
             }
