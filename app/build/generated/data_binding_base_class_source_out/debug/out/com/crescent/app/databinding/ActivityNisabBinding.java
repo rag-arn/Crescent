@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
@@ -32,7 +33,7 @@ public final class ActivityNisabBinding implements ViewBinding {
   public final RadioButton goldOption;
 
   @NonNull
-  public final LinearLayout headerBar;
+  public final FrameLayout headerBar;
 
   @NonNull
   public final ImageButton infoButton;
@@ -48,7 +49,7 @@ public final class ActivityNisabBinding implements ViewBinding {
 
   private ActivityNisabBinding(@NonNull LinearLayout rootView, @NonNull LinearLayout bottomBar,
       @NonNull Button calculateButton, @NonNull RadioButton goldOption,
-      @NonNull LinearLayout headerBar, @NonNull ImageButton infoButton,
+      @NonNull FrameLayout headerBar, @NonNull ImageButton infoButton,
       @NonNull RadioGroup nisabGroup, @NonNull Button previousButton,
       @NonNull RadioButton silverOption) {
     this.rootView = rootView;
@@ -108,7 +109,7 @@ public final class ActivityNisabBinding implements ViewBinding {
       }
 
       id = R.id.headerBar;
-      LinearLayout headerBar = ViewBindings.findChildViewById(rootView, id);
+      FrameLayout headerBar = ViewBindings.findChildViewById(rootView, id);
       if (headerBar == null) {
         break missingId;
       }

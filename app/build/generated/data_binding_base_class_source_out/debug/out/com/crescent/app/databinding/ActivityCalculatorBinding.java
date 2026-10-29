@@ -6,7 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ScrollView;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -19,13 +20,19 @@ import java.lang.String;
 
 public final class ActivityCalculatorBinding implements ViewBinding {
   @NonNull
-  private final ScrollView rootView;
+  private final LinearLayout rootView;
+
+  @NonNull
+  public final LinearLayout bottomBar;
 
   @NonNull
   public final EditText businessInput;
 
   @NonNull
   public final Button calculateButton;
+
+  @NonNull
+  public final FrameLayout headerBar;
 
   @NonNull
   public final EditText investmentInput;
@@ -48,13 +55,16 @@ public final class ActivityCalculatorBinding implements ViewBinding {
   @NonNull
   public final TextView summaryText;
 
-  private ActivityCalculatorBinding(@NonNull ScrollView rootView, @NonNull EditText businessInput,
-      @NonNull Button calculateButton, @NonNull EditText investmentInput,
+  private ActivityCalculatorBinding(@NonNull LinearLayout rootView, @NonNull LinearLayout bottomBar,
+      @NonNull EditText businessInput, @NonNull Button calculateButton,
+      @NonNull FrameLayout headerBar, @NonNull EditText investmentInput,
       @NonNull EditText liabilityInput, @NonNull EditText nisabInput, @NonNull Button pdfButton,
       @NonNull Button previousButton, @NonNull TextView resultText, @NonNull TextView summaryText) {
     this.rootView = rootView;
+    this.bottomBar = bottomBar;
     this.businessInput = businessInput;
     this.calculateButton = calculateButton;
+    this.headerBar = headerBar;
     this.investmentInput = investmentInput;
     this.liabilityInput = liabilityInput;
     this.nisabInput = nisabInput;
@@ -66,7 +76,7 @@ public final class ActivityCalculatorBinding implements ViewBinding {
 
   @Override
   @NonNull
-  public ScrollView getRoot() {
+  public LinearLayout getRoot() {
     return rootView;
   }
 
@@ -91,6 +101,12 @@ public final class ActivityCalculatorBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
+      id = R.id.bottomBar;
+      LinearLayout bottomBar = ViewBindings.findChildViewById(rootView, id);
+      if (bottomBar == null) {
+        break missingId;
+      }
+
       id = R.id.businessInput;
       EditText businessInput = ViewBindings.findChildViewById(rootView, id);
       if (businessInput == null) {
@@ -100,6 +116,12 @@ public final class ActivityCalculatorBinding implements ViewBinding {
       id = R.id.calculateButton;
       Button calculateButton = ViewBindings.findChildViewById(rootView, id);
       if (calculateButton == null) {
+        break missingId;
+      }
+
+      id = R.id.headerBar;
+      FrameLayout headerBar = ViewBindings.findChildViewById(rootView, id);
+      if (headerBar == null) {
         break missingId;
       }
 
@@ -145,9 +167,9 @@ public final class ActivityCalculatorBinding implements ViewBinding {
         break missingId;
       }
 
-      return new ActivityCalculatorBinding((ScrollView) rootView, businessInput, calculateButton,
-          investmentInput, liabilityInput, nisabInput, pdfButton, previousButton, resultText,
-          summaryText);
+      return new ActivityCalculatorBinding((LinearLayout) rootView, bottomBar, businessInput,
+          calculateButton, headerBar, investmentInput, liabilityInput, nisabInput, pdfButton,
+          previousButton, resultText, summaryText);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

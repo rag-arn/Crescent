@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
@@ -30,7 +31,7 @@ public final class ActivityMetalBinding implements ViewBinding {
   public final LinearLayout bottomBar;
 
   @NonNull
-  public final LinearLayout headerBar;
+  public final FrameLayout headerBar;
 
   @NonNull
   public final Button nextButton;
@@ -75,7 +76,7 @@ public final class ActivityMetalBinding implements ViewBinding {
   public final Button useLivePriceButton;
 
   private ActivityMetalBinding(@NonNull LinearLayout rootView, @NonNull Button addMoreButton,
-      @NonNull LinearLayout bottomBar, @NonNull LinearLayout headerBar, @NonNull Button nextButton,
+      @NonNull LinearLayout bottomBar, @NonNull FrameLayout headerBar, @NonNull Button nextButton,
       @NonNull Button previousButton, @NonNull ImageButton priceInfoButton,
       @NonNull EditText priceInput, @NonNull TextView priceLabel, @NonNull TextView priceStatus,
       @NonNull Spinner priceUnitSpinner, @NonNull Button refreshPriceButton,
@@ -142,7 +143,7 @@ public final class ActivityMetalBinding implements ViewBinding {
       }
 
       id = R.id.headerBar;
-      LinearLayout headerBar = ViewBindings.findChildViewById(rootView, id);
+      FrameLayout headerBar = ViewBindings.findChildViewById(rootView, id);
       if (headerBar == null) {
         break missingId;
       }

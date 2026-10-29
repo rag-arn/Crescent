@@ -1,6 +1,7 @@
 package com.crescent.app;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.view.View;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -31,8 +32,13 @@ final class Ui {
             }
             return insets;
         });
+
+        WindowCompat.setDecorFitsSystemWindows(activity.getWindow(), false);
+        activity.getWindow().setStatusBarColor(Color.TRANSPARENT);
+        activity.getWindow().setNavigationBarColor(Color.TRANSPARENT);
+
         WindowInsetsControllerCompat c = WindowCompat.getInsetsController(activity.getWindow(), root);
-        c.setAppearanceLightStatusBars(false);       // light icons on the dark teal header
+        c.setAppearanceLightStatusBars(true);       // dark icons on the light sage header
         c.setAppearanceLightNavigationBars(true);    // dark icons on the cream bottom bar
     }
 }

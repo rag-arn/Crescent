@@ -1,32 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:background="@color/warm_cream"
+    android:orientation="vertical" android:background="@drawable/bg_dash_screen"
     android:layout_width="match_parent" android:layout_height="match_parent">
 
-    <LinearLayout android:id="@+id/headerBar" android:orientation="horizontal" android:gravity="center_vertical"
-        android:background="@drawable/bg_brand_header" android:paddingStart="20dp" android:paddingEnd="10dp"
-        android:paddingTop="14dp" android:paddingBottom="12dp"
-        android:layout_width="match_parent" android:layout_height="wrap_content">
-        <LinearLayout android:orientation="vertical" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content">
-            <TextView android:text="Your estimate" android:textSize="11sp" android:textStyle="bold" android:textAllCaps="true" android:letterSpacing="0.1"
-                android:textColor="@color/soft_cyan" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
-            <TextView android:text="Result" android:textSize="24sp" android:textStyle="bold" android:textColor="@color/warm_cream"
-                android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+    <FrameLayout android:id="@+id/headerBar" android:layout_width="match_parent" android:layout_height="wrap_content">
+        <ImageView android:src="@drawable/ic_pattern_star" android:alpha="0.8" android:layout_gravity="end|top" android:importantForAccessibility="no" android:layout_width="160dp" android:layout_height="120dp"/>
+        <LinearLayout android:orientation="horizontal" android:gravity="center_vertical" android:paddingStart="20dp" android:paddingEnd="10dp" android:paddingTop="14dp" android:paddingBottom="12dp" android:layout_width="match_parent" android:layout_height="wrap_content">
+            <LinearLayout android:orientation="vertical" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content">
+                <TextView android:text="Your estimate" android:textSize="11sp" android:textStyle="bold" android:textAllCaps="true" android:letterSpacing="0.1" android:textColor="@color/sage_text_soft" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                <TextView android:text="Result" android:fontFamily="serif" android:textSize="26sp" android:textStyle="bold" android:textColor="@color/sage_text" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+            </LinearLayout>
+            <ImageButton android:id="@+id/infoButton" style="?android:attr/borderlessButtonStyle" android:src="@drawable/ic_info" android:tint="@color/sage_text_soft" android:padding="10dp" android:layout_width="44dp" android:layout_height="44dp"/>
         </LinearLayout>
-        <ImageButton android:id="@+id/infoButton" style="?android:attr/borderlessButtonStyle"
-            android:src="@drawable/ic_info" android:tint="@color/amber_gold" android:padding="10dp"
-            android:contentDescription="About this estimate" android:layout_width="44dp" android:layout_height="44dp"/>
-    </LinearLayout>
-    <View android:background="#4DE3A83F" android:layout_width="match_parent" android:layout_height="1dp"/>
+    </FrameLayout>
 
     <ScrollView android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1">
-        <LinearLayout android:orientation="vertical" android:padding="16dp"
-            android:layout_width="match_parent" android:layout_height="wrap_content">
+        <LinearLayout android:orientation="vertical" android:padding="16dp" android:layout_width="match_parent" android:layout_height="wrap_content">
             <com.google.android.material.card.MaterialCardView android:id="@+id/verdictCard"
                 xmlns:app="http://schemas.android.com/apk/res-auto" app:cardElevation="0dp" app:cardCornerRadius="16dp"
-                app:strokeColor="@color/warm_sand" app:strokeWidth="1dp"
+                app:strokeColor="@color/sage_card_stroke" app:strokeWidth="1dp"
                 android:layout_width="match_parent" android:layout_height="wrap_content">
-                <TextView android:id="@+id/verdictText" android:padding="16dp" android:textSize="17sp" android:textStyle="bold" android:textColor="@color/dark_teal"
+                <TextView android:id="@+id/verdictText" android:padding="16dp" android:textSize="17sp" android:textStyle="bold" android:textColor="@color/sage_text"
                     android:layout_width="match_parent" android:layout_height="wrap_content"/>
             </com.google.android.material.card.MaterialCardView>
 
@@ -34,19 +28,19 @@
                 android:layout_marginTop="4dp" android:layout_width="match_parent" android:layout_height="wrap_content"/>
 
             <TextView android:text="Check the calculation with an expert. This may not be 100% correct."
-                android:textColor="#C62828" android:textStyle="bold" android:layout_marginTop="16dp"
+                android:textColor="#B71C1C" android:textStyle="bold" android:layout_marginTop="16dp"
                 android:layout_width="match_parent" android:layout_height="wrap_content"/>
 
             <Button android:id="@+id/homeButton" style="@style/Widget.Crescent.Button.Text" android:text="Back to home" android:layout_marginTop="8dp"
                 android:layout_width="match_parent" android:layout_height="wrap_content"/>
         </LinearLayout>
     </ScrollView>
-    <View android:background="@color/warm_sand" android:layout_width="match_parent" android:layout_height="1dp"/>
-    <LinearLayout android:id="@+id/bottomBar" android:orientation="horizontal" android:background="@color/warm_cream" android:padding="12dp"
+    <View android:background="@color/sage_card_stroke" android:layout_width="match_parent" android:layout_height="1dp"/>
+    <LinearLayout android:id="@+id/bottomBar" android:orientation="horizontal" android:background="@color/sage_card" android:padding="12dp"
         android:layout_width="match_parent" android:layout_height="wrap_content">
         <Button android:id="@+id/previousButton" style="@style/Widget.Crescent.Button.Outlined" android:text="Previous" android:layout_marginEnd="6dp"
             android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content"/>
-        <Button android:id="@+id/pdfButton" style="@style/Widget.Crescent.Button" android:text="Download PDF" android:layout_marginStart="6dp"
+        <Button android:id="@+id/pdfButton" style="@style/Widget.Crescent.Button" android:text="Generate PDF" android:layout_marginStart="6dp"
             android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content"/>
     </LinearLayout>
 </LinearLayout>

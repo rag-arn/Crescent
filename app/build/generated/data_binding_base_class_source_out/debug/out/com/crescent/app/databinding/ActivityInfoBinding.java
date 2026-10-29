@@ -4,6 +4,7 @@ package com.crescent.app.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -19,12 +20,12 @@ public final class ActivityInfoBinding implements ViewBinding {
   private final LinearLayout rootView;
 
   @NonNull
-  public final LinearLayout headerBar;
+  public final FrameLayout headerBar;
 
   @NonNull
   public final LinearLayout rootLayout;
 
-  private ActivityInfoBinding(@NonNull LinearLayout rootView, @NonNull LinearLayout headerBar,
+  private ActivityInfoBinding(@NonNull LinearLayout rootView, @NonNull FrameLayout headerBar,
       @NonNull LinearLayout rootLayout) {
     this.rootView = rootView;
     this.headerBar = headerBar;
@@ -59,7 +60,7 @@ public final class ActivityInfoBinding implements ViewBinding {
     int id;
     missingId: {
       id = R.id.headerBar;
-      LinearLayout headerBar = ViewBindings.findChildViewById(rootView, id);
+      FrameLayout headerBar = ViewBindings.findChildViewById(rootView, id);
       if (headerBar == null) {
         break missingId;
       }
