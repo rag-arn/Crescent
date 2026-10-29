@@ -19,7 +19,8 @@
 
             <LinearLayout android:id="@+id/menuProfileCard" android:orientation="horizontal" android:gravity="center_vertical" android:padding="14dp" android:background="@drawable/bg_dash_card" android:elevation="2dp" android:clickable="true" android:focusable="true" android:foreground="?attr/selectableItemBackground" android:layout_width="match_parent" android:layout_height="wrap_content">
                 <FrameLayout android:background="@drawable/bg_dash_logo_ring" android:layout_width="42dp" android:layout_height="42dp">
-                    <ImageView android:src="@drawable/ic_person" android:tint="@color/sage_text" android:padding="9dp" android:layout_width="match_parent" android:layout_height="match_parent"/>
+                    <!-- ADDED ID HERE -->
+                    <ImageView android:id="@+id/slideProfileImage" android:src="@drawable/ic_person" android:tint="@color/sage_text" android:padding="9dp" android:scaleType="centerCrop" android:layout_width="match_parent" android:layout_height="match_parent"/>
                 </FrameLayout>
                 <LinearLayout android:orientation="vertical" android:layout_marginStart="12dp" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content">
                     <TextView android:id="@+id/profileNameText" android:text="Profile" android:textSize="15sp" android:textStyle="bold" android:maxLines="1" android:textColor="@color/sage_text" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
@@ -28,14 +29,6 @@
             </LinearLayout>
 
             <TextView android:text="Shortcuts" android:textSize="11sp" android:textStyle="bold" android:textAllCaps="true" android:letterSpacing="0.08" android:textColor="@color/sage_text_soft" android:layout_marginTop="24dp" android:layout_marginBottom="8dp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
-
-            <LinearLayout android:id="@+id/menuNotifications" android:orientation="horizontal" android:gravity="center_vertical" android:padding="12dp" android:background="@drawable/bg_dash_card" android:elevation="2dp" android:clickable="true" android:focusable="true" android:foreground="?attr/selectableItemBackground" android:layout_width="match_parent" android:layout_height="wrap_content">
-                <ImageView android:src="@drawable/ic_bell" android:tint="@color/amber_gold" android:layout_gravity="center" android:layout_width="24dp" android:layout_height="24dp"/>
-                <LinearLayout android:orientation="vertical" android:layout_marginStart="12dp" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content">
-                    <TextView android:text="Notifications" android:textSize="15sp" android:textStyle="bold" android:textColor="@color/sage_text" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
-                    <TextView android:text="Alerts &amp; updates" android:textSize="11sp" android:textColor="@color/sage_text_soft" android:layout_marginTop="2dp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
-                </LinearLayout>
-            </LinearLayout>
 
             <LinearLayout android:id="@+id/menuAboutZakat" android:orientation="horizontal" android:gravity="center_vertical" android:padding="12dp" android:background="@drawable/bg_dash_card" android:elevation="2dp" android:layout_marginTop="8dp" android:clickable="true" android:focusable="true" android:foreground="?attr/selectableItemBackground" android:layout_width="match_parent" android:layout_height="wrap_content">
                 <ImageView android:src="@drawable/ic_info" android:tint="@color/sage_text" android:layout_gravity="center" android:layout_width="24dp" android:layout_height="24dp"/>
@@ -85,7 +78,6 @@
         </LinearLayout>
     </ScrollView>
 
-    <!-- Restored menuFooter -->
     <View android:background="@color/sage_card_stroke" android:layout_width="match_parent" android:layout_height="1dp"/>
     <LinearLayout android:id="@+id/menuFooter" android:orientation="vertical" android:gravity="center" android:padding="12dp" android:background="@color/sage_card" android:layout_width="match_parent" android:layout_height="wrap_content">
         <TextView android:text="Crescent • Purify &amp; Track Your Wealth" android:textSize="11sp" android:textStyle="bold" android:textColor="@color/sage_text" android:layout_width="wrap_content" android:layout_height="wrap_content"/>

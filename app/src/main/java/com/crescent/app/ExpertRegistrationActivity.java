@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.InsetDrawable;
 import android.os.Bundle;
+import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -26,6 +27,21 @@ public class ExpertRegistrationActivity extends AppCompatActivity {
 
         findViewById(R.id.backButton).setOnClickListener(v -> finish());
 
+        View formLayout = findViewById(R.id.formLayout);
+        View alreadyExpertLayout = findViewById(R.id.alreadyExpertLayout);
+
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+        if (user != null) {
+            db.collection("users").document(user.getUid()).get().addOnSuccessListener(doc -> {
+                if (doc.exists() && Boolean.TRUE.equals(doc.getBoolean("isExpert"))) {
+                    formLayout.setVisibility(View.GONE);
+                    alreadyExpertLayout.setVisibility(View.VISIBLE);
+                }
+            });
+        }
+
         EditText bioInput = findViewById(R.id.bioInput);
         Button submitBtn = findViewById(R.id.submitBtn);
 
@@ -35,18 +51,14 @@ public class ExpertRegistrationActivity extends AppCompatActivity {
                 Toast.makeText(this, "Please enter your qualifications", Toast.LENGTH_SHORT).show();
                 return;
             }
-
-            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
             if (user == null || user.isAnonymous()) {
-                Toast.makeText(this, "Guests cannot become experts. Please sign up with an email.", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "Guests cannot become experts. Please sign up.", Toast.LENGTH_LONG).show();
                 return;
             }
 
-            // Show Confirmation Dialog
             Dialog dialog = new Dialog(this);
             dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
             dialog.setContentView(R.layout.dialog_expert_confirm);
-
             Window w = dialog.getWindow();
             if (w != null) {
                 int margin = Math.round(24 * getResources().getDisplayMetrics().density);
@@ -66,36 +78,28 @@ public class ExpertRegistrationActivity extends AppCompatActivity {
                 submitBtn.setEnabled(false);
                 submitBtn.setText("Registering...");
 
-                Toast.makeText(this, "Application submitted. You will be notified when listed.", Toast.LENGTH_LONG).show();
-
-                FirebaseFirestore db = FirebaseFirestore.getInstance();
                 String uid = user.getUid();
-
-                // 1. Save Expert Data
                 Map<String, Object> data = new HashMap<>();
                 data.put("isExpert", true);
                 data.put("bio", bio);
-                data.put("rating", 0.0); // Starts at 0, golden stars come from ratings!
+                data.put("rating", 0.0);
                 data.put("ratingCount", 0);
 
                 db.collection("users").document(uid).set(data, SetOptions.merge()).addOnSuccessListener(a -> {
-
-                    // 2. Generate Notification automatically
                     Map<String, Object> notif = new HashMap<>();
                     notif.put("title", "Congratulations!");
-                    notif.put("message", "You are now an expert of Zakat. Users can now view your profile and contact you.");
+                    notif.put("message", "You are now an expert of Zakat. Users can now view your profile.");
                     notif.put("timestamp", System.currentTimeMillis());
+                    notif.put("read", false);
 
                     db.collection("users").document(uid).collection("notifications").add(notif);
-
+                    Toast.makeText(this, "Application submitted!", Toast.LENGTH_SHORT).show();
                     finish();
                 }).addOnFailureListener(e -> {
-                    Toast.makeText(this, "Error: " + e.getMessage(), Toast.LENGTH_LONG).show();
                     submitBtn.setEnabled(true);
                     submitBtn.setText("Register as Expert");
                 });
             });
-
             dialog.show();
         });
     }

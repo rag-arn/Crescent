@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:1:1-25:12
-INJECTED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:1:1-25:12
-INJECTED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:1:1-25:12
-INJECTED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:1:1-25:12
+ADDED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:1:1-33:12
+INJECTED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:1:1-33:12
+INJECTED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:1:1-33:12
+INJECTED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:1:1-33:12
 MERGED from [androidx.databinding:viewbinding:8.7.3] /Users/ragarnob/.gradle/caches/9.6.0/transforms/b63a0b73e398b4ba842f79b12cfec50c/transformed/viewbinding-8.7.3/AndroidManifest.xml:2:1-7:12
 MERGED from [com.google.android.material:material:1.12.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/6f03cb364c5c5a28ff6d7c1820918f85/transformed/material-1.12.0/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.appcompat:appcompat-resources:1.7.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/b6c22429288e9e0768c2c626c7046801/transformed/appcompat-resources-1.7.0/AndroidManifest.xml:2:1-7:12
@@ -94,8 +94,8 @@ MERGED from [com.google.android.recaptcha:recaptcha:18.4.0] /Users/ragarnob/.gra
 	android:name
 		ADDED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:2:22-64
 application
-ADDED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:3:5-24:19
-INJECTED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:3:5-24:19
+ADDED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:3:5-32:19
+INJECTED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:3:5-32:19
 MERGED from [com.google.android.material:material:1.12.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/6f03cb364c5c5a28ff6d7c1820918f85/transformed/material-1.12.0/AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.material:material:1.12.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/6f03cb364c5c5a28ff6d7c1820918f85/transformed/material-1.12.0/AndroidManifest.xml:22:5-20
 MERGED from [androidx.constraintlayout:constraintlayout:2.0.1] /Users/ragarnob/.gradle/caches/9.6.0/transforms/515adaf2cee57704cf14d14230d7ae26/transformed/constraintlayout-2.0.1/AndroidManifest.xml:9:5-20
@@ -256,6 +256,20 @@ category#android.intent.category.LAUNCHER
 ADDED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:22:79-138
 	android:name
 		ADDED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:22:89-136
+activity#com.crescent.app.ChatActivity
+ADDED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:26:9-117
+	android:windowSoftInputMode
+		ADDED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:26:73-115
+	android:exported
+		ADDED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:26:48-72
+	android:name
+		ADDED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:26:19-47
+activity#com.crescent.app.ChatListActivity
+ADDED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:27:9-78
+	android:exported
+		ADDED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:27:52-76
+	android:name
+		ADDED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:27:19-51
 uses-sdk
 INJECTED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml

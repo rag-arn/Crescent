@@ -1,8 +1,14 @@
 package com.crescent.app;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Outline;
 import android.os.Bundle;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewOutlineProvider;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -48,9 +54,38 @@ public class ExpertListActivity extends AppCompatActivity {
                         long c = count != null ? count : 0;
                         ((TextView) item.findViewById(R.id.expertRating)).setText(String.format(Locale.US, "★ %.1f (%d reviews)", r, c));
 
+                        // Make the image view round and load the Base64 image
+                        ImageView expertImage = item.findViewById(R.id.expertImage);
+                        expertImage.setOutlineProvider(new ViewOutlineProvider() {
+                            @Override public void getOutline(View view, Outline outline) {
+                                outline.setOval(0, 0, view.getWidth(), view.getHeight());
+                            }
+                        });
+                        expertImage.setClipToOutline(true);
+
+                        String base64Img = doc.getString("profileImageBase64");
+                        if (base64Img != null && !base64Img.isEmpty()) {
+                            try {
+                                byte[] decoded = Base64.decode(base64Img, Base64.DEFAULT);
+                                Bitmap bmp = BitmapFactory.decodeByteArray(decoded, 0, decoded.length);
+                                expertImage.setPadding(0, 0, 0, 0);
+                                expertImage.setImageTintList(null); // <--- ADD THIS LINE
+                                expertImage.setImageBitmap(bmp);
+                            } catch (Exception ignored) {}
+                        }
+
                         item.setOnClickListener(v -> {
-                            // TODO: Open ChatRoomActivity (Phase 3)
-                            Toast.makeText(this, "Opening chat with " + name + " (Coming in Phase 3)", Toast.LENGTH_SHORT).show();
+                            String currentUid = com.google.firebase.auth.FirebaseAuth.getInstance().getUid();
+                            if (doc.getId().equals(currentUid)) {
+                                Toast.makeText(this, "You cannot message yourself.", Toast.LENGTH_SHORT).show();
+                                return;
+                            }
+
+                            android.content.Intent intent = new android.content.Intent(ExpertListActivity.this, ChatActivity.class);
+                            intent.putExtra("expertUid", doc.getId());
+                            intent.putExtra("expertName", name != null ? name : "Expert");
+                            intent.putExtra("expertImage", base64Img);
+                            startActivity(intent);
                         });
 
                         container.addView(item);

@@ -1360,6 +1360,7 @@ color foreground_material_light
 color highlighted_text_material_dark
 color highlighted_text_material_light
 color hint_teal
+color ic_launcher_background
 color m3_appbar_overlay_color
 color m3_assist_chip_icon_tint_color
 color m3_assist_chip_stroke_color
@@ -2956,6 +2957,7 @@ drawable bg_logo_placeholder
 drawable bg_nisab_banner
 drawable bg_pill
 drawable bg_progress_track
+drawable bg_red_dot
 drawable bg_summary_card
 drawable btn_checkbox_checked_mtrl
 drawable btn_checkbox_checked_to_unchecked_mtrl_animation
@@ -3004,6 +3006,7 @@ drawable ic_call_answer_video_low
 drawable ic_call_decline
 drawable ic_call_decline_low
 drawable ic_chat
+drawable ic_check
 drawable ic_clear_black_24
 drawable ic_clock_black_24dp
 drawable ic_coins
@@ -3033,7 +3036,6 @@ drawable ic_settings
 drawable ic_wallet
 drawable indeterminate_static
 drawable logo
-drawable logo3
 drawable m3_avd_hide_password
 drawable m3_avd_show_password
 drawable m3_bottom_sheet_drag_handle
@@ -3184,6 +3186,7 @@ id adjust_width
 id alertTitle
 id aligned
 id all
+id alreadyExpertLayout
 id always
 id amountInput
 id animateToEnd
@@ -3231,6 +3234,10 @@ id center_horizontal
 id center_vertical
 id chain
 id chains
+id chatDot
+id chatExpertImage
+id chatExpertName
+id chatScroll
 id checkbox
 id checked
 id chronometer
@@ -3311,6 +3318,7 @@ id exitUntilCollapsed
 id expand_activities_button
 id expanded_menu
 id expertBio
+id expertImage
 id expertName
 id expertRating
 id expertRatingBar
@@ -3331,6 +3339,7 @@ id fixed
 id flip
 id floating
 id forever
+id formLayout
 id fragment_container_view_tag
 id fullscreen_header
 id ghost_view
@@ -3365,6 +3374,12 @@ id ifRoom
 id ignore
 id ignoreRequest
 id image
+id inboxContainer
+id inboxImage
+id inboxMessage
+id inboxName
+id inboxTime
+id inboxUnreadDot
 id indeterminate
 id info
 id infoButton
@@ -3378,6 +3393,9 @@ id jumpToStart
 id labeled
 id layout
 id left
+id leftChatLayout
+id leftMessageText
+id leftTimeText
 id leftToRight
 id legacy
 id liabilityInput
@@ -3424,11 +3442,12 @@ id menuCloseButton
 id menuFooter
 id menuHeader
 id menuHistory
-id menuNotifications
 id menuProfileCard
 id menuSettings
 id menuSignOut
 id message
+id messageInput
+id messagesContainer
 id middle
 id mini
 id month_grid
@@ -3480,6 +3499,8 @@ id nisabInput
 id noScroll
 id none
 id normal
+id notifButton
+id notifDot
 id notification_background
 id notification_main_column
 id notification_main_column_container
@@ -3530,6 +3551,8 @@ id priceStatus
 id priceUnitSpinner
 id profileEmail
 id profileEmailText
+id profileImage
+id profileImageContainer
 id profileName
 id profileNameText
 id progress
@@ -3542,10 +3565,15 @@ id rectangles
 id refreshPriceButton
 id removeButton
 id report_drawn
+id resignBtn
 id resultTable
 id resultText
 id reverseSawtooth
 id right
+id rightChatLayout
+id rightMessageText
+id rightTick
+id rightTimeText
 id rightToLeft
 id right_icon
 id right_side
@@ -3577,6 +3605,7 @@ id search_voice_btn
 id select_dialog_listview
 id selected
 id selection_type
+id sendButton
 id shortcut
 id showCustom
 id showHome
@@ -3586,6 +3615,7 @@ id sin
 id skipCollapsed
 id slide
 id slideMenu
+id slideProfileImage
 id snackbar_action
 id snackbar_text
 id snap
@@ -3673,6 +3703,7 @@ id uniform
 id unitSpinner
 id unlabeled
 id up
+id uploadProgressText
 id useLivePriceButton
 id useLogo
 id verdictCard
@@ -3811,6 +3842,8 @@ layout abc_select_dialog_material
 layout abc_tooltip
 layout activity_calculator
 layout activity_cash
+layout activity_chat
+layout activity_chat_list
 layout activity_commercial
 layout activity_expert_list
 layout activity_expert_registration
@@ -3846,6 +3879,8 @@ layout dialog_expert_confirm
 layout dialog_info
 layout ime_base_split_test_activity
 layout ime_secondary_split_test_activity
+layout item_chat
+layout item_chat_list
 layout item_expert
 layout item_metal_row
 layout layout_dashboard
@@ -3911,6 +3946,9 @@ layout select_dialog_item_material
 layout select_dialog_multichoice_material
 layout select_dialog_singlechoice_material
 layout support_simple_spinner_dropdown_item
+mipmap ic_launcher
+mipmap ic_launcher_foreground
+mipmap ic_launcher_round
 plurals mtrl_badge_content_description
 raw firebase_common_keep
 string abc_action_bar_home_description

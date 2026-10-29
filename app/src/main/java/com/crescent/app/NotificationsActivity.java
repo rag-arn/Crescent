@@ -12,6 +12,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.WriteBatch;
 
 public class NotificationsActivity extends AppCompatActivity {
     @Override protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +31,8 @@ public class NotificationsActivity extends AppCompatActivity {
             return;
         }
 
-        FirebaseFirestore.getInstance().collection("users").document(user.getUid())
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db.collection("users").document(user.getUid())
                 .collection("notifications")
                 .orderBy("timestamp", Query.Direction.DESCENDING)
                 .get().addOnSuccessListener(query -> {
@@ -41,7 +43,14 @@ public class NotificationsActivity extends AppCompatActivity {
                         container.addView(t);
                         return;
                     }
+
+                    WriteBatch batch = db.batch();
+
                     for (QueryDocumentSnapshot doc : query) {
+                        if (Boolean.FALSE.equals(doc.getBoolean("read"))) {
+                            batch.update(doc.getReference(), "read", true);
+                        }
+
                         LinearLayout card = new LinearLayout(this);
                         card.setOrientation(LinearLayout.VERTICAL);
                         card.setBackgroundResource(R.drawable.bg_dash_card);
@@ -66,6 +75,7 @@ public class NotificationsActivity extends AppCompatActivity {
                         card.addView(msg);
                         container.addView(card);
                     }
+                    batch.commit();
                 }).addOnFailureListener(e -> Toast.makeText(this, "Failed to load notifications", Toast.LENGTH_SHORT).show());
     }
 }

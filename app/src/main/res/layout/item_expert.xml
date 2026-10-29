@@ -7,7 +7,8 @@
     android:layout_width="match_parent" android:layout_height="wrap_content">
 
     <FrameLayout android:background="@drawable/bg_dash_logo_ring" android:layout_width="48dp" android:layout_height="48dp">
-        <ImageView android:src="@drawable/ic_person" android:tint="@color/sage_text" android:padding="10dp" android:layout_width="match_parent" android:layout_height="match_parent"/>
+        <!-- ADDED ID HERE -->
+        <ImageView android:id="@+id/expertImage" android:src="@drawable/ic_person" android:tint="@color/sage_text" android:padding="10dp" android:scaleType="centerCrop" android:layout_width="match_parent" android:layout_height="match_parent"/>
     </FrameLayout>
 
     <LinearLayout android:orientation="vertical" android:layout_marginStart="16dp" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content">

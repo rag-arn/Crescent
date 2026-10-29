@@ -21,5 +21,13 @@
         <activity android:name=".MainActivity" android:exported="true">
             <intent-filter><action android:name="android.intent.action.MAIN"/><category android:name="android.intent.category.LAUNCHER"/></intent-filter>
         </activity>
+
+        <!-- (Your other activities) -->
+        <activity android:name=".ChatActivity" android:exported="false" android:windowSoftInputMode="adjustResize"/>
+        <activity android:name=".ChatListActivity" android:exported="false"/> <!-- NEW -->
+
+        <activity android:name=".MainActivity" android:exported="true">
+            <intent-filter><action android:name="android.intent.action.MAIN"/><category android:name="android.intent.category.LAUNCHER"/></intent-filter>
+        </activity>
     </application>
 </manifest>

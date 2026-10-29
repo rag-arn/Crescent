@@ -4,9 +4,11 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.Outline;
 import android.os.Bundle;
+import android.util.Base64;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,6 +29,8 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import org.json.JSONObject;
 import java.io.BufferedReader;
@@ -98,9 +102,25 @@ public class MainActivity extends AppCompatActivity {
         data.put("uid", currentUser.getUid());
         data.put("name", name);
         data.put("email", email);
-        com.google.firebase.firestore.FirebaseFirestore.getInstance()
-                .collection("users").document(currentUser.getUid())
+
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db.collection("users").document(currentUser.getUid())
                 .set(data, com.google.firebase.firestore.SetOptions.merge());
+
+        db.collection("users").document(currentUser.getUid()).get().addOnSuccessListener(doc -> {
+            if (doc.exists()) {
+                String base64Img = doc.getString("profileImageBase64");
+                if (base64Img != null && !base64Img.isEmpty()) {
+                    try {
+                        byte[] decoded = Base64.decode(base64Img, Base64.DEFAULT);
+                        android.graphics.Bitmap bmp = BitmapFactory.decodeByteArray(decoded, 0, decoded.length);
+                        b.slideMenu.slideProfileImage.setPadding(0, 0, 0, 0);
+                        b.slideMenu.slideProfileImage.setImageTintList(null);
+                        b.slideMenu.slideProfileImage.setImageBitmap(bmp);
+                    } catch (Exception ignored) {}
+                }
+            }
+        });
 
         setupSystemBars();
         setupSlideMenu();
@@ -108,6 +128,7 @@ public class MainActivity extends AppCompatActivity {
         makeLogoRound();
         setDates();
         fetchRandomHadith();
+        listenForNotifications();
     }
 
     @Override protected void onResume() {
@@ -246,12 +267,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void makeLogoRound() {
-        b.dashboard.logoImage.setOutlineProvider(new ViewOutlineProvider() {
+        ViewOutlineProvider roundProvider = new ViewOutlineProvider() {
             @Override public void getOutline(View view, Outline outline) {
                 outline.setOval(0, 0, view.getWidth(), view.getHeight());
             }
-        });
+        };
+
+        b.dashboard.logoImage.setOutlineProvider(roundProvider);
         b.dashboard.logoImage.setClipToOutline(true);
+
+        b.slideMenu.slideProfileImage.setOutlineProvider(roundProvider);
+        b.slideMenu.slideProfileImage.setClipToOutline(true);
     }
 
     private void soon(String what) { Toast.makeText(this, what + " is coming soon.", Toast.LENGTH_SHORT).show(); }
@@ -267,15 +293,16 @@ public class MainActivity extends AppCompatActivity {
 
         b.dashboard.navHome.setOnClickListener(v -> { /* already here */ });
         b.dashboard.navCalculate.setOnClickListener(v -> startActivity(new Intent(this, GoldActivity.class)));
-        b.dashboard.navChat.setOnClickListener(v -> soon("Chat Inbox (Phase 3)"));
+        b.dashboard.navChat.setOnClickListener(v -> startActivity(new Intent(this, ChatListActivity.class)));
         b.dashboard.navSettings.setOnClickListener(v -> soon("Settings"));
+
+        b.dashboard.notifButton.setOnClickListener(v -> startActivity(new Intent(this, NotificationsActivity.class)));
 
         b.dashboard.menuButton.setOnClickListener(v -> toggleMenu());
         b.slideMenu.menuCloseButton.setOnClickListener(v -> closeMenu(null));
         b.drawerScrim.setOnClickListener(v -> closeMenu(null));
 
         b.slideMenu.menuProfileCard.setOnClickListener(v -> closeMenu(() -> startActivity(new Intent(this, ProfileActivity.class))));
-        b.slideMenu.menuNotifications.setOnClickListener(v -> closeMenu(() -> startActivity(new Intent(this, NotificationsActivity.class))));
         b.slideMenu.menuAboutZakat.setOnClickListener(v -> closeMenu(() -> startActivity(new Intent(this, InfoActivity.class))));
         b.slideMenu.menuCalculate.setOnClickListener(v -> closeMenu(() -> startActivity(new Intent(this, GoldActivity.class))));
         b.slideMenu.menuHistory.setOnClickListener(v -> closeMenu(() -> startActivity(new Intent(this, HistoryActivity.class))));
@@ -285,12 +312,42 @@ public class MainActivity extends AppCompatActivity {
 
         b.slideMenu.menuSignOut.setOnClickListener(v -> closeMenu(() -> {
             mAuth.signOut();
-            com.google.android.gms.auth.api.signin.GoogleSignInOptions gso = new com.google.android.gms.auth.api.signin.GoogleSignInOptions.Builder(com.google.android.gms.auth.api.signin.GoogleSignInOptions.DEFAULT_SIGN_IN).build();
-            com.google.android.gms.auth.api.signin.GoogleSignIn.getClient(this, gso).signOut().addOnCompleteListener(task -> {
+            GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).build();
+            GoogleSignIn.getClient(this, gso).signOut().addOnCompleteListener(task -> {
                 startActivity(new Intent(MainActivity.this, LoginActivity.class));
                 finish();
             });
         }));
+    }
+
+    private void listenForNotifications() {
+        FirebaseUser user = mAuth.getCurrentUser();
+        if (user != null && !user.isAnonymous()) {
+            FirebaseFirestore db = FirebaseFirestore.getInstance();
+            String uid = user.getUid();
+
+            // 1. System Notifications (Top Right Bell)
+            db.collection("users").document(uid).collection("notifications")
+                    .whereEqualTo("read", false).addSnapshotListener((value, error) -> {
+                        if (value != null && !value.isEmpty()) b.dashboard.notifDot.setVisibility(View.VISIBLE);
+                        else b.dashboard.notifDot.setVisibility(View.GONE);
+                    });
+
+            // 2. Chat Messages (Bottom Nav Chat Icon) - Bypassing Index requirement!
+            db.collection("chats")
+                    .whereArrayContains("users", uid)
+                    .addSnapshotListener((value, error) -> {
+                        if (value == null || error != null) return;
+                        boolean hasUnread = false;
+                        for (DocumentSnapshot doc : value.getDocuments()) {
+                            if (Boolean.TRUE.equals(doc.getBoolean("hasUnread_" + uid))) {
+                                hasUnread = true;
+                                break;
+                            }
+                        }
+                        b.dashboard.chatDot.setVisibility(hasUnread ? View.VISIBLE : View.GONE);
+                    });
+        }
     }
 
     private void loadDashboard() {

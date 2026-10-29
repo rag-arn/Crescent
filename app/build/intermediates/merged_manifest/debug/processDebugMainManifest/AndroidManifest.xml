@@ -81,6 +81,25 @@
             </intent-filter>
         </activity>
 
+        <!-- (Your other activities) -->
+        <activity
+            android:name="com.crescent.app.ChatActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name="com.crescent.app.ChatListActivity"
+            android:exported="false" /> <!-- NEW -->
+
+        <activity
+            android:name="com.crescent.app.MainActivity"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
         <service
             android:name="androidx.room.MultiInstanceInvalidationService"
             android:directBootAware="true"
