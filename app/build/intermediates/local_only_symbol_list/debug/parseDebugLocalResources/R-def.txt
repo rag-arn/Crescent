@@ -60,6 +60,8 @@ drawable progress_amber
 id addMoreButton
 id amountInput
 id arabicDateText
+id authActionBtn
+id authTitle
 id bottomBar
 id bottomNav
 id brandHeader
@@ -79,13 +81,16 @@ id discardButton
 id downloadButton
 id drawerRoot
 id drawerScrim
+id emailInput
 id emptyCard
 id englishDateText
 id goldOption
+id googleSignInBtn
 id gridAssets
 id gridCalculate
 id gridChat
 id gridHistory
+id guestBtn
 id hadithText
 id headerBar
 id historyList
@@ -94,9 +99,11 @@ id homeButton
 id infoButton
 id investmentInput
 id liabilityInput
+id loginProgress
 id logoContainer
 id logoImage
 id menuAboutZakat
+id menuBecomeExpert
 id menuButton
 id menuCalculate
 id menuCloseButton
@@ -105,6 +112,7 @@ id menuHeader
 id menuHistory
 id menuProfileCard
 id menuSettings
+id menuSignOut
 id navCalculate
 id navChat
 id navHome
@@ -113,6 +121,7 @@ id nextButton
 id nisabGroup
 id nisabInput
 id pagesContainer
+id passwordInput
 id payNowBtn
 id pdfButton
 id previewScroll
@@ -122,6 +131,8 @@ id priceInput
 id priceLabel
 id priceStatus
 id priceUnitSpinner
+id profileEmailText
+id profileNameText
 id progress
 id puritySpinner
 id refreshPriceButton
@@ -137,6 +148,7 @@ id stepText
 id summaryText
 id titleInfoButton
 id titleText
+id toggleAuthModeText
 id totalText
 id unitSpinner
 id useLivePriceButton
@@ -151,6 +163,7 @@ layout activity_cash
 layout activity_commercial
 layout activity_history
 layout activity_info
+layout activity_login
 layout activity_main
 layout activity_metal
 layout activity_nisab
@@ -161,6 +174,13 @@ layout item_metal_row
 layout layout_dashboard
 layout layout_slide_menu
 string app_name
+string default_web_client_id
+string gcm_defaultSenderId
+string google_api_key
+string google_app_id
+string google_crash_reporting_api_key
+string google_storage_bucket
+string project_id
 style Theme.Crescent
 style Widget.Crescent.Button
 style Widget.Crescent.Button.Outlined

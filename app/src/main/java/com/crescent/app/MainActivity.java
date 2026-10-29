@@ -23,6 +23,11 @@ import androidx.core.view.WindowInsetsControllerCompat;
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
 import com.crescent.app.databinding.ActivityMainBinding;
 
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 import org.json.JSONObject;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -39,7 +44,6 @@ import java.util.Random;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-/** Dashboard: main interface, calculation launching, hadith API, and slide-out menu. */
 public class MainActivity extends AppCompatActivity {
     private static final float MENU_WIDTH_FRACTION = 0.78f;
     private static final long ANIM_DURATION_MS = 320L;
@@ -47,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding b;
     private CrescentRepository repo;
+    private FirebaseAuth mAuth;
     private final NumberFormat nf = NumberFormat.getNumberInstance(new Locale("en", "BD"));
     private final ExecutorService io = Executors.newSingleThreadExecutor();
 
@@ -61,9 +66,36 @@ public class MainActivity extends AppCompatActivity {
 
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+
+        if (currentUser == null) {
+            startActivity(new Intent(this, LoginActivity.class));
+            finish();
+            return;
+        }
+
         b = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(b.getRoot());
         repo = new CrescentRepository(getApplicationContext());
+
+        // Handle Guest vs Email vs Google Profile Data Safely
+        if (currentUser.isAnonymous()) {
+            b.slideMenu.profileNameText.setText("Guest");
+            b.slideMenu.profileEmailText.setText("Anonymous Session");
+        } else {
+            String name = currentUser.getDisplayName();
+            String email = currentUser.getEmail();
+
+            // If they signed up with Email/Password, name might be null at first
+            if (name == null || name.isEmpty()) {
+                name = email != null ? email.split("@")[0] : "User";
+            }
+
+            b.slideMenu.profileNameText.setText(name);
+            b.slideMenu.profileEmailText.setText(email != null ? email : "No email linked");
+        }
 
         setupSystemBars();
         setupSlideMenu();
@@ -75,7 +107,9 @@ public class MainActivity extends AppCompatActivity {
 
     @Override protected void onResume() {
         super.onResume();
-        loadDashboard();
+        if (mAuth != null && mAuth.getCurrentUser() != null) {
+            loadDashboard();
+        }
     }
 
     @Override protected void onDestroy() {
@@ -83,7 +117,6 @@ public class MainActivity extends AppCompatActivity {
         io.shutdown();
     }
 
-    /** Maps padding to avoid system bars. */
     private void setupSystemBars() {
         final int headerTop = b.dashboard.brandHeader.getPaddingTop();
         final int navBottom = b.dashboard.bottomNav.getPaddingBottom();
@@ -107,7 +140,6 @@ public class MainActivity extends AppCompatActivity {
         insetsController.setAppearanceLightNavigationBars(true);
     }
 
-    /** Setup for the slide-out navigation menu. */
     private void setupSlideMenu() {
         int screenW = getResources().getDisplayMetrics().widthPixels;
         menuWidthPx = Math.round(screenW * MENU_WIDTH_FRACTION);
@@ -245,8 +277,19 @@ public class MainActivity extends AppCompatActivity {
         b.slideMenu.menuAboutZakat.setOnClickListener(v -> closeMenu(() -> startActivity(new Intent(this, InfoActivity.class))));
         b.slideMenu.menuCalculate.setOnClickListener(v -> closeMenu(() -> startActivity(new Intent(this, GoldActivity.class))));
         b.slideMenu.menuHistory.setOnClickListener(v -> closeMenu(() -> startActivity(new Intent(this, HistoryActivity.class))));
-        b.slideMenu.menuProfileCard.setOnClickListener(v -> closeMenu(() -> soon("Profile")));
+
+        b.slideMenu.menuBecomeExpert.setOnClickListener(v -> closeMenu(() -> soon("Expert Registration form")));
         b.slideMenu.menuSettings.setOnClickListener(v -> closeMenu(() -> soon("Settings")));
+
+        // Sign Out Logic
+        b.slideMenu.menuSignOut.setOnClickListener(v -> closeMenu(() -> {
+            mAuth.signOut();
+            GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).build();
+            GoogleSignIn.getClient(this, gso).signOut().addOnCompleteListener(task -> {
+                startActivity(new Intent(MainActivity.this, LoginActivity.class));
+                finish();
+            });
+        }));
     }
 
     private void loadDashboard() {

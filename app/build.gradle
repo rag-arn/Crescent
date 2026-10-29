@@ -1,4 +1,7 @@
-plugins { id 'com.android.application' }
+plugins {
+    id 'com.android.application'
+    id 'com.google.gms.google-services'
+}
 
 android {
     namespace 'com.crescent.app'
@@ -11,9 +14,10 @@ android {
         versionName '1.0'
     }
 
-    buildFeatures { viewBinding true }
+    buildFeatures {
+        viewBinding true
+    }
 
-    // Enable Java 8 features to safely calculate the Arabic Date on API 23
     compileOptions {
         coreLibraryDesugaringEnabled true
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -36,6 +40,16 @@ dependencies {
     implementation 'androidx.room:room-runtime:2.6.1'
     annotationProcessor 'androidx.room:room-compiler:2.6.1'
 
-    // Desugaring engine for java.time.chrono.HijrahDate support
     coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.0.4'
+
+    // Firebase Bill of Materials
+    implementation platform('com.google.firebase:firebase-bom:33.1.2')
+
+    // Firebase Authentication & Google Play Services for Google Sign-In
+    implementation 'com.google.firebase:firebase-auth'
+    implementation 'com.google.android.gms:play-services-auth:21.2.0'
+
+    // Firestore & Storage
+    implementation 'com.google.firebase:firebase-firestore'
+    implementation 'com.google.firebase:firebase-storage'
 }

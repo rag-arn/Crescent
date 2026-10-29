@@ -11,6 +11,8 @@
         <activity android:name=".NisabActivity" android:exported="false"/>
         <activity android:name=".ResultActivity" android:exported="false"/>
         <activity android:name=".PdfPreviewActivity" android:exported="false"/>
+        <!-- New Login Activity -->
+        <activity android:name=".LoginActivity" android:exported="false"/>
         <activity android:name=".MainActivity" android:exported="true">
             <intent-filter><action android:name="android.intent.action.MAIN"/><category android:name="android.intent.category.LAUNCHER"/></intent-filter>
         </activity>

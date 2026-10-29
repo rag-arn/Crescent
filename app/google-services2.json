@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "588175183367",
+    "project_id": "crescent-arnob",
+    "storage_bucket": "crescent-arnob.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:588175183367:android:3c75aee99e1627e31264a2",
+        "android_client_info": {
+          "package_name": "com.crescent.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBbIvDR9leF6bsjSMm1kZ8Rzs3ZA07EWM0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

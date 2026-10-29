@@ -18,6 +18,13 @@
     <color name="warm_cream">#F3EDE0</color>
     <color name="warm_sand">#D6BE8B</color>
     <string name="app_name">Crescent</string>
+    <string name="default_web_client_id" translatable="false">588175183367-edbbr5fo5rq0g5ajfp3k9ummgag1mtcq.apps.googleusercontent.com</string>
+    <string name="gcm_defaultSenderId" translatable="false">588175183367</string>
+    <string name="google_api_key" translatable="false">AIzaSyBbIvDR9leF6bsjSMm1kZ8Rzs3ZA07EWM0</string>
+    <string name="google_app_id" translatable="false">1:588175183367:android:3c75aee99e1627e31264a2</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyBbIvDR9leF6bsjSMm1kZ8Rzs3ZA07EWM0</string>
+    <string name="google_storage_bucket" translatable="false">crescent-arnob.firebasestorage.app</string>
+    <string name="project_id" translatable="false">crescent-arnob</string>
     <style name="Theme.Crescent" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="colorPrimary">@color/sage_text</item>
         <item name="colorPrimaryVariant">@color/sage_text</item>
