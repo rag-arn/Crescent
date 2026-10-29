@@ -1,20 +1,25 @@
 package com.crescent.app;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.ValueAnimator;
 import android.content.Intent;
-import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewOutlineProvider;
 import android.graphics.Outline;
-import android.widget.PopupMenu;
+import android.os.Bundle;
+import android.view.Gravity;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.ViewOutlineProvider;
+import android.widget.FrameLayout;
 import android.widget.Toast;
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.core.view.WindowInsetsControllerCompat;
+import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
 import com.crescent.app.databinding.ActivityMainBinding;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
@@ -26,9 +31,18 @@ import java.util.Map;
 
 /** Dashboard: shows the latest saved calculation and links to the calculator, history and info. */
 public class MainActivity extends AppCompatActivity {
+    private static final float MENU_WIDTH_FRACTION = 0.78f; // > 2/3rd of the screen
+    private static final long ANIM_DURATION_MS = 320L;
+
     private ActivityMainBinding b;
     private CrescentRepository repo;
     private final NumberFormat nf = NumberFormat.getNumberInstance(new Locale("en", "BD"));
+
+    private boolean menuOpen = false;
+    private float menuProgress = 0f; // 0f = closed, 1f = open
+    private int menuWidthPx = 0;
+    private ValueAnimator menuAnimator;
+    private OnBackPressedCallback backCallback;
 
     private String taka(double v) { return "৳" + nf.format(Math.round(v)); }
 
@@ -39,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
         repo = new CrescentRepository(getApplicationContext());
 
         setupSystemBars();
+        setupSlideMenu();
         setupClicks();
         makeLogoRound();
     }
@@ -48,19 +63,111 @@ public class MainActivity extends AppCompatActivity {
         loadDashboard();   // refresh after returning from a calculation
     }
 
-    /** Keeps the header and bottom bar clear of the status/navigation bars (edge-to-edge on Android 15+). */
+    /** Keeps the headers and bottom bars clear of the status/navigation bars (edge-to-edge on Android 15+). */
     private void setupSystemBars() {
         final int headerTop = b.brandHeader.getPaddingTop();
         final int navBottom = b.bottomNav.getPaddingBottom();
+        final int menuHeaderTop = b.menuHeader.getPaddingTop();
+        final int menuFooterBottom = b.menuFooter.getPaddingBottom();
+
         ViewCompat.setOnApplyWindowInsetsListener(b.getRoot(), (v, insets) -> {
             Insets bars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             b.brandHeader.setPadding(b.brandHeader.getPaddingLeft(), headerTop + bars.top, b.brandHeader.getPaddingRight(), b.brandHeader.getPaddingBottom());
             b.bottomNav.setPadding(b.bottomNav.getPaddingLeft(), b.bottomNav.getPaddingTop(), b.bottomNav.getPaddingRight(), navBottom + bars.bottom);
+            b.menuHeader.setPadding(b.menuHeader.getPaddingLeft(), menuHeaderTop + bars.top, b.menuHeader.getPaddingRight(), b.menuHeader.getPaddingBottom());
+            b.menuFooter.setPadding(b.menuFooter.getPaddingLeft(), b.menuFooter.getPaddingTop(), b.menuFooter.getPaddingRight(), menuFooterBottom + bars.bottom);
             return insets;
         });
         WindowInsetsControllerCompat c = WindowCompat.getInsetsController(getWindow(), b.getRoot());
         c.setAppearanceLightStatusBars(false);       // light icons on the dark teal header
         c.setAppearanceLightNavigationBars(true);    // dark icons on the cream bottom bar
+    }
+
+    /** Configures the >2/3 screen slide menu opening from the LEFT side and back-button handling. */
+    private void setupSlideMenu() {
+        int screenW = getResources().getDisplayMetrics().widthPixels;
+        menuWidthPx = Math.round(screenW * MENU_WIDTH_FRACTION);
+
+        FrameLayout.LayoutParams lp = (FrameLayout.LayoutParams) b.sideMenu.getLayoutParams();
+        lp.width = menuWidthPx;
+        lp.gravity = Gravity.START;
+        b.sideMenu.setLayoutParams(lp);
+
+        applyMenuProgress(0f);
+
+        b.drawerRoot.post(() -> {
+            int measuredW = b.drawerRoot.getWidth();
+            if (measuredW > 0) {
+                int newWidth = Math.round(measuredW * MENU_WIDTH_FRACTION);
+                if (newWidth != menuWidthPx) {
+                    menuWidthPx = newWidth;
+                    ViewGroup.LayoutParams params = b.sideMenu.getLayoutParams();
+                    params.width = menuWidthPx;
+                    b.sideMenu.setLayoutParams(params);
+                    applyMenuProgress(menuProgress);
+                }
+            }
+        });
+
+        backCallback = new OnBackPressedCallback(false) {
+            @Override public void handleOnBackPressed() {
+                closeMenu(null);
+            }
+        };
+        getOnBackPressedDispatcher().addCallback(this, backCallback);
+    }
+
+    /** Slides the menu in from the left (-menuWidthPx -> 0) and pushes the activity to the right (0 -> +menuWidthPx). */
+    private void applyMenuProgress(float p) {
+        menuProgress = p;
+        float mainTx = menuWidthPx * p;
+        float menuTx = -menuWidthPx * (1f - p);
+
+        b.mainContent.setTranslationX(mainTx);
+        b.drawerScrim.setTranslationX(mainTx);
+        b.sideMenu.setTranslationX(menuTx);
+
+        b.drawerScrim.setAlpha(p);
+        b.drawerScrim.setVisibility(p > 0.001f ? View.VISIBLE : View.GONE);
+        b.sideMenu.setVisibility(p > 0.001f ? View.VISIBLE : View.INVISIBLE);
+    }
+
+    private void toggleMenu() {
+        if (menuOpen) closeMenu(null);
+        else openMenu();
+    }
+
+    private void openMenu() {
+        menuOpen = true;
+        if (backCallback != null) backCallback.setEnabled(true);
+        animateMenuTo(1f, null);
+    }
+
+    private void closeMenu(Runnable onClosed) {
+        menuOpen = false;
+        if (backCallback != null) backCallback.setEnabled(false);
+        animateMenuTo(0f, onClosed);
+    }
+
+    private void animateMenuTo(float target, Runnable onEnd) {
+        if (menuAnimator != null && menuAnimator.isRunning()) {
+            menuAnimator.cancel();
+        }
+        menuAnimator = ValueAnimator.ofFloat(menuProgress, target);
+        menuAnimator.setDuration(ANIM_DURATION_MS);
+        menuAnimator.setInterpolator(new FastOutSlowInInterpolator());
+        menuAnimator.addUpdateListener(anim -> applyMenuProgress((float) anim.getAnimatedValue()));
+        menuAnimator.addListener(new AnimatorListenerAdapter() {
+            private boolean cancelled = false;
+            @Override public void onAnimationCancel(Animator animation) { cancelled = true; }
+            @Override public void onAnimationEnd(Animator animation) {
+                if (!cancelled) {
+                    applyMenuProgress(target);
+                    if (onEnd != null) onEnd.run();
+                }
+            }
+        });
+        menuAnimator.start();
     }
 
     /** Clips the logo image into a circle, whatever shape the PNG itself has. */
@@ -87,18 +194,17 @@ public class MainActivity extends AppCompatActivity {
         b.navAssets.setOnClickListener(v -> soon("Assets"));
         b.navSettings.setOnClickListener(v -> soon("Settings"));
 
-        b.menuButton.setOnClickListener(v -> {
-            PopupMenu pm = new PopupMenu(this, b.menuButton);
-            Menu m = pm.getMenu();
-            m.add(0, 1, 0, "About Zakat");
-            m.add(0, 2, 1, "Profile (coming soon)").setEnabled(false);
-            m.add(0, 3, 2, "Settings (coming soon)").setEnabled(false);
-            pm.setOnMenuItemClickListener((MenuItem item) -> {
-                if (item.getItemId() == 1) startActivity(new Intent(this, InfoActivity.class));
-                return true;
-            });
-            pm.show();
-        });
+        // Three-bar menu open / close triggers
+        b.menuButton.setOnClickListener(v -> toggleMenu());
+        b.menuCloseButton.setOnClickListener(v -> closeMenu(null));
+        b.drawerScrim.setOnClickListener(v -> closeMenu(null));
+
+        // Slide-out menu items (smoothly closes menu then performs action)
+        b.menuAboutZakat.setOnClickListener(v -> closeMenu(() -> startActivity(new Intent(this, InfoActivity.class))));
+        b.menuCalculate.setOnClickListener(v -> closeMenu(() -> startActivity(new Intent(this, GoldActivity.class))));
+        b.menuHistory.setOnClickListener(v -> closeMenu(() -> startActivity(new Intent(this, HistoryActivity.class))));
+        b.menuProfileCard.setOnClickListener(v -> closeMenu(() -> soon("Profile")));
+        b.menuSettings.setOnClickListener(v -> closeMenu(() -> soon("Settings")));
     }
 
     private void loadDashboard() {

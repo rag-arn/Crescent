@@ -3207,6 +3207,8 @@ int id dragLeft 0x7f08009f
 int id dragRight 0x7f0800a0
 int id dragStart 0x7f0800a1
 int id dragUp 0x7f0800a2
+int id drawerRoot 0x7f080217
+int id drawerScrim 0x7f080218
 int id dropdown_menu 0x7f0800a3
 int id easeIn 0x7f0800a4
 int id easeInOut 0x7f0800a5
@@ -3216,6 +3218,7 @@ int id edit_query 0x7f0800a8
 int id edit_text_id 0x7f0800a9
 int id elastic 0x7f0800aa
 int id embed 0x7f0800ab
+int id emptyCard 0x7f080223
 int id end 0x7f0800ac
 int id endToStart 0x7f0800ad
 int id enterAlways 0x7f0800ae
@@ -3252,6 +3255,7 @@ int id headerBar 0x7f0800cc
 int id header_title 0x7f0800cd
 int id hide_ime_id 0x7f0800ce
 int id hideable 0x7f0800cf
+int id historyList 0x7f080224
 int id historyText 0x7f0800d0
 int id home 0x7f0800d1
 int id homeAsUp 0x7f0800d2
@@ -3290,6 +3294,7 @@ int id list_item 0x7f0800f2
 int id logoContainer 0x7f0800f3
 int id logoImage 0x7f080211
 int id m3_side_sheet 0x7f0800f4
+int id mainContent 0x7f080219
 int id marquee 0x7f0800f5
 int id masked 0x7f0800f6
 int id match_parent 0x7f0800f7
@@ -3314,7 +3319,15 @@ int id material_timepicker_ok_button 0x7f080109
 int id material_timepicker_view 0x7f08010a
 int id material_value_index 0x7f08010b
 int id matrix 0x7f08010c
+int id menuAboutZakat 0x7f08021a
 int id menuButton 0x7f08010d
+int id menuCalculate 0x7f08021b
+int id menuCloseButton 0x7f08021c
+int id menuFooter 0x7f08021d
+int id menuHeader 0x7f08021e
+int id menuHistory 0x7f08021f
+int id menuProfileCard 0x7f080220
+int id menuSettings 0x7f080221
 int id message 0x7f08010e
 int id metalAmount 0x7f08010f
 int id metalSub 0x7f080110
@@ -3470,6 +3483,7 @@ int id shortcut 0x7f0801a2
 int id showCustom 0x7f0801a3
 int id showHome 0x7f0801a4
 int id showTitle 0x7f0801a5
+int id sideMenu 0x7f080222
 int id silverOption 0x7f0801a6
 int id sin 0x7f0801a7
 int id skipCollapsed 0x7f0801a8

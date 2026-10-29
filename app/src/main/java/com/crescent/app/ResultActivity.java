@@ -40,7 +40,21 @@ public class ResultActivity extends AppCompatActivity {
         setContentView(b.getRoot());
         Ui.insets(this, b.getRoot(), b.headerBar, b.bottomBar);
 
+        b.infoButton.setOnClickListener(v -> InfoDialog.show(this, "About this estimate", NOTE));
+        b.previousButton.setOnClickListener(v -> finish());
+        b.homeButton.setOnClickListener(v -> {
+            Intent h = new Intent(this, MainActivity.class);
+            h.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            startActivity(h);
+            finish();
+        });
+
         Intent in = getIntent();
+        if (in.getBooleanExtra("from_history", false)) {
+            renderFromHistory(in);
+            return;
+        }
+
         double gold = in.getDoubleExtra("gold_value_bdt", 0), goldGrams = in.getDoubleExtra("gold_pure_grams", 0);
         double silver = in.getDoubleExtra("silver_value_bdt", 0), silverGrams = in.getDoubleExtra("silver_pure_grams", 0);
         double cashHand = in.getDoubleExtra("cash_hand", 0), cashBank = in.getDoubleExtra("cash_bank", 0);
@@ -55,14 +69,6 @@ public class ResultActivity extends AppCompatActivity {
             finish();
             return;
         }
-        b.infoButton.setOnClickListener(v -> InfoDialog.show(this, "About this estimate", NOTE));
-        b.previousButton.setOnClickListener(v -> finish());
-        b.homeButton.setOnClickListener(v -> {
-            Intent h = new Intent(this, MainActivity.class);
-            h.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-            startActivity(h);
-            finish();
-        });
 
         // ----- calculation -----
         double assets = gold + silver + cashHand + cashBank + cashReceivable + commercial;
@@ -134,6 +140,101 @@ public class ResultActivity extends AppCompatActivity {
             repo.saveAsset("Cash", cashHand); repo.saveAsset("Bank savings", cashBank); repo.saveAsset("Cash receivable", cashReceivable);
             repo.saveAsset("Gold", gold); repo.saveAsset("Silver", silver); repo.saveAsset("Commercial goods", commercial);
         }
+    }
+
+    /** Reconstructs the detailed Result screen from a saved History Snapshot without re-saving it. */
+    private void renderFromHistory(Intent in) {
+        long createdAt = in.getLongExtra("snapshot_created_at", System.currentTimeMillis());
+        double assets = in.getDoubleExtra("snapshot_assets", 0);
+        double liabilities = in.getDoubleExtra("snapshot_liabilities", 0);
+        double net = in.getDoubleExtra("snapshot_net_wealth", 0);
+        double nisab = in.getDoubleExtra("snapshot_nisab", 0);
+        double zakat = in.getDoubleExtra("snapshot_zakat", 0);
+        String breakdown = in.getStringExtra("snapshot_breakdown");
+
+        boolean due = net >= nisab && nisab > 0;
+        parseBreakdownLines(breakdown, assets, liabilities, net, nisab, zakat, due);
+
+        String headline = due ? "Zakat is due: " + taka(zakat) : "Zakat is not due";
+        String detail = due
+                ? "Your net wealth (" + taka(net) + ") is at or above the Nisab (" + taka(nisab) + ")."
+                : "Your net wealth (" + taka(net) + ") is below the Nisab (" + taka(nisab) + ").";
+        b.verdictText.setText(headline + "\n\n" + detail);
+        b.verdictCard.setCardBackgroundColor(due ? 0x80B4D5D4 : 0x4DD6BE8B);
+        renderTable();
+
+        final String pdfHeadline = due ? "Zakat is due: " + bdt(zakat) : "Zakat is not due";
+        final String pdfDetail = due
+                ? "Net wealth (" + bdt(net) + ") is at or above the Nisab (" + bdt(nisab) + ")."
+                : "Net wealth (" + bdt(net) + ") is below the Nisab (" + bdt(nisab) + ").";
+        final boolean dueFinal = due;
+        final String dateStr = DateFormat.getDateTimeInstance().format(new Date(createdAt));
+        b.pdfButton.setOnClickListener(v -> {
+            StringBuilder r = new StringBuilder();
+            r.append("TITLE|Zakat Calculation Report\n");
+            r.append("DATE|Calculated: ").append(dateStr).append("\n");
+            r.append("VERDICT|").append(dueFinal ? "1" : "0").append("|").append(pdfHeadline).append("|").append(pdfDetail).append("\n");
+            for (String[] l : lines) r.append(l[0]).append("|").append(l[1]).append("|").append(l[3]).append("\n");
+            r.append("NOTE|").append(NOTE).append("\n");
+            r.append("WARN|").append(DISCLAIMER);
+            generatePdfAndPreview(r.toString());
+        });
+    }
+
+    /** Parses the saved breakdown text back into structured table sections and rows. */
+    private void parseBreakdownLines(String breakdown, double assets, double liabilities, double net, double nisab, double zakat, boolean due) {
+        if (breakdown != null && !breakdown.trim().isEmpty()) {
+            for (String raw : breakdown.split("\\n")) {
+                String s = raw.trim();
+                if (s.isEmpty()
+                        || s.startsWith("CRESCENT")
+                        || s.startsWith("Generated:")
+                        || s.startsWith("Zakat is ")
+                        || s.equals(DISCLAIMER)
+                        || s.startsWith("1.") || s.startsWith("2.") || s.startsWith("3.") || s.startsWith("4.")) {
+                    continue;
+                }
+                if (s.equals("METHOD")) break;
+
+                if (!s.contains(":")) {
+                    section(formatSectionHeader(s));
+                } else {
+                    int idx = s.indexOf(':');
+                    String label = s.substring(0, idx).trim();
+                    String val = s.substring(idx + 1).trim();
+                    String screenVal = val.startsWith("BDT ") ? "৳" + val.substring(4) : val;
+                    String pdfVal = val.startsWith("৳") ? "BDT " + val.substring(1) : val;
+                    boolean isTotal = label.equalsIgnoreCase("Total assets")
+                            || label.equalsIgnoreCase("Total liabilities")
+                            || label.startsWith("Net wealth (")
+                            || label.equalsIgnoreCase("Nisab threshold")
+                            || label.equalsIgnoreCase("Zakat payable")
+                            || label.equalsIgnoreCase("Estimated Zakat");
+                    lines.add(new String[]{isTotal ? "T" : "R", label, screenVal, pdfVal});
+                }
+            }
+        }
+        if (lines.isEmpty()) {
+            section("Summary");
+            total("Total assets", assets);
+            row("Liabilities", liabilities);
+            total("Net wealth", net);
+            row("Nisab threshold", nisab);
+            rowText("R", "Net wealth vs Nisab", due ? "At or above Nisab" : "Below Nisab");
+            rowText("R", "Zakat rate", "2.5%");
+            total("Zakat payable", zakat);
+        }
+    }
+
+    private static String formatSectionHeader(String upper) {
+        if (upper.equalsIgnoreCase("ASSETS")) return "Assets";
+        if (upper.equalsIgnoreCase("DEDUCTIONS")) return "Deductions";
+        if (upper.equalsIgnoreCase("LIABILITIES")) return "Liabilities";
+        if (upper.equalsIgnoreCase("ZAKAT")) return "Zakat";
+        if (upper.toUpperCase(Locale.US).startsWith("NISAB")) {
+            return "Nisab" + upper.substring(5).toLowerCase(Locale.US);
+        }
+        return upper.substring(0, 1).toUpperCase(Locale.US) + upper.substring(1).toLowerCase(Locale.US);
     }
 
     /** Builds the PDF off the main thread, then opens the preview (Download / Discard). Nothing is saved to Downloads here. */

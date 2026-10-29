@@ -1,15 +1,15 @@
 [
     {
-        "merged": "com.crescent.app-mergeDebugResources-33:/layout/activity_result.xml",
-        "source": "com.crescent.app-main-36:/layout/activity_result.xml"
-    },
-    {
         "merged": "/Users/ragarnob/.gradle/daemon/9.6.0/com.crescent.app-mergeDebugResources-33:/layout/ic_info.xml",
         "source": "/Users/ragarnob/.gradle/daemon/9.6.0/com.crescent.app-main-36:/layout/ic_info.xml"
     },
     {
         "merged": "/Users/ragarnob/.gradle/daemon/9.6.0/com.crescent.app-mergeDebugResources-33:/layout/dialog_info.xml",
         "source": "/Users/ragarnob/.gradle/daemon/9.6.0/com.crescent.app-main-36:/layout/dialog_info.xml"
+    },
+    {
+        "merged": "com.crescent.app-mergeDebugResources-33:/layout/activity_history.xml",
+        "source": "com.crescent.app-main-36:/layout/activity_history.xml"
     },
     {
         "merged": "/Users/ragarnob/.gradle/daemon/9.6.0/com.crescent.app-mergeDebugResources-33:/layout/activity_calculator.xml",
@@ -26,6 +26,10 @@
     {
         "merged": "/Users/ragarnob/.gradle/daemon/9.6.0/com.crescent.app-mergeDebugResources-33:/layout/activity_cash.xml",
         "source": "/Users/ragarnob/.gradle/daemon/9.6.0/com.crescent.app-main-36:/layout/activity_cash.xml"
+    },
+    {
+        "merged": "/Users/ragarnob/.gradle/daemon/9.6.0/com.crescent.app-mergeDebugResources-33:/layout/activity_pdf_preview.xml",
+        "source": "/Users/ragarnob/.gradle/daemon/9.6.0/com.crescent.app-main-36:/layout/activity_pdf_preview.xml"
     },
     {
         "merged": "/Users/ragarnob/.gradle/daemon/9.6.0/com.crescent.app-mergeDebugResources-33:/layout/activity_result.xml",
@@ -50,10 +54,6 @@
     {
         "merged": "/Users/ragarnob/.gradle/daemon/9.6.0/com.crescent.app-mergeDebugResources-33:/layout/activity_info.xml",
         "source": "/Users/ragarnob/.gradle/daemon/9.6.0/com.crescent.app-main-36:/layout/activity_info.xml"
-    },
-    {
-        "merged": "com.crescent.app-mergeDebugResources-33:/layout/activity_pdf_preview.xml",
-        "source": "com.crescent.app-main-36:/layout/activity_pdf_preview.xml"
     },
     {
         "merged": "/Users/ragarnob/.gradle/daemon/9.6.0/com.crescent.app-mergeDebugResources-33:/layout/activity_nisab.xml",

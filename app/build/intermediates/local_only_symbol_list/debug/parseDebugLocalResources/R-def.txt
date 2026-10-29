@@ -60,8 +60,12 @@ id dialogOk
 id dialogTitle
 id discardButton
 id downloadButton
+id drawerRoot
+id drawerScrim
+id emptyCard
 id goldOption
 id headerBar
+id historyList
 id historyText
 id homeButton
 id infoButton
@@ -72,7 +76,16 @@ id liabilityInput
 id liabilitySub
 id logoContainer
 id logoImage
+id mainContent
+id menuAboutZakat
 id menuButton
+id menuCalculate
+id menuCloseButton
+id menuFooter
+id menuHeader
+id menuHistory
+id menuProfileCard
+id menuSettings
 id metalAmount
 id metalSub
 id navAssets
@@ -107,6 +120,7 @@ id resultText
 id rootLayout
 id rowValue
 id rowsContainer
+id sideMenu
 id silverOption
 id stepText
 id summaryText
