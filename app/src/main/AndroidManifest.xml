@@ -1,16 +1,31 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" android:maxSdkVersion="28"/>
     <application android:allowBackup="true" android:label="Crescent" android:theme="@style/Theme.Crescent" android:supportsRtl="true">
         <activity android:name=".HistoryActivity" android:exported="false"/>
         <activity android:name=".InfoActivity" android:exported="false"/>
-        <activity android:name=".GoldActivity" android:exported="false" android:configChanges="orientation|screenSize|keyboardHidden"/>
-        <activity android:name=".SilverActivity" android:exported="false" android:configChanges="orientation|screenSize|keyboardHidden"/>
+        <activity android:name=".GoldActivity" android:exported="false"/>
+        <activity android:name=".SilverActivity" android:exported="false"/>
         <activity android:name=".CashActivity" android:exported="false"/>
         <activity android:name=".CommercialActivity" android:exported="false"/>
         <activity android:name=".NisabActivity" android:exported="false"/>
         <activity android:name=".ResultActivity" android:exported="false"/>
         <activity android:name=".PdfPreviewActivity" android:exported="false"/>
+        <activity android:name=".LoginActivity" android:exported="false"/>
+        <activity android:name=".ExpertRegistrationActivity" android:exported="false"/>
+        <activity android:name=".ExpertListActivity" android:exported="false"/>
+
+        <!-- NEW ACTIVITIES -->
+        <activity android:name=".ProfileActivity" android:exported="false"/>
+        <activity android:name=".NotificationsActivity" android:exported="false"/>
+
+        <activity android:name=".MainActivity" android:exported="true">
+            <intent-filter><action android:name="android.intent.action.MAIN"/><category android:name="android.intent.category.LAUNCHER"/></intent-filter>
+        </activity>
+
+        <!-- (Your other activities) -->
+        <activity android:name=".ChatActivity" android:exported="false" android:windowSoftInputMode="adjustResize"/>
+        <activity android:name=".ChatListActivity" android:exported="false"/> <!-- NEW -->
+
         <activity android:name=".MainActivity" android:exported="true">
             <intent-filter><action android:name="android.intent.action.MAIN"/><category android:name="android.intent.category.LAUNCHER"/></intent-filter>
         </activity>

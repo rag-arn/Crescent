@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rootLayout"
+    android:orientation="vertical"
+    android:background="@drawable/bg_dash_screen"
+    android:gravity="center"
+    android:padding="32dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <FrameLayout
+        android:background="@drawable/bg_dash_logo_ring"
+        android:padding="4dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp">
+        <ImageView
+            android:src="@drawable/logo"
+            android:scaleType="centerCrop"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </FrameLayout>
+
+    <TextView
+        android:text="CRESCENT"
+        android:fontFamily="serif"
+        android:textSize="28sp"
+        android:letterSpacing="0.08"
+        android:textStyle="bold"
+        android:textColor="@color/sage_text"
+        android:layout_marginTop="12dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:padding="24dp"
+        android:background="@drawable/bg_dash_card"
+        android:elevation="4dp"
+        android:layout_marginTop="32dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/authTitle"
+            android:text="Sign In"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/sage_text"
+            android:layout_marginBottom="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <!-- Email & Password -->
+        <EditText
+            android:id="@+id/emailInput"
+            style="@style/Widget.Crescent.EditText"
+            android:hint="Email address"
+            android:inputType="textEmailAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <EditText
+            android:id="@+id/passwordInput"
+            style="@style/Widget.Crescent.EditText"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:layout_marginTop="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <!-- Single Action Button (Switches between Sign In and Sign Up) -->
+        <Button
+            android:id="@+id/authActionBtn"
+            style="@style/Widget.Crescent.Button"
+            android:text="Sign In"
+            android:layout_marginTop="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <!-- Toggle Text -->
+        <TextView
+            android:id="@+id/toggleAuthModeText"
+            android:text="Don't have an account? Sign Up"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            android:textColor="@color/sage_text_soft"
+            android:gravity="center"
+            android:paddingTop="12dp"
+            android:paddingBottom="4dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackground"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:text="— OR —"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:textColor="@color/sage_text_soft"
+            android:gravity="center"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <Button
+            android:id="@+id/googleSignInBtn"
+            style="@style/Widget.Crescent.Button.Outlined"
+            android:text="Continue with Google"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <Button
+            android:id="@+id/guestBtn"
+            style="@style/Widget.Crescent.Button.Text"
+            android:text="Continue as Guest"
+            android:layout_marginTop="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <ProgressBar
+            android:id="@+id/loginProgress"
+            android:visibility="gone"
+            android:layout_gravity="center"
+            android:layout_marginTop="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+</LinearLayout>

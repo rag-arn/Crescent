@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingStart="16dp"
+    android:paddingEnd="16dp"
+    android:paddingTop="4dp"
+    android:paddingBottom="4dp">
+
+    <!-- LEFT BUBBLE (Received Message) -->
+    <LinearLayout android:id="@+id/leftChatLayout"
+        android:orientation="vertical"
+        android:layout_gravity="start"
+        android:background="@drawable/bg_dash_card"
+        android:padding="12dp"
+        android:elevation="1dp"
+        android:layout_marginEnd="64dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <TextView android:id="@+id/leftMessageText"
+            android:textSize="15sp"
+            android:textColor="@color/sage_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView android:id="@+id/leftTimeText"
+            android:textSize="10sp"
+            android:textColor="@color/sage_text_soft"
+            android:layout_marginTop="4dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    <!-- RIGHT BUBBLE (Sent Message) -->
+    <LinearLayout android:id="@+id/rightChatLayout"
+        android:orientation="vertical"
+        android:layout_gravity="end"
+        android:background="@drawable/bg_dash_btn"
+        android:backgroundTint="@color/sage_button"
+        android:padding="12dp"
+        android:elevation="1dp"
+        android:layout_marginStart="64dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <TextView android:id="@+id/rightMessageText"
+            android:textSize="15sp"
+            android:textColor="#FFFFFF"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <!-- Grouped Time and Tick -->
+        <LinearLayout android:orientation="horizontal"
+            android:layout_gravity="end"
+            android:layout_marginTop="4dp"
+            android:gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView android:id="@+id/rightTimeText"
+                android:textSize="10sp"
+                android:textColor="#E0E0E0"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <ImageView android:id="@+id/rightTick"
+                android:src="@drawable/ic_check"
+                android:layout_marginStart="4dp"
+                android:layout_width="12dp"
+                android:layout_height="12dp"/>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

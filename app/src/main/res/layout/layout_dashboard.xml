@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!-- THE MISSING ID: android:id="@+id/brandHeader" is back -->
     <FrameLayout
         android:id="@+id/brandHeader"
         android:paddingTop="42dp"
@@ -13,7 +12,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <!-- Decorative geometric ornament -->
         <ImageView
             android:src="@drawable/ic_pattern_star"
             android:alpha="0.8"
@@ -27,7 +25,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <!-- Row: three-bar menu + logo + name -->
             <LinearLayout
                 android:orientation="horizontal"
                 android:gravity="center_vertical"
@@ -68,9 +65,18 @@
                     android:layout_marginStart="12dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
+
+                <Space android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content"/>
+
+                <FrameLayout android:id="@+id/notifButton"
+                    android:clickable="true" android:focusable="true"
+                    android:foreground="?attr/selectableItemBackgroundBorderless"
+                    android:layout_width="48dp" android:layout_height="48dp">
+                    <ImageView android:src="@drawable/ic_bell" android:tint="@color/sage_text" android:layout_gravity="center" android:layout_width="24dp" android:layout_height="24dp"/>
+                    <View android:id="@+id/notifDot" android:background="@drawable/bg_red_dot" android:visibility="gone" android:layout_gravity="top|end" android:layout_marginTop="10dp" android:layout_marginEnd="12dp" android:layout_width="10dp" android:layout_height="10dp"/>
+                </FrameLayout>
             </LinearLayout>
 
-            <!-- Dates -->
             <LinearLayout
                 android:orientation="vertical"
                 android:paddingStart="22dp"
@@ -97,7 +103,6 @@
         </LinearLayout>
     </FrameLayout>
 
-    <!-- Main content -->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -111,7 +116,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <!-- Zakat Status card with Gauge -->
             <LinearLayout
                 android:orientation="vertical"
                 android:padding="18dp"
@@ -133,7 +137,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                    <!-- Gauge ring + text -->
                     <FrameLayout android:layout_width="124dp" android:layout_height="124dp">
                         <com.crescent.app.GaugeView android:id="@+id/zakatGauge"
                             android:layout_width="match_parent" android:layout_height="match_parent"/>
@@ -159,7 +162,6 @@
                         </LinearLayout>
                     </FrameLayout>
 
-                    <!-- Actions -->
                     <LinearLayout
                         android:orientation="vertical" android:gravity="center_horizontal"
                         android:layout_marginStart="14dp"
@@ -184,7 +186,6 @@
                 </LinearLayout>
             </LinearLayout>
 
-            <!-- 2x2 options -->
             <LinearLayout android:orientation="horizontal" android:layout_marginTop="16dp"
                 android:layout_width="match_parent" android:layout_height="wrap_content">
                 <LinearLayout android:id="@+id/gridCalculate"
@@ -241,7 +242,6 @@
                 </LinearLayout>
             </LinearLayout>
 
-            <!-- Hadith / ayah banner -->
             <LinearLayout
                 android:orientation="vertical" android:gravity="center"
                 android:paddingStart="22dp" android:paddingEnd="22dp"
@@ -265,7 +265,6 @@
         </LinearLayout>
     </ScrollView>
 
-    <!-- Bottom navigation -->
     <View android:background="@color/sage_card_stroke" android:layout_width="match_parent" android:layout_height="1dp"/>
     <LinearLayout android:id="@+id/bottomNav" android:orientation="horizontal"
         android:background="@color/sage_card"
@@ -286,7 +285,10 @@
         <LinearLayout android:id="@+id/navChat" android:orientation="vertical" android:gravity="center" android:padding="6dp"
             android:clickable="true" android:focusable="true" android:foreground="?attr/selectableItemBackground" android:alpha="0.8"
             android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content">
-            <ImageView android:src="@drawable/ic_chat" android:tint="@color/sage_text_soft" android:importantForAccessibility="no" android:layout_width="24dp" android:layout_height="24dp"/>
+            <FrameLayout android:layout_width="24dp" android:layout_height="24dp">
+                <ImageView android:src="@drawable/ic_chat" android:tint="@color/sage_text_soft" android:importantForAccessibility="no" android:layout_width="match_parent" android:layout_height="match_parent"/>
+                <View android:id="@+id/chatDot" android:background="@drawable/bg_red_dot" android:visibility="gone" android:layout_gravity="top|end" android:layout_marginTop="-2dp" android:layout_marginEnd="-2dp" android:layout_width="8dp" android:layout_height="8dp" android:elevation="2dp"/>
+            </FrameLayout>
             <TextView android:text="Chat" android:textSize="10sp" android:textStyle="normal" android:textColor="@color/sage_text_soft" android:layout_marginTop="2dp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
         </LinearLayout>
         <LinearLayout android:id="@+id/navSettings" android:orientation="vertical" android:gravity="center" android:padding="6dp"

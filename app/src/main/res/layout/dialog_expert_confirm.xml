@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:padding="24dp" android:background="@drawable/bg_dash_card"
+    android:layout_width="match_parent" android:layout_height="wrap_content">
+
+    <TextView android:text="Application Warning" android:textSize="18sp" android:textStyle="bold" android:textColor="@color/sage_text" android:layout_marginBottom="12dp" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+
+    <TextView android:text="You are applying to be an expert. Your profile and bio will be publicly visible to other users who may contact you for Zakat guidance." android:textSize="14sp" android:textColor="@color/sage_text_soft" android:lineSpacingExtra="4dp" android:layout_marginBottom="24dp" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+
+    <CheckBox android:id="@+id/understandCheckbox" android:text="I understand" android:textSize="14sp" android:textColor="@color/sage_text" android:buttonTint="@color/sage_button" android:layout_marginBottom="24dp" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+
+    <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content">
+        <Button android:id="@+id/cancelBtn" style="@style/Widget.Crescent.Button.Outlined" android:text="Cancel" android:layout_marginEnd="6dp" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content"/>
+        <Button android:id="@+id/confirmBtn" style="@style/Widget.Crescent.Button" android:text="Submit" android:enabled="false" android:layout_marginStart="6dp" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content"/>
+    </LinearLayout>
+</LinearLayout>

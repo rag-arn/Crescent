@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rootLayout" android:orientation="vertical" android:background="@drawable/bg_dash_screen" android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <FrameLayout android:id="@+id/headerBar" android:layout_width="match_parent" android:layout_height="wrap_content">
+        <ImageView android:src="@drawable/ic_pattern_star" android:alpha="0.8" android:layout_gravity="end|top" android:importantForAccessibility="no" android:layout_width="160dp" android:layout_height="120dp"/>
+        <LinearLayout android:orientation="horizontal" android:gravity="center_vertical" android:paddingStart="20dp" android:paddingEnd="10dp" android:paddingTop="42dp" android:paddingBottom="12dp" android:layout_width="match_parent" android:layout_height="wrap_content">
+            <ImageButton android:id="@+id/backButton" style="?android:attr/borderlessButtonStyle" android:src="@drawable/ic_back_arrow" android:tint="@color/sage_text" android:layout_marginEnd="12dp" android:layout_width="44dp" android:layout_height="44dp"/>
+            <LinearLayout android:orientation="vertical" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content">
+                <TextView android:text="Application" android:textSize="11sp" android:textStyle="bold" android:textAllCaps="true" android:letterSpacing="0.1" android:textColor="@color/sage_text_soft" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                <TextView android:text="Become an Expert" android:fontFamily="serif" android:textSize="26sp" android:textStyle="bold" android:textColor="@color/sage_text" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+            </LinearLayout>
+        </LinearLayout>
+    </FrameLayout>
+
+    <ScrollView android:id="@+id/formLayout" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1">
+        <LinearLayout android:orientation="vertical" android:padding="24dp" android:layout_width="match_parent" android:layout_height="wrap_content">
+            <TextView android:text="Join the directory to help users verify their calculations." android:textSize="15sp" android:textColor="@color/sage_text" android:layout_marginBottom="24dp" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+            <TextView android:text="Your Qualifications / Bio" android:textSize="13sp" android:textStyle="bold" android:textColor="@color/sage_text" android:layout_marginBottom="8dp" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+            <EditText android:id="@+id/bioInput" style="@style/Widget.Crescent.EditText" android:hint="e.g. Certified Islamic Finance Scholar..." android:lines="5" android:gravity="top" android:inputType="textMultiLine" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+            <Button android:id="@+id/submitBtn" style="@style/Widget.Crescent.Button" android:text="Register as Expert" android:layout_marginTop="24dp" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout android:id="@+id/alreadyExpertLayout" android:orientation="vertical" android:gravity="center" android:visibility="gone" android:padding="32dp" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1">
+        <ImageView android:src="@drawable/ic_gem" android:tint="@color/amber_gold" android:layout_marginBottom="16dp" android:layout_width="48dp" android:layout_height="48dp"/>
+        <TextView android:text="You are already listed" android:textSize="20sp" android:textStyle="bold" android:textColor="@color/sage_text" android:layout_marginBottom="8dp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+        <TextView android:text="Your expert profile is active in the directory. You can manage your status or resign in your Profile Settings." android:textSize="14sp" android:gravity="center" android:textColor="@color/sage_text_soft" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+    </LinearLayout>
+</LinearLayout>

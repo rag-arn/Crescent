@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "588175183367",
+    "project_id": "crescent-arnob",
+    "storage_bucket": "crescent-arnob.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:588175183367:android:3c75aee99e1627e31264a2",
+        "android_client_info": {
+          "package_name": "com.crescent.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "588175183367-2el06cpsiqsi9os4rse8fvib2dvqrh9q.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.crescent.app",
+            "certificate_hash": "ca4f795914c05b1b4d6e64edbea6e62ca8cd7c12"
+          }
+        },
+        {
+          "client_id": "588175183367-edbbr5fo5rq0g5ajfp3k9ummgag1mtcq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBbIvDR9leF6bsjSMm1kZ8Rzs3ZA07EWM0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "588175183367-edbbr5fo5rq0g5ajfp3k9ummgag1mtcq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

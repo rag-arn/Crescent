@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rootLayout" android:orientation="vertical" android:background="@drawable/bg_dash_screen" android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <FrameLayout android:id="@+id/headerBar" android:layout_width="match_parent" android:layout_height="wrap_content">
+        <ImageView android:src="@drawable/ic_pattern_star" android:alpha="0.8" android:layout_gravity="end|top" android:importantForAccessibility="no" android:layout_width="160dp" android:layout_height="120dp"/>
+        <LinearLayout android:orientation="horizontal" android:gravity="center_vertical" android:paddingStart="20dp" android:paddingEnd="10dp" android:paddingTop="42dp" android:paddingBottom="12dp" android:layout_width="match_parent" android:layout_height="wrap_content">
+            <ImageButton android:id="@+id/backButton" style="?android:attr/borderlessButtonStyle" android:src="@drawable/ic_back_arrow" android:tint="@color/sage_text" android:layout_marginEnd="12dp" android:layout_width="44dp" android:layout_height="44dp"/>
+            <TextView android:text="Your Profile" android:fontFamily="serif" android:textSize="26sp" android:textStyle="bold" android:textColor="@color/sage_text" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+        </LinearLayout>
+    </FrameLayout>
+
+    <ScrollView android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1">
+        <LinearLayout android:orientation="vertical" android:padding="24dp" android:gravity="center" android:layout_width="match_parent" android:layout_height="wrap_content">
+
+            <FrameLayout android:id="@+id/profileImageContainer" android:clickable="true" android:focusable="true" android:layout_width="110dp" android:layout_height="110dp">
+                <FrameLayout android:background="@drawable/bg_dash_logo_ring" android:layout_width="match_parent" android:layout_height="match_parent">
+                    <ImageView android:id="@+id/profileImage" android:src="@drawable/ic_person" android:tint="@color/sage_text" android:scaleType="centerCrop" android:padding="22dp" android:layout_width="match_parent" android:layout_height="match_parent"/>
+                </FrameLayout>
+                <FrameLayout android:background="@drawable/bg_dash_btn" android:backgroundTint="@color/sage_button" android:layout_gravity="bottom|end" android:layout_marginBottom="4dp" android:layout_marginEnd="4dp" android:layout_width="32dp" android:layout_height="32dp" android:elevation="4dp">
+                    <ImageView android:src="@android:drawable/ic_menu_camera" android:tint="#FFF" android:padding="6dp" android:layout_width="match_parent" android:layout_height="match_parent"/>
+                </FrameLayout>
+            </FrameLayout>
+
+            <TextView android:id="@+id/uploadProgressText" android:text="Uploading..." android:textSize="12sp" android:textColor="@color/sage_text_soft" android:visibility="gone" android:layout_marginTop="8dp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+
+            <TextView android:id="@+id/profileName" android:text="Loading..." android:textSize="24sp" android:textStyle="bold" android:textColor="@color/sage_text" android:layout_marginTop="16dp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+            <TextView android:id="@+id/profileEmail" android:text="Loading..." android:textSize="14sp" android:textColor="@color/sage_text_soft" android:layout_marginTop="4dp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+
+            <LinearLayout android:id="@+id/expertRatingLayout" android:orientation="vertical" android:gravity="center" android:visibility="gone" android:layout_marginTop="24dp" android:layout_width="match_parent" android:layout_height="wrap_content">
+                <RatingBar android:id="@+id/expertRatingBar" style="?android:attr/ratingBarStyleIndicator" android:numStars="5" android:stepSize="0.1" android:progressTint="@color/amber_gold" android:progressBackgroundTint="#995B7B7A" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                <TextView android:id="@+id/expertRatingCount" android:text="(0 ratings)" android:textSize="12sp" android:textColor="@color/sage_text_soft" android:layout_marginTop="4dp" android:layout_marginBottom="32dp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+
+                <Button android:id="@+id/resignBtn" style="@style/Widget.Crescent.Button.Outlined" android:text="Resign as Expert" android:textColor="#D32F2F" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

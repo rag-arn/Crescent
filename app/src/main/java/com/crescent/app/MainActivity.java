@@ -4,9 +4,11 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.Outline;
 import android.os.Bundle;
+import android.util.Base64;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +24,13 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.core.view.WindowInsetsControllerCompat;
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
 import com.crescent.app.databinding.ActivityMainBinding;
+
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import org.json.JSONObject;
 import java.io.BufferedReader;
@@ -39,7 +48,6 @@ import java.util.Random;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-/** Dashboard: main interface, calculation launching, hadith API, and slide-out menu. */
 public class MainActivity extends AppCompatActivity {
     private static final float MENU_WIDTH_FRACTION = 0.78f;
     private static final long ANIM_DURATION_MS = 320L;
@@ -47,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding b;
     private CrescentRepository repo;
+    private FirebaseAuth mAuth;
     private final NumberFormat nf = NumberFormat.getNumberInstance(new Locale("en", "BD"));
     private final ExecutorService io = Executors.newSingleThreadExecutor();
 
@@ -61,9 +70,57 @@ public class MainActivity extends AppCompatActivity {
 
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+
+        if (currentUser == null) {
+            startActivity(new Intent(this, LoginActivity.class));
+            finish();
+            return;
+        }
+
         b = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(b.getRoot());
         repo = new CrescentRepository(getApplicationContext());
+
+        String name = "Guest";
+        String email = "";
+
+        if (!currentUser.isAnonymous()) {
+            name = currentUser.getDisplayName();
+            email = currentUser.getEmail() != null ? currentUser.getEmail() : "";
+            if (name == null || name.isEmpty()) {
+                name = email.contains("@") ? email.split("@")[0] : "User";
+            }
+        }
+
+        b.slideMenu.profileNameText.setText(name);
+        b.slideMenu.profileEmailText.setText(email.isEmpty() ? "Anonymous Session" : email);
+
+        java.util.Map<String, Object> data = new java.util.HashMap<>();
+        data.put("uid", currentUser.getUid());
+        data.put("name", name);
+        data.put("email", email);
+
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db.collection("users").document(currentUser.getUid())
+                .set(data, com.google.firebase.firestore.SetOptions.merge());
+
+        db.collection("users").document(currentUser.getUid()).get().addOnSuccessListener(doc -> {
+            if (doc.exists()) {
+                String base64Img = doc.getString("profileImageBase64");
+                if (base64Img != null && !base64Img.isEmpty()) {
+                    try {
+                        byte[] decoded = Base64.decode(base64Img, Base64.DEFAULT);
+                        android.graphics.Bitmap bmp = BitmapFactory.decodeByteArray(decoded, 0, decoded.length);
+                        b.slideMenu.slideProfileImage.setPadding(0, 0, 0, 0);
+                        b.slideMenu.slideProfileImage.setImageTintList(null);
+                        b.slideMenu.slideProfileImage.setImageBitmap(bmp);
+                    } catch (Exception ignored) {}
+                }
+            }
+        });
 
         setupSystemBars();
         setupSlideMenu();
@@ -71,11 +128,14 @@ public class MainActivity extends AppCompatActivity {
         makeLogoRound();
         setDates();
         fetchRandomHadith();
+        listenForNotifications();
     }
 
     @Override protected void onResume() {
         super.onResume();
-        loadDashboard();
+        if (mAuth != null && mAuth.getCurrentUser() != null) {
+            loadDashboard();
+        }
     }
 
     @Override protected void onDestroy() {
@@ -83,7 +143,6 @@ public class MainActivity extends AppCompatActivity {
         io.shutdown();
     }
 
-    /** Maps padding to avoid system bars. */
     private void setupSystemBars() {
         final int headerTop = b.dashboard.brandHeader.getPaddingTop();
         final int navBottom = b.dashboard.bottomNav.getPaddingBottom();
@@ -107,7 +166,6 @@ public class MainActivity extends AppCompatActivity {
         insetsController.setAppearanceLightNavigationBars(true);
     }
 
-    /** Setup for the slide-out navigation menu. */
     private void setupSlideMenu() {
         int screenW = getResources().getDisplayMetrics().widthPixels;
         menuWidthPx = Math.round(screenW * MENU_WIDTH_FRACTION);
@@ -209,44 +267,87 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void makeLogoRound() {
-        b.dashboard.logoImage.setOutlineProvider(new ViewOutlineProvider() {
+        ViewOutlineProvider roundProvider = new ViewOutlineProvider() {
             @Override public void getOutline(View view, Outline outline) {
                 outline.setOval(0, 0, view.getWidth(), view.getHeight());
             }
-        });
+        };
+
+        b.dashboard.logoImage.setOutlineProvider(roundProvider);
         b.dashboard.logoImage.setClipToOutline(true);
+
+        b.slideMenu.slideProfileImage.setOutlineProvider(roundProvider);
+        b.slideMenu.slideProfileImage.setClipToOutline(true);
     }
 
     private void soon(String what) { Toast.makeText(this, what + " is coming soon.", Toast.LENGTH_SHORT).show(); }
 
     private void setupClicks() {
-        // Status Card
         b.dashboard.payNowBtn.setOnClickListener(v -> soon("Payment Gateway"));
         b.dashboard.detailedBreakdownBtn.setOnClickListener(v -> startActivity(new Intent(this, HistoryActivity.class)));
 
-        // 2x2 Grid
         b.dashboard.gridCalculate.setOnClickListener(v -> startActivity(new Intent(this, GoldActivity.class)));
         b.dashboard.gridHistory.setOnClickListener(v -> startActivity(new Intent(this, HistoryActivity.class)));
         b.dashboard.gridAssets.setOnClickListener(v -> soon("Asset Breakdown"));
-        b.dashboard.gridChat.setOnClickListener(v -> soon("Chat with Expert"));
+        b.dashboard.gridChat.setOnClickListener(v -> startActivity(new Intent(this, ExpertListActivity.class)));
 
-        // Bottom Nav
         b.dashboard.navHome.setOnClickListener(v -> { /* already here */ });
         b.dashboard.navCalculate.setOnClickListener(v -> startActivity(new Intent(this, GoldActivity.class)));
-        b.dashboard.navChat.setOnClickListener(v -> soon("Chat with Expert"));
+        b.dashboard.navChat.setOnClickListener(v -> startActivity(new Intent(this, ChatListActivity.class)));
         b.dashboard.navSettings.setOnClickListener(v -> soon("Settings"));
 
-        // Slide menu triggers
+        b.dashboard.notifButton.setOnClickListener(v -> startActivity(new Intent(this, NotificationsActivity.class)));
+
         b.dashboard.menuButton.setOnClickListener(v -> toggleMenu());
         b.slideMenu.menuCloseButton.setOnClickListener(v -> closeMenu(null));
         b.drawerScrim.setOnClickListener(v -> closeMenu(null));
 
-        // Slide-out menu items
+        b.slideMenu.menuProfileCard.setOnClickListener(v -> closeMenu(() -> startActivity(new Intent(this, ProfileActivity.class))));
         b.slideMenu.menuAboutZakat.setOnClickListener(v -> closeMenu(() -> startActivity(new Intent(this, InfoActivity.class))));
         b.slideMenu.menuCalculate.setOnClickListener(v -> closeMenu(() -> startActivity(new Intent(this, GoldActivity.class))));
         b.slideMenu.menuHistory.setOnClickListener(v -> closeMenu(() -> startActivity(new Intent(this, HistoryActivity.class))));
-        b.slideMenu.menuProfileCard.setOnClickListener(v -> closeMenu(() -> soon("Profile")));
+
+        b.slideMenu.menuBecomeExpert.setOnClickListener(v -> closeMenu(() -> startActivity(new Intent(this, ExpertRegistrationActivity.class))));
         b.slideMenu.menuSettings.setOnClickListener(v -> closeMenu(() -> soon("Settings")));
+
+        b.slideMenu.menuSignOut.setOnClickListener(v -> closeMenu(() -> {
+            mAuth.signOut();
+            GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).build();
+            GoogleSignIn.getClient(this, gso).signOut().addOnCompleteListener(task -> {
+                startActivity(new Intent(MainActivity.this, LoginActivity.class));
+                finish();
+            });
+        }));
+    }
+
+    private void listenForNotifications() {
+        FirebaseUser user = mAuth.getCurrentUser();
+        if (user != null && !user.isAnonymous()) {
+            FirebaseFirestore db = FirebaseFirestore.getInstance();
+            String uid = user.getUid();
+
+            // 1. System Notifications (Top Right Bell)
+            db.collection("users").document(uid).collection("notifications")
+                    .whereEqualTo("read", false).addSnapshotListener((value, error) -> {
+                        if (value != null && !value.isEmpty()) b.dashboard.notifDot.setVisibility(View.VISIBLE);
+                        else b.dashboard.notifDot.setVisibility(View.GONE);
+                    });
+
+            // 2. Chat Messages (Bottom Nav Chat Icon) - Bypassing Index requirement!
+            db.collection("chats")
+                    .whereArrayContains("users", uid)
+                    .addSnapshotListener((value, error) -> {
+                        if (value == null || error != null) return;
+                        boolean hasUnread = false;
+                        for (DocumentSnapshot doc : value.getDocuments()) {
+                            if (Boolean.TRUE.equals(doc.getBoolean("hasUnread_" + uid))) {
+                                hasUnread = true;
+                                break;
+                            }
+                        }
+                        b.dashboard.chatDot.setVisibility(hasUnread ? View.VISIBLE : View.GONE);
+                    });
+        }
     }
 
     private void loadDashboard() {

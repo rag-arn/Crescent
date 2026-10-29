@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.crescent.app-mergeDebugResources-32:/values-v23/values-v23.xml",
+            "outputFile": "com.crescent.app-mergeDebugResources-39:/values-v23/values-v23.xml",
             "map": [
                 {
-                    "source": "/Users/ragarnob/.gradle/caches/9.6.0/transforms/7e3ddf95c6a3fa815ce2c9b000d7c8ce/transformed/material-1.12.0/res/values-v23/values-v23.xml",
+                    "source": "/Users/ragarnob/.gradle/caches/9.6.0/transforms/6f03cb364c5c5a28ff6d7c1820918f85/transformed/material-1.12.0/res/values-v23/values-v23.xml",
                     "from": {
                         "startLines": "2,5,9,13,16,19,22,25,28,32",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4",
@@ -23,18 +23,7 @@
                     }
                 },
                 {
-                    "source": "/Users/ragarnob/.gradle/caches/9.6.0/transforms/a3b298995f364be6939f75c9f03d3f86/transformed/appcompat-1.7.0/res/values-v23/values-v23.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,20,34,35,36,39,43,44,45,46",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,190,325,400,487,1225,1975,2094,2221,2443,2667,2782,2889,3002",
-                        "endLines": "2,3,4,5,19,33,34,35,38,42,43,44,45,49",
-                        "endColumns": "134,134,74,86,12,12,118,126,12,12,114,106,112,12",
-                        "endOffsets": "185,320,395,482,1220,1970,2089,2216,2438,2662,2777,2884,2997,3227"
-                    }
-                },
-                {
-                    "source": "/Users/ragarnob/.gradle/caches/9.6.0/transforms/3fb14be0712bb56f733b96a108c6e833/transformed/cardview-1.0.0/res/values-v23/values-v23.xml",
+                    "source": "/Users/ragarnob/.gradle/caches/9.6.0/transforms/e1401f96af550bc43308fcbbf0fe328f/transformed/cardview-1.0.0/res/values-v23/values-v23.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -50,6 +39,17 @@
                         "endLines": "52",
                         "endColumns": "12",
                         "endOffsets": "3377"
+                    }
+                },
+                {
+                    "source": "/Users/ragarnob/.gradle/caches/9.6.0/transforms/c284d6989a251624c813540275453c35/transformed/appcompat-1.7.0/res/values-v23/values-v23.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,20,34,35,36,39,43,44,45,46",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,190,325,400,487,1225,1975,2094,2221,2443,2667,2782,2889,3002",
+                        "endLines": "2,3,4,5,19,33,34,35,38,42,43,44,45,49",
+                        "endColumns": "134,134,74,86,12,12,118,126,12,12,114,106,112,12",
+                        "endOffsets": "185,320,395,482,1220,1970,2089,2216,2438,2662,2777,2884,2997,3227"
                     }
                 }
             ]

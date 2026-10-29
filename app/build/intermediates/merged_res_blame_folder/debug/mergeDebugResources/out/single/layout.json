@@ -1,74 +1,106 @@
 [
     {
-        "merged": "/Users/ragarnob/.gradle/daemon/9.6.0/com.crescent.app-mergeDebugResources-33:/layout/ic_info.xml",
-        "source": "/Users/ragarnob/.gradle/daemon/9.6.0/com.crescent.app-main-36:/layout/ic_info.xml"
+        "merged": "/Users/ragarnob/.gradle/daemon/9.6.0/com.crescent.app-mergeDebugResources-40:/layout/activity_cash.xml",
+        "source": "/Users/ragarnob/.gradle/daemon/9.6.0/com.crescent.app-main-43:/layout/activity_cash.xml"
     },
     {
-        "merged": "/Users/ragarnob/.gradle/daemon/9.6.0/com.crescent.app-mergeDebugResources-33:/layout/dialog_info.xml",
-        "source": "/Users/ragarnob/.gradle/daemon/9.6.0/com.crescent.app-main-36:/layout/dialog_info.xml"
+        "merged": "/Users/ragarnob/.gradle/daemon/9.6.0/com.crescent.app-mergeDebugResources-40:/layout/activity_notifications.xml",
+        "source": "/Users/ragarnob/.gradle/daemon/9.6.0/com.crescent.app-main-43:/layout/activity_notifications.xml"
     },
     {
-        "merged": "/Users/ragarnob/.gradle/daemon/9.6.0/com.crescent.app-mergeDebugResources-33:/layout/activity_calculator.xml",
-        "source": "/Users/ragarnob/.gradle/daemon/9.6.0/com.crescent.app-main-36:/layout/activity_calculator.xml"
+        "merged": "/Users/ragarnob/.gradle/daemon/9.6.0/com.crescent.app-mergeDebugResources-40:/layout/activity_expert_list.xml",
+        "source": "/Users/ragarnob/.gradle/daemon/9.6.0/com.crescent.app-main-43:/layout/activity_expert_list.xml"
     },
     {
-        "merged": "/Users/ragarnob/.gradle/daemon/9.6.0/com.crescent.app-mergeDebugResources-33:/layout/layout_slide_menu.xml",
-        "source": "/Users/ragarnob/.gradle/daemon/9.6.0/com.crescent.app-main-36:/layout/layout_slide_menu.xml"
+        "merged": "/Users/ragarnob/.gradle/daemon/9.6.0/com.crescent.app-mergeDebugResources-40:/layout/activity_expert_registration.xml",
+        "source": "/Users/ragarnob/.gradle/daemon/9.6.0/com.crescent.app-main-43:/layout/activity_expert_registration.xml"
     },
     {
-        "merged": "/Users/ragarnob/.gradle/daemon/9.6.0/com.crescent.app-mergeDebugResources-33:/layout/bg_dialog.xml",
-        "source": "/Users/ragarnob/.gradle/daemon/9.6.0/com.crescent.app-main-36:/layout/bg_dialog.xml"
+        "merged": "/Users/ragarnob/.gradle/daemon/9.6.0/com.crescent.app-mergeDebugResources-40:/layout/activity_main.xml",
+        "source": "/Users/ragarnob/.gradle/daemon/9.6.0/com.crescent.app-main-43:/layout/activity_main.xml"
     },
     {
-        "merged": "/Users/ragarnob/.gradle/daemon/9.6.0/com.crescent.app-mergeDebugResources-33:/layout/activity_metal.xml",
-        "source": "/Users/ragarnob/.gradle/daemon/9.6.0/com.crescent.app-main-36:/layout/activity_metal.xml"
+        "merged": "/Users/ragarnob/.gradle/daemon/9.6.0/com.crescent.app-mergeDebugResources-40:/layout/activity_history.xml",
+        "source": "/Users/ragarnob/.gradle/daemon/9.6.0/com.crescent.app-main-43:/layout/activity_history.xml"
     },
     {
-        "merged": "/Users/ragarnob/.gradle/daemon/9.6.0/com.crescent.app-mergeDebugResources-33:/layout/activity_cash.xml",
-        "source": "/Users/ragarnob/.gradle/daemon/9.6.0/com.crescent.app-main-36:/layout/activity_cash.xml"
+        "merged": "/Users/ragarnob/.gradle/daemon/9.6.0/com.crescent.app-mergeDebugResources-40:/layout/activity_pdf_preview.xml",
+        "source": "/Users/ragarnob/.gradle/daemon/9.6.0/com.crescent.app-main-43:/layout/activity_pdf_preview.xml"
     },
     {
-        "merged": "/Users/ragarnob/.gradle/daemon/9.6.0/com.crescent.app-mergeDebugResources-33:/layout/activity_pdf_preview.xml",
-        "source": "/Users/ragarnob/.gradle/daemon/9.6.0/com.crescent.app-main-36:/layout/activity_pdf_preview.xml"
+        "merged": "/Users/ragarnob/.gradle/daemon/9.6.0/com.crescent.app-mergeDebugResources-40:/layout/activity_calculator.xml",
+        "source": "/Users/ragarnob/.gradle/daemon/9.6.0/com.crescent.app-main-43:/layout/activity_calculator.xml"
     },
     {
-        "merged": "/Users/ragarnob/.gradle/daemon/9.6.0/com.crescent.app-mergeDebugResources-33:/layout/activity_result.xml",
-        "source": "/Users/ragarnob/.gradle/daemon/9.6.0/com.crescent.app-main-36:/layout/activity_result.xml"
+        "merged": "/Users/ragarnob/.gradle/daemon/9.6.0/com.crescent.app-mergeDebugResources-40:/layout/item_chat_list.xml",
+        "source": "/Users/ragarnob/.gradle/daemon/9.6.0/com.crescent.app-main-43:/layout/item_chat_list.xml"
     },
     {
-        "merged": "/Users/ragarnob/.gradle/daemon/9.6.0/com.crescent.app-mergeDebugResources-33:/layout/activity_commercial.xml",
-        "source": "/Users/ragarnob/.gradle/daemon/9.6.0/com.crescent.app-main-36:/layout/activity_commercial.xml"
+        "merged": "/Users/ragarnob/.gradle/daemon/9.6.0/com.crescent.app-mergeDebugResources-40:/layout/activity_chat.xml",
+        "source": "/Users/ragarnob/.gradle/daemon/9.6.0/com.crescent.app-main-43:/layout/activity_chat.xml"
     },
     {
-        "merged": "/Users/ragarnob/.gradle/daemon/9.6.0/com.crescent.app-mergeDebugResources-33:/layout/activity_main.xml",
-        "source": "/Users/ragarnob/.gradle/daemon/9.6.0/com.crescent.app-main-36:/layout/activity_main.xml"
+        "merged": "/Users/ragarnob/.gradle/daemon/9.6.0/com.crescent.app-mergeDebugResources-40:/layout/activity_metal.xml",
+        "source": "/Users/ragarnob/.gradle/daemon/9.6.0/com.crescent.app-main-43:/layout/activity_metal.xml"
     },
     {
-        "merged": "/Users/ragarnob/.gradle/daemon/9.6.0/com.crescent.app-mergeDebugResources-33:/layout/activity_history.xml",
-        "source": "/Users/ragarnob/.gradle/daemon/9.6.0/com.crescent.app-main-36:/layout/activity_history.xml"
+        "merged": "/Users/ragarnob/.gradle/daemon/9.6.0/com.crescent.app-mergeDebugResources-40:/layout/activity_nisab.xml",
+        "source": "/Users/ragarnob/.gradle/daemon/9.6.0/com.crescent.app-main-43:/layout/activity_nisab.xml"
     },
     {
-        "merged": "/Users/ragarnob/.gradle/daemon/9.6.0/com.crescent.app-mergeDebugResources-33:/layout/item_metal_row.xml",
-        "source": "/Users/ragarnob/.gradle/daemon/9.6.0/com.crescent.app-main-36:/layout/item_metal_row.xml"
+        "merged": "/Users/ragarnob/.gradle/daemon/9.6.0/com.crescent.app-mergeDebugResources-40:/layout/activity_info.xml",
+        "source": "/Users/ragarnob/.gradle/daemon/9.6.0/com.crescent.app-main-43:/layout/activity_info.xml"
     },
     {
-        "merged": "/Users/ragarnob/.gradle/daemon/9.6.0/com.crescent.app-mergeDebugResources-33:/layout/activity_info.xml",
-        "source": "/Users/ragarnob/.gradle/daemon/9.6.0/com.crescent.app-main-36:/layout/activity_info.xml"
+        "merged": "/Users/ragarnob/.gradle/daemon/9.6.0/com.crescent.app-mergeDebugResources-40:/layout/layout_slide_menu.xml",
+        "source": "/Users/ragarnob/.gradle/daemon/9.6.0/com.crescent.app-main-43:/layout/layout_slide_menu.xml"
     },
     {
-        "merged": "com.crescent.app-mergeDebugResources-33:/layout/layout_dashboard.xml",
-        "source": "com.crescent.app-main-36:/layout/layout_dashboard.xml"
+        "merged": "com.crescent.app-mergeDebugResources-40:/layout/item_chat.xml",
+        "source": "com.crescent.app-main-43:/layout/item_chat.xml"
     },
     {
-        "merged": "/Users/ragarnob/.gradle/daemon/9.6.0/com.crescent.app-mergeDebugResources-33:/layout/activity_nisab.xml",
-        "source": "/Users/ragarnob/.gradle/daemon/9.6.0/com.crescent.app-main-36:/layout/activity_nisab.xml"
+        "merged": "/Users/ragarnob/.gradle/daemon/9.6.0/com.crescent.app-mergeDebugResources-40:/layout/activity_chat_list.xml",
+        "source": "/Users/ragarnob/.gradle/daemon/9.6.0/com.crescent.app-main-43:/layout/activity_chat_list.xml"
     },
     {
-        "merged": "/Users/ragarnob/.gradle/daemon/9.6.0/com.crescent.app-mergeDebugResources-33:/layout/bg_input.xml",
-        "source": "/Users/ragarnob/.gradle/daemon/9.6.0/com.crescent.app-main-36:/layout/bg_input.xml"
+        "merged": "/Users/ragarnob/.gradle/daemon/9.6.0/com.crescent.app-mergeDebugResources-40:/layout/activity_profile.xml",
+        "source": "/Users/ragarnob/.gradle/daemon/9.6.0/com.crescent.app-main-43:/layout/activity_profile.xml"
     },
     {
-        "merged": "/Users/ragarnob/.gradle/daemon/9.6.0/com.crescent.app-mergeDebugResources-33:/layout/layout_dashboard.xml",
-        "source": "/Users/ragarnob/.gradle/daemon/9.6.0/com.crescent.app-main-36:/layout/layout_dashboard.xml"
+        "merged": "/Users/ragarnob/.gradle/daemon/9.6.0/com.crescent.app-mergeDebugResources-40:/layout/activity_commercial.xml",
+        "source": "/Users/ragarnob/.gradle/daemon/9.6.0/com.crescent.app-main-43:/layout/activity_commercial.xml"
+    },
+    {
+        "merged": "/Users/ragarnob/.gradle/daemon/9.6.0/com.crescent.app-mergeDebugResources-40:/layout/item_expert.xml",
+        "source": "/Users/ragarnob/.gradle/daemon/9.6.0/com.crescent.app-main-43:/layout/item_expert.xml"
+    },
+    {
+        "merged": "/Users/ragarnob/.gradle/daemon/9.6.0/com.crescent.app-mergeDebugResources-40:/layout/layout_dashboard.xml",
+        "source": "/Users/ragarnob/.gradle/daemon/9.6.0/com.crescent.app-main-43:/layout/layout_dashboard.xml"
+    },
+    {
+        "merged": "/Users/ragarnob/.gradle/daemon/9.6.0/com.crescent.app-mergeDebugResources-40:/layout/item_metal_row.xml",
+        "source": "/Users/ragarnob/.gradle/daemon/9.6.0/com.crescent.app-main-43:/layout/item_metal_row.xml"
+    },
+    {
+        "merged": "/Users/ragarnob/.gradle/daemon/9.6.0/com.crescent.app-mergeDebugResources-40:/layout/dialog_info.xml",
+        "source": "/Users/ragarnob/.gradle/daemon/9.6.0/com.crescent.app-main-43:/layout/dialog_info.xml"
+    },
+    {
+        "merged": "/Users/ragarnob/.gradle/daemon/9.6.0/com.crescent.app-mergeDebugResources-40:/layout/item_chat.xml",
+        "source": "/Users/ragarnob/.gradle/daemon/9.6.0/com.crescent.app-main-43:/layout/item_chat.xml"
+    },
+    {
+        "merged": "/Users/ragarnob/.gradle/daemon/9.6.0/com.crescent.app-mergeDebugResources-40:/layout/activity_result.xml",
+        "source": "/Users/ragarnob/.gradle/daemon/9.6.0/com.crescent.app-main-43:/layout/activity_result.xml"
+    },
+    {
+        "merged": "/Users/ragarnob/.gradle/daemon/9.6.0/com.crescent.app-mergeDebugResources-40:/layout/activity_login.xml",
+        "source": "/Users/ragarnob/.gradle/daemon/9.6.0/com.crescent.app-main-43:/layout/activity_login.xml"
+    },
+    {
+        "merged": "/Users/ragarnob/.gradle/daemon/9.6.0/com.crescent.app-mergeDebugResources-40:/layout/dialog_expert_confirm.xml",
+        "source": "/Users/ragarnob/.gradle/daemon/9.6.0/com.crescent.app-main-43:/layout/dialog_expert_confirm.xml"
     }
 ]

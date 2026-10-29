@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rootLayout"
+    android:orientation="vertical"
+    android:background="@drawable/bg_dash_screen"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Header -->
+    <FrameLayout android:id="@+id/headerBar"
+        android:background="@color/sage_card"
+        android:elevation="4dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingStart="12dp" android:paddingEnd="16dp"
+            android:paddingTop="42dp" android:paddingBottom="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageButton android:id="@+id/backButton"
+                style="?android:attr/borderlessButtonStyle"
+                android:src="@drawable/ic_back_arrow"
+                android:tint="@color/sage_text"
+                android:layout_width="44dp"
+                android:layout_height="44dp"/>
+
+            <FrameLayout android:background="@drawable/bg_dash_logo_ring"
+                android:layout_marginStart="4dp"
+                android:layout_width="40dp" android:layout_height="40dp">
+                <ImageView android:id="@+id/chatExpertImage"
+                    android:src="@drawable/ic_person"
+                    android:tint="@color/sage_text"
+                    android:scaleType="centerCrop"
+                    android:padding="8dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+            </FrameLayout>
+
+            <TextView android:id="@+id/chatExpertName"
+                android:text="Expert Name"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@color/sage_text"
+                android:layout_marginStart="12dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+    </FrameLayout>
+
+    <!-- Chat Messages -->
+    <ScrollView android:id="@+id/chatScroll"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+        <LinearLayout android:id="@+id/messagesContainer"
+            android:orientation="vertical"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </ScrollView>
+
+    <!-- Input Bar -->
+    <LinearLayout android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:background="@color/sage_card"
+        android:padding="12dp"
+        android:elevation="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <EditText android:id="@+id/messageInput"
+            android:hint="Type a message..."
+            android:textSize="15sp"
+            android:textColor="@color/sage_text"
+            android:textColorHint="@color/sage_text_soft"
+            android:background="@null"
+            android:inputType="textMultiLine"
+            android:maxLines="4"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="12dp"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"/>
+        <FrameLayout android:id="@+id/sendButton"
+            android:background="@drawable/bg_dash_btn"
+            android:backgroundTint="@color/amber_gold"
+            android:clickable="true"
+            android:focusable="true"
+            android:layout_width="44dp"
+            android:layout_height="44dp">
+            <ImageView android:src="@android:drawable/ic_menu_send"
+                android:tint="#FFFFFF"
+                android:padding="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+        </FrameLayout>
+    </LinearLayout>
+</LinearLayout>
