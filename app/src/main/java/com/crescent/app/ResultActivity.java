@@ -123,6 +123,7 @@ public class ResultActivity extends AppCompatActivity {
         });
 
         if (state == null) {
+            HawlTracker.onCalculation(getApplicationContext(), due);
             CrescentRepository repo = new CrescentRepository(getApplicationContext());
             StringBuilder plain = new StringBuilder("CRESCENT — ZAKAT ESTIMATE\n");
             for (String[] l : lines) {

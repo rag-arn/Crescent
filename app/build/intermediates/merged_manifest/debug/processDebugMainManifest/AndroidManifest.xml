@@ -12,6 +12,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
 
@@ -83,6 +84,9 @@
             android:name="com.crescent.app.AssetBreakdownActivity"
             android:exported="false" />
         <activity
+            android:name="com.crescent.app.SettingsActivity"
+            android:exported="false" />
+        <activity
             android:name="com.crescent.app.MainActivity"
             android:exported="true" >
             <intent-filter>
@@ -91,6 +95,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <receiver
+            android:name="com.crescent.app.HawlReceiver"
+            android:exported="false" >
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
 
         <service
             android:name="androidx.room.MultiInstanceInvalidationService"

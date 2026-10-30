@@ -16,6 +16,10 @@
         "source": "/Users/ragarnob/.gradle/daemon/9.6.0/com.crescent.app-main-43:/layout/activity_expert_list.xml"
     },
     {
+        "merged": "com.crescent.app-mergeDebugResources-40:/layout/activity_settings.xml",
+        "source": "com.crescent.app-main-43:/layout/activity_settings.xml"
+    },
+    {
         "merged": "/Users/ragarnob/.gradle/daemon/9.6.0/com.crescent.app-mergeDebugResources-40:/layout/custom_notification.xml",
         "source": "/Users/ragarnob/.gradle/daemon/9.6.0/com.crescent.app-main-43:/layout/custom_notification.xml"
     },
@@ -78,10 +82,6 @@
     {
         "merged": "/Users/ragarnob/.gradle/daemon/9.6.0/com.crescent.app-mergeDebugResources-40:/layout/item_expert.xml",
         "source": "/Users/ragarnob/.gradle/daemon/9.6.0/com.crescent.app-main-43:/layout/item_expert.xml"
-    },
-    {
-        "merged": "com.crescent.app-mergeDebugResources-40:/layout/activity_asset_breakdown.xml",
-        "source": "com.crescent.app-main-43:/layout/activity_asset_breakdown.xml"
     },
     {
         "merged": "/Users/ragarnob/.gradle/daemon/9.6.0/com.crescent.app-mergeDebugResources-40:/layout/layout_dashboard.xml",

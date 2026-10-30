@@ -49,7 +49,9 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.time.chrono.HijrahDate;
+import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoField;
 import java.util.Calendar;
 import java.util.Date;
@@ -171,6 +173,9 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
         if (mAuth != null && mAuth.getCurrentUser() != null) {
             loadDashboard();
+            HawlTracker.schedule(this);       // keep the due-day reminder scheduled
+            HawlTracker.notifyIfDue(this);    // covers the case where the alarm could not fire
+            updateHawl();
         }
     }
 
@@ -319,7 +324,15 @@ public class MainActivity extends AppCompatActivity {
     private void soon(String what) { Toast.makeText(this, what + " is coming soon.", Toast.LENGTH_SHORT).show(); }
 
     private void setupClicks() {
-        b.dashboard.payNowBtn.setOnClickListener(v -> soon("Payment Gateway"));
+        // Redirection to As-Sunnah Foundation for Zakat payment
+        b.dashboard.payNowBtn.setOnClickListener(v -> {
+            try {
+                startActivity(new Intent(Intent.ACTION_VIEW, android.net.Uri.parse("https://assunnahfoundation.org/")));
+            } catch (Exception e) {
+                Toast.makeText(this, "Could not open browser.", Toast.LENGTH_SHORT).show();
+            }
+        });
+
         b.dashboard.detailedBreakdownBtn.setOnClickListener(v -> startActivity(new Intent(this, AssetBreakdownActivity.class)));
 
         b.dashboard.gridCalculate.setOnClickListener(v -> startActivity(new Intent(this, GoldActivity.class)));
@@ -330,7 +343,7 @@ public class MainActivity extends AppCompatActivity {
         b.dashboard.navHome.setOnClickListener(v -> { /* already here */ });
         b.dashboard.navCalculate.setOnClickListener(v -> startActivity(new Intent(this, GoldActivity.class)));
         b.dashboard.navChat.setOnClickListener(v -> startActivity(new Intent(this, ChatListActivity.class)));
-        b.dashboard.navSettings.setOnClickListener(v -> soon("Settings"));
+        b.dashboard.navSettings.setOnClickListener(v -> startActivity(new Intent(this, SettingsActivity.class)));
 
         b.dashboard.notifButton.setOnClickListener(v -> startActivity(new Intent(this, NotificationsActivity.class)));
 
@@ -344,7 +357,7 @@ public class MainActivity extends AppCompatActivity {
         b.slideMenu.menuHistory.setOnClickListener(v -> closeMenu(() -> startActivity(new Intent(this, HistoryActivity.class))));
 
         b.slideMenu.menuBecomeExpert.setOnClickListener(v -> closeMenu(() -> startActivity(new Intent(this, ExpertRegistrationActivity.class))));
-        b.slideMenu.menuSettings.setOnClickListener(v -> closeMenu(() -> soon("Settings")));
+        b.slideMenu.menuSettings.setOnClickListener(v -> closeMenu(() -> startActivity(new Intent(this, SettingsActivity.class))));
 
         b.slideMenu.menuSignOut.setOnClickListener(v -> closeMenu(() -> {
             mAuth.signOut();
@@ -440,6 +453,25 @@ public class MainActivity extends AppCompatActivity {
         // Final runtime permission check before executing notify()
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED) {
             notificationManager.notify(notifId, builder.build());
+        }
+    }
+
+    /** Lunar-year (hawl) progress bar, days remaining and due date in the Zakat Status card. */
+    private void updateHawl() {
+        HawlTracker.State h = HawlTracker.state(this);
+        DateTimeFormatter f = DateTimeFormatter.ofPattern("dd MMM yyyy", Locale.getDefault());
+        if (!h.active) {
+            b.dashboard.hawlDaysText.setText("Not started");
+            b.dashboard.hawlProgress.setProgress(0);
+            b.dashboard.hawlDueText.setText("The lunar-year count begins once a calculation shows your wealth is at or above the Nisab.");
+        } else if (h.complete) {
+            b.dashboard.hawlDaysText.setText("Zakat is due now");
+            b.dashboard.hawlProgress.setProgress(1000, true);
+            b.dashboard.hawlDueText.setText("One lunar year was completed on " + LocalDate.ofEpochDay(h.dueDay).format(f) + ".");
+        } else {
+            b.dashboard.hawlDaysText.setText(h.remainingDays + (h.remainingDays == 1 ? " day remaining" : " days remaining"));
+            b.dashboard.hawlProgress.setProgress(Math.round(h.progress * 1000f), true);
+            b.dashboard.hawlDueText.setText("Zakat becomes due on " + LocalDate.ofEpochDay(h.dueDay).format(f) + ".");
         }
     }
 

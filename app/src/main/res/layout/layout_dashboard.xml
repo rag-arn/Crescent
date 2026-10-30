@@ -185,6 +185,42 @@
                             android:layout_width="wrap_content" android:layout_height="wrap_content"/>
                     </LinearLayout>
                 </LinearLayout>
+
+                <!-- Lunar-year (hawl) progress -->
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_marginTop="14dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:text="Lunar year progress"
+                            android:textSize="12sp" android:textStyle="bold"
+                            android:textColor="@color/sage_text"
+                            android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content"/>
+                        <TextView android:id="@+id/hawlDaysText"
+                            android:text="Not started"
+                            android:textSize="12sp" android:textStyle="bold"
+                            android:textColor="@color/sage_text"
+                            android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                    </LinearLayout>
+                    <ProgressBar android:id="@+id/hawlProgress"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:max="1000" android:progress="0"
+                        android:progressDrawable="@drawable/progress_sage"
+                        android:layout_marginTop="8dp"
+                        android:layout_width="match_parent" android:layout_height="8dp"/>
+                    <TextView android:id="@+id/hawlDueText"
+                        android:text=""
+                        android:textSize="11sp"
+                        android:textColor="@color/sage_text_soft"
+                        android:layout_marginTop="6dp"
+                        android:layout_width="match_parent" android:layout_height="wrap_content"/>
+                </LinearLayout>
             </LinearLayout>
 
             <LinearLayout android:orientation="horizontal" android:layout_marginTop="16dp"

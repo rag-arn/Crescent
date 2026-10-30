@@ -83,6 +83,7 @@ drawable ic_settings
 drawable ic_wallet
 drawable logo
 drawable progress_amber
+drawable progress_sage
 id addMoreButton
 id alreadyExpertLayout
 id amountInput
@@ -115,6 +116,7 @@ id commercialAmount
 id commercialInput
 id commercialSub
 id confirmBtn
+id contactBtn
 id dashboard
 id detailedBreakdownBtn
 id dialogMessage
@@ -148,6 +150,9 @@ id gridChat
 id gridHistory
 id guestBtn
 id hadithText
+id hawlDaysText
+id hawlDueText
+id hawlProgress
 id headerBar
 id historyList
 id historyText
@@ -218,6 +223,7 @@ id progress
 id puritySpinner
 id refreshPriceButton
 id removeButton
+id reportBtn
 id resignBtn
 id resultTable
 id resultText
@@ -268,6 +274,7 @@ layout activity_notifications
 layout activity_pdf_preview
 layout activity_profile
 layout activity_result
+layout activity_settings
 layout custom_notification
 layout dialog_expert_confirm
 layout dialog_info
