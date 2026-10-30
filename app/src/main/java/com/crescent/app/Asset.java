@@ -9,6 +9,9 @@ public class Asset {
     public String category;
     public double amount;
     public long updatedAt;
+
+    public Asset() {} // Required for Firestore Sync
+
     public Asset(String category, double amount, long updatedAt) {
         this.category = category; this.amount = amount; this.updatedAt = updatedAt;
     }

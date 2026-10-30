@@ -178,18 +178,15 @@ public final class CrescentDao_Impl implements CrescentDao {
       final List<Asset> _result = new ArrayList<Asset>(_cursor.getCount());
       while (_cursor.moveToNext()) {
         final Asset _item;
-        final String _tmpCategory;
-        if (_cursor.isNull(_cursorIndexOfCategory)) {
-          _tmpCategory = null;
-        } else {
-          _tmpCategory = _cursor.getString(_cursorIndexOfCategory);
-        }
-        final double _tmpAmount;
-        _tmpAmount = _cursor.getDouble(_cursorIndexOfAmount);
-        final long _tmpUpdatedAt;
-        _tmpUpdatedAt = _cursor.getLong(_cursorIndexOfUpdatedAt);
-        _item = new Asset(_tmpCategory,_tmpAmount,_tmpUpdatedAt);
+        _item = new Asset();
         _item.id = _cursor.getInt(_cursorIndexOfId);
+        if (_cursor.isNull(_cursorIndexOfCategory)) {
+          _item.category = null;
+        } else {
+          _item.category = _cursor.getString(_cursorIndexOfCategory);
+        }
+        _item.amount = _cursor.getDouble(_cursorIndexOfAmount);
+        _item.updatedAt = _cursor.getLong(_cursorIndexOfUpdatedAt);
         _result.add(_item);
       }
       return _result;
@@ -218,28 +215,20 @@ public final class CrescentDao_Impl implements CrescentDao {
       final List<Snapshot> _result = new ArrayList<Snapshot>(_cursor.getCount());
       while (_cursor.moveToNext()) {
         final Snapshot _item;
-        final long _tmpCreatedAt;
-        _tmpCreatedAt = _cursor.getLong(_cursorIndexOfCreatedAt);
-        final int _tmpYear;
-        _tmpYear = _cursor.getInt(_cursorIndexOfYear);
-        final double _tmpAssets;
-        _tmpAssets = _cursor.getDouble(_cursorIndexOfAssets);
-        final double _tmpLiabilities;
-        _tmpLiabilities = _cursor.getDouble(_cursorIndexOfLiabilities);
-        final double _tmpNetWealth;
-        _tmpNetWealth = _cursor.getDouble(_cursorIndexOfNetWealth);
-        final double _tmpNisab;
-        _tmpNisab = _cursor.getDouble(_cursorIndexOfNisab);
-        final double _tmpZakat;
-        _tmpZakat = _cursor.getDouble(_cursorIndexOfZakat);
-        final String _tmpBreakdown;
-        if (_cursor.isNull(_cursorIndexOfBreakdown)) {
-          _tmpBreakdown = null;
-        } else {
-          _tmpBreakdown = _cursor.getString(_cursorIndexOfBreakdown);
-        }
-        _item = new Snapshot(_tmpCreatedAt,_tmpYear,_tmpAssets,_tmpLiabilities,_tmpNetWealth,_tmpNisab,_tmpZakat,_tmpBreakdown);
+        _item = new Snapshot();
         _item.id = _cursor.getInt(_cursorIndexOfId);
+        _item.createdAt = _cursor.getLong(_cursorIndexOfCreatedAt);
+        _item.year = _cursor.getInt(_cursorIndexOfYear);
+        _item.assets = _cursor.getDouble(_cursorIndexOfAssets);
+        _item.liabilities = _cursor.getDouble(_cursorIndexOfLiabilities);
+        _item.netWealth = _cursor.getDouble(_cursorIndexOfNetWealth);
+        _item.nisab = _cursor.getDouble(_cursorIndexOfNisab);
+        _item.zakat = _cursor.getDouble(_cursorIndexOfZakat);
+        if (_cursor.isNull(_cursorIndexOfBreakdown)) {
+          _item.breakdown = null;
+        } else {
+          _item.breakdown = _cursor.getString(_cursorIndexOfBreakdown);
+        }
         _result.add(_item);
       }
       return _result;

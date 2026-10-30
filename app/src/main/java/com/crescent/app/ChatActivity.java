@@ -1,21 +1,32 @@
 package com.crescent.app;
 
+import android.app.Dialog;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.graphics.Outline;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.InsetDrawable;
 import android.os.Bundle;
 import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.ViewOutlineProvider;
+import android.view.Window;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RatingBar;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.MetadataChanges;
@@ -30,6 +41,7 @@ import java.util.Map;
 
 public class ChatActivity extends AppCompatActivity {
     private String expertUid;
+    private String expertNameStr;
     private String currentUid;
     private String roomId;
     private FirebaseFirestore db;
@@ -38,6 +50,7 @@ public class ChatActivity extends AppCompatActivity {
 
     private boolean amIExpert = false;
     private boolean isOtherExpert = false;
+    private boolean hasRated = false;
 
     @Override protected void onResume() {
         super.onResume();
@@ -57,13 +70,11 @@ public class ChatActivity extends AppCompatActivity {
         setContentView(R.layout.activity_chat);
         Ui.insets(this, findViewById(R.id.rootLayout), findViewById(R.id.headerBar), null);
 
-        findViewById(R.id.backButton).setOnClickListener(v -> finish());
-
         db = FirebaseFirestore.getInstance();
         currentUid = FirebaseAuth.getInstance().getUid();
 
         expertUid = getIntent().getStringExtra("expertUid");
-        String expertName = getIntent().getStringExtra("expertName");
+        expertNameStr = getIntent().getStringExtra("expertName");
         String expertBase64 = getIntent().getStringExtra("expertImage");
 
         if (currentUid == null || expertUid == null) {
@@ -78,7 +89,7 @@ public class ChatActivity extends AppCompatActivity {
 
         TextView nameView = findViewById(R.id.chatExpertName);
         ImageView imgView = findViewById(R.id.chatExpertImage);
-        nameView.setText(expertName != null ? expertName : "Expert");
+        nameView.setText(expertNameStr != null ? expertNameStr : "Expert");
 
         imgView.setOutlineProvider(new ViewOutlineProvider() {
             @Override public void getOutline(View view, Outline outline) { outline.setOval(0, 0, view.getWidth(), view.getHeight()); }
@@ -108,8 +119,96 @@ public class ChatActivity extends AppCompatActivity {
             }
         });
 
+        // Intercept back actions to check if rating is needed
+        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+            @Override public void handleOnBackPressed() { attemptExit(); }
+        });
+        findViewById(R.id.backButton).setOnClickListener(v -> attemptExit());
+
+        verifyRatingStatus();
         listenForMessages();
         listenForExpertStatus();
+    }
+
+    private void verifyRatingStatus() {
+        SharedPreferences prefs = getSharedPreferences("expert_ratings", MODE_PRIVATE);
+        if (prefs.getBoolean(currentUid + "_" + expertUid, false)) {
+            hasRated = true; // Checked locally first for speed
+        } else {
+            // Check Firestore in case they logged in on a new device
+            db.collection("users").document(currentUid).collection("rated_experts").document(expertUid).get().addOnSuccessListener(doc -> {
+                if (doc.exists()) {
+                    hasRated = true;
+                    prefs.edit().putBoolean(currentUid + "_" + expertUid, true).apply();
+                }
+            });
+        }
+    }
+
+    private void attemptExit() {
+        // Only show rating dialog if user is NOT an expert, the other person IS an expert, and they haven't rated them yet.
+        if (!amIExpert && isOtherExpert && !hasRated) {
+            showRatingDialog();
+        } else {
+            finish();
+        }
+    }
+
+    private void showRatingDialog() {
+        Dialog dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.dialog_rate_expert);
+
+        Window w = dialog.getWindow();
+        if (w != null) {
+            int margin = Math.round(24 * getResources().getDisplayMetrics().density);
+            w.setBackgroundDrawable(new InsetDrawable(new ColorDrawable(Color.TRANSPARENT), margin));
+            w.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        }
+
+        TextView titleText = dialog.findViewById(R.id.rateTitleText);
+        titleText.setText("Rate " + (expertNameStr != null ? expertNameStr : "Expert"));
+
+        RatingBar ratingBar = dialog.findViewById(R.id.ratingBar);
+        Button skipBtn = dialog.findViewById(R.id.skipBtn);
+        Button submitBtn = dialog.findViewById(R.id.submitBtn);
+
+        skipBtn.setOnClickListener(v -> {
+            dialog.dismiss(); // If they skip, we do NOT set hasRated = true, allowing them to rate later.
+            finish();
+        });
+
+        submitBtn.setOnClickListener(v -> {
+            float rating = ratingBar.getRating();
+            if (rating > 0) {
+                submitRatingToFirestore(rating);
+
+                // Save locally and in Firestore so it never shows again across any device
+                hasRated = true;
+                getSharedPreferences("expert_ratings", MODE_PRIVATE).edit().putBoolean(currentUid + "_" + expertUid, true).apply();
+                Map<String, Object> record = new HashMap<>();
+                record.put("ratedAt", System.currentTimeMillis());
+                db.collection("users").document(currentUid).collection("rated_experts").document(expertUid).set(record);
+            }
+            dialog.dismiss();
+            finish();
+        });
+
+        dialog.show();
+    }
+
+    private void submitRatingToFirestore(float newRating) {
+        db.runTransaction(transaction -> {
+            DocumentReference expertRef = db.collection("users").document(expertUid);
+            DocumentSnapshot snap = transaction.get(expertRef);
+
+            double currentRating = snap.contains("rating") && snap.getDouble("rating") != null ? snap.getDouble("rating") : 0.0;
+            long count = snap.contains("ratingCount") && snap.getLong("ratingCount") != null ? snap.getLong("ratingCount") : 0;
+
+            double updatedRating = ((currentRating * count) + newRating) / (count + 1);
+            transaction.update(expertRef, "rating", updatedRating, "ratingCount", count + 1);
+            return null;
+        });
     }
 
     private void listenForExpertStatus() {
@@ -163,7 +262,7 @@ public class ChatActivity extends AppCompatActivity {
     private void listenForMessages() {
         db.collection("chats").document(roomId).collection("messages")
                 .orderBy("timestamp", Query.Direction.ASCENDING)
-                .addSnapshotListener(MetadataChanges.INCLUDE, (value, error) -> { // <-- THIS LINE FIXES THE CHECK MARK
+                .addSnapshotListener(MetadataChanges.INCLUDE, (value, error) -> {
                     if (error != null || value == null) return;
 
                     messagesContainer.removeAllViews();
@@ -191,6 +290,7 @@ public class ChatActivity extends AppCompatActivity {
                             rightText.setText(text);
                             rightTime.setText(timeStr);
 
+                            // Checkmark logic using MetadataChanges
                             if (doc.getMetadata().hasPendingWrites()) {
                                 rightTick.setVisibility(View.GONE);
                             } else {

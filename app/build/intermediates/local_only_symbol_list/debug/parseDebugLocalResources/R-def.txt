@@ -95,6 +95,9 @@ id bioInput
 id bottomBar
 id bottomNav
 id brandHeader
+id btnCamera
+id btnCancel
+id btnGallery
 id businessInput
 id calculateButton
 id cancelBtn
@@ -221,6 +224,8 @@ id profileName
 id profileNameText
 id progress
 id puritySpinner
+id rateTitleText
+id ratingBar
 id refreshPriceButton
 id removeButton
 id reportBtn
@@ -236,6 +241,7 @@ id rowValue
 id rowsContainer
 id sendButton
 id silverOption
+id skipBtn
 id slideMenu
 id slideProfileImage
 id statusText
@@ -277,7 +283,10 @@ layout activity_result
 layout activity_settings
 layout custom_notification
 layout dialog_expert_confirm
+layout dialog_image_picker
 layout dialog_info
+layout dialog_rate_expert
+layout dialog_resign
 layout item_chat
 layout item_chat_list
 layout item_expert

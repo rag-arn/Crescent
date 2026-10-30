@@ -80,7 +80,7 @@
                                               <map>
                                                 <entry key="color" value="000000" />
                                                 <entry key="imagePath" value="$PROJECT_DIR$/app/src/main/res/drawable/logo.png" />
-                                                <entry key="scalingPercent" value="70" />
+                                                <entry key="scalingPercent" value="57" />
                                               </map>
                                             </option>
                                           </PersistentState>

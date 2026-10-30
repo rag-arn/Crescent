@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:padding="8dp"
-    android:background="#FAFAFA">
+    android:background="@android:color/transparent">
 
     <ImageView
         android:layout_width="48dp"
@@ -27,17 +27,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Title"
-            android:textColor="#212121"
-            android:textStyle="bold"
-            android:textSize="16sp" />
+            style="@style/TextAppearance.Compat.Notification.Title" />
 
         <TextView
             android:id="@+id/notifText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Message content goes here..."
-            android:textColor="#757575"
-            android:textSize="14sp"
+            style="@style/TextAppearance.Compat.Notification.Line2"
             android:layout_marginTop="2dp"/>
     </LinearLayout>
 </LinearLayout>

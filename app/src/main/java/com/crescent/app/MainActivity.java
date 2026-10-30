@@ -149,7 +149,6 @@ public class MainActivity extends AppCompatActivity {
         listenForNotifications();
     }
 
-    // SYLLABUS: Request Notifications Permission only
     private void requestStartupPermissions() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
@@ -158,7 +157,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    // SYLLABUS: onRequestPermissionsResult
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -173,9 +171,11 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
         if (mAuth != null && mAuth.getCurrentUser() != null) {
             loadDashboard();
-            HawlTracker.schedule(this);       // keep the due-day reminder scheduled
-            HawlTracker.notifyIfDue(this);    // covers the case where the alarm could not fire
-            updateHawl();
+            HawlTracker.syncFromCloud(this, () -> {
+                HawlTracker.schedule(this);
+                HawlTracker.notifyIfDue(this);
+                updateHawl();
+            });
         }
     }
 
@@ -324,10 +324,9 @@ public class MainActivity extends AppCompatActivity {
     private void soon(String what) { Toast.makeText(this, what + " is coming soon.", Toast.LENGTH_SHORT).show(); }
 
     private void setupClicks() {
-        // Redirection to As-Sunnah Foundation for Zakat payment
         b.dashboard.payNowBtn.setOnClickListener(v -> {
             try {
-                startActivity(new Intent(Intent.ACTION_VIEW, android.net.Uri.parse("https://assunnahfoundation.org/")));
+                startActivity(new Intent(Intent.ACTION_VIEW, android.net.Uri.parse("https://assunnahfoundation.org/donate/zakat")));
             } catch (Exception e) {
                 Toast.makeText(this, "Could not open browser.", Toast.LENGTH_SHORT).show();
             }
@@ -359,14 +358,44 @@ public class MainActivity extends AppCompatActivity {
         b.slideMenu.menuBecomeExpert.setOnClickListener(v -> closeMenu(() -> startActivity(new Intent(this, ExpertRegistrationActivity.class))));
         b.slideMenu.menuSettings.setOnClickListener(v -> closeMenu(() -> startActivity(new Intent(this, SettingsActivity.class))));
 
+        // Wipes local preferences and deletes Firebase Guest accounts & their chats
         b.slideMenu.menuSignOut.setOnClickListener(v -> closeMenu(() -> {
-            mAuth.signOut();
-            GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).build();
-            GoogleSignIn.getClient(this, gso).signOut().addOnCompleteListener(task -> {
-                startActivity(new Intent(MainActivity.this, LoginActivity.class));
-                finish();
+            Toast.makeText(this, "Signing out...", Toast.LENGTH_SHORT).show();
+
+            FirebaseUser user = mAuth.getCurrentUser();
+            boolean isGuest = (user != null && user.isAnonymous());
+            String uid = user != null ? user.getUid() : null;
+
+            io.execute(() -> {
+                if (isGuest) {
+                    CrescentDatabase.get(MainActivity.this).clearAllTables();
+                    getSharedPreferences("crescent_hawl", MODE_PRIVATE).edit().clear().apply();
+                    getSharedPreferences("crescent_prices", MODE_PRIVATE).edit().clear().apply();
+                }
+
+                runOnUiThread(() -> {
+                    if (isGuest && uid != null) {
+                        FirebaseFirestore db = FirebaseFirestore.getInstance();
+                        db.collection("users").document(uid).delete();
+                        db.collection("chats").whereArrayContains("users", uid).get().addOnSuccessListener(query -> {
+                            for (DocumentSnapshot doc : query) doc.getReference().delete();
+                        });
+                        user.delete().addOnCompleteListener(task -> completeSignOut());
+                    } else {
+                        completeSignOut();
+                    }
+                });
             });
         }));
+    }
+
+    private void completeSignOut() {
+        mAuth.signOut();
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).build();
+        GoogleSignIn.getClient(MainActivity.this, gso).signOut().addOnCompleteListener(task -> {
+            startActivity(new Intent(MainActivity.this, LoginActivity.class));
+            finish();
+        });
     }
 
     private void listenForNotifications() {
@@ -397,36 +426,43 @@ public class MainActivity extends AppCompatActivity {
                     .addSnapshotListener((value, error) -> {
                         if (value == null || error != null) return;
 
+                        // 1. Check ALL active chats to see if the red dot should be visible
                         boolean hasUnread = false;
-                        for (com.google.firebase.firestore.DocumentChange dc : value.getDocumentChanges()) {
-                            DocumentSnapshot doc = dc.getDocument();
-                            boolean roomHasUnread = Boolean.TRUE.equals(doc.getBoolean("hasUnread_" + uid));
-
-                            if (roomHasUnread) hasUnread = true;
-
-                            if (!isFirstChatLoad && roomHasUnread && !doc.getId().equals(activeRoomId)) {
-                                if (dc.getType() == com.google.firebase.firestore.DocumentChange.Type.MODIFIED || dc.getType() == com.google.firebase.firestore.DocumentChange.Type.ADDED) {
-                                    String msg = doc.getString("lastMessage");
-                                    showSystemNotification("New Message", msg != null ? msg : "You received a new message.", doc.getId().hashCode());
-                                }
+                        for (DocumentSnapshot doc : value.getDocuments()) {
+                            if (Boolean.TRUE.equals(doc.getBoolean("hasUnread_" + uid))) {
+                                hasUnread = true;
+                                break;
                             }
                         }
                         b.dashboard.chatDot.setVisibility(hasUnread ? View.VISIBLE : View.GONE);
+
+                        // 2. Only show the pop-up notification if a message arrived JUST NOW
+                        if (!isFirstChatLoad) {
+                            for (com.google.firebase.firestore.DocumentChange dc : value.getDocumentChanges()) {
+                                DocumentSnapshot doc = dc.getDocument();
+                                boolean roomHasUnread = Boolean.TRUE.equals(doc.getBoolean("hasUnread_" + uid));
+
+                                if (roomHasUnread && !doc.getId().equals(activeRoomId)) {
+                                    if (dc.getType() == com.google.firebase.firestore.DocumentChange.Type.MODIFIED || dc.getType() == com.google.firebase.firestore.DocumentChange.Type.ADDED) {
+                                        String msg = doc.getString("lastMessage");
+                                        showSystemNotification("New Message", msg != null ? msg : "You received a new message.", doc.getId().hashCode());
+                                    }
+                                }
+                            }
+                        }
                         isFirstChatLoad = false;
                     });
         }
     }
 
-    // SYLLABUS: NotificationManagerCompat, Builder, Channel, RemoteViews, Intent, PendingIntent,
-    // setSmallIcon, setContentTitle, setContentText, setContentIntent, setAutoCancel, setPriority (Heads-Up), VISIBILITY_PUBLIC (Lock-Screen), notify()
     private void showSystemNotification(String title, String message, int notifId) {
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
         String channelId = "crescent_alerts";
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             NotificationChannel channel = new NotificationChannel(
-                    channelId, "Crescent Alerts", NotificationManager.IMPORTANCE_HIGH); // IMPORTANCE_HIGH forces Heads-Up notification
-            channel.setLockscreenVisibility(android.app.Notification.VISIBILITY_PUBLIC); // Fulfills Lock-Screen Requirement
+                    channelId, "Crescent Alerts", NotificationManager.IMPORTANCE_HIGH);
+            channel.setLockscreenVisibility(android.app.Notification.VISIBILITY_PUBLIC);
             notificationManager.createNotificationChannel(channel);
         }
 
@@ -434,7 +470,6 @@ public class MainActivity extends AppCompatActivity {
         PendingIntent pendingIntent = PendingIntent.getActivity(
                 this, 0, intent, PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT);
 
-        // Fulfills the RemoteViews Custom Notification Layout requirement
         RemoteViews customView = new RemoteViews(getPackageName(), R.layout.custom_notification);
         customView.setTextViewText(R.id.notifTitle, title);
         customView.setTextViewText(R.id.notifText, message);
@@ -450,13 +485,11 @@ public class MainActivity extends AppCompatActivity {
                 .setAutoCancel(true)
                 .setContentIntent(pendingIntent);
 
-        // Final runtime permission check before executing notify()
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED) {
             notificationManager.notify(notifId, builder.build());
         }
     }
 
-    /** Lunar-year (hawl) progress bar, days remaining and due date in the Zakat Status card. */
     private void updateHawl() {
         HawlTracker.State h = HawlTracker.state(this);
         DateTimeFormatter f = DateTimeFormatter.ofPattern("dd MMM yyyy", Locale.getDefault());
