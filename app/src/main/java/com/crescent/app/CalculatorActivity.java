@@ -40,6 +40,7 @@ public class CalculatorActivity extends AppCompatActivity {
                 "\nCash in hand: " + taka(cashHand) + "\nCash in bank: " + taka(cashBank) +
                 "\nCash receivable: " + taka(cashReceivable) + "\nCash payable (deducted): " + taka(cashPayable));
 
+        b.backButton.setOnClickListener(v -> finish());
         b.previousButton.setOnClickListener(v -> finish());
         b.calculateButton.setOnClickListener(v -> calculate(true));
         b.pdfButton.setOnClickListener(v -> {

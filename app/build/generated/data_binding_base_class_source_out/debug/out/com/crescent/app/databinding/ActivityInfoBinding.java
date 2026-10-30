@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -20,14 +21,18 @@ public final class ActivityInfoBinding implements ViewBinding {
   private final LinearLayout rootView;
 
   @NonNull
+  public final ImageButton backButton;
+
+  @NonNull
   public final FrameLayout headerBar;
 
   @NonNull
   public final LinearLayout rootLayout;
 
-  private ActivityInfoBinding(@NonNull LinearLayout rootView, @NonNull FrameLayout headerBar,
-      @NonNull LinearLayout rootLayout) {
+  private ActivityInfoBinding(@NonNull LinearLayout rootView, @NonNull ImageButton backButton,
+      @NonNull FrameLayout headerBar, @NonNull LinearLayout rootLayout) {
     this.rootView = rootView;
+    this.backButton = backButton;
     this.headerBar = headerBar;
     this.rootLayout = rootLayout;
   }
@@ -59,6 +64,12 @@ public final class ActivityInfoBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
+      id = R.id.backButton;
+      ImageButton backButton = ViewBindings.findChildViewById(rootView, id);
+      if (backButton == null) {
+        break missingId;
+      }
+
       id = R.id.headerBar;
       FrameLayout headerBar = ViewBindings.findChildViewById(rootView, id);
       if (headerBar == null) {
@@ -67,7 +78,7 @@ public final class ActivityInfoBinding implements ViewBinding {
 
       LinearLayout rootLayout = (LinearLayout) rootView;
 
-      return new ActivityInfoBinding((LinearLayout) rootView, headerBar, rootLayout);
+      return new ActivityInfoBinding((LinearLayout) rootView, backButton, headerBar, rootLayout);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Layered rolling hills along the bottom of the hadith block (stretched to banner width) -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="360dp"
+    android:height="64dp"
+    android:viewportWidth="360"
+    android:viewportHeight="64">
+    <path
+        android:fillColor="@color/sage_hill_back"
+        android:fillAlpha="0.85"
+        android:pathData="M0,26 C60,8 120,12 180,24 C240,36 300,10 360,20 L360,64 L0,64 Z"/>
+    <path
+        android:fillColor="@color/sage_hill_mid"
+        android:fillAlpha="0.95"
+        android:pathData="M0,40 C70,24 130,32 200,42 C260,50 310,30 360,36 L360,64 L0,64 Z"/>
+    <path
+        android:fillColor="@color/sage_hill_front"
+        android:pathData="M0,52 C80,42 160,48 230,54 C290,58 330,46 360,48 L360,64 L0,64 Z"/>
+</vector>

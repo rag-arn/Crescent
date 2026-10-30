@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Soft golden crescent on the left of the hadith block -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="110dp"
+    android:height="100dp"
+    android:viewportWidth="110"
+    android:viewportHeight="100">
+    <path
+        android:fillColor="@color/sage_moon_gold"
+        android:fillAlpha="0.55"
+        android:pathData="M50,12 A40,40 0 1,0 85.96,69.53 A34,34 0 0,1 50,12 Z"/>
+    <path
+        android:fillColor="@color/sage_moon_gold"
+        android:fillAlpha="0.7"
+        android:pathData="M86,12 L87.68,16.32 L92,18 L87.68,19.68 L86,24 L84.32,19.68 L80,18 L84.32,16.32 Z"/>
+    <path
+        android:fillColor="@color/sage_moon_gold"
+        android:fillAlpha="0.5"
+        android:pathData="M100,42.5 L100.98,45.02 L103.5,46 L100.98,46.98 L100,49.5 L99.02,46.98 L96.5,46 L99.02,45.02 Z"/>
+</vector>

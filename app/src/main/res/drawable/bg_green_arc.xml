@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Solid sage-green top area that ends in a soft semicircular (downward-bulging) edge.
+     It is stretched to the full screen width by bg_dash_screen.xml.
+     Curve: the sides end at y=285 (about the middle of the Zakat Status card),
+     the lowest point is y=345 (the drawable height).
+     To move the curve up/down, change the 285 values (sides) and the 345 values (bottom) together. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="360dp"
+    android:height="345dp"
+    android:viewportWidth="360"
+    android:viewportHeight="345">
+    <path
+        android:fillColor="@color/sage_top"
+        android:pathData="M0,0 L360,0 L360,285 C360,325 280,345 180,345 C80,345 0,325 0,285 Z"/>
+</vector>

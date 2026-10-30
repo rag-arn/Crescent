@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Lighter sage button with a gentle top-to-bottom gradient so it still reads as tappable -->
 <shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle">
-    <solid android:color="@color/sage_text"/>
+    <gradient
+        android:angle="270"
+        android:startColor="@color/sage_btn_top"
+        android:endColor="@color/sage_btn_bottom"/>
     <corners android:radius="20dp"/>
 </shape>

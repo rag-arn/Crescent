@@ -135,6 +135,7 @@ public abstract class MetalActivity extends AppCompatActivity {
         b.addMoreButton.setOnClickListener(v -> addRow());
         b.refreshPriceButton.setOnClickListener(v -> fetchPrice());
         b.useLivePriceButton.setOnClickListener(v -> useLivePrice());
+        b.backButton.setOnClickListener(v -> finish());
         b.previousButton.setOnClickListener(v -> finish());
         b.nextButton.setOnClickListener(v -> next());
         fetchPrice();

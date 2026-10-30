@@ -23,6 +23,9 @@ public final class ActivityCashBinding implements ViewBinding {
   private final LinearLayout rootView;
 
   @NonNull
+  public final ImageButton backButton;
+
+  @NonNull
   public final LinearLayout bottomBar;
 
   @NonNull
@@ -49,12 +52,13 @@ public final class ActivityCashBinding implements ViewBinding {
   @NonNull
   public final Button previousButton;
 
-  private ActivityCashBinding(@NonNull LinearLayout rootView, @NonNull LinearLayout bottomBar,
-      @NonNull EditText cashBankInput, @NonNull EditText cashHandInput,
-      @NonNull EditText cashPayableInput, @NonNull EditText cashReceivableInput,
-      @NonNull FrameLayout headerBar, @NonNull ImageButton infoButton, @NonNull Button nextButton,
-      @NonNull Button previousButton) {
+  private ActivityCashBinding(@NonNull LinearLayout rootView, @NonNull ImageButton backButton,
+      @NonNull LinearLayout bottomBar, @NonNull EditText cashBankInput,
+      @NonNull EditText cashHandInput, @NonNull EditText cashPayableInput,
+      @NonNull EditText cashReceivableInput, @NonNull FrameLayout headerBar,
+      @NonNull ImageButton infoButton, @NonNull Button nextButton, @NonNull Button previousButton) {
     this.rootView = rootView;
+    this.backButton = backButton;
     this.bottomBar = bottomBar;
     this.cashBankInput = cashBankInput;
     this.cashHandInput = cashHandInput;
@@ -93,6 +97,12 @@ public final class ActivityCashBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
+      id = R.id.backButton;
+      ImageButton backButton = ViewBindings.findChildViewById(rootView, id);
+      if (backButton == null) {
+        break missingId;
+      }
+
       id = R.id.bottomBar;
       LinearLayout bottomBar = ViewBindings.findChildViewById(rootView, id);
       if (bottomBar == null) {
@@ -147,7 +157,7 @@ public final class ActivityCashBinding implements ViewBinding {
         break missingId;
       }
 
-      return new ActivityCashBinding((LinearLayout) rootView, bottomBar, cashBankInput,
+      return new ActivityCashBinding((LinearLayout) rootView, backButton, bottomBar, cashBankInput,
           cashHandInput, cashPayableInput, cashReceivableInput, headerBar, infoButton, nextButton,
           previousButton);
     }

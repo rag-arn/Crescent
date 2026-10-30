@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -22,6 +23,9 @@ public final class ActivityHistoryBinding implements ViewBinding {
   private final LinearLayout rootView;
 
   @NonNull
+  public final ImageButton backButton;
+
+  @NonNull
   public final LinearLayout emptyCard;
 
   @NonNull
@@ -36,10 +40,12 @@ public final class ActivityHistoryBinding implements ViewBinding {
   @NonNull
   public final LinearLayout rootLayout;
 
-  private ActivityHistoryBinding(@NonNull LinearLayout rootView, @NonNull LinearLayout emptyCard,
-      @NonNull FrameLayout headerBar, @NonNull ListView historyList, @NonNull TextView historyText,
+  private ActivityHistoryBinding(@NonNull LinearLayout rootView, @NonNull ImageButton backButton,
+      @NonNull LinearLayout emptyCard, @NonNull FrameLayout headerBar,
+      @NonNull ListView historyList, @NonNull TextView historyText,
       @NonNull LinearLayout rootLayout) {
     this.rootView = rootView;
+    this.backButton = backButton;
     this.emptyCard = emptyCard;
     this.headerBar = headerBar;
     this.historyList = historyList;
@@ -74,6 +80,12 @@ public final class ActivityHistoryBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
+      id = R.id.backButton;
+      ImageButton backButton = ViewBindings.findChildViewById(rootView, id);
+      if (backButton == null) {
+        break missingId;
+      }
+
       id = R.id.emptyCard;
       LinearLayout emptyCard = ViewBindings.findChildViewById(rootView, id);
       if (emptyCard == null) {
@@ -100,8 +112,8 @@ public final class ActivityHistoryBinding implements ViewBinding {
 
       LinearLayout rootLayout = (LinearLayout) rootView;
 
-      return new ActivityHistoryBinding((LinearLayout) rootView, emptyCard, headerBar, historyList,
-          historyText, rootLayout);
+      return new ActivityHistoryBinding((LinearLayout) rootView, backButton, emptyCard, headerBar,
+          historyList, historyText, rootLayout);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

@@ -14,7 +14,7 @@
         android:layout_gravity="start"
         android:background="@drawable/bg_dash_card"
         android:padding="12dp"
-        android:elevation="1dp"
+        android:elevation="2dp" android:outlineSpotShadowColor="@color/sage_shadow_spot" android:outlineAmbientShadowColor="@color/sage_shadow_ambient"
         android:layout_marginEnd="64dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
@@ -38,7 +38,7 @@
         android:background="@drawable/bg_dash_btn"
         android:backgroundTint="@color/sage_button"
         android:padding="12dp"
-        android:elevation="1dp"
+        android:elevation="2dp" android:outlineSpotShadowColor="@color/sage_shadow_spot" android:outlineAmbientShadowColor="@color/sage_shadow_ambient"
         android:layout_marginStart="64dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">

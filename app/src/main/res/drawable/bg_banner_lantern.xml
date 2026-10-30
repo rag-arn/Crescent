@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Hanging lantern on the right of the hadith block -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="44dp"
+    android:height="76dp"
+    android:viewportWidth="40"
+    android:viewportHeight="76">
+    <path
+        android:strokeColor="@color/sage_lantern"
+        android:strokeWidth="1.2"
+        android:pathData="M20,0 L20,12"/>
+    <path
+        android:fillColor="@color/sage_lantern"
+        android:pathData="M14,12 L26,12 L28,17 L12,17 Z"/>
+    <path
+        android:fillColor="@color/sage_lantern"
+        android:fillAlpha="0.92"
+        android:pathData="M12,17 L28,17 L31,26 L31,46 L28,54 L12,54 L9,46 L9,26 Z"/>
+    <path
+        android:fillColor="@color/sage_moon_gold"
+        android:fillAlpha="0.75"
+        android:pathData="M15,22 L25,22 L26.5,28 L26.5,44 L25,49 L15,49 L13.5,44 L13.5,28 Z"/>
+    <path
+        android:fillColor="@color/sage_lantern"
+        android:pathData="M12,54 L28,54 L25,59 L15,59 Z"/>
+    <path
+        android:strokeColor="@color/sage_lantern"
+        android:strokeWidth="1.2"
+        android:pathData="M20,59 L20,68"/>
+    <path
+        android:fillColor="@color/sage_moon_gold"
+        android:fillAlpha="0.9"
+        android:pathData="M17.8,70 a2.2,2.2 0 1,0 4.4,0 a2.2,2.2 0 1,0 -4.4,0 Z"/>
+    <path
+        android:fillColor="@color/sage_moon_gold"
+        android:fillAlpha="0.7"
+        android:pathData="M6,17 L6.84,19.16 L9,20 L6.84,20.84 L6,23 L5.16,20.84 L3,20 L5.16,19.16 Z"/>
+    <path
+        android:fillColor="@color/sage_moon_gold"
+        android:fillAlpha="0.6"
+        android:pathData="M36,5.5 L36.7,7.3 L38.5,8 L36.7,8.7 L36,10.5 L35.3,8.7 L33.5,8 L35.3,7.3 Z"/>
+</vector>

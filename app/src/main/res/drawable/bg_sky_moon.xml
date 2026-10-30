@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Faint crescent + sparkles in the sky area of every activity background -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="100dp"
+    android:height="80dp"
+    android:viewportWidth="100"
+    android:viewportHeight="80">
+    <path
+        android:fillColor="#FFFFFF"
+        android:fillAlpha="0.4"
+        android:pathData="M36.81,8.01 A26,26 0 1,0 59.31,45.52 A22,22 0 0,1 36.81,8.01 Z"/>
+    <path
+        android:fillColor="#FFFFFF"
+        android:fillAlpha="0.65"
+        android:pathData="M78,10 L79.68,14.32 L84,16 L79.68,17.68 L78,22 L76.32,17.68 L72,16 L76.32,14.32 Z"/>
+    <path
+        android:fillColor="#FFFFFF"
+        android:fillAlpha="0.45"
+        android:pathData="M92,40.5 L92.98,43.02 L95.5,44 L92.98,44.98 L92,47.5 L91.02,44.98 L88.5,44 L91.02,43.02 Z"/>
+    <path
+        android:fillColor="#FFFFFF"
+        android:fillAlpha="0.4"
+        android:pathData="M14,69 L14.84,71.16 L17,72 L14.84,72.84 L14,75 L13.16,72.84 L11,72 L13.16,71.16 Z"/>
+</vector>

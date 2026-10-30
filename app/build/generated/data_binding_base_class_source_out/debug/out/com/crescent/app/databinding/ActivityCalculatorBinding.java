@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
@@ -21,6 +22,9 @@ import java.lang.String;
 public final class ActivityCalculatorBinding implements ViewBinding {
   @NonNull
   private final LinearLayout rootView;
+
+  @NonNull
+  public final ImageButton backButton;
 
   @NonNull
   public final LinearLayout bottomBar;
@@ -55,12 +59,14 @@ public final class ActivityCalculatorBinding implements ViewBinding {
   @NonNull
   public final TextView summaryText;
 
-  private ActivityCalculatorBinding(@NonNull LinearLayout rootView, @NonNull LinearLayout bottomBar,
-      @NonNull EditText businessInput, @NonNull Button calculateButton,
-      @NonNull FrameLayout headerBar, @NonNull EditText investmentInput,
-      @NonNull EditText liabilityInput, @NonNull EditText nisabInput, @NonNull Button pdfButton,
-      @NonNull Button previousButton, @NonNull TextView resultText, @NonNull TextView summaryText) {
+  private ActivityCalculatorBinding(@NonNull LinearLayout rootView, @NonNull ImageButton backButton,
+      @NonNull LinearLayout bottomBar, @NonNull EditText businessInput,
+      @NonNull Button calculateButton, @NonNull FrameLayout headerBar,
+      @NonNull EditText investmentInput, @NonNull EditText liabilityInput,
+      @NonNull EditText nisabInput, @NonNull Button pdfButton, @NonNull Button previousButton,
+      @NonNull TextView resultText, @NonNull TextView summaryText) {
     this.rootView = rootView;
+    this.backButton = backButton;
     this.bottomBar = bottomBar;
     this.businessInput = businessInput;
     this.calculateButton = calculateButton;
@@ -101,6 +107,12 @@ public final class ActivityCalculatorBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
+      id = R.id.backButton;
+      ImageButton backButton = ViewBindings.findChildViewById(rootView, id);
+      if (backButton == null) {
+        break missingId;
+      }
+
       id = R.id.bottomBar;
       LinearLayout bottomBar = ViewBindings.findChildViewById(rootView, id);
       if (bottomBar == null) {
@@ -167,9 +179,9 @@ public final class ActivityCalculatorBinding implements ViewBinding {
         break missingId;
       }
 
-      return new ActivityCalculatorBinding((LinearLayout) rootView, bottomBar, businessInput,
-          calculateButton, headerBar, investmentInput, liabilityInput, nisabInput, pdfButton,
-          previousButton, resultText, summaryText);
+      return new ActivityCalculatorBinding((LinearLayout) rootView, backButton, bottomBar,
+          businessInput, calculateButton, headerBar, investmentInput, liabilityInput, nisabInput,
+          pdfButton, previousButton, resultText, summaryText);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

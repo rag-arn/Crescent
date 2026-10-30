@@ -1,6 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle">
-    <gradient android:angle="315" android:startColor="#F1ECD9" android:endColor="#DCE6D6"/>
-    <corners android:radius="16dp"/>
-    <stroke android:width="1dp" android:color="@color/sage_card_stroke"/>
-</shape>
+<!-- Hadith block background: cream -> sage gradient, golden crescent (left),
+     hanging lantern (right) and layered green hills along the bottom.
+     The banner view must use android:clipToOutline="true" so the hills follow the rounded corners. -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- 1. Rounded card with gradient -->
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:angle="270"
+                android:startColor="@color/sage_banner_top"
+                android:endColor="@color/sage_banner_bottom"/>
+            <corners android:radius="16dp"/>
+            <stroke android:width="1dp" android:color="@color/sage_card_stroke"/>
+        </shape>
+    </item>
+
+    <!-- 2. Crescent moon, left -->
+    <item
+        android:drawable="@drawable/bg_banner_moon"
+        android:gravity="top|left"
+        android:top="6dp"
+        android:left="6dp"/>
+
+    <!-- 3. Lantern, right -->
+    <item
+        android:drawable="@drawable/bg_banner_lantern"
+        android:gravity="top|right"
+        android:right="22dp"/>
+
+    <!-- 4. Hills, bottom (stretched across the full width) -->
+    <item
+        android:drawable="@drawable/bg_banner_hills"
+        android:gravity="fill_horizontal|bottom"/>
+
+</layer-list>

@@ -39,6 +39,7 @@ public class ResultActivity extends AppCompatActivity {
         Ui.insets(this, b.getRoot(), b.headerBar, b.bottomBar);
 
         b.infoButton.setOnClickListener(v -> InfoDialog.show(this, "About this estimate", NOTE));
+        b.backButton.setOnClickListener(v -> finish());
         b.previousButton.setOnClickListener(v -> finish());
         b.homeButton.setOnClickListener(v -> {
             Intent h = new Intent(this, MainActivity.class);

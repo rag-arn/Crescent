@@ -1,5 +1,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Install-Time and Runtime Permissions -->
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
     <application android:allowBackup="true" android:label="Crescent" android:theme="@style/Theme.Crescent" android:supportsRtl="true">
         <activity android:name=".HistoryActivity" android:exported="false"/>
         <activity android:name=".InfoActivity" android:exported="false"/>
@@ -13,18 +18,11 @@
         <activity android:name=".LoginActivity" android:exported="false"/>
         <activity android:name=".ExpertRegistrationActivity" android:exported="false"/>
         <activity android:name=".ExpertListActivity" android:exported="false"/>
-
-        <!-- NEW ACTIVITIES -->
         <activity android:name=".ProfileActivity" android:exported="false"/>
         <activity android:name=".NotificationsActivity" android:exported="false"/>
-
-        <activity android:name=".MainActivity" android:exported="true">
-            <intent-filter><action android:name="android.intent.action.MAIN"/><category android:name="android.intent.category.LAUNCHER"/></intent-filter>
-        </activity>
-
-        <!-- (Your other activities) -->
         <activity android:name=".ChatActivity" android:exported="false" android:windowSoftInputMode="adjustResize"/>
-        <activity android:name=".ChatListActivity" android:exported="false"/> <!-- NEW -->
+        <activity android:name=".ChatListActivity" android:exported="false"/>
+        <activity android:name=".AssetBreakdownActivity" android:exported="false"/>
 
         <activity android:name=".MainActivity" android:exported="true">
             <intent-filter><action android:name="android.intent.action.MAIN"/><category android:name="android.intent.category.LAUNCHER"/></intent-filter>

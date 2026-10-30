@@ -32,6 +32,7 @@ public class CommercialActivity extends AppCompatActivity {
 
         b.infoButton.setOnClickListener(v -> InfoDialog.show(this, "Commercial goods", INFO_TEXT));
 
+        b.backButton.setOnClickListener(v -> finish());
         b.previousButton.setOnClickListener(v -> finish());
         b.nextButton.setOnClickListener(v -> {
             Intent i = new Intent(this, NisabActivity.class);

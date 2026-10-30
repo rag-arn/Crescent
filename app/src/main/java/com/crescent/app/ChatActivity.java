@@ -18,6 +18,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.MetadataChanges;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.SetOptions;
 import java.text.SimpleDateFormat;
@@ -34,6 +35,22 @@ public class ChatActivity extends AppCompatActivity {
     private FirebaseFirestore db;
     private LinearLayout messagesContainer;
     private ScrollView chatScroll;
+
+    private boolean amIExpert = false;
+    private boolean isOtherExpert = false;
+
+    @Override protected void onResume() {
+        super.onResume();
+        MainActivity.activeRoomId = roomId;
+        if (roomId != null && currentUid != null) {
+            db.collection("chats").document(roomId).update("hasUnread_" + currentUid, false);
+        }
+    }
+
+    @Override protected void onPause() {
+        super.onPause();
+        MainActivity.activeRoomId = null;
+    }
 
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,7 +74,6 @@ public class ChatActivity extends AppCompatActivity {
 
         roomId = currentUid.compareTo(expertUid) < 0 ? currentUid + "_" + expertUid : expertUid + "_" + currentUid;
 
-        // Clear the unread dot for myself since I just opened the room
         db.collection("chats").document(roomId).update("hasUnread_" + currentUid, false);
 
         TextView nameView = findViewById(R.id.chatExpertName);
@@ -93,12 +109,41 @@ public class ChatActivity extends AppCompatActivity {
         });
 
         listenForMessages();
+        listenForExpertStatus();
+    }
+
+    private void listenForExpertStatus() {
+        db.collection("users").document(currentUid).addSnapshotListener((doc, e) -> {
+            if (doc != null && doc.exists()) {
+                amIExpert = Boolean.TRUE.equals(doc.getBoolean("isExpert"));
+                checkChatValidity();
+            }
+        });
+        db.collection("users").document(expertUid).addSnapshotListener((doc, e) -> {
+            if (doc != null && doc.exists()) {
+                isOtherExpert = Boolean.TRUE.equals(doc.getBoolean("isExpert"));
+                checkChatValidity();
+            }
+        });
+    }
+
+    private void checkChatValidity() {
+        View inputContainer = findViewById(R.id.inputContainer);
+        View expertResignedBanner = findViewById(R.id.expertResignedBanner);
+        if (inputContainer == null || expertResignedBanner == null) return;
+
+        if (amIExpert || isOtherExpert) {
+            inputContainer.setVisibility(View.VISIBLE);
+            expertResignedBanner.setVisibility(View.GONE);
+        } else {
+            inputContainer.setVisibility(View.GONE);
+            expertResignedBanner.setVisibility(View.VISIBLE);
+        }
     }
 
     private void sendMessage(String text) {
         long time = System.currentTimeMillis();
 
-        // 1. Save the actual message
         Map<String, Object> msg = new HashMap<>();
         msg.put("senderId", currentUid);
         msg.put("receiverId", expertUid);
@@ -106,20 +151,19 @@ public class ChatActivity extends AppCompatActivity {
         msg.put("timestamp", time);
         db.collection("chats").document(roomId).collection("messages").add(msg);
 
-        // 2. Update the Room Metadata for the Inbox List and Red Dots
         Map<String, Object> roomData = new HashMap<>();
         roomData.put("users", Arrays.asList(currentUid, expertUid));
         roomData.put("lastMessage", text);
         roomData.put("timestamp", time);
-        roomData.put("hasUnread_" + expertUid, true);  // Trigger red dot for them
-        roomData.put("hasUnread_" + currentUid, false); // Keep mine cleared
+        roomData.put("hasUnread_" + expertUid, true);
+        roomData.put("hasUnread_" + currentUid, false);
         db.collection("chats").document(roomId).set(roomData, SetOptions.merge());
     }
 
     private void listenForMessages() {
         db.collection("chats").document(roomId).collection("messages")
                 .orderBy("timestamp", Query.Direction.ASCENDING)
-                .addSnapshotListener((value, error) -> {
+                .addSnapshotListener(MetadataChanges.INCLUDE, (value, error) -> { // <-- THIS LINE FIXES THE CHECK MARK
                     if (error != null || value == null) return;
 
                     messagesContainer.removeAllViews();
@@ -135,6 +179,7 @@ public class ChatActivity extends AppCompatActivity {
                         TextView rightText = item.findViewById(R.id.rightMessageText);
                         TextView leftTime = item.findViewById(R.id.leftTimeText);
                         TextView rightTime = item.findViewById(R.id.rightTimeText);
+                        ImageView rightTick = item.findViewById(R.id.rightTick);
 
                         String senderId = doc.getString("senderId");
                         String text = doc.getString("text");
@@ -145,6 +190,12 @@ public class ChatActivity extends AppCompatActivity {
                             leftBubble.setVisibility(View.GONE);
                             rightText.setText(text);
                             rightTime.setText(timeStr);
+
+                            if (doc.getMetadata().hasPendingWrites()) {
+                                rightTick.setVisibility(View.GONE);
+                            } else {
+                                rightTick.setVisibility(View.VISIBLE);
+                            }
                         } else {
                             rightBubble.setVisibility(View.GONE);
                             leftText.setText(text);
@@ -154,7 +205,6 @@ public class ChatActivity extends AppCompatActivity {
                         messagesContainer.addView(item);
                     }
 
-                    // If I am in the room looking at a new message, automatically clear the dot
                     if (hasNewReceivedMessage) {
                         db.collection("chats").document(roomId).update("hasUnread_" + currentUid, false);
                     }
