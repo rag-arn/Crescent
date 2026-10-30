@@ -28,6 +28,7 @@ public class CashActivity extends AppCompatActivity {
                 "Enter all amounts in Bangladeshi Taka (৳).\n\n"
                         + "Cash payable is money you owe; it is deducted from your total assets.\n"
                         + "Cash receivable is money owed to you that you expect to receive; it is added to your assets."));
+        b.backButton.setOnClickListener(v -> finish());
         b.previousButton.setOnClickListener(v -> finish());
         b.nextButton.setOnClickListener(v -> {
             Intent i = new Intent(this, CommercialActivity.class);

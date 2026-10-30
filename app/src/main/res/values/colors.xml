@@ -20,4 +20,25 @@
     <color name="sage_text">#2F4A3C</color>
     <color name="sage_text_soft">#5F7566</color>
     <color name="sage_ornament">#FFFFFF</color>
+
+    <!-- Dashboard / activity background art -->
+    <color name="sage_mid">#DCE5D1</color>
+    <color name="sage_banner_top">#F4EFDD</color>
+    <color name="sage_banner_bottom">#D3E0CF</color>
+    <color name="sage_moon_gold">#D9C98F</color>
+    <color name="sage_lantern">#7E9A86</color>
+    <color name="sage_hill_back">#A9C1AE</color>
+    <color name="sage_hill_mid">#7FA08A</color>
+    <color name="sage_hill_front">#5A8068</color>
+
+    <!-- Buttons (lighter than before, still clearly tappable: ~4:1 with white text) -->
+    <color name="sage_btn">#5A8B70</color>
+    <color name="sage_btn_top">#6A9A7F</color>
+    <color name="sage_btn_bottom">#558468</color>
+    <color name="sage_btn_pressed">#4A7860</color>
+    <color name="sage_btn_disabled">#B9C9BE</color>
+
+    <!-- Soft green-tinted shadows (replace the harsh grey/black default) -->
+    <color name="sage_shadow_spot">#3F6450</color>
+    <color name="sage_shadow_ambient">#5E8470</color>
 </resources>

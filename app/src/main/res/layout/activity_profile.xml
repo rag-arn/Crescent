@@ -3,7 +3,6 @@
     android:id="@+id/rootLayout" android:orientation="vertical" android:background="@drawable/bg_dash_screen" android:layout_width="match_parent" android:layout_height="match_parent">
 
     <FrameLayout android:id="@+id/headerBar" android:layout_width="match_parent" android:layout_height="wrap_content">
-        <ImageView android:src="@drawable/ic_pattern_star" android:alpha="0.8" android:layout_gravity="end|top" android:importantForAccessibility="no" android:layout_width="160dp" android:layout_height="120dp"/>
         <LinearLayout android:orientation="horizontal" android:gravity="center_vertical" android:paddingStart="20dp" android:paddingEnd="10dp" android:paddingTop="42dp" android:paddingBottom="12dp" android:layout_width="match_parent" android:layout_height="wrap_content">
             <ImageButton android:id="@+id/backButton" style="?android:attr/borderlessButtonStyle" android:src="@drawable/ic_back_arrow" android:tint="@color/sage_text" android:layout_marginEnd="12dp" android:layout_width="44dp" android:layout_height="44dp"/>
             <TextView android:text="Your Profile" android:fontFamily="serif" android:textSize="26sp" android:textStyle="bold" android:textColor="@color/sage_text" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
@@ -17,7 +16,7 @@
                 <FrameLayout android:background="@drawable/bg_dash_logo_ring" android:layout_width="match_parent" android:layout_height="match_parent">
                     <ImageView android:id="@+id/profileImage" android:src="@drawable/ic_person" android:tint="@color/sage_text" android:scaleType="centerCrop" android:padding="22dp" android:layout_width="match_parent" android:layout_height="match_parent"/>
                 </FrameLayout>
-                <FrameLayout android:background="@drawable/bg_dash_btn" android:backgroundTint="@color/sage_button" android:layout_gravity="bottom|end" android:layout_marginBottom="4dp" android:layout_marginEnd="4dp" android:layout_width="32dp" android:layout_height="32dp" android:elevation="4dp">
+                <FrameLayout android:background="@drawable/bg_dash_btn" android:backgroundTint="@color/sage_button" android:layout_gravity="bottom|end" android:layout_marginBottom="4dp" android:layout_marginEnd="4dp" android:layout_width="32dp" android:layout_height="32dp" android:elevation="6dp" android:outlineSpotShadowColor="@color/sage_shadow_spot" android:outlineAmbientShadowColor="@color/sage_shadow_ambient">
                     <ImageView android:src="@android:drawable/ic_menu_camera" android:tint="#FFF" android:padding="6dp" android:layout_width="match_parent" android:layout_height="match_parent"/>
                 </FrameLayout>
             </FrameLayout>

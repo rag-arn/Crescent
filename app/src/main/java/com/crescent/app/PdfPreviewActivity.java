@@ -44,6 +44,7 @@ public class PdfPreviewActivity extends AppCompatActivity {
             return;
         }
 
+        b.backButton.setOnClickListener(v -> finish());
         b.discardButton.setOnClickListener(v -> finish());          // onDestroy removes the temp file
         b.downloadButton.setOnClickListener(v -> download());
         renderPages();

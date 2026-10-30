@@ -38,6 +38,7 @@ public class HistoryActivity extends AppCompatActivity {
         super.onCreate(state);
         setContentView(R.layout.activity_history);
         Ui.insets(this, findViewById(R.id.rootLayout), findViewById(R.id.headerBar), null);
+        findViewById(R.id.backButton).setOnClickListener(v -> finish());
 
         ListView listView = findViewById(R.id.historyList);
         View emptyCard = findViewById(R.id.emptyCard);

@@ -39,6 +39,7 @@ public class ResultActivity extends AppCompatActivity {
         Ui.insets(this, b.getRoot(), b.headerBar, b.bottomBar);
 
         b.infoButton.setOnClickListener(v -> InfoDialog.show(this, "About this estimate", NOTE));
+        b.backButton.setOnClickListener(v -> finish());
         b.previousButton.setOnClickListener(v -> finish());
         b.homeButton.setOnClickListener(v -> {
             Intent h = new Intent(this, MainActivity.class);
@@ -122,6 +123,7 @@ public class ResultActivity extends AppCompatActivity {
         });
 
         if (state == null) {
+            HawlTracker.onCalculation(getApplicationContext(), due);
             CrescentRepository repo = new CrescentRepository(getApplicationContext());
             StringBuilder plain = new StringBuilder("CRESCENT — ZAKAT ESTIMATE\n");
             for (String[] l : lines) {

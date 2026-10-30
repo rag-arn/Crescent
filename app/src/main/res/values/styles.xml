@@ -22,8 +22,10 @@
 
     <!-- Primary action -->
     <style name="Widget.Crescent.Button" parent="Widget.MaterialComponents.Button">
-        <item name="backgroundTint">@color/sage_text</item>
+        <item name="backgroundTint">@color/btn_primary_bg</item>
         <item name="android:textColor">#FFFFFF</item>
+        <item name="android:outlineSpotShadowColor">@color/sage_shadow_spot</item>
+        <item name="android:outlineAmbientShadowColor">@color/sage_shadow_ambient</item>
         <item name="cornerRadius">16dp</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textSize">14sp</item>
@@ -35,7 +37,8 @@
     </style>
     <!-- Secondary action -->
     <style name="Widget.Crescent.Button.Outlined" parent="Widget.MaterialComponents.Button.OutlinedButton">
-        <item name="strokeColor">@color/sage_text</item>
+        <item name="strokeColor">@color/sage_btn</item>
+        <item name="strokeWidth">1.5dp</item>
         <item name="android:textColor">@color/sage_text</item>
         <item name="cornerRadius">16dp</item>
         <item name="android:textStyle">bold</item>

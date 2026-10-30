@@ -1,10 +1,13 @@
 package com.crescent.app;
 
 import android.content.Intent;
+import android.graphics.Outline;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewOutlineProvider;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,6 +31,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText emailInput, passwordInput;
     private Button authActionBtn, googleSignInBtn, guestBtn;
     private ProgressBar loginProgress;
+    private ImageView logoImage;
 
     private boolean isLoginMode = true; // True = Sign In, False = Sign Up
 
@@ -61,6 +65,8 @@ public class LoginActivity extends AppCompatActivity {
         googleSignInBtn = findViewById(R.id.googleSignInBtn);
         guestBtn = findViewById(R.id.guestBtn);
         loginProgress = findViewById(R.id.loginProgress);
+        logoImage = findViewById(R.id.logoImage);
+        makeLogoRound();
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
@@ -117,6 +123,16 @@ public class LoginActivity extends AppCompatActivity {
                 else showError("Guest login failed.");
             });
         });
+    }
+
+    // Same circular clip used for the logo on the MainActivity dashboard
+    private void makeLogoRound() {
+        logoImage.setOutlineProvider(new ViewOutlineProvider() {
+            @Override public void getOutline(View view, Outline outline) {
+                outline.setOval(0, 0, view.getWidth(), view.getHeight());
+            }
+        });
+        logoImage.setClipToOutline(true);
     }
 
     private void updateAuthUI() {

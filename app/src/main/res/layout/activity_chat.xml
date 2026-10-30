@@ -9,7 +9,7 @@
     <!-- Header -->
     <FrameLayout android:id="@+id/headerBar"
         android:background="@color/sage_card"
-        android:elevation="4dp"
+        android:elevation="6dp" android:outlineSpotShadowColor="@color/sage_shadow_spot" android:outlineAmbientShadowColor="@color/sage_shadow_ambient"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <LinearLayout android:orientation="horizontal"
@@ -62,12 +62,13 @@
             android:layout_height="wrap_content"/>
     </ScrollView>
 
-    <!-- Input Bar -->
-    <LinearLayout android:orientation="horizontal"
+    <!-- Input Bar Container (Hidden if Expert Resigns) -->
+    <LinearLayout android:id="@+id/inputContainer"
+        android:orientation="horizontal"
         android:gravity="center_vertical"
         android:background="@color/sage_card"
         android:padding="12dp"
-        android:elevation="8dp"
+        android:elevation="8dp" android:outlineSpotShadowColor="@color/sage_shadow_spot" android:outlineAmbientShadowColor="@color/sage_shadow_ambient"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <EditText android:id="@+id/messageInput"
@@ -96,5 +97,24 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
         </FrameLayout>
+    </LinearLayout>
+
+    <!-- Resigned Banner (Shown if Expert Resigns) -->
+    <LinearLayout android:id="@+id/expertResignedBanner"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:background="@color/sage_card"
+        android:padding="16dp"
+        android:visibility="gone"
+        android:elevation="8dp" android:outlineSpotShadowColor="@color/sage_shadow_spot" android:outlineAmbientShadowColor="@color/sage_shadow_ambient"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView android:text="This conversation is read-only because the professional relationship has ended."
+            android:textSize="13sp"
+            android:textStyle="italic"
+            android:gravity="center"
+            android:textColor="@color/sage_text_soft"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
     </LinearLayout>
 </LinearLayout>

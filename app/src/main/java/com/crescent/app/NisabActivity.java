@@ -48,6 +48,7 @@ public class NisabActivity extends AppCompatActivity {
                 "Nisab is the minimum wealth at which Zakat becomes due. It equals the value of 87.48 g of gold (7.5 bhori) or 612.36 g of silver (52.5 bhori).\n\n"
                         + "Choose which one to use as your basis. The threshold is calculated from the price you set in the Gold or Silver step.\n\n"
                         + "The silver Nisab is lower, so more people reach it; the gold Nisab is higher. Scholars follow different opinions, so use the basis recommended by the scholar or method you follow."));
+        b.backButton.setOnClickListener(v -> finish());
         b.previousButton.setOnClickListener(v -> finish());
         b.calculateButton.setOnClickListener(v -> calculate());
     }

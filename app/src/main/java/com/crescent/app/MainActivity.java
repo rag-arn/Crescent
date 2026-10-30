@@ -1,12 +1,18 @@
 package com.crescent.app;
 
+import android.Manifest;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.Outline;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Base64;
 import android.view.Gravity;
@@ -14,9 +20,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewOutlineProvider;
 import android.widget.FrameLayout;
+import android.widget.RemoteViews;
 import android.widget.Toast;
 import androidx.activity.OnBackPressedCallback;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
+import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowCompat;
@@ -24,14 +36,12 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.core.view.WindowInsetsControllerCompat;
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
 import com.crescent.app.databinding.ActivityMainBinding;
-
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-
 import org.json.JSONObject;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -39,7 +49,9 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.time.chrono.HijrahDate;
+import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoField;
 import java.util.Calendar;
 import java.util.Date;
@@ -52,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
     private static final float MENU_WIDTH_FRACTION = 0.78f;
     private static final long ANIM_DURATION_MS = 320L;
     private static final float GAUGE_CALCULATED = 0.75f;
+    private static final int NOTIF_PERMISSION_CODE = 101;
 
     private ActivityMainBinding b;
     private CrescentRepository repo;
@@ -66,10 +79,16 @@ public class MainActivity extends AppCompatActivity {
     private OnBackPressedCallback backCallback;
     private WindowInsetsControllerCompat insetsController;
 
+    public static String activeRoomId = null;
+    private boolean isFirstNotifLoad = true;
+    private boolean isFirstChatLoad = true;
+
     private String taka(double v) { return nf.format(Math.round(v)); }
 
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        requestStartupPermissions();
 
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = mAuth.getCurrentUser();
@@ -104,8 +123,7 @@ public class MainActivity extends AppCompatActivity {
         data.put("email", email);
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        db.collection("users").document(currentUser.getUid())
-                .set(data, com.google.firebase.firestore.SetOptions.merge());
+        db.collection("users").document(currentUser.getUid()).set(data, com.google.firebase.firestore.SetOptions.merge());
 
         db.collection("users").document(currentUser.getUid()).get().addOnSuccessListener(doc -> {
             if (doc.exists()) {
@@ -131,10 +149,33 @@ public class MainActivity extends AppCompatActivity {
         listenForNotifications();
     }
 
+    // SYLLABUS: Request Notifications Permission only
+    private void requestStartupPermissions() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.POST_NOTIFICATIONS}, NOTIF_PERMISSION_CODE);
+            }
+        }
+    }
+
+    // SYLLABUS: onRequestPermissionsResult
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == NOTIF_PERMISSION_CODE) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Toast.makeText(this, "Notifications Enabled", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
     @Override protected void onResume() {
         super.onResume();
         if (mAuth != null && mAuth.getCurrentUser() != null) {
             loadDashboard();
+            HawlTracker.schedule(this);       // keep the due-day reminder scheduled
+            HawlTracker.notifyIfDue(this);    // covers the case where the alarm could not fire
+            updateHawl();
         }
     }
 
@@ -283,18 +324,26 @@ public class MainActivity extends AppCompatActivity {
     private void soon(String what) { Toast.makeText(this, what + " is coming soon.", Toast.LENGTH_SHORT).show(); }
 
     private void setupClicks() {
-        b.dashboard.payNowBtn.setOnClickListener(v -> soon("Payment Gateway"));
-        b.dashboard.detailedBreakdownBtn.setOnClickListener(v -> startActivity(new Intent(this, HistoryActivity.class)));
+        // Redirection to As-Sunnah Foundation for Zakat payment
+        b.dashboard.payNowBtn.setOnClickListener(v -> {
+            try {
+                startActivity(new Intent(Intent.ACTION_VIEW, android.net.Uri.parse("https://assunnahfoundation.org/")));
+            } catch (Exception e) {
+                Toast.makeText(this, "Could not open browser.", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        b.dashboard.detailedBreakdownBtn.setOnClickListener(v -> startActivity(new Intent(this, AssetBreakdownActivity.class)));
 
         b.dashboard.gridCalculate.setOnClickListener(v -> startActivity(new Intent(this, GoldActivity.class)));
         b.dashboard.gridHistory.setOnClickListener(v -> startActivity(new Intent(this, HistoryActivity.class)));
-        b.dashboard.gridAssets.setOnClickListener(v -> soon("Asset Breakdown"));
+        b.dashboard.gridAssets.setOnClickListener(v -> startActivity(new Intent(this, AssetBreakdownActivity.class)));
         b.dashboard.gridChat.setOnClickListener(v -> startActivity(new Intent(this, ExpertListActivity.class)));
 
         b.dashboard.navHome.setOnClickListener(v -> { /* already here */ });
         b.dashboard.navCalculate.setOnClickListener(v -> startActivity(new Intent(this, GoldActivity.class)));
         b.dashboard.navChat.setOnClickListener(v -> startActivity(new Intent(this, ChatListActivity.class)));
-        b.dashboard.navSettings.setOnClickListener(v -> soon("Settings"));
+        b.dashboard.navSettings.setOnClickListener(v -> startActivity(new Intent(this, SettingsActivity.class)));
 
         b.dashboard.notifButton.setOnClickListener(v -> startActivity(new Intent(this, NotificationsActivity.class)));
 
@@ -308,7 +357,7 @@ public class MainActivity extends AppCompatActivity {
         b.slideMenu.menuHistory.setOnClickListener(v -> closeMenu(() -> startActivity(new Intent(this, HistoryActivity.class))));
 
         b.slideMenu.menuBecomeExpert.setOnClickListener(v -> closeMenu(() -> startActivity(new Intent(this, ExpertRegistrationActivity.class))));
-        b.slideMenu.menuSettings.setOnClickListener(v -> closeMenu(() -> soon("Settings")));
+        b.slideMenu.menuSettings.setOnClickListener(v -> closeMenu(() -> startActivity(new Intent(this, SettingsActivity.class))));
 
         b.slideMenu.menuSignOut.setOnClickListener(v -> closeMenu(() -> {
             mAuth.signOut();
@@ -326,27 +375,103 @@ public class MainActivity extends AppCompatActivity {
             FirebaseFirestore db = FirebaseFirestore.getInstance();
             String uid = user.getUid();
 
-            // 1. System Notifications (Top Right Bell)
             db.collection("users").document(uid).collection("notifications")
                     .whereEqualTo("read", false).addSnapshotListener((value, error) -> {
-                        if (value != null && !value.isEmpty()) b.dashboard.notifDot.setVisibility(View.VISIBLE);
-                        else b.dashboard.notifDot.setVisibility(View.GONE);
+                        if (value == null) return;
+                        b.dashboard.notifDot.setVisibility(value.isEmpty() ? View.GONE : View.VISIBLE);
+
+                        if (!isFirstNotifLoad) {
+                            for (com.google.firebase.firestore.DocumentChange dc : value.getDocumentChanges()) {
+                                if (dc.getType() == com.google.firebase.firestore.DocumentChange.Type.ADDED) {
+                                    String title = dc.getDocument().getString("title");
+                                    String msg = dc.getDocument().getString("message");
+                                    showSystemNotification(title != null ? title : "Crescent Alert", msg != null ? msg : "You have a new update.", dc.getDocument().getId().hashCode());
+                                }
+                            }
+                        }
+                        isFirstNotifLoad = false;
                     });
 
-            // 2. Chat Messages (Bottom Nav Chat Icon) - Bypassing Index requirement!
             db.collection("chats")
                     .whereArrayContains("users", uid)
                     .addSnapshotListener((value, error) -> {
                         if (value == null || error != null) return;
+
                         boolean hasUnread = false;
-                        for (DocumentSnapshot doc : value.getDocuments()) {
-                            if (Boolean.TRUE.equals(doc.getBoolean("hasUnread_" + uid))) {
-                                hasUnread = true;
-                                break;
+                        for (com.google.firebase.firestore.DocumentChange dc : value.getDocumentChanges()) {
+                            DocumentSnapshot doc = dc.getDocument();
+                            boolean roomHasUnread = Boolean.TRUE.equals(doc.getBoolean("hasUnread_" + uid));
+
+                            if (roomHasUnread) hasUnread = true;
+
+                            if (!isFirstChatLoad && roomHasUnread && !doc.getId().equals(activeRoomId)) {
+                                if (dc.getType() == com.google.firebase.firestore.DocumentChange.Type.MODIFIED || dc.getType() == com.google.firebase.firestore.DocumentChange.Type.ADDED) {
+                                    String msg = doc.getString("lastMessage");
+                                    showSystemNotification("New Message", msg != null ? msg : "You received a new message.", doc.getId().hashCode());
+                                }
                             }
                         }
                         b.dashboard.chatDot.setVisibility(hasUnread ? View.VISIBLE : View.GONE);
+                        isFirstChatLoad = false;
                     });
+        }
+    }
+
+    // SYLLABUS: NotificationManagerCompat, Builder, Channel, RemoteViews, Intent, PendingIntent,
+    // setSmallIcon, setContentTitle, setContentText, setContentIntent, setAutoCancel, setPriority (Heads-Up), VISIBILITY_PUBLIC (Lock-Screen), notify()
+    private void showSystemNotification(String title, String message, int notifId) {
+        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
+        String channelId = "crescent_alerts";
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel channel = new NotificationChannel(
+                    channelId, "Crescent Alerts", NotificationManager.IMPORTANCE_HIGH); // IMPORTANCE_HIGH forces Heads-Up notification
+            channel.setLockscreenVisibility(android.app.Notification.VISIBILITY_PUBLIC); // Fulfills Lock-Screen Requirement
+            notificationManager.createNotificationChannel(channel);
+        }
+
+        Intent intent = new Intent(this, MainActivity.class);
+        PendingIntent pendingIntent = PendingIntent.getActivity(
+                this, 0, intent, PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT);
+
+        // Fulfills the RemoteViews Custom Notification Layout requirement
+        RemoteViews customView = new RemoteViews(getPackageName(), R.layout.custom_notification);
+        customView.setTextViewText(R.id.notifTitle, title);
+        customView.setTextViewText(R.id.notifText, message);
+
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, channelId)
+                .setSmallIcon(R.drawable.ic_bell)
+                .setContentTitle(title)
+                .setContentText(message)
+                .setStyle(new NotificationCompat.DecoratedCustomViewStyle())
+                .setCustomContentView(customView)
+                .setPriority(NotificationCompat.PRIORITY_MAX)
+                .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
+                .setAutoCancel(true)
+                .setContentIntent(pendingIntent);
+
+        // Final runtime permission check before executing notify()
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED) {
+            notificationManager.notify(notifId, builder.build());
+        }
+    }
+
+    /** Lunar-year (hawl) progress bar, days remaining and due date in the Zakat Status card. */
+    private void updateHawl() {
+        HawlTracker.State h = HawlTracker.state(this);
+        DateTimeFormatter f = DateTimeFormatter.ofPattern("dd MMM yyyy", Locale.getDefault());
+        if (!h.active) {
+            b.dashboard.hawlDaysText.setText("Not started");
+            b.dashboard.hawlProgress.setProgress(0);
+            b.dashboard.hawlDueText.setText("The lunar-year count begins once a calculation shows your wealth is at or above the Nisab.");
+        } else if (h.complete) {
+            b.dashboard.hawlDaysText.setText("Zakat is due now");
+            b.dashboard.hawlProgress.setProgress(1000, true);
+            b.dashboard.hawlDueText.setText("One lunar year was completed on " + LocalDate.ofEpochDay(h.dueDay).format(f) + ".");
+        } else {
+            b.dashboard.hawlDaysText.setText(h.remainingDays + (h.remainingDays == 1 ? " day remaining" : " days remaining"));
+            b.dashboard.hawlProgress.setProgress(Math.round(h.progress * 1000f), true);
+            b.dashboard.hawlDueText.setText("Zakat becomes due on " + LocalDate.ofEpochDay(h.dueDay).format(f) + ".");
         }
     }
 

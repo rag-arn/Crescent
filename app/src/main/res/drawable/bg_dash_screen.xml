@@ -1,9 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle">
-    <gradient
-        android:angle="270"
-        android:startColor="@color/sage_top"
-        android:centerColor="@color/sage_bottom"
-        android:endColor="@color/sage_bottom"
-        android:centerY="0.38"/>
-</shape>
+<!-- Shared background of the dashboard and every activity:
+     cream page, a solid sage-green area that ends in a semicircular curve
+     (behind the top card), a faint crescent + sparkles, and the geometric
+     star pattern in the top-right corner. -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- 1. Cream page -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@color/sage_bottom"/>
+        </shape>
+    </item>
+
+    <!-- 2. Green area with semicircular bottom edge (full width, intrinsic height) -->
+    <item
+        android:drawable="@drawable/bg_green_arc"
+        android:gravity="top|fill_horizontal"/>
+
+    <!-- 3. Faint crescent + sparkles -->
+    <item
+        android:drawable="@drawable/bg_sky_moon"
+        android:gravity="top|right"
+        android:top="14dp"
+        android:right="60dp"/>
+
+    <!-- 4. Geometric pattern, top-right corner -->
+    <item
+        android:drawable="@drawable/bg_pattern_geometric"
+        android:gravity="top|right"/>
+
+</layer-list>
