@@ -1,16 +1,22 @@
 package com.crescent.app;
 
 import android.Manifest;
-import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.graphics.Outline;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.InsetDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Base64;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.ViewOutlineProvider;
+import android.view.Window;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -36,13 +42,11 @@ public class ProfileActivity extends AppCompatActivity {
     private FirebaseFirestore db;
     private static final int CAMERA_PERMISSION_CODE = 105;
 
-    // Launcher for Gallery
     private final ActivityResultLauncher<String> imagePicker = registerForActivityResult(
             new ActivityResultContracts.GetContent(), uri -> {
                 if (uri != null) processAndUploadUri(uri);
             });
 
-    // Launcher for Camera
     private final ActivityResultLauncher<Void> cameraLauncher = registerForActivityResult(
             new ActivityResultContracts.TakePicturePreview(), bitmap -> {
                 if (bitmap != null) processAndUploadBitmap(bitmap);
@@ -102,39 +106,64 @@ public class ProfileActivity extends AppCompatActivity {
                 }
             });
 
-            resignBtn.setOnClickListener(v -> new AlertDialog.Builder(this)
-                    .setTitle("Resign as Expert")
-                    .setMessage("Are you sure you want to resign? You will be removed from the directory.")
-                    .setPositiveButton("Resign", (d, w) -> {
-                        db.collection("users").document(user.getUid()).update("isExpert", false).addOnSuccessListener(a -> {
-                            ratingLayout.setVisibility(View.GONE);
-                            Toast.makeText(this, "Resigned from expert directory.", Toast.LENGTH_LONG).show();
-                        });
-                    })
-                    .setNegativeButton("Cancel", null)
-                    .show());
+            resignBtn.setOnClickListener(v -> showResignDialog(ratingLayout));
         }
     }
 
     private void showImageOptions() {
-        CharSequence[] options = {"Take Photo", "Choose from Gallery", "Cancel"};
-        new AlertDialog.Builder(this)
-                .setTitle("Update Profile Picture")
-                .setItems(options, (dialog, which) -> {
-                    if (which == 0) {
-                        // SYLLABUS: Check Runtime Permission (Camera)
-                        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-                            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, CAMERA_PERMISSION_CODE);
-                        } else {
-                            cameraLauncher.launch(null);
-                        }
-                    } else if (which == 1) {
-                        imagePicker.launch("image/*");
-                    }
-                }).show();
+        Dialog dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.dialog_image_picker);
+
+        Window w = dialog.getWindow();
+        if (w != null) {
+            int margin = Math.round(24 * getResources().getDisplayMetrics().density);
+            w.setBackgroundDrawable(new InsetDrawable(new ColorDrawable(Color.TRANSPARENT), margin));
+            w.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        }
+
+        dialog.findViewById(R.id.btnCamera).setOnClickListener(v -> {
+            dialog.dismiss();
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, CAMERA_PERMISSION_CODE);
+            } else {
+                cameraLauncher.launch(null);
+            }
+        });
+
+        dialog.findViewById(R.id.btnGallery).setOnClickListener(v -> {
+            dialog.dismiss();
+            imagePicker.launch("image/*");
+        });
+
+        dialog.findViewById(R.id.btnCancel).setOnClickListener(v -> dialog.dismiss());
+        dialog.show();
     }
 
-    // SYLLABUS: onRequestPermissionsResult, Handling Granted/Denied, Toast messages
+    private void showResignDialog(View ratingLayout) {
+        Dialog dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.dialog_resign);
+
+        Window w = dialog.getWindow();
+        if (w != null) {
+            int margin = Math.round(24 * getResources().getDisplayMetrics().density);
+            w.setBackgroundDrawable(new InsetDrawable(new ColorDrawable(Color.TRANSPARENT), margin));
+            w.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        }
+
+        dialog.findViewById(R.id.cancelBtn).setOnClickListener(v -> dialog.dismiss());
+        dialog.findViewById(R.id.resignBtn).setOnClickListener(v -> {
+            db.collection("users").document(user.getUid()).update("isExpert", false).addOnSuccessListener(a -> {
+                ratingLayout.setVisibility(View.GONE);
+                Toast.makeText(this, "Resigned from expert directory.", Toast.LENGTH_LONG).show();
+            });
+            dialog.dismiss();
+        });
+
+        dialog.show();
+    }
+
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);

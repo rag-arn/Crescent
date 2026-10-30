@@ -13,17 +13,17 @@ import android.os.Build;
 import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.SetOptions;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.chrono.HijrahDate;
 import java.time.temporal.ChronoUnit;
+import java.util.HashMap;
+import java.util.Map;
 
-/**
- * Tracks the hawl (one lunar year) that must pass while wealth stays at or above the Nisab.
- *  - A calculation that reaches the Nisab starts the count (if one is not already running).
- *  - A calculation below the Nisab cancels it, because the wealth did not stay above the Nisab.
- *  - When the lunar year is complete, a notification tells the user that Zakat is due.
- */
 final class HawlTracker {
     private HawlTracker() {}
 
@@ -31,42 +31,91 @@ final class HawlTracker {
     private static final String PREFS = "crescent_hawl";
     private static final String KEY_START = "start_epoch_day";
     private static final String KEY_NOTIFIED = "due_notified";
-    private static final String CHANNEL_ID = "crescent_alerts";   // same channel as the other alerts
+    private static final String CHANNEL_ID = "crescent_alerts";
     private static final int NOTIF_ID = 7001;
     private static final long FALLBACK_LUNAR_YEAR_DAYS = 354;
 
-    /** Snapshot of the current hawl, ready for the dashboard. */
     static final class State {
         boolean active, complete;
         long startDay, dueDay, totalDays, elapsedDays, remainingDays;
-        float progress;   // 0..1
+        float progress;
     }
 
     private static SharedPreferences prefs(Context c) {
         return c.getApplicationContext().getSharedPreferences(PREFS, Context.MODE_PRIVATE);
     }
 
-    /** Call after every new calculation. eligible = net wealth reached the Nisab. */
+    private static String getUid() {
+        FirebaseUser u = FirebaseAuth.getInstance().getCurrentUser();
+        return (u != null && !u.isAnonymous()) ? u.getUid() : null;
+    }
+
+    static void syncFromCloud(Context ctx, Runnable onComplete) {
+        String uid = getUid();
+        if (uid == null) { if (onComplete != null) onComplete.run(); return; }
+
+        FirebaseFirestore.getInstance().collection("users").document(uid).get().addOnSuccessListener(doc -> {
+            if (doc.exists()) {
+                SharedPreferences p = prefs(ctx);
+                Boolean active = doc.getBoolean("hawlActive");
+                Long startDay = doc.getLong("hawlStartDay");
+
+                if (Boolean.TRUE.equals(active) && startDay != null) {
+                    if (p.getLong(KEY_START, 0) != startDay) {
+                        p.edit().putLong(KEY_START, startDay).putBoolean(KEY_NOTIFIED, false).apply();
+                    }
+                } else {
+                    p.edit().clear().apply();
+                    cancelAlarm(ctx);
+                }
+            }
+            if (onComplete != null) onComplete.run();
+        }).addOnFailureListener(e -> {
+            if (onComplete != null) onComplete.run();
+        });
+    }
+
     static void onCalculation(Context ctx, boolean eligible) {
         SharedPreferences p = prefs(ctx);
+        String uid = getUid();
+
         if (eligible) {
             if (!p.contains(KEY_START)) {
-                p.edit().putLong(KEY_START, LocalDate.now().toEpochDay()).putBoolean(KEY_NOTIFIED, false).apply();
+                long today = LocalDate.now().toEpochDay();
+                p.edit().putLong(KEY_START, today).putBoolean(KEY_NOTIFIED, false).apply();
+                if (uid != null) {
+                    Map<String, Object> data = new HashMap<>();
+                    data.put("hawlStartDay", today);
+                    data.put("hawlActive", true);
+                    FirebaseFirestore.getInstance().collection("users").document(uid).set(data, SetOptions.merge());
+                }
             }
         } else {
             p.edit().clear().apply();
             cancelAlarm(ctx);
+            if (uid != null) {
+                Map<String, Object> data = new HashMap<>();
+                data.put("hawlStartDay", null);
+                data.put("hawlActive", false);
+                FirebaseFirestore.getInstance().collection("users").document(uid).set(data, SetOptions.merge());
+            }
         }
         schedule(ctx);
     }
 
-    /** Starts a fresh lunar year from today. Call this once Zakat has been paid. */
     static void startNewCycle(Context ctx) {
-        prefs(ctx).edit().putLong(KEY_START, LocalDate.now().toEpochDay()).putBoolean(KEY_NOTIFIED, false).apply();
+        long today = LocalDate.now().toEpochDay();
+        prefs(ctx).edit().putLong(KEY_START, today).putBoolean(KEY_NOTIFIED, false).apply();
+        String uid = getUid();
+        if (uid != null) {
+            Map<String, Object> data = new HashMap<>();
+            data.put("hawlStartDay", today);
+            data.put("hawlActive", true);
+            FirebaseFirestore.getInstance().collection("users").document(uid).set(data, SetOptions.merge());
+        }
         schedule(ctx);
     }
 
-    /** Same Hijri date one lunar year later (about 354 days). */
     static long dueDay(long startDay) {
         try {
             HijrahDate start = HijrahDate.from(LocalDate.ofEpochDay(startDay));
@@ -93,8 +142,6 @@ final class HawlTracker {
         return s;
     }
 
-    // ---------- alarm (delivers the notification even if the app is closed) ----------
-
     private static PendingIntent alarmIntent(Context ctx) {
         Intent i = new Intent(ctx, HawlReceiver.class).setAction(ACTION_DUE);
         return PendingIntent.getBroadcast(ctx.getApplicationContext(), 0, i, PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT);
@@ -105,20 +152,16 @@ final class HawlTracker {
         if (am != null) am.cancel(alarmIntent(ctx));
     }
 
-    /** (Re)schedules the reminder for 9:00 on the due day. Safe to call repeatedly. */
     static void schedule(Context ctx) {
         State s = state(ctx);
         AlarmManager am = (AlarmManager) ctx.getSystemService(Context.ALARM_SERVICE);
         if (am == null) return;
         if (!s.active || prefs(ctx).getBoolean(KEY_NOTIFIED, false)) { cancelAlarm(ctx); return; }
         long trigger = LocalDate.ofEpochDay(s.dueDay).atTime(9, 0).atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
-        if (trigger <= System.currentTimeMillis()) { cancelAlarm(ctx); return; }   // already due: notifyIfDue() handles it
-        am.setAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, trigger, alarmIntent(ctx));  // inexact, needs no special permission
+        if (trigger <= System.currentTimeMillis()) { cancelAlarm(ctx); return; }
+        am.setAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, trigger, alarmIntent(ctx));
     }
 
-    // ---------- notification ----------
-
-    /** Posts the "Zakat is due" notification once, when the lunar year is complete. */
     static void notifyIfDue(Context ctx) {
         Context app = ctx.getApplicationContext();
         State s = state(app);
@@ -127,7 +170,7 @@ final class HawlTracker {
 
         if (Build.VERSION.SDK_INT >= 33
                 && ActivityCompat.checkSelfPermission(app, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
-            return;   // try again next time the app opens
+            return;
         }
 
         NotificationManagerCompat nm = NotificationManagerCompat.from(app);

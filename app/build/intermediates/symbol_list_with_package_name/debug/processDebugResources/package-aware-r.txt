@@ -3242,6 +3242,9 @@ id browser_actions_menu_item_icon
 id browser_actions_menu_item_text
 id browser_actions_menu_items
 id browser_actions_menu_view
+id btnCamera
+id btnCancel
+id btnGallery
 id businessInput
 id buttonPanel
 id calculateButton
@@ -3605,6 +3608,8 @@ id progress_circular
 id progress_horizontal
 id puritySpinner
 id radio
+id rateTitleText
+id ratingBar
 id ratio
 id rectangles
 id refreshPriceButton
@@ -3658,6 +3663,7 @@ id showHome
 id showTitle
 id silverOption
 id sin
+id skipBtn
 id skipCollapsed
 id slide
 id slideMenu
@@ -3926,7 +3932,10 @@ layout design_navigation_menu_item
 layout design_text_input_end_icon
 layout design_text_input_start_icon
 layout dialog_expert_confirm
+layout dialog_image_picker
 layout dialog_info
+layout dialog_rate_expert
+layout dialog_resign
 layout ime_base_split_test_activity
 layout ime_secondary_split_test_activity
 layout item_chat

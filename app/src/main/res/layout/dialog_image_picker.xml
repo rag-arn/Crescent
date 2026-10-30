@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:padding="20dp" android:background="@drawable/bg_dash_card"
+    android:layout_width="match_parent" android:layout_height="wrap_content">
+
+    <TextView android:text="Update Profile Picture" android:textSize="18sp" android:textStyle="bold" android:textColor="@color/sage_text" android:layout_marginBottom="20dp" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+
+    <LinearLayout android:id="@+id/btnCamera" android:orientation="horizontal" android:gravity="center_vertical" android:padding="12dp" android:clickable="true" android:focusable="true" android:foreground="?attr/selectableItemBackground" android:layout_marginBottom="8dp" android:layout_width="match_parent" android:layout_height="wrap_content">
+        <ImageView android:src="@android:drawable/ic_menu_camera" android:tint="@color/sage_button" android:layout_width="24dp" android:layout_height="24dp"/>
+        <TextView android:text="Take Photo" android:textSize="16sp" android:textColor="@color/sage_text" android:layout_marginStart="16dp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    <LinearLayout android:id="@+id/btnGallery" android:orientation="horizontal" android:gravity="center_vertical" android:padding="12dp" android:clickable="true" android:focusable="true" android:foreground="?attr/selectableItemBackground" android:layout_marginBottom="16dp" android:layout_width="match_parent" android:layout_height="wrap_content">
+        <ImageView android:src="@android:drawable/ic_menu_gallery" android:tint="@color/sage_button" android:layout_width="24dp" android:layout_height="24dp"/>
+        <TextView android:text="Choose from Gallery" android:textSize="16sp" android:textColor="@color/sage_text" android:layout_marginStart="16dp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    <Button android:id="@+id/btnCancel" style="@style/Widget.Crescent.Button.Text" android:text="Cancel" android:layout_gravity="end" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+</LinearLayout>
