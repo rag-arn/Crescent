@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:padding="20dp" android:background="@drawable/bg_dash_card"
+    android:layout_width="match_parent" android:layout_height="wrap_content">
+
+    <TextView android:id="@+id/shareTitle" android:textSize="18sp" android:textStyle="bold" android:textColor="@color/sage_text"
+        android:layout_width="match_parent" android:layout_height="wrap_content"/>
+    <TextView android:id="@+id/shareNumber" android:textSize="13sp" android:textColor="@color/sage_text_soft"
+        android:layout_marginTop="2dp" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+
+    <TextView android:text="Message preview" android:textSize="11sp" android:textStyle="bold" android:textAllCaps="true" android:letterSpacing="0.08" android:textColor="@color/sage_text_soft"
+        android:layout_marginTop="14dp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+    <ScrollView android:layout_marginTop="6dp" android:padding="12dp" android:background="@drawable/bg_input" android:layout_width="match_parent" android:layout_height="190dp">
+        <TextView android:id="@+id/sharePreview" android:textSize="13sp" android:textColor="@color/sage_text" android:lineSpacingExtra="3dp"
+            android:layout_width="match_parent" android:layout_height="wrap_content"/>
+    </ScrollView>
+
+    <CheckBox android:id="@+id/includeBreakdownCheckbox" android:text="Include full breakdown (gold, cash, goods, etc.)" android:textSize="14sp" android:textColor="@color/sage_text"
+        android:buttonTint="@color/sage_button" android:layout_marginTop="8dp" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+    <TextView android:text="Nothing is sent automatically. Your messages app opens so you can review and send it yourself."
+        android:textSize="12sp" android:textColor="@color/sage_text_soft" android:lineSpacingExtra="2dp" android:layout_marginTop="4dp"
+        android:layout_width="match_parent" android:layout_height="wrap_content"/>
+
+    <LinearLayout android:orientation="horizontal" android:layout_marginTop="18dp" android:layout_width="match_parent" android:layout_height="wrap_content">
+        <Button android:id="@+id/shareCancelBtn" style="@style/Widget.Crescent.Button.Outlined" android:text="Cancel" android:layout_marginEnd="6dp"
+            android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content"/>
+        <Button android:id="@+id/shareConfirmBtn" style="@style/Widget.Crescent.Button" android:text="Open messages" android:layout_marginStart="6dp"
+            android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content"/>
+    </LinearLayout>
+</LinearLayout>

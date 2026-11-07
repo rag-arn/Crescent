@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Shared background of the dashboard and every activity:
-     cream page, a solid sage-green area that ends in a semicircular curve
-     (behind the top card), a faint crescent + sparkles, and the geometric
-     star pattern in the top-right corner. -->
+     cream page + the green ornamental header (gradient, rosettes, crescents, domes)
+     whose bottom edge is a scalloped curve with a light stroke band.
+     bg_green_arc is stretched to the full width and keeps its own height. -->
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!-- 1. Cream page -->
@@ -12,21 +12,9 @@
         </shape>
     </item>
 
-    <!-- 2. Green area with semicircular bottom edge (full width, intrinsic height) -->
+    <!-- 2. Green header with all ornaments -->
     <item
         android:drawable="@drawable/bg_green_arc"
         android:gravity="top|fill_horizontal"/>
-
-    <!-- 3. Faint crescent + sparkles -->
-    <item
-        android:drawable="@drawable/bg_sky_moon"
-        android:gravity="top|right"
-        android:top="14dp"
-        android:right="60dp"/>
-
-    <!-- 4. Geometric pattern, top-right corner -->
-    <item
-        android:drawable="@drawable/bg_pattern_geometric"
-        android:gravity="top|right"/>
 
 </layer-list>

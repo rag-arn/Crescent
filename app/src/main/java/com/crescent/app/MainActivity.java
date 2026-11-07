@@ -35,12 +35,20 @@ import androidx.core.view.WindowCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.core.view.WindowInsetsControllerCompat;
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
+import androidx.work.Constraints;
+import androidx.work.ExistingPeriodicWorkPolicy;
+import androidx.work.NetworkType;
+import androidx.work.PeriodicWorkRequest;
+import androidx.work.WorkManager;
 import com.crescent.app.databinding.ActivityMainBinding;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import org.json.JSONObject;
 import java.io.BufferedReader;
@@ -59,6 +67,7 @@ import java.util.Locale;
 import java.util.Random;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 public class MainActivity extends AppCompatActivity {
     private static final float MENU_WIDTH_FRACTION = 0.78f;
@@ -85,19 +94,32 @@ public class MainActivity extends AppCompatActivity {
 
     private String taka(double v) { return nf.format(Math.round(v)); }
 
+    private final android.content.BroadcastReceiver dynamicSyncReceiver = new android.content.BroadcastReceiver() {
+        @Override
+        public void onReceive(android.content.Context context, Intent intent) {
+            if ("com.crescent.app.SYNC_COMPLETE".equals(intent.getAction())) {
+                fetchRandomHadith();
+                Toast.makeText(context, "Market data updated in background", Toast.LENGTH_SHORT).show();
+            }
+        }
+    };
+
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         requestStartupPermissions();
 
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = mAuth.getCurrentUser();
 
         if (currentUser == null) {
-            startActivity(new Intent(this, LoginActivity.class));
+            Intent login = new Intent(this, LoginActivity.class);
+            if (getIntent().getData() != null) login.setData(getIntent().getData());
+            startActivity(login);
             finish();
             return;
         }
+
+        if (savedInstanceState == null) handleDeepLink(getIntent());
 
         b = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(b.getRoot());
@@ -147,22 +169,73 @@ public class MainActivity extends AppCompatActivity {
         setDates();
         fetchRandomHadith();
         listenForNotifications();
+
+        PeriodicWorkRequest syncRequest = new PeriodicWorkRequest.Builder(DataSyncWorker.class, 24, TimeUnit.HOURS)
+                .setConstraints(new Constraints.Builder()
+                        .setRequiredNetworkType(NetworkType.CONNECTED)
+                        .setRequiresBatteryNotLow(true)
+                        .build())
+                .build();
+        WorkManager.getInstance(this).enqueueUniquePeriodicWork("DailyCrescentSync", ExistingPeriodicWorkPolicy.KEEP, syncRequest);
+    }
+
+    @Override protected void onStart() {
+        super.onStart();
+        android.content.IntentFilter filter = new android.content.IntentFilter("com.crescent.app.SYNC_COMPLETE");
+        ContextCompat.registerReceiver(this, dynamicSyncReceiver, filter, ContextCompat.RECEIVER_NOT_EXPORTED);
+    }
+
+    @Override protected void onStop() {
+        super.onStop();
+        try { unregisterReceiver(dynamicSyncReceiver); } catch (IllegalArgumentException ignored) {}
+    }
+
+    @Override protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        setIntent(intent);
+        handleDeepLink(intent);
+    }
+
+    private static String expertUidFromLink(android.net.Uri data) {
+        if (data == null) return null;
+        String scheme = data.getScheme();
+        String host = data.getHost();
+        boolean httpsLink = "https".equals(scheme) && "crescent.app".equals(host)
+                && data.getPathSegments().size() >= 2 && "expert".equals(data.getPathSegments().get(0));
+        boolean customLink = "crescent".equals(scheme) && "expert".equals(host)
+                && !data.getPathSegments().isEmpty();
+        if (!httpsLink && !customLink) return null;
+        String uid = data.getLastPathSegment();
+        return (uid == null || uid.isEmpty()) ? null : uid;
+    }
+
+    private void handleDeepLink(Intent intent) {
+        final String expertUid = expertUidFromLink(intent.getData());
+        if (expertUid == null) return;
+        intent.setData(null);
+
+        FirebaseFirestore.getInstance().collection("users").document(expertUid).get()
+                .addOnSuccessListener(doc -> {
+                    if (isFinishing() || isDestroyed()) return;
+                    if (doc.exists() && Boolean.TRUE.equals(doc.getBoolean("isExpert"))) {
+                        String name = doc.getString("name");
+                        Intent chatIntent = new Intent(this, ChatActivity.class);
+                        chatIntent.putExtra("expertUid", expertUid);
+                        chatIntent.putExtra("expertName", name != null ? name : "Expert");
+                        chatIntent.putExtra("expertImage", doc.getString("profileImageBase64"));
+                        startActivity(chatIntent);
+                    } else {
+                        Toast.makeText(this, "Expert profile not found.", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .addOnFailureListener(e ->
+                        Toast.makeText(this, "Could not open the expert profile. Check your connection.", Toast.LENGTH_SHORT).show());
     }
 
     private void requestStartupPermissions() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
                 ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.POST_NOTIFICATIONS}, NOTIF_PERMISSION_CODE);
-            }
-        }
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == NOTIF_PERMISSION_CODE) {
-            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                Toast.makeText(this, "Notifications Enabled", Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -189,7 +262,6 @@ public class MainActivity extends AppCompatActivity {
         final int navBottom = b.dashboard.bottomNav.getPaddingBottom();
         final int menuHeaderTop = b.slideMenu.menuHeader.getPaddingTop();
         final int menuFooterBottom = b.slideMenu.menuFooter.getPaddingBottom();
-
         ViewCompat.setOnApplyWindowInsetsListener(b.getRoot(), (v, insets) -> {
             Insets bars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             b.dashboard.brandHeader.setPadding(b.dashboard.brandHeader.getPaddingLeft(), headerTop + bars.top, b.dashboard.brandHeader.getPaddingRight(), b.dashboard.brandHeader.getPaddingBottom());
@@ -198,7 +270,6 @@ public class MainActivity extends AppCompatActivity {
             b.slideMenu.menuFooter.setPadding(b.slideMenu.menuFooter.getPaddingLeft(), b.slideMenu.menuFooter.getPaddingTop(), b.slideMenu.menuFooter.getPaddingRight(), menuFooterBottom + bars.bottom);
             return insets;
         });
-
         WindowCompat.setDecorFitsSystemWindows(getWindow(), false);
         getWindow().setStatusBarColor(Color.TRANSPARENT);
         getWindow().setNavigationBarColor(Color.TRANSPARENT);
@@ -210,14 +281,11 @@ public class MainActivity extends AppCompatActivity {
     private void setupSlideMenu() {
         int screenW = getResources().getDisplayMetrics().widthPixels;
         menuWidthPx = Math.round(screenW * MENU_WIDTH_FRACTION);
-
         FrameLayout.LayoutParams lp = (FrameLayout.LayoutParams) b.slideMenu.getRoot().getLayoutParams();
         lp.width = menuWidthPx;
         lp.gravity = Gravity.START;
         b.slideMenu.getRoot().setLayoutParams(lp);
-
         applyMenuProgress(0f);
-
         b.drawerRoot.post(() -> {
             int measuredW = b.drawerRoot.getWidth();
             if (measuredW > 0) {
@@ -231,10 +299,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-
-        backCallback = new OnBackPressedCallback(false) {
-            @Override public void handleOnBackPressed() { closeMenu(null); }
-        };
+        backCallback = new OnBackPressedCallback(false) { @Override public void handleOnBackPressed() { closeMenu(null); } };
         getOnBackPressedDispatcher().addCallback(this, backCallback);
     }
 
@@ -242,33 +307,18 @@ public class MainActivity extends AppCompatActivity {
         menuProgress = p;
         float mainTx = menuWidthPx * p;
         float menuTx = -menuWidthPx * (1f - p);
-
         b.dashboard.getRoot().setTranslationX(mainTx);
         b.drawerScrim.setTranslationX(mainTx);
         b.slideMenu.getRoot().setTranslationX(menuTx);
-
         b.drawerScrim.setAlpha(p);
         b.drawerScrim.setVisibility(p > 0.001f ? View.VISIBLE : View.GONE);
         b.slideMenu.getRoot().setVisibility(p > 0.001f ? View.VISIBLE : View.INVISIBLE);
-
         if (insetsController != null) insetsController.setAppearanceLightStatusBars(p < 0.5f);
     }
 
-    private void toggleMenu() {
-        if (menuOpen) closeMenu(null); else openMenu();
-    }
-
-    private void openMenu() {
-        menuOpen = true;
-        if (backCallback != null) backCallback.setEnabled(true);
-        animateMenuTo(1f, null);
-    }
-
-    private void closeMenu(Runnable onClosed) {
-        menuOpen = false;
-        if (backCallback != null) backCallback.setEnabled(false);
-        animateMenuTo(0f, onClosed);
-    }
+    private void toggleMenu() { if (menuOpen) closeMenu(null); else openMenu(); }
+    private void openMenu() { menuOpen = true; if (backCallback != null) backCallback.setEnabled(true); animateMenuTo(1f, null); }
+    private void closeMenu(Runnable onClosed) { menuOpen = false; if (backCallback != null) backCallback.setEnabled(false); animateMenuTo(0f, onClosed); }
 
     private void animateMenuTo(float target, Runnable onEnd) {
         if (menuAnimator != null && menuAnimator.isRunning()) menuAnimator.cancel();
@@ -279,12 +329,7 @@ public class MainActivity extends AppCompatActivity {
         menuAnimator.addListener(new AnimatorListenerAdapter() {
             private boolean cancelled = false;
             @Override public void onAnimationCancel(Animator animation) { cancelled = true; }
-            @Override public void onAnimationEnd(Animator animation) {
-                if (!cancelled) {
-                    applyMenuProgress(target);
-                    if (onEnd != null) onEnd.run();
-                }
-            }
+            @Override public void onAnimationEnd(Animator animation) { if (!cancelled) { applyMenuProgress(target); if (onEnd != null) onEnd.run(); } }
         });
         menuAnimator.start();
     }
@@ -292,76 +337,46 @@ public class MainActivity extends AppCompatActivity {
     private void setDates() {
         String engDate = new SimpleDateFormat("EEEE, dd MMMM yyyy", Locale.getDefault()).format(new Date());
         b.dashboard.englishDateText.setText(engDate);
-
         try {
             HijrahDate hijri = HijrahDate.now();
-            String[] months = {"Muharram", "Safar", "Rabi al-Awwal", "Rabi al-Thani",
-                    "Jumada al-Awwal", "Jumada al-Thani", "Rajab", "Sha'ban",
-                    "Ramadan", "Shawwal", "Dhu al-Qi'dah", "Dhu al-Hijjah"};
-            int m = hijri.get(ChronoField.MONTH_OF_YEAR);
-            int d = hijri.get(ChronoField.DAY_OF_MONTH);
-            int y = hijri.get(ChronoField.YEAR);
-            b.dashboard.arabicDateText.setText(d + " " + months[m - 1] + " " + y + " AH");
-        } catch (Exception e) {
-            b.dashboard.arabicDateText.setVisibility(View.GONE);
-        }
+            String[] months = {"Muharram", "Safar", "Rabi al-Awwal", "Rabi al-Thani", "Jumada al-Awwal", "Jumada al-Thani", "Rajab", "Sha'ban", "Ramadan", "Shawwal", "Dhu al-Qi'dah", "Dhu al-Hijjah"};
+            b.dashboard.arabicDateText.setText(hijri.get(ChronoField.DAY_OF_MONTH) + " " + months[hijri.get(ChronoField.MONTH_OF_YEAR) - 1] + " " + hijri.get(ChronoField.YEAR) + " AH");
+        } catch (Exception e) { b.dashboard.arabicDateText.setVisibility(View.GONE); }
     }
 
     private void makeLogoRound() {
-        ViewOutlineProvider roundProvider = new ViewOutlineProvider() {
-            @Override public void getOutline(View view, Outline outline) {
-                outline.setOval(0, 0, view.getWidth(), view.getHeight());
-            }
-        };
-
+        ViewOutlineProvider roundProvider = new ViewOutlineProvider() { @Override public void getOutline(View view, Outline outline) { outline.setOval(0, 0, view.getWidth(), view.getHeight()); } };
         b.dashboard.logoImage.setOutlineProvider(roundProvider);
         b.dashboard.logoImage.setClipToOutline(true);
-
         b.slideMenu.slideProfileImage.setOutlineProvider(roundProvider);
         b.slideMenu.slideProfileImage.setClipToOutline(true);
     }
 
-    private void soon(String what) { Toast.makeText(this, what + " is coming soon.", Toast.LENGTH_SHORT).show(); }
-
     private void setupClicks() {
         b.dashboard.payNowBtn.setOnClickListener(v -> {
-            try {
-                startActivity(new Intent(Intent.ACTION_VIEW, android.net.Uri.parse("https://assunnahfoundation.org/donate/zakat")));
-            } catch (Exception e) {
-                Toast.makeText(this, "Could not open browser.", Toast.LENGTH_SHORT).show();
-            }
+            try { startActivity(new Intent(Intent.ACTION_VIEW, android.net.Uri.parse("https://assunnahfoundation.org/"))); } catch (Exception e) { Toast.makeText(this, "Could not open browser.", Toast.LENGTH_SHORT).show(); }
         });
-
         b.dashboard.detailedBreakdownBtn.setOnClickListener(v -> startActivity(new Intent(this, AssetBreakdownActivity.class)));
-
         b.dashboard.gridCalculate.setOnClickListener(v -> startActivity(new Intent(this, GoldActivity.class)));
         b.dashboard.gridHistory.setOnClickListener(v -> startActivity(new Intent(this, HistoryActivity.class)));
         b.dashboard.gridAssets.setOnClickListener(v -> startActivity(new Intent(this, AssetBreakdownActivity.class)));
         b.dashboard.gridChat.setOnClickListener(v -> startActivity(new Intent(this, ExpertListActivity.class)));
-
-        b.dashboard.navHome.setOnClickListener(v -> { /* already here */ });
         b.dashboard.navCalculate.setOnClickListener(v -> startActivity(new Intent(this, GoldActivity.class)));
         b.dashboard.navChat.setOnClickListener(v -> startActivity(new Intent(this, ChatListActivity.class)));
         b.dashboard.navSettings.setOnClickListener(v -> startActivity(new Intent(this, SettingsActivity.class)));
-
         b.dashboard.notifButton.setOnClickListener(v -> startActivity(new Intent(this, NotificationsActivity.class)));
-
         b.dashboard.menuButton.setOnClickListener(v -> toggleMenu());
         b.slideMenu.menuCloseButton.setOnClickListener(v -> closeMenu(null));
         b.drawerScrim.setOnClickListener(v -> closeMenu(null));
-
         b.slideMenu.menuProfileCard.setOnClickListener(v -> closeMenu(() -> startActivity(new Intent(this, ProfileActivity.class))));
         b.slideMenu.menuAboutZakat.setOnClickListener(v -> closeMenu(() -> startActivity(new Intent(this, InfoActivity.class))));
         b.slideMenu.menuCalculate.setOnClickListener(v -> closeMenu(() -> startActivity(new Intent(this, GoldActivity.class))));
         b.slideMenu.menuHistory.setOnClickListener(v -> closeMenu(() -> startActivity(new Intent(this, HistoryActivity.class))));
-
         b.slideMenu.menuBecomeExpert.setOnClickListener(v -> closeMenu(() -> startActivity(new Intent(this, ExpertRegistrationActivity.class))));
         b.slideMenu.menuSettings.setOnClickListener(v -> closeMenu(() -> startActivity(new Intent(this, SettingsActivity.class))));
 
-        // Wipes local preferences and deletes Firebase Guest accounts & their chats
         b.slideMenu.menuSignOut.setOnClickListener(v -> closeMenu(() -> {
             Toast.makeText(this, "Signing out...", Toast.LENGTH_SHORT).show();
-
             FirebaseUser user = mAuth.getCurrentUser();
             boolean isGuest = (user != null && user.isAnonymous());
             String uid = user != null ? user.getUid() : null;
@@ -377,9 +392,10 @@ public class MainActivity extends AppCompatActivity {
                     if (isGuest && uid != null) {
                         FirebaseFirestore db = FirebaseFirestore.getInstance();
                         db.collection("users").document(uid).delete();
-                        db.collection("chats").whereArrayContains("users", uid).get().addOnSuccessListener(query -> {
-                            for (DocumentSnapshot doc : query) doc.getReference().delete();
-                        });
+
+                        // RTDB Clean Up for Guests
+                        FirebaseDatabase.getInstance().getReference("user_chats").child(uid).removeValue();
+
                         user.delete().addOnCompleteListener(task -> completeSignOut());
                     } else {
                         completeSignOut();
@@ -401,56 +417,47 @@ public class MainActivity extends AppCompatActivity {
     private void listenForNotifications() {
         FirebaseUser user = mAuth.getCurrentUser();
         if (user != null && !user.isAnonymous()) {
-            FirebaseFirestore db = FirebaseFirestore.getInstance();
             String uid = user.getUid();
 
-            db.collection("users").document(uid).collection("notifications")
+            // 1. System Notifications (Firestore)
+            FirebaseFirestore.getInstance().collection("users").document(uid).collection("notifications")
                     .whereEqualTo("read", false).addSnapshotListener((value, error) -> {
                         if (value == null) return;
                         b.dashboard.notifDot.setVisibility(value.isEmpty() ? View.GONE : View.VISIBLE);
-
                         if (!isFirstNotifLoad) {
                             for (com.google.firebase.firestore.DocumentChange dc : value.getDocumentChanges()) {
                                 if (dc.getType() == com.google.firebase.firestore.DocumentChange.Type.ADDED) {
                                     String title = dc.getDocument().getString("title");
                                     String msg = dc.getDocument().getString("message");
-                                    showSystemNotification(title != null ? title : "Crescent Alert", msg != null ? msg : "You have a new update.", dc.getDocument().getId().hashCode());
+                                    showSystemNotification(title != null ? title : "Alert", msg != null ? msg : "New update.", dc.getDocument().getId().hashCode());
                                 }
                             }
                         }
                         isFirstNotifLoad = false;
                     });
 
-            db.collection("chats")
-                    .whereArrayContains("users", uid)
-                    .addSnapshotListener((value, error) -> {
-                        if (value == null || error != null) return;
-
-                        // 1. Check ALL active chats to see if the red dot should be visible
-                        boolean hasUnread = false;
-                        for (DocumentSnapshot doc : value.getDocuments()) {
-                            if (Boolean.TRUE.equals(doc.getBoolean("hasUnread_" + uid))) {
-                                hasUnread = true;
-                                break;
-                            }
-                        }
-                        b.dashboard.chatDot.setVisibility(hasUnread ? View.VISIBLE : View.GONE);
-
-                        // 2. Only show the pop-up notification if a message arrived JUST NOW
-                        if (!isFirstChatLoad) {
-                            for (com.google.firebase.firestore.DocumentChange dc : value.getDocumentChanges()) {
-                                DocumentSnapshot doc = dc.getDocument();
-                                boolean roomHasUnread = Boolean.TRUE.equals(doc.getBoolean("hasUnread_" + uid));
-
-                                if (roomHasUnread && !doc.getId().equals(activeRoomId)) {
-                                    if (dc.getType() == com.google.firebase.firestore.DocumentChange.Type.MODIFIED || dc.getType() == com.google.firebase.firestore.DocumentChange.Type.ADDED) {
-                                        String msg = doc.getString("lastMessage");
-                                        showSystemNotification("New Message", msg != null ? msg : "You received a new message.", doc.getId().hashCode());
+            // 2. Chat Notifications (Realtime Database)
+            FirebaseDatabase.getInstance().getReference("user_chats").child(uid)
+                    .addValueEventListener(new ValueEventListener() {
+                        @Override public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            boolean hasUnread = false;
+                            for (DataSnapshot doc : snapshot.getChildren()) {
+                                Boolean unread = doc.child("hasUnread").getValue(Boolean.class);
+                                if (Boolean.TRUE.equals(unread)) {
+                                    hasUnread = true;
+                                    if (!isFirstChatLoad) {
+                                        String roomId = doc.getKey();
+                                        if (!roomId.equals(activeRoomId)) {
+                                            String msg = doc.child("lastMessage").getValue(String.class);
+                                            showSystemNotification("New Message", msg != null ? msg : "You received a new message.", roomId.hashCode());
+                                        }
                                     }
                                 }
                             }
+                            b.dashboard.chatDot.setVisibility(hasUnread ? View.VISIBLE : View.GONE);
+                            isFirstChatLoad = false;
                         }
-                        isFirstChatLoad = false;
+                        @Override public void onCancelled(@NonNull DatabaseError error) {}
                     });
         }
     }
@@ -458,53 +465,44 @@ public class MainActivity extends AppCompatActivity {
     private void showSystemNotification(String title, String message, int notifId) {
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
         String channelId = "crescent_alerts";
-
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            NotificationChannel channel = new NotificationChannel(
-                    channelId, "Crescent Alerts", NotificationManager.IMPORTANCE_HIGH);
+            NotificationChannel channel = new NotificationChannel(channelId, "Crescent Alerts", NotificationManager.IMPORTANCE_HIGH);
             channel.setLockscreenVisibility(android.app.Notification.VISIBILITY_PUBLIC);
             notificationManager.createNotificationChannel(channel);
         }
-
-        Intent intent = new Intent(this, MainActivity.class);
-        PendingIntent pendingIntent = PendingIntent.getActivity(
-                this, 0, intent, PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT);
-
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, new Intent(this, MainActivity.class), PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT);
         RemoteViews customView = new RemoteViews(getPackageName(), R.layout.custom_notification);
         customView.setTextViewText(R.id.notifTitle, title);
         customView.setTextViewText(R.id.notifText, message);
-
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, channelId)
-                .setSmallIcon(R.drawable.ic_bell)
-                .setContentTitle(title)
-                .setContentText(message)
-                .setStyle(new NotificationCompat.DecoratedCustomViewStyle())
-                .setCustomContentView(customView)
-                .setPriority(NotificationCompat.PRIORITY_MAX)
-                .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
-                .setAutoCancel(true)
-                .setContentIntent(pendingIntent);
-
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED) {
-            notificationManager.notify(notifId, builder.build());
-        }
+                .setSmallIcon(R.drawable.ic_bell).setStyle(new NotificationCompat.DecoratedCustomViewStyle()).setCustomContentView(customView)
+                .setPriority(NotificationCompat.PRIORITY_MAX).setVisibility(NotificationCompat.VISIBILITY_PUBLIC).setAutoCancel(true).setContentIntent(pendingIntent);
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED) notificationManager.notify(notifId, builder.build());
     }
 
     private void updateHawl() {
         HawlTracker.State h = HawlTracker.state(this);
         DateTimeFormatter f = DateTimeFormatter.ofPattern("dd MMM yyyy", Locale.getDefault());
+
         if (!h.active) {
             b.dashboard.hawlDaysText.setText("Not started");
             b.dashboard.hawlProgress.setProgress(0);
-            b.dashboard.hawlDueText.setText("The lunar-year count begins once a calculation shows your wealth is at or above the Nisab.");
+
+            // Clear the placeholder text and completely hide the TextView so it takes up no space
+            b.dashboard.hawlDueText.setText("");
+            b.dashboard.hawlDueText.setVisibility(View.GONE);
+
         } else if (h.complete) {
             b.dashboard.hawlDaysText.setText("Zakat is due now");
             b.dashboard.hawlProgress.setProgress(1000, true);
             b.dashboard.hawlDueText.setText("One lunar year was completed on " + LocalDate.ofEpochDay(h.dueDay).format(f) + ".");
+            b.dashboard.hawlDueText.setVisibility(View.VISIBLE);
+
         } else {
             b.dashboard.hawlDaysText.setText(h.remainingDays + (h.remainingDays == 1 ? " day remaining" : " days remaining"));
             b.dashboard.hawlProgress.setProgress(Math.round(h.progress * 1000f), true);
             b.dashboard.hawlDueText.setText("Zakat becomes due on " + LocalDate.ofEpochDay(h.dueDay).format(f) + ".");
+            b.dashboard.hawlDueText.setVisibility(View.VISIBLE);
         }
     }
 
@@ -512,57 +510,20 @@ public class MainActivity extends AppCompatActivity {
         repo.snapshots(snaps -> runOnUiThread(() -> {
             if (isFinishing() || isDestroyed()) return;
             Snapshot s = snaps.isEmpty() ? null : snaps.get(0);
-
             if (s == null) {
-                Calendar c = Calendar.getInstance();
-                b.dashboard.zakatYearText.setText("Your Zakat for " + c.get(Calendar.YEAR));
-                b.dashboard.zakatAmountCircle.setText("0 BDT");
-                b.dashboard.zakatStateText.setText("Not calculated");
-                b.dashboard.zakatGauge.setProgress(0f);
+                b.dashboard.zakatYearText.setText("Your Zakat for " + Calendar.getInstance().get(Calendar.YEAR));
+                b.dashboard.zakatAmountCircle.setText("0 BDT"); b.dashboard.zakatStateText.setText("Not calculated"); b.dashboard.zakatGauge.setProgress(0f);
             } else {
                 b.dashboard.zakatYearText.setText("Your Zakat for " + s.year);
-                b.dashboard.zakatAmountCircle.setText(taka(s.zakat) + " BDT");
-                b.dashboard.zakatStateText.setText("Calculated");
-                b.dashboard.zakatGauge.setProgress(s.zakat > 0 ? GAUGE_CALCULATED : 0f);
+                b.dashboard.zakatAmountCircle.setText(taka(s.zakat) + " BDT"); b.dashboard.zakatStateText.setText("Calculated"); b.dashboard.zakatGauge.setProgress(s.zakat > 0 ? GAUGE_CALCULATED : 0f);
             }
         }));
     }
 
     private void fetchRandomHadith() {
-        final String[] fallback = {
-                "\"Establish prayer and give zakat...\"\n(Al-Baqarah 2:110)",
-                "\"Charity does not decrease wealth.\"\n(Sahih Muslim)",
-                "\"Protect yourself from hell-fire even by giving a piece of date as charity.\"\n(Al-Bukhari)",
-                "\"The believer's shade on the Day of Resurrection will be his charity.\"\n(Al-Tirmidhi)"
-        };
+        String cachedHadith = getSharedPreferences("crescent_ui", MODE_PRIVATE).getString("daily_hadith", null);
+        if (cachedHadith != null) { b.dashboard.hadithText.setText(cachedHadith); return; }
+        final String[] fallback = { "\"Establish prayer and give zakat...\"\n(Al-Baqarah 2:110)" };
         b.dashboard.hadithText.setText(fallback[new Random().nextInt(fallback.length)]);
-
-        io.execute(() -> {
-            try {
-                HttpURLConnection c = (HttpURLConnection) new URL("https://random-hadith-generator.vercel.app/bukhari/").openConnection();
-                c.setConnectTimeout(4000);
-                c.setReadTimeout(4000);
-                if (c.getResponseCode() == 200) {
-                    BufferedReader r = new BufferedReader(new InputStreamReader(c.getInputStream()));
-                    StringBuilder sb = new StringBuilder();
-                    String line;
-                    while ((line = r.readLine()) != null) sb.append(line);
-
-                    JSONObject json = new JSONObject(sb.toString());
-                    String hadith = json.getJSONObject("data").getString("hadith_english").trim();
-
-                    if (hadith.length() > 160) {
-                        hadith = hadith.substring(0, 155) + "...";
-                    }
-                    final String finalHadith = "\"" + hadith + "\"\n(Sahih al-Bukhari)";
-
-                    runOnUiThread(() -> {
-                        if (!isFinishing() && !isDestroyed()) {
-                            b.dashboard.hadithText.setText(finalHadith);
-                        }
-                    });
-                }
-            } catch (Exception ignored) {}
-        });
     }
 }

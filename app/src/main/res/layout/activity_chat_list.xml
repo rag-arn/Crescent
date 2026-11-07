@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/rootLayout" android:orientation="vertical"
+    android:id="@+id/rootLayout"
+    android:orientation="vertical"
     android:background="@drawable/bg_dash_screen"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <FrameLayout android:id="@+id/headerBar" android:layout_width="match_parent" android:layout_height="wrap_content">
         <LinearLayout android:orientation="horizontal" android:gravity="center_vertical" android:paddingStart="20dp" android:paddingEnd="10dp" android:paddingTop="42dp" android:paddingBottom="12dp" android:layout_width="match_parent" android:layout_height="wrap_content">
@@ -14,11 +16,26 @@
         </LinearLayout>
     </FrameLayout>
 
+    <!-- NEW: FrameLayout wrapper to hold both the list and the empty state -->
     <FrameLayout android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1">
-        <ScrollView android:layout_width="match_parent" android:layout_height="match_parent">
-            <LinearLayout android:id="@+id/inboxContainer" android:orientation="vertical" android:padding="16dp" android:layout_width="match_parent" android:layout_height="wrap_content"/>
-        </ScrollView>
-        <ProgressBar android:id="@+id/loadingProgress" android:layout_gravity="center" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
-        <TextView android:id="@+id/emptyText" android:text="No active conversations." android:textSize="15sp" android:textColor="@color/sage_text_soft" android:layout_gravity="center" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/chatListRecyclerView"
+            android:padding="16dp"
+            android:clipToPadding="false"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+        <TextView
+            android:id="@+id/emptyText"
+            android:text="Chat list is empty."
+            android:textSize="15sp"
+            android:textColor="@color/sage_text_soft"
+            android:layout_gravity="center"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
     </FrameLayout>
+
 </LinearLayout>

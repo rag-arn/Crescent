@@ -1,15 +1,28 @@
 package com.crescent.app;
 
+import android.app.Dialog;
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.InsetDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Gravity;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
+import android.widget.CheckBox;
 import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import com.crescent.app.databinding.ActivityResultBinding;
 import java.text.DateFormat;
 import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -23,6 +36,16 @@ public class ResultActivity extends AppCompatActivity {
     private ActivityResultBinding b;
     private final NumberFormat nf = NumberFormat.getNumberInstance(new Locale("en", "BD"));
     private final List<String[]> lines = new ArrayList<>();
+    private long calculatedAt = System.currentTimeMillis();   // history mode overrides this with the saved time
+
+    // The contact picker returns the chosen contact's name and phone number.
+    private final ActivityResultLauncher<Intent> contactPicker = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(), r -> {
+                Intent d = r.getData();
+                if (r.getResultCode() == RESULT_OK && d != null) {
+                    showShareConfirm(d.getStringExtra(ContactPickerActivity.EXTRA_NAME), d.getStringExtra(ContactPickerActivity.EXTRA_NUMBER));
+                }
+            });
 
     private String taka(double v) { return "৳" + nf.format(Math.round(v)); }
     private String bdt(double v) { return "BDT " + nf.format(Math.round(v)); }
@@ -40,6 +63,7 @@ public class ResultActivity extends AppCompatActivity {
 
         b.infoButton.setOnClickListener(v -> InfoDialog.show(this, "About this estimate", NOTE));
         b.backButton.setOnClickListener(v -> finish());
+        b.shareContactButton.setOnClickListener(v -> contactPicker.launch(new Intent(this, ContactPickerActivity.class)));
         b.previousButton.setOnClickListener(v -> finish());
         b.homeButton.setOnClickListener(v -> {
             Intent h = new Intent(this, MainActivity.class);
@@ -138,8 +162,77 @@ public class ResultActivity extends AppCompatActivity {
         }
     }
 
+    // ---------------- Share with a contact ----------------
+
+    /** Shows exactly what will be sent, lets the person choose how much to include, then opens their messages app. */
+    private void showShareConfirm(String name, String number) {
+        if (isFinishing() || isDestroyed()) return;
+        if (number == null || number.trim().isEmpty()) {
+            Toast.makeText(this, "That contact has no phone number.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        final String who = (name == null || name.trim().isEmpty()) ? number : name;
+
+        final Dialog dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.dialog_share_confirm);
+        Window w = dialog.getWindow();
+        if (w != null) {
+            int margin = Math.round(24 * getResources().getDisplayMetrics().density);
+            w.setBackgroundDrawable(new InsetDrawable(new ColorDrawable(Color.TRANSPARENT), margin));
+            w.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        }
+
+        ((TextView) dialog.findViewById(R.id.shareTitle)).setText("Share with " + who);
+        ((TextView) dialog.findViewById(R.id.shareNumber)).setText(number);
+        final TextView preview = dialog.findViewById(R.id.sharePreview);
+        final CheckBox full = dialog.findViewById(R.id.includeBreakdownCheckbox);   // off by default: share the summary only
+        preview.setText(buildShareMessage(false));
+        full.setOnCheckedChangeListener((v, checked) -> preview.setText(buildShareMessage(checked)));
+
+        dialog.findViewById(R.id.shareCancelBtn).setOnClickListener(v -> dialog.dismiss());
+        dialog.findViewById(R.id.shareConfirmBtn).setOnClickListener(v -> {
+            dialog.dismiss();
+            openMessagesApp(number, buildShareMessage(full.isChecked()));
+        });
+        dialog.show();
+    }
+
+    /** Plain-text (ASCII) message so it stays a normal SMS: the taka sign and fancy dashes are replaced. */
+    private String buildShareMessage(boolean fullBreakdown) {
+        StringBuilder m = new StringBuilder("Zakat estimate from the Crescent app\n");
+        m.append("Calculated: ").append(new SimpleDateFormat("dd MMM yyyy, hh:mm a", Locale.US).format(new Date(calculatedAt))).append("\n\n");
+        m.append(plain(b.verdictText.getText().toString().replace("\n\n", "\n")));
+        if (fullBreakdown) {
+            for (String[] l : lines) {
+                if (l[0].equals("H")) m.append("\n\n").append(plain(l[1]).toUpperCase(Locale.US));
+                else m.append("\n").append(plain(l[1])).append(": ").append(plain(l[3]));
+            }
+        }
+        m.append("\n\n").append(DISCLAIMER);
+        return m.toString();
+    }
+
+    private static String plain(String s) {
+        return s.replace("৳", "BDT ").replace("−", "-").replace("—", "-").replace("–", "-")
+                .replace("’", "'").replace("“", "\"").replace("”", "\"");
+    }
+
+    /** Opens the default messaging app with the number and text filled in. The person reviews and taps send; no SMS permission is needed. */
+    private void openMessagesApp(String number, String body) {
+        Intent i = new Intent(Intent.ACTION_SENDTO, Uri.parse("smsto:" + Uri.encode(number)));
+        i.putExtra("sms_body", body);
+        i.putExtra(Intent.EXTRA_TEXT, body);
+        try {
+            startActivity(i);
+        } catch (ActivityNotFoundException e) {
+            Toast.makeText(this, "No messaging app found on this device.", Toast.LENGTH_LONG).show();
+        }
+    }
+
     private void renderFromHistory(Intent in) {
         long createdAt = in.getLongExtra("snapshot_created_at", System.currentTimeMillis());
+        calculatedAt = createdAt;
         double assets = in.getDoubleExtra("snapshot_assets", 0);
         double liabilities = in.getDoubleExtra("snapshot_liabilities", 0);
         double net = in.getDoubleExtra("snapshot_net_wealth", 0);

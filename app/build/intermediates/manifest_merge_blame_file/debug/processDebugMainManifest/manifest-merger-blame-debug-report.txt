@@ -12,496 +12,780 @@
 12    <uses-permission android:name="android.permission.INTERNET" />
 12-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:4:5-66
 12-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:4:22-64
-13    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
-13-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:5:5-77
-13-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:5:22-74
-14    <uses-permission android:name="android.permission.CAMERA" />
-14-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:6:5-65
-14-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:6:22-62
-15    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-15-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:7:5-81
-15-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:7:22-78
-16    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-16-->[com.google.firebase:firebase-auth:23.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/0180cfb4a22ce4f0640eacba76091814/transformed/firebase-auth-23.0.0/AndroidManifest.xml:26:5-79
-16-->[com.google.firebase:firebase-auth:23.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/0180cfb4a22ce4f0640eacba76091814/transformed/firebase-auth-23.0.0/AndroidManifest.xml:26:22-76
-17    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
-17-->[com.google.android.recaptcha:recaptcha:18.4.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/f728a74518ae3082575984a38b19ca85/transformed/recaptcha-18.4.0/AndroidManifest.xml:9:5-98
-17-->[com.google.android.recaptcha:recaptcha:18.4.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/f728a74518ae3082575984a38b19ca85/transformed/recaptcha-18.4.0/AndroidManifest.xml:9:22-95
-18
-19    <permission
-19-->[androidx.core:core:1.13.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/cba8d24994c6ecae1510091f855b8172/transformed/core-1.13.0/AndroidManifest.xml:22:5-24:47
-20        android:name="com.crescent.app.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
-20-->[androidx.core:core:1.13.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/cba8d24994c6ecae1510091f855b8172/transformed/core-1.13.0/AndroidManifest.xml:23:9-81
-21        android:protectionLevel="signature" />
-21-->[androidx.core:core:1.13.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/cba8d24994c6ecae1510091f855b8172/transformed/core-1.13.0/AndroidManifest.xml:24:9-44
-22
-23    <uses-permission android:name="com.crescent.app.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" /> <!-- DISABLED Auto-Backup so data is strictly isolated per install -->
-23-->[androidx.core:core:1.13.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/cba8d24994c6ecae1510091f855b8172/transformed/core-1.13.0/AndroidManifest.xml:26:5-97
-23-->[androidx.core:core:1.13.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/cba8d24994c6ecae1510091f855b8172/transformed/core-1.13.0/AndroidManifest.xml:26:22-94
-24    <application
-24-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:10:5-49:19
-25        android:allowBackup="false"
-25-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:11:9-36
-26        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
-26-->[androidx.core:core:1.13.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/cba8d24994c6ecae1510091f855b8172/transformed/core-1.13.0/AndroidManifest.xml:28:18-86
-27        android:debuggable="true"
-28        android:extractNativeLibs="false"
-29        android:icon="@mipmap/ic_launcher"
-29-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:12:9-43
-30        android:label="Crescent"
-30-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:14:9-33
-31        android:roundIcon="@mipmap/ic_launcher_round"
-31-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:13:9-54
-32        android:supportsRtl="true"
-32-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:16:9-35
-33        android:theme="@style/Theme.Crescent" >
-33-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:15:9-46
-34        <activity
-34-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:18:9-77
-35            android:name="com.crescent.app.HistoryActivity"
-35-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:18:19-50
-36            android:exported="false" />
-36-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:18:51-75
-37        <activity
-37-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:19:9-74
-38            android:name="com.crescent.app.InfoActivity"
-38-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:19:19-47
-39            android:exported="false" />
-39-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:19:48-72
-40        <activity
-40-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:20:9-74
-41            android:name="com.crescent.app.GoldActivity"
-41-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:20:19-47
-42            android:exported="false" />
-42-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:20:48-72
-43        <activity
-43-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:21:9-76
-44            android:name="com.crescent.app.SilverActivity"
-44-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:21:19-49
-45            android:exported="false" />
-45-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:21:50-74
-46        <activity
-46-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:22:9-74
-47            android:name="com.crescent.app.CashActivity"
-47-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:22:19-47
-48            android:exported="false" />
-48-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:22:48-72
-49        <activity
-49-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:23:9-80
-50            android:name="com.crescent.app.CommercialActivity"
-50-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:23:19-53
-51            android:exported="false" />
-51-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:23:54-78
-52        <activity
-52-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:24:9-75
-53            android:name="com.crescent.app.NisabActivity"
-53-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:24:19-48
-54            android:exported="false" />
-54-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:24:49-73
-55        <activity
-55-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:25:9-76
-56            android:name="com.crescent.app.ResultActivity"
-56-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:25:19-49
-57            android:exported="false" />
-57-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:25:50-74
-58        <activity
-58-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:26:9-80
-59            android:name="com.crescent.app.PdfPreviewActivity"
-59-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:26:19-53
-60            android:exported="false" />
-60-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:26:54-78
-61        <activity
-61-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:27:9-75
-62            android:name="com.crescent.app.LoginActivity"
-62-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:27:19-48
-63            android:exported="false" />
-63-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:27:49-73
-64        <activity
-64-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:28:9-88
-65            android:name="com.crescent.app.ExpertRegistrationActivity"
-65-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:28:19-61
-66            android:exported="false" />
-66-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:28:62-86
-67        <activity
-67-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:29:9-80
-68            android:name="com.crescent.app.ExpertListActivity"
-68-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:29:19-53
-69            android:exported="false" />
-69-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:29:54-78
-70        <activity
-70-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:30:9-77
-71            android:name="com.crescent.app.ProfileActivity"
-71-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:30:19-50
-72            android:exported="false" />
-72-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:30:51-75
-73        <activity
-73-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:31:9-83
-74            android:name="com.crescent.app.NotificationsActivity"
-74-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:31:19-56
-75            android:exported="false" />
-75-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:31:57-81
-76        <activity
-76-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:32:9-117
-77            android:name="com.crescent.app.ChatActivity"
-77-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:32:19-47
-78            android:exported="false"
-78-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:32:48-72
-79            android:windowSoftInputMode="adjustResize" />
-79-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:32:73-115
-80        <activity
-80-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:33:9-78
-81            android:name="com.crescent.app.ChatListActivity"
-81-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:33:19-51
-82            android:exported="false" />
-82-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:33:52-76
-83        <activity
-83-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:34:9-84
-84            android:name="com.crescent.app.AssetBreakdownActivity"
-84-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:34:19-57
-85            android:exported="false" />
-85-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:34:58-82
-86        <activity
-86-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:35:9-78
-87            android:name="com.crescent.app.SettingsActivity"
-87-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:35:19-51
-88            android:exported="false" />
-88-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:35:52-76
-89        <activity
-89-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:37:9-42:20
-90            android:name="com.crescent.app.MainActivity"
-90-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:37:19-47
-91            android:exported="true" >
-91-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:37:48-71
-92            <intent-filter>
-92-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:38:13-41:29
-93                <action android:name="android.intent.action.MAIN" />
-93-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:39:17-68
-93-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:39:25-66
-94
-95                <category android:name="android.intent.category.LAUNCHER" />
-95-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:40:17-76
-95-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:40:27-74
-96            </intent-filter>
-97        </activity>
-98
-99        <receiver
-99-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:44:9-48:20
-100            android:name="com.crescent.app.HawlReceiver"
-100-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:44:19-47
-101            android:exported="false" >
-101-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:44:48-72
-102            <intent-filter>
-102-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:45:13-47:29
-103                <action android:name="android.intent.action.BOOT_COMPLETED" />
-103-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:46:17-78
-103-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:46:25-76
-104            </intent-filter>
-105        </receiver>
+13    <!-- Needed to observe connectivity changes (offline banner on the price screens) -->
+14    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+14-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:6:5-78
+14-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:6:22-76
+15    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+15-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:7:5-77
+15-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:7:22-74
+16    <!-- Runtime permission: lets the person pick a contact to send a Zakat estimate to (never uploaded or stored) -->
+17    <uses-permission android:name="android.permission.READ_CONTACTS" />
+17-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:9:5-72
+17-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:9:22-69
+18    <uses-permission android:name="android.permission.CAMERA" />
+18-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:10:5-65
+18-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:10:22-62
+19    <!-- Read contacts to pick a recipient when sharing an expert profile -->
+20    <uses-permission android:name="android.permission.READ_CONTACTS" />
+20-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:9:5-72
+20-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:9:22-69
+21    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+21-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:13:5-81
+21-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:13:22-78
+22    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+22-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:14:5-77
+22-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:14:22-74
+23    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC" />
+23-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:15:5-87
+23-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:15:22-84
+24    <uses-permission android:name="android.permission.WAKE_LOCK" />
+24-->[androidx.work:work-runtime:2.9.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/2db19d340f07b44e86e85740965d4b87/transformed/work-runtime-2.9.0/AndroidManifest.xml:23:5-68
+24-->[androidx.work:work-runtime:2.9.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/2db19d340f07b44e86e85740965d4b87/transformed/work-runtime-2.9.0/AndroidManifest.xml:23:22-65
+25    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
+25-->[com.google.android.recaptcha:recaptcha:18.4.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/f728a74518ae3082575984a38b19ca85/transformed/recaptcha-18.4.0/AndroidManifest.xml:9:5-98
+25-->[com.google.android.recaptcha:recaptcha:18.4.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/f728a74518ae3082575984a38b19ca85/transformed/recaptcha-18.4.0/AndroidManifest.xml:9:22-95
+26
+27    <permission
+27-->[androidx.core:core:1.13.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/cba8d24994c6ecae1510091f855b8172/transformed/core-1.13.0/AndroidManifest.xml:22:5-24:47
+28        android:name="com.crescent.app.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+28-->[androidx.core:core:1.13.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/cba8d24994c6ecae1510091f855b8172/transformed/core-1.13.0/AndroidManifest.xml:23:9-81
+29        android:protectionLevel="signature" />
+29-->[androidx.core:core:1.13.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/cba8d24994c6ecae1510091f855b8172/transformed/core-1.13.0/AndroidManifest.xml:24:9-44
+30
+31    <uses-permission android:name="com.crescent.app.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" /> <!-- DISABLED Auto-Backup so data is strictly isolated per install -->
+31-->[androidx.core:core:1.13.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/cba8d24994c6ecae1510091f855b8172/transformed/core-1.13.0/AndroidManifest.xml:26:5-97
+31-->[androidx.core:core:1.13.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/cba8d24994c6ecae1510091f855b8172/transformed/core-1.13.0/AndroidManifest.xml:26:22-94
+32    <application
+32-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:18:5-89:19
+33        android:allowBackup="false"
+33-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:19:9-36
+34        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+34-->[androidx.core:core:1.13.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/cba8d24994c6ecae1510091f855b8172/transformed/core-1.13.0/AndroidManifest.xml:28:18-86
+35        android:debuggable="true"
+36        android:extractNativeLibs="false"
+37        android:icon="@mipmap/ic_launcher"
+37-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:20:9-43
+38        android:label="Crescent"
+38-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:22:9-33
+39        android:roundIcon="@mipmap/ic_launcher_round"
+39-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:21:9-54
+40        android:supportsRtl="true"
+40-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:24:9-35
+41        android:testOnly="true"
+42        android:theme="@style/Theme.Crescent" >
+42-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:23:9-46
+43        <service
+43-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:26:9-29:56
+44            android:name="com.crescent.app.PdfDownloadService"
+44-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:27:13-47
+45            android:exported="false"
+45-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:28:13-37
+46            android:foregroundServiceType="dataSync" />
+46-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:29:13-53
+47
+48        <activity
+48-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:31:9-77
+49            android:name="com.crescent.app.HistoryActivity"
+49-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:31:19-50
+50            android:exported="false" />
+50-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:31:51-75
+51        <activity
+51-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:32:9-74
+52            android:name="com.crescent.app.InfoActivity"
+52-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:32:19-47
+53            android:exported="false" />
+53-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:32:48-72
+54        <activity
+54-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:33:9-74
+55            android:name="com.crescent.app.GoldActivity"
+55-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:33:19-47
+56            android:exported="false" />
+56-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:33:48-72
+57        <activity
+57-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:34:9-76
+58            android:name="com.crescent.app.SilverActivity"
+58-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:34:19-49
+59            android:exported="false" />
+59-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:34:50-74
+60        <activity
+60-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:35:9-74
+61            android:name="com.crescent.app.CashActivity"
+61-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:35:19-47
+62            android:exported="false" />
+62-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:35:48-72
+63        <activity
+63-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:36:9-80
+64            android:name="com.crescent.app.CommercialActivity"
+64-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:36:19-53
+65            android:exported="false" />
+65-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:36:54-78
+66        <activity
+66-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:37:9-75
+67            android:name="com.crescent.app.NisabActivity"
+67-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:37:19-48
+68            android:exported="false" />
+68-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:37:49-73
+69        <activity
+69-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:38:9-76
+70            android:name="com.crescent.app.ResultActivity"
+70-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:38:19-49
+71            android:exported="false" />
+71-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:38:50-74
+72        <activity
+72-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:39:9-80
+73            android:name="com.crescent.app.PdfPreviewActivity"
+73-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:39:19-53
+74            android:exported="false" />
+74-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:39:54-78
+75        <activity
+75-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:40:9-75
+76            android:name="com.crescent.app.LoginActivity"
+76-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:40:19-48
+77            android:exported="false" />
+77-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:40:49-73
+78        <activity
+78-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:41:9-88
+79            android:name="com.crescent.app.ExpertRegistrationActivity"
+79-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:41:19-61
+80            android:exported="false" />
+80-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:41:62-86
+81        <activity
+81-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:42:9-80
+82            android:name="com.crescent.app.ExpertListActivity"
+82-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:42:19-53
+83            android:exported="false" />
+83-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:42:54-78
+84        <activity
+84-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:43:9-77
+85            android:name="com.crescent.app.ProfileActivity"
+85-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:43:19-50
+86            android:exported="false" />
+86-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:43:51-75
+87        <activity
+87-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:44:9-83
+88            android:name="com.crescent.app.ContactPickerActivity"
+88-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:44:19-56
+89            android:exported="false" />
+89-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:44:57-81
+90        <activity
+90-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:45:9-83
+91            android:name="com.crescent.app.NotificationsActivity"
+91-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:45:19-56
+92            android:exported="false" />
+92-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:45:57-81
+93        <activity
+93-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:46:9-117
+94            android:name="com.crescent.app.ChatActivity"
+94-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:46:19-47
+95            android:exported="false"
+95-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:46:48-72
+96            android:windowSoftInputMode="adjustResize" />
+96-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:46:73-115
+97        <activity
+97-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:47:9-78
+98            android:name="com.crescent.app.ChatListActivity"
+98-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:47:19-51
+99            android:exported="false" />
+99-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:47:52-76
+100        <activity
+100-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:48:9-84
+101            android:name="com.crescent.app.AssetBreakdownActivity"
+101-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:48:19-57
+102            android:exported="false" />
+102-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:48:58-82
+103        <activity
+103-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:49:9-78
+104            android:name="com.crescent.app.SettingsActivity"
+104-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:49:19-51
+105            android:exported="false" />
+105-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:49:52-76
 106
-107        <service
-107-->[androidx.room:room-runtime:2.6.1] /Users/ragarnob/.gradle/caches/9.6.0/transforms/ccd9bce075dab20c95f20040dd7fc0fd/transformed/room-runtime-2.6.1/AndroidManifest.xml:24:9-28:63
-108            android:name="androidx.room.MultiInstanceInvalidationService"
-108-->[androidx.room:room-runtime:2.6.1] /Users/ragarnob/.gradle/caches/9.6.0/transforms/ccd9bce075dab20c95f20040dd7fc0fd/transformed/room-runtime-2.6.1/AndroidManifest.xml:25:13-74
-109            android:directBootAware="true"
-109-->[androidx.room:room-runtime:2.6.1] /Users/ragarnob/.gradle/caches/9.6.0/transforms/ccd9bce075dab20c95f20040dd7fc0fd/transformed/room-runtime-2.6.1/AndroidManifest.xml:26:13-43
-110            android:exported="false" />
-110-->[androidx.room:room-runtime:2.6.1] /Users/ragarnob/.gradle/caches/9.6.0/transforms/ccd9bce075dab20c95f20040dd7fc0fd/transformed/room-runtime-2.6.1/AndroidManifest.xml:27:13-37
-111
-112        <activity
-112-->[com.google.firebase:firebase-auth:23.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/0180cfb4a22ce4f0640eacba76091814/transformed/firebase-auth-23.0.0/AndroidManifest.xml:29:9-46:20
-113            android:name="com.google.firebase.auth.internal.GenericIdpActivity"
-113-->[com.google.firebase:firebase-auth:23.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/0180cfb4a22ce4f0640eacba76091814/transformed/firebase-auth-23.0.0/AndroidManifest.xml:30:13-80
-114            android:excludeFromRecents="true"
-114-->[com.google.firebase:firebase-auth:23.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/0180cfb4a22ce4f0640eacba76091814/transformed/firebase-auth-23.0.0/AndroidManifest.xml:31:13-46
-115            android:exported="true"
-115-->[com.google.firebase:firebase-auth:23.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/0180cfb4a22ce4f0640eacba76091814/transformed/firebase-auth-23.0.0/AndroidManifest.xml:32:13-36
-116            android:launchMode="singleTask"
-116-->[com.google.firebase:firebase-auth:23.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/0180cfb4a22ce4f0640eacba76091814/transformed/firebase-auth-23.0.0/AndroidManifest.xml:33:13-44
-117            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
-117-->[com.google.firebase:firebase-auth:23.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/0180cfb4a22ce4f0640eacba76091814/transformed/firebase-auth-23.0.0/AndroidManifest.xml:34:13-72
-118            <intent-filter>
-118-->[com.google.firebase:firebase-auth:23.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/0180cfb4a22ce4f0640eacba76091814/transformed/firebase-auth-23.0.0/AndroidManifest.xml:35:13-45:29
-119                <action android:name="android.intent.action.VIEW" />
-119-->[com.google.firebase:firebase-auth:23.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/0180cfb4a22ce4f0640eacba76091814/transformed/firebase-auth-23.0.0/AndroidManifest.xml:36:17-69
-119-->[com.google.firebase:firebase-auth:23.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/0180cfb4a22ce4f0640eacba76091814/transformed/firebase-auth-23.0.0/AndroidManifest.xml:36:25-66
-120
-121                <category android:name="android.intent.category.DEFAULT" />
-121-->[com.google.firebase:firebase-auth:23.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/0180cfb4a22ce4f0640eacba76091814/transformed/firebase-auth-23.0.0/AndroidManifest.xml:38:17-76
-121-->[com.google.firebase:firebase-auth:23.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/0180cfb4a22ce4f0640eacba76091814/transformed/firebase-auth-23.0.0/AndroidManifest.xml:38:27-73
-122                <category android:name="android.intent.category.BROWSABLE" />
-122-->[com.google.firebase:firebase-auth:23.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/0180cfb4a22ce4f0640eacba76091814/transformed/firebase-auth-23.0.0/AndroidManifest.xml:39:17-78
-122-->[com.google.firebase:firebase-auth:23.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/0180cfb4a22ce4f0640eacba76091814/transformed/firebase-auth-23.0.0/AndroidManifest.xml:39:27-75
-123
-124                <data
-124-->[com.google.firebase:firebase-auth:23.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/0180cfb4a22ce4f0640eacba76091814/transformed/firebase-auth-23.0.0/AndroidManifest.xml:41:17-44:51
-125                    android:host="firebase.auth"
-125-->[com.google.firebase:firebase-auth:23.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/0180cfb4a22ce4f0640eacba76091814/transformed/firebase-auth-23.0.0/AndroidManifest.xml:42:21-49
-126                    android:path="/"
-126-->[com.google.firebase:firebase-auth:23.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/0180cfb4a22ce4f0640eacba76091814/transformed/firebase-auth-23.0.0/AndroidManifest.xml:43:21-37
-127                    android:scheme="genericidp" />
-127-->[com.google.firebase:firebase-auth:23.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/0180cfb4a22ce4f0640eacba76091814/transformed/firebase-auth-23.0.0/AndroidManifest.xml:44:21-48
-128            </intent-filter>
-129        </activity>
-130        <activity
-130-->[com.google.firebase:firebase-auth:23.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/0180cfb4a22ce4f0640eacba76091814/transformed/firebase-auth-23.0.0/AndroidManifest.xml:47:9-64:20
-131            android:name="com.google.firebase.auth.internal.RecaptchaActivity"
-131-->[com.google.firebase:firebase-auth:23.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/0180cfb4a22ce4f0640eacba76091814/transformed/firebase-auth-23.0.0/AndroidManifest.xml:48:13-79
-132            android:excludeFromRecents="true"
-132-->[com.google.firebase:firebase-auth:23.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/0180cfb4a22ce4f0640eacba76091814/transformed/firebase-auth-23.0.0/AndroidManifest.xml:49:13-46
-133            android:exported="true"
-133-->[com.google.firebase:firebase-auth:23.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/0180cfb4a22ce4f0640eacba76091814/transformed/firebase-auth-23.0.0/AndroidManifest.xml:50:13-36
-134            android:launchMode="singleTask"
-134-->[com.google.firebase:firebase-auth:23.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/0180cfb4a22ce4f0640eacba76091814/transformed/firebase-auth-23.0.0/AndroidManifest.xml:51:13-44
-135            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
-135-->[com.google.firebase:firebase-auth:23.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/0180cfb4a22ce4f0640eacba76091814/transformed/firebase-auth-23.0.0/AndroidManifest.xml:52:13-72
-136            <intent-filter>
-136-->[com.google.firebase:firebase-auth:23.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/0180cfb4a22ce4f0640eacba76091814/transformed/firebase-auth-23.0.0/AndroidManifest.xml:53:13-63:29
-137                <action android:name="android.intent.action.VIEW" />
-137-->[com.google.firebase:firebase-auth:23.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/0180cfb4a22ce4f0640eacba76091814/transformed/firebase-auth-23.0.0/AndroidManifest.xml:36:17-69
-137-->[com.google.firebase:firebase-auth:23.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/0180cfb4a22ce4f0640eacba76091814/transformed/firebase-auth-23.0.0/AndroidManifest.xml:36:25-66
-138
-139                <category android:name="android.intent.category.DEFAULT" />
-139-->[com.google.firebase:firebase-auth:23.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/0180cfb4a22ce4f0640eacba76091814/transformed/firebase-auth-23.0.0/AndroidManifest.xml:38:17-76
-139-->[com.google.firebase:firebase-auth:23.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/0180cfb4a22ce4f0640eacba76091814/transformed/firebase-auth-23.0.0/AndroidManifest.xml:38:27-73
-140                <category android:name="android.intent.category.BROWSABLE" />
-140-->[com.google.firebase:firebase-auth:23.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/0180cfb4a22ce4f0640eacba76091814/transformed/firebase-auth-23.0.0/AndroidManifest.xml:39:17-78
-140-->[com.google.firebase:firebase-auth:23.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/0180cfb4a22ce4f0640eacba76091814/transformed/firebase-auth-23.0.0/AndroidManifest.xml:39:27-75
-141
-142                <data
-142-->[com.google.firebase:firebase-auth:23.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/0180cfb4a22ce4f0640eacba76091814/transformed/firebase-auth-23.0.0/AndroidManifest.xml:41:17-44:51
-143                    android:host="firebase.auth"
-143-->[com.google.firebase:firebase-auth:23.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/0180cfb4a22ce4f0640eacba76091814/transformed/firebase-auth-23.0.0/AndroidManifest.xml:42:21-49
-144                    android:path="/"
-144-->[com.google.firebase:firebase-auth:23.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/0180cfb4a22ce4f0640eacba76091814/transformed/firebase-auth-23.0.0/AndroidManifest.xml:43:21-37
-145                    android:scheme="recaptcha" />
-145-->[com.google.firebase:firebase-auth:23.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/0180cfb4a22ce4f0640eacba76091814/transformed/firebase-auth-23.0.0/AndroidManifest.xml:44:21-48
-146            </intent-filter>
-147        </activity>
-148
-149        <service
-149-->[com.google.firebase:firebase-auth:23.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/0180cfb4a22ce4f0640eacba76091814/transformed/firebase-auth-23.0.0/AndroidManifest.xml:66:9-72:19
-150            android:name="com.google.firebase.components.ComponentDiscoveryService"
-150-->[com.google.firebase:firebase-auth:23.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/0180cfb4a22ce4f0640eacba76091814/transformed/firebase-auth-23.0.0/AndroidManifest.xml:67:13-84
-151            android:directBootAware="true"
-151-->[com.google.firebase:firebase-common:21.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/5b1b54cfdf55b7b25ed228d160b17a81/transformed/firebase-common-21.0.0/AndroidManifest.xml:32:13-43
-152            android:exported="false" >
-152-->[com.google.firebase:firebase-auth:23.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/0180cfb4a22ce4f0640eacba76091814/transformed/firebase-auth-23.0.0/AndroidManifest.xml:68:13-37
-153            <meta-data
-153-->[com.google.firebase:firebase-auth:23.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/0180cfb4a22ce4f0640eacba76091814/transformed/firebase-auth-23.0.0/AndroidManifest.xml:69:13-71:85
-154                android:name="com.google.firebase.components:com.google.firebase.auth.FirebaseAuthRegistrar"
-154-->[com.google.firebase:firebase-auth:23.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/0180cfb4a22ce4f0640eacba76091814/transformed/firebase-auth-23.0.0/AndroidManifest.xml:70:17-109
-155                android:value="com.google.firebase.components.ComponentRegistrar" />
-155-->[com.google.firebase:firebase-auth:23.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/0180cfb4a22ce4f0640eacba76091814/transformed/firebase-auth-23.0.0/AndroidManifest.xml:71:17-82
-156            <meta-data
-156-->[com.google.firebase:firebase-firestore:25.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/b6fb6a98fa0c2dcfd6744dabe1645756/transformed/firebase-firestore-25.0.0/AndroidManifest.xml:17:13-19:85
-157                android:name="com.google.firebase.components:com.google.firebase.firestore.FirebaseFirestoreKtxRegistrar"
-157-->[com.google.firebase:firebase-firestore:25.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/b6fb6a98fa0c2dcfd6744dabe1645756/transformed/firebase-firestore-25.0.0/AndroidManifest.xml:18:17-122
-158                android:value="com.google.firebase.components.ComponentRegistrar" />
-158-->[com.google.firebase:firebase-firestore:25.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/b6fb6a98fa0c2dcfd6744dabe1645756/transformed/firebase-firestore-25.0.0/AndroidManifest.xml:19:17-82
-159            <meta-data
-159-->[com.google.firebase:firebase-firestore:25.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/b6fb6a98fa0c2dcfd6744dabe1645756/transformed/firebase-firestore-25.0.0/AndroidManifest.xml:20:13-22:85
-160                android:name="com.google.firebase.components:com.google.firebase.firestore.FirestoreRegistrar"
-160-->[com.google.firebase:firebase-firestore:25.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/b6fb6a98fa0c2dcfd6744dabe1645756/transformed/firebase-firestore-25.0.0/AndroidManifest.xml:21:17-111
-161                android:value="com.google.firebase.components.ComponentRegistrar" />
-161-->[com.google.firebase:firebase-firestore:25.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/b6fb6a98fa0c2dcfd6744dabe1645756/transformed/firebase-firestore-25.0.0/AndroidManifest.xml:22:17-82
-162            <meta-data
-162-->[com.google.firebase:firebase-storage:21.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/66d55b72bc1a4517a175f7e22eb02dc7/transformed/firebase-storage-21.0.0/AndroidManifest.xml:30:13-32:85
-163                android:name="com.google.firebase.components:com.google.firebase.storage.FirebaseStorageKtxRegistrar"
-163-->[com.google.firebase:firebase-storage:21.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/66d55b72bc1a4517a175f7e22eb02dc7/transformed/firebase-storage-21.0.0/AndroidManifest.xml:31:17-118
-164                android:value="com.google.firebase.components.ComponentRegistrar" />
-164-->[com.google.firebase:firebase-storage:21.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/66d55b72bc1a4517a175f7e22eb02dc7/transformed/firebase-storage-21.0.0/AndroidManifest.xml:32:17-82
+107        <!-- SingleTop and standard HTTPS deep linking intent-filter -->
+108        <activity
+108-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:52:9-74:20
+109            android:name="com.crescent.app.MainActivity"
+109-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:52:19-47
+110            android:exported="true"
+110-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:52:48-71
+111            android:launchMode="singleTop" >
+111-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:52:72-102
+112            <intent-filter>
+112-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:53:13-56:29
+113                <action android:name="android.intent.action.MAIN" />
+113-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:54:17-68
+113-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:54:25-66
+114
+115                <category android:name="android.intent.category.LAUNCHER" />
+115-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:55:17-76
+115-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:55:27-74
+116            </intent-filter>
+117
+118            <!-- Standard HTTPS Deep Linking Intent Filter -->
+119            <intent-filter android:autoVerify="true" >
+119-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:59:13-64:29
+119-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:59:28-53
+120                <action android:name="android.intent.action.VIEW" />
+120-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:60:17-69
+120-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:60:25-66
+121
+122                <category android:name="android.intent.category.DEFAULT" />
+122-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:61:17-76
+122-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:61:27-73
+123                <category android:name="android.intent.category.BROWSABLE" />
+123-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:62:17-78
+123-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:62:27-75
+124
+125                <data
+125-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:63:17-106
+126                    android:host="crescent.app"
+126-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:63:46-73
+127                    android:pathPrefix="/expert/"
+127-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:63:74-103
+128                    android:scheme="https" />
+128-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:63:23-45
+129            </intent-filter>
+130
+131            <!--
+132                 Custom-scheme fallback: crescent://expert/<uid>. Needs no domain verification,
+133                 so it opens the app even when https App Links are not verified.
+134            -->
+135            <intent-filter>
+135-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:68:13-73:29
+136                <action android:name="android.intent.action.VIEW" />
+136-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:60:17-69
+136-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:60:25-66
+137
+138                <category android:name="android.intent.category.DEFAULT" />
+138-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:61:17-76
+138-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:61:27-73
+139                <category android:name="android.intent.category.BROWSABLE" />
+139-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:62:17-78
+139-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:62:27-75
+140
+141                <data
+141-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:63:17-106
+142                    android:host="expert"
+142-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:63:46-73
+143                    android:scheme="crescent" />
+143-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:63:23-45
+144            </intent-filter>
+145        </activity>
+146
+147        <receiver
+147-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:76:9-80:20
+148            android:name="com.crescent.app.HawlReceiver"
+148-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:76:19-47
+149            android:exported="false" >
+149-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:76:48-72
+150            <intent-filter>
+150-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:77:13-79:29
+151                <action android:name="android.intent.action.BOOT_COMPLETED" />
+151-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:78:17-78
+151-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:78:25-76
+152            </intent-filter>
+153        </receiver>
+154
+155        <!-- Zakat Data Content Provider -->
+156        <provider
+156-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:83:9-87:50
+157            android:name="com.crescent.app.ZakatDataProvider"
+157-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:84:13-46
+158            android:authorities="com.crescent.app.provider"
+158-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:85:13-60
+159            android:exported="true"
+159-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:86:13-36
+160            android:grantUriPermissions="true" />
+160-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:87:13-47
+161        <provider
+161-->[androidx.work:work-runtime:2.9.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/2db19d340f07b44e86e85740965d4b87/transformed/work-runtime-2.9.0/AndroidManifest.xml:29:9-37:20
+162            android:name="androidx.startup.InitializationProvider"
+162-->[androidx.work:work-runtime:2.9.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/2db19d340f07b44e86e85740965d4b87/transformed/work-runtime-2.9.0/AndroidManifest.xml:30:13-67
+163            android:authorities="com.crescent.app.androidx-startup"
+163-->[androidx.work:work-runtime:2.9.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/2db19d340f07b44e86e85740965d4b87/transformed/work-runtime-2.9.0/AndroidManifest.xml:31:13-68
+164            android:exported="false" >
+164-->[androidx.work:work-runtime:2.9.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/2db19d340f07b44e86e85740965d4b87/transformed/work-runtime-2.9.0/AndroidManifest.xml:32:13-37
 165            <meta-data
-165-->[com.google.firebase:firebase-storage:21.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/66d55b72bc1a4517a175f7e22eb02dc7/transformed/firebase-storage-21.0.0/AndroidManifest.xml:33:13-35:85
-166                android:name="com.google.firebase.components:com.google.firebase.storage.StorageRegistrar"
-166-->[com.google.firebase:firebase-storage:21.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/66d55b72bc1a4517a175f7e22eb02dc7/transformed/firebase-storage-21.0.0/AndroidManifest.xml:34:17-107
-167                android:value="com.google.firebase.components.ComponentRegistrar" />
-167-->[com.google.firebase:firebase-storage:21.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/66d55b72bc1a4517a175f7e22eb02dc7/transformed/firebase-storage-21.0.0/AndroidManifest.xml:35:17-82
+165-->[androidx.work:work-runtime:2.9.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/2db19d340f07b44e86e85740965d4b87/transformed/work-runtime-2.9.0/AndroidManifest.xml:34:13-36:52
+166                android:name="androidx.work.WorkManagerInitializer"
+166-->[androidx.work:work-runtime:2.9.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/2db19d340f07b44e86e85740965d4b87/transformed/work-runtime-2.9.0/AndroidManifest.xml:35:17-68
+167                android:value="androidx.startup" />
+167-->[androidx.work:work-runtime:2.9.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/2db19d340f07b44e86e85740965d4b87/transformed/work-runtime-2.9.0/AndroidManifest.xml:36:17-49
 168            <meta-data
-168-->[com.google.firebase:firebase-database:21.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/9d1b3d5a6fd7545a0569c6ca57d7f936/transformed/firebase-database-21.0.0/AndroidManifest.xml:29:13-31:85
-169                android:name="com.google.firebase.components:com.google.firebase.database.FirebaseDatabaseKtxRegistrar"
-169-->[com.google.firebase:firebase-database:21.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/9d1b3d5a6fd7545a0569c6ca57d7f936/transformed/firebase-database-21.0.0/AndroidManifest.xml:30:17-120
-170                android:value="com.google.firebase.components.ComponentRegistrar" />
-170-->[com.google.firebase:firebase-database:21.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/9d1b3d5a6fd7545a0569c6ca57d7f936/transformed/firebase-database-21.0.0/AndroidManifest.xml:31:17-82
+168-->[androidx.emoji2:emoji2:1.3.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/7d23cae5e53b6f0ba8b88defcc5a006b/transformed/emoji2-1.3.0/AndroidManifest.xml:29:13-31:52
+169                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+169-->[androidx.emoji2:emoji2:1.3.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/7d23cae5e53b6f0ba8b88defcc5a006b/transformed/emoji2-1.3.0/AndroidManifest.xml:30:17-75
+170                android:value="androidx.startup" />
+170-->[androidx.emoji2:emoji2:1.3.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/7d23cae5e53b6f0ba8b88defcc5a006b/transformed/emoji2-1.3.0/AndroidManifest.xml:31:17-49
 171            <meta-data
-171-->[com.google.firebase:firebase-database:21.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/9d1b3d5a6fd7545a0569c6ca57d7f936/transformed/firebase-database-21.0.0/AndroidManifest.xml:32:13-34:85
-172                android:name="com.google.firebase.components:com.google.firebase.database.DatabaseRegistrar"
-172-->[com.google.firebase:firebase-database:21.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/9d1b3d5a6fd7545a0569c6ca57d7f936/transformed/firebase-database-21.0.0/AndroidManifest.xml:33:17-109
-173                android:value="com.google.firebase.components.ComponentRegistrar" />
-173-->[com.google.firebase:firebase-database:21.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/9d1b3d5a6fd7545a0569c6ca57d7f936/transformed/firebase-database-21.0.0/AndroidManifest.xml:34:17-82
+171-->[androidx.lifecycle:lifecycle-process:2.6.2] /Users/ragarnob/.gradle/caches/9.6.0/transforms/fa1d2771036e25f986c8e64b31fe150c/transformed/lifecycle-process-2.6.2/AndroidManifest.xml:29:13-31:52
+172                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+172-->[androidx.lifecycle:lifecycle-process:2.6.2] /Users/ragarnob/.gradle/caches/9.6.0/transforms/fa1d2771036e25f986c8e64b31fe150c/transformed/lifecycle-process-2.6.2/AndroidManifest.xml:30:17-78
+173                android:value="androidx.startup" />
+173-->[androidx.lifecycle:lifecycle-process:2.6.2] /Users/ragarnob/.gradle/caches/9.6.0/transforms/fa1d2771036e25f986c8e64b31fe150c/transformed/lifecycle-process-2.6.2/AndroidManifest.xml:31:17-49
 174            <meta-data
-174-->[com.google.firebase:firebase-appcheck:18.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/dcf49723fdca45ed7aa4b584f71903cc/transformed/firebase-appcheck-18.0.0/AndroidManifest.xml:25:13-27:85
-175                android:name="com.google.firebase.components:com.google.firebase.appcheck.FirebaseAppCheckKtxRegistrar"
-175-->[com.google.firebase:firebase-appcheck:18.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/dcf49723fdca45ed7aa4b584f71903cc/transformed/firebase-appcheck-18.0.0/AndroidManifest.xml:26:17-120
-176                android:value="com.google.firebase.components.ComponentRegistrar" />
-176-->[com.google.firebase:firebase-appcheck:18.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/dcf49723fdca45ed7aa4b584f71903cc/transformed/firebase-appcheck-18.0.0/AndroidManifest.xml:27:17-82
-177            <meta-data
-177-->[com.google.firebase:firebase-appcheck:18.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/dcf49723fdca45ed7aa4b584f71903cc/transformed/firebase-appcheck-18.0.0/AndroidManifest.xml:28:13-30:85
-178                android:name="com.google.firebase.components:com.google.firebase.appcheck.FirebaseAppCheckRegistrar"
-178-->[com.google.firebase:firebase-appcheck:18.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/dcf49723fdca45ed7aa4b584f71903cc/transformed/firebase-appcheck-18.0.0/AndroidManifest.xml:29:17-117
-179                android:value="com.google.firebase.components.ComponentRegistrar" />
-179-->[com.google.firebase:firebase-appcheck:18.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/dcf49723fdca45ed7aa4b584f71903cc/transformed/firebase-appcheck-18.0.0/AndroidManifest.xml:30:17-82
-180            <meta-data
-180-->[com.google.firebase:firebase-common-ktx:21.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/d32d1a6d60c3dc1510ae87322645eb76/transformed/firebase-common-ktx-21.0.0/AndroidManifest.xml:12:13-14:85
-181                android:name="com.google.firebase.components:com.google.firebase.ktx.FirebaseCommonLegacyRegistrar"
-181-->[com.google.firebase:firebase-common-ktx:21.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/d32d1a6d60c3dc1510ae87322645eb76/transformed/firebase-common-ktx-21.0.0/AndroidManifest.xml:13:17-116
-182                android:value="com.google.firebase.components.ComponentRegistrar" />
-182-->[com.google.firebase:firebase-common-ktx:21.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/d32d1a6d60c3dc1510ae87322645eb76/transformed/firebase-common-ktx-21.0.0/AndroidManifest.xml:14:17-82
-183            <meta-data
-183-->[com.google.firebase:firebase-common:21.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/5b1b54cfdf55b7b25ed228d160b17a81/transformed/firebase-common-21.0.0/AndroidManifest.xml:35:13-37:85
-184                android:name="com.google.firebase.components:com.google.firebase.FirebaseCommonKtxRegistrar"
-184-->[com.google.firebase:firebase-common:21.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/5b1b54cfdf55b7b25ed228d160b17a81/transformed/firebase-common-21.0.0/AndroidManifest.xml:36:17-109
-185                android:value="com.google.firebase.components.ComponentRegistrar" />
-185-->[com.google.firebase:firebase-common:21.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/5b1b54cfdf55b7b25ed228d160b17a81/transformed/firebase-common-21.0.0/AndroidManifest.xml:37:17-82
-186        </service>
-187        <service
-187-->[androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /Users/ragarnob/.gradle/caches/9.6.0/transforms/43cabb06353e95ac6a7c2aa18fbbe849/transformed/credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:24:9-32:19
-188            android:name="androidx.credentials.playservices.CredentialProviderMetadataHolder"
-188-->[androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /Users/ragarnob/.gradle/caches/9.6.0/transforms/43cabb06353e95ac6a7c2aa18fbbe849/transformed/credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:25:13-94
-189            android:enabled="true"
-189-->[androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /Users/ragarnob/.gradle/caches/9.6.0/transforms/43cabb06353e95ac6a7c2aa18fbbe849/transformed/credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:26:13-35
-190            android:exported="false" >
-190-->[androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /Users/ragarnob/.gradle/caches/9.6.0/transforms/43cabb06353e95ac6a7c2aa18fbbe849/transformed/credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:27:13-37
-191            <meta-data
-191-->[androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /Users/ragarnob/.gradle/caches/9.6.0/transforms/43cabb06353e95ac6a7c2aa18fbbe849/transformed/credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:29:13-31:104
-192                android:name="androidx.credentials.CREDENTIAL_PROVIDER_KEY"
-192-->[androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /Users/ragarnob/.gradle/caches/9.6.0/transforms/43cabb06353e95ac6a7c2aa18fbbe849/transformed/credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:30:17-76
-193                android:value="androidx.credentials.playservices.CredentialProviderPlayServicesImpl" />
-193-->[androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /Users/ragarnob/.gradle/caches/9.6.0/transforms/43cabb06353e95ac6a7c2aa18fbbe849/transformed/credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:31:17-101
-194        </service>
+174-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/ragarnob/.gradle/caches/9.6.0/transforms/d523ef8becc4f3de1c2e286b3aadd23c/transformed/profileinstaller-1.3.1/AndroidManifest.xml:29:13-31:52
+175                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+175-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/ragarnob/.gradle/caches/9.6.0/transforms/d523ef8becc4f3de1c2e286b3aadd23c/transformed/profileinstaller-1.3.1/AndroidManifest.xml:30:17-85
+176                android:value="androidx.startup" />
+176-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/ragarnob/.gradle/caches/9.6.0/transforms/d523ef8becc4f3de1c2e286b3aadd23c/transformed/profileinstaller-1.3.1/AndroidManifest.xml:31:17-49
+177        </provider>
+178
+179        <service
+179-->[androidx.work:work-runtime:2.9.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/2db19d340f07b44e86e85740965d4b87/transformed/work-runtime-2.9.0/AndroidManifest.xml:39:9-45:35
+180            android:name="androidx.work.impl.background.systemalarm.SystemAlarmService"
+180-->[androidx.work:work-runtime:2.9.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/2db19d340f07b44e86e85740965d4b87/transformed/work-runtime-2.9.0/AndroidManifest.xml:40:13-88
+181            android:directBootAware="false"
+181-->[androidx.work:work-runtime:2.9.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/2db19d340f07b44e86e85740965d4b87/transformed/work-runtime-2.9.0/AndroidManifest.xml:41:13-44
+182            android:enabled="@bool/enable_system_alarm_service_default"
+182-->[androidx.work:work-runtime:2.9.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/2db19d340f07b44e86e85740965d4b87/transformed/work-runtime-2.9.0/AndroidManifest.xml:42:13-72
+183            android:exported="false" />
+183-->[androidx.work:work-runtime:2.9.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/2db19d340f07b44e86e85740965d4b87/transformed/work-runtime-2.9.0/AndroidManifest.xml:43:13-37
+184        <service
+184-->[androidx.work:work-runtime:2.9.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/2db19d340f07b44e86e85740965d4b87/transformed/work-runtime-2.9.0/AndroidManifest.xml:46:9-52:35
+185            android:name="androidx.work.impl.background.systemjob.SystemJobService"
+185-->[androidx.work:work-runtime:2.9.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/2db19d340f07b44e86e85740965d4b87/transformed/work-runtime-2.9.0/AndroidManifest.xml:47:13-84
+186            android:directBootAware="false"
+186-->[androidx.work:work-runtime:2.9.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/2db19d340f07b44e86e85740965d4b87/transformed/work-runtime-2.9.0/AndroidManifest.xml:48:13-44
+187            android:enabled="@bool/enable_system_job_service_default"
+187-->[androidx.work:work-runtime:2.9.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/2db19d340f07b44e86e85740965d4b87/transformed/work-runtime-2.9.0/AndroidManifest.xml:49:13-70
+188            android:exported="true"
+188-->[androidx.work:work-runtime:2.9.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/2db19d340f07b44e86e85740965d4b87/transformed/work-runtime-2.9.0/AndroidManifest.xml:50:13-36
+189            android:permission="android.permission.BIND_JOB_SERVICE" />
+189-->[androidx.work:work-runtime:2.9.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/2db19d340f07b44e86e85740965d4b87/transformed/work-runtime-2.9.0/AndroidManifest.xml:51:13-69
+190        <service
+190-->[androidx.work:work-runtime:2.9.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/2db19d340f07b44e86e85740965d4b87/transformed/work-runtime-2.9.0/AndroidManifest.xml:53:9-59:35
+191            android:name="androidx.work.impl.foreground.SystemForegroundService"
+191-->[androidx.work:work-runtime:2.9.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/2db19d340f07b44e86e85740965d4b87/transformed/work-runtime-2.9.0/AndroidManifest.xml:54:13-81
+192            android:directBootAware="false"
+192-->[androidx.work:work-runtime:2.9.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/2db19d340f07b44e86e85740965d4b87/transformed/work-runtime-2.9.0/AndroidManifest.xml:55:13-44
+193            android:enabled="@bool/enable_system_foreground_service_default"
+193-->[androidx.work:work-runtime:2.9.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/2db19d340f07b44e86e85740965d4b87/transformed/work-runtime-2.9.0/AndroidManifest.xml:56:13-77
+194            android:exported="false" />
+194-->[androidx.work:work-runtime:2.9.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/2db19d340f07b44e86e85740965d4b87/transformed/work-runtime-2.9.0/AndroidManifest.xml:57:13-37
 195
-196        <activity
-196-->[androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /Users/ragarnob/.gradle/caches/9.6.0/transforms/43cabb06353e95ac6a7c2aa18fbbe849/transformed/credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:34:9-41:20
-197            android:name="androidx.credentials.playservices.HiddenActivity"
-197-->[androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /Users/ragarnob/.gradle/caches/9.6.0/transforms/43cabb06353e95ac6a7c2aa18fbbe849/transformed/credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:35:13-76
-198            android:configChanges="orientation|screenSize|screenLayout|keyboardHidden"
-198-->[androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /Users/ragarnob/.gradle/caches/9.6.0/transforms/43cabb06353e95ac6a7c2aa18fbbe849/transformed/credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:36:13-87
+196        <receiver
+196-->[androidx.work:work-runtime:2.9.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/2db19d340f07b44e86e85740965d4b87/transformed/work-runtime-2.9.0/AndroidManifest.xml:61:9-66:35
+197            android:name="androidx.work.impl.utils.ForceStopRunnable$BroadcastReceiver"
+197-->[androidx.work:work-runtime:2.9.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/2db19d340f07b44e86e85740965d4b87/transformed/work-runtime-2.9.0/AndroidManifest.xml:62:13-88
+198            android:directBootAware="false"
+198-->[androidx.work:work-runtime:2.9.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/2db19d340f07b44e86e85740965d4b87/transformed/work-runtime-2.9.0/AndroidManifest.xml:63:13-44
 199            android:enabled="true"
-199-->[androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /Users/ragarnob/.gradle/caches/9.6.0/transforms/43cabb06353e95ac6a7c2aa18fbbe849/transformed/credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:37:13-35
-200            android:exported="false"
-200-->[androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /Users/ragarnob/.gradle/caches/9.6.0/transforms/43cabb06353e95ac6a7c2aa18fbbe849/transformed/credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:38:13-37
-201            android:fitsSystemWindows="true"
-201-->[androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /Users/ragarnob/.gradle/caches/9.6.0/transforms/43cabb06353e95ac6a7c2aa18fbbe849/transformed/credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:39:13-45
-202            android:theme="@style/Theme.Hidden" >
-202-->[androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /Users/ragarnob/.gradle/caches/9.6.0/transforms/43cabb06353e95ac6a7c2aa18fbbe849/transformed/credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:40:13-48
-203        </activity>
-204        <activity
-204-->[com.google.android.gms:play-services-auth:21.2.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/0deca01d817409454055987d57b4fe2e/transformed/play-services-auth-21.2.0/AndroidManifest.xml:23:9-27:75
-205            android:name="com.google.android.gms.auth.api.signin.internal.SignInHubActivity"
-205-->[com.google.android.gms:play-services-auth:21.2.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/0deca01d817409454055987d57b4fe2e/transformed/play-services-auth-21.2.0/AndroidManifest.xml:24:13-93
-206            android:excludeFromRecents="true"
-206-->[com.google.android.gms:play-services-auth:21.2.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/0deca01d817409454055987d57b4fe2e/transformed/play-services-auth-21.2.0/AndroidManifest.xml:25:13-46
-207            android:exported="false"
-207-->[com.google.android.gms:play-services-auth:21.2.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/0deca01d817409454055987d57b4fe2e/transformed/play-services-auth-21.2.0/AndroidManifest.xml:26:13-37
-208            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-208-->[com.google.android.gms:play-services-auth:21.2.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/0deca01d817409454055987d57b4fe2e/transformed/play-services-auth-21.2.0/AndroidManifest.xml:27:13-72
-209        <!--
-210            Service handling Google Sign-In user revocation. For apps that do not integrate with
-211            Google Sign-In, this service will never be started.
-212        -->
-213        <service
-213-->[com.google.android.gms:play-services-auth:21.2.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/0deca01d817409454055987d57b4fe2e/transformed/play-services-auth-21.2.0/AndroidManifest.xml:33:9-37:51
-214            android:name="com.google.android.gms.auth.api.signin.RevocationBoundService"
-214-->[com.google.android.gms:play-services-auth:21.2.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/0deca01d817409454055987d57b4fe2e/transformed/play-services-auth-21.2.0/AndroidManifest.xml:34:13-89
-215            android:exported="true"
-215-->[com.google.android.gms:play-services-auth:21.2.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/0deca01d817409454055987d57b4fe2e/transformed/play-services-auth-21.2.0/AndroidManifest.xml:35:13-36
-216            android:permission="com.google.android.gms.auth.api.signin.permission.REVOCATION_NOTIFICATION"
-216-->[com.google.android.gms:play-services-auth:21.2.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/0deca01d817409454055987d57b4fe2e/transformed/play-services-auth-21.2.0/AndroidManifest.xml:36:13-107
-217            android:visibleToInstantApps="true" />
-217-->[com.google.android.gms:play-services-auth:21.2.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/0deca01d817409454055987d57b4fe2e/transformed/play-services-auth-21.2.0/AndroidManifest.xml:37:13-48
-218
-219        <activity
-219-->[com.google.android.gms:play-services-base:18.3.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/212608d61e072883fbf1f8c82cf8574f/transformed/play-services-base-18.3.0/AndroidManifest.xml:20:9-22:45
-220            android:name="com.google.android.gms.common.api.GoogleApiActivity"
-220-->[com.google.android.gms:play-services-base:18.3.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/212608d61e072883fbf1f8c82cf8574f/transformed/play-services-base-18.3.0/AndroidManifest.xml:20:19-85
-221            android:exported="false"
-221-->[com.google.android.gms:play-services-base:18.3.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/212608d61e072883fbf1f8c82cf8574f/transformed/play-services-base-18.3.0/AndroidManifest.xml:22:19-43
-222            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-222-->[com.google.android.gms:play-services-base:18.3.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/212608d61e072883fbf1f8c82cf8574f/transformed/play-services-base-18.3.0/AndroidManifest.xml:21:19-78
-223
-224        <provider
-224-->[com.google.firebase:firebase-common:21.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/5b1b54cfdf55b7b25ed228d160b17a81/transformed/firebase-common-21.0.0/AndroidManifest.xml:23:9-28:39
-225            android:name="com.google.firebase.provider.FirebaseInitProvider"
-225-->[com.google.firebase:firebase-common:21.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/5b1b54cfdf55b7b25ed228d160b17a81/transformed/firebase-common-21.0.0/AndroidManifest.xml:24:13-77
-226            android:authorities="com.crescent.app.firebaseinitprovider"
-226-->[com.google.firebase:firebase-common:21.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/5b1b54cfdf55b7b25ed228d160b17a81/transformed/firebase-common-21.0.0/AndroidManifest.xml:25:13-72
-227            android:directBootAware="true"
-227-->[com.google.firebase:firebase-common:21.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/5b1b54cfdf55b7b25ed228d160b17a81/transformed/firebase-common-21.0.0/AndroidManifest.xml:26:13-43
-228            android:exported="false"
-228-->[com.google.firebase:firebase-common:21.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/5b1b54cfdf55b7b25ed228d160b17a81/transformed/firebase-common-21.0.0/AndroidManifest.xml:27:13-37
-229            android:initOrder="100" />
-229-->[com.google.firebase:firebase-common:21.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/5b1b54cfdf55b7b25ed228d160b17a81/transformed/firebase-common-21.0.0/AndroidManifest.xml:28:13-36
-230        <provider
-230-->[androidx.emoji2:emoji2:1.3.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/7d23cae5e53b6f0ba8b88defcc5a006b/transformed/emoji2-1.3.0/AndroidManifest.xml:24:9-32:20
-231            android:name="androidx.startup.InitializationProvider"
-231-->[androidx.emoji2:emoji2:1.3.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/7d23cae5e53b6f0ba8b88defcc5a006b/transformed/emoji2-1.3.0/AndroidManifest.xml:25:13-67
-232            android:authorities="com.crescent.app.androidx-startup"
-232-->[androidx.emoji2:emoji2:1.3.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/7d23cae5e53b6f0ba8b88defcc5a006b/transformed/emoji2-1.3.0/AndroidManifest.xml:26:13-68
-233            android:exported="false" >
-233-->[androidx.emoji2:emoji2:1.3.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/7d23cae5e53b6f0ba8b88defcc5a006b/transformed/emoji2-1.3.0/AndroidManifest.xml:27:13-37
-234            <meta-data
-234-->[androidx.emoji2:emoji2:1.3.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/7d23cae5e53b6f0ba8b88defcc5a006b/transformed/emoji2-1.3.0/AndroidManifest.xml:29:13-31:52
-235                android:name="androidx.emoji2.text.EmojiCompatInitializer"
-235-->[androidx.emoji2:emoji2:1.3.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/7d23cae5e53b6f0ba8b88defcc5a006b/transformed/emoji2-1.3.0/AndroidManifest.xml:30:17-75
-236                android:value="androidx.startup" />
-236-->[androidx.emoji2:emoji2:1.3.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/7d23cae5e53b6f0ba8b88defcc5a006b/transformed/emoji2-1.3.0/AndroidManifest.xml:31:17-49
-237            <meta-data
-237-->[androidx.lifecycle:lifecycle-process:2.6.2] /Users/ragarnob/.gradle/caches/9.6.0/transforms/fa1d2771036e25f986c8e64b31fe150c/transformed/lifecycle-process-2.6.2/AndroidManifest.xml:29:13-31:52
-238                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
-238-->[androidx.lifecycle:lifecycle-process:2.6.2] /Users/ragarnob/.gradle/caches/9.6.0/transforms/fa1d2771036e25f986c8e64b31fe150c/transformed/lifecycle-process-2.6.2/AndroidManifest.xml:30:17-78
-239                android:value="androidx.startup" />
-239-->[androidx.lifecycle:lifecycle-process:2.6.2] /Users/ragarnob/.gradle/caches/9.6.0/transforms/fa1d2771036e25f986c8e64b31fe150c/transformed/lifecycle-process-2.6.2/AndroidManifest.xml:31:17-49
-240            <meta-data
-240-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/ragarnob/.gradle/caches/9.6.0/transforms/d523ef8becc4f3de1c2e286b3aadd23c/transformed/profileinstaller-1.3.1/AndroidManifest.xml:29:13-31:52
-241                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
-241-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/ragarnob/.gradle/caches/9.6.0/transforms/d523ef8becc4f3de1c2e286b3aadd23c/transformed/profileinstaller-1.3.1/AndroidManifest.xml:30:17-85
-242                android:value="androidx.startup" />
-242-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/ragarnob/.gradle/caches/9.6.0/transforms/d523ef8becc4f3de1c2e286b3aadd23c/transformed/profileinstaller-1.3.1/AndroidManifest.xml:31:17-49
-243        </provider>
-244
-245        <meta-data
-245-->[com.google.android.gms:play-services-basement:18.3.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/30cd372cd55f1fb4a40da84177a611cb/transformed/play-services-basement-18.3.0/AndroidManifest.xml:21:9-23:69
-246            android:name="com.google.android.gms.version"
-246-->[com.google.android.gms:play-services-basement:18.3.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/30cd372cd55f1fb4a40da84177a611cb/transformed/play-services-basement-18.3.0/AndroidManifest.xml:22:13-58
-247            android:value="@integer/google_play_services_version" />
-247-->[com.google.android.gms:play-services-basement:18.3.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/30cd372cd55f1fb4a40da84177a611cb/transformed/play-services-basement-18.3.0/AndroidManifest.xml:23:13-66
-248
-249        <receiver
-249-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/ragarnob/.gradle/caches/9.6.0/transforms/d523ef8becc4f3de1c2e286b3aadd23c/transformed/profileinstaller-1.3.1/AndroidManifest.xml:34:9-52:20
-250            android:name="androidx.profileinstaller.ProfileInstallReceiver"
-250-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/ragarnob/.gradle/caches/9.6.0/transforms/d523ef8becc4f3de1c2e286b3aadd23c/transformed/profileinstaller-1.3.1/AndroidManifest.xml:35:13-76
-251            android:directBootAware="false"
-251-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/ragarnob/.gradle/caches/9.6.0/transforms/d523ef8becc4f3de1c2e286b3aadd23c/transformed/profileinstaller-1.3.1/AndroidManifest.xml:36:13-44
-252            android:enabled="true"
-252-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/ragarnob/.gradle/caches/9.6.0/transforms/d523ef8becc4f3de1c2e286b3aadd23c/transformed/profileinstaller-1.3.1/AndroidManifest.xml:37:13-35
-253            android:exported="true"
-253-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/ragarnob/.gradle/caches/9.6.0/transforms/d523ef8becc4f3de1c2e286b3aadd23c/transformed/profileinstaller-1.3.1/AndroidManifest.xml:38:13-36
-254            android:permission="android.permission.DUMP" >
-254-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/ragarnob/.gradle/caches/9.6.0/transforms/d523ef8becc4f3de1c2e286b3aadd23c/transformed/profileinstaller-1.3.1/AndroidManifest.xml:39:13-57
-255            <intent-filter>
-255-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/ragarnob/.gradle/caches/9.6.0/transforms/d523ef8becc4f3de1c2e286b3aadd23c/transformed/profileinstaller-1.3.1/AndroidManifest.xml:40:13-42:29
-256                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
-256-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/ragarnob/.gradle/caches/9.6.0/transforms/d523ef8becc4f3de1c2e286b3aadd23c/transformed/profileinstaller-1.3.1/AndroidManifest.xml:41:17-91
-256-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/ragarnob/.gradle/caches/9.6.0/transforms/d523ef8becc4f3de1c2e286b3aadd23c/transformed/profileinstaller-1.3.1/AndroidManifest.xml:41:25-88
-257            </intent-filter>
-258            <intent-filter>
-258-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/ragarnob/.gradle/caches/9.6.0/transforms/d523ef8becc4f3de1c2e286b3aadd23c/transformed/profileinstaller-1.3.1/AndroidManifest.xml:43:13-45:29
-259                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
-259-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/ragarnob/.gradle/caches/9.6.0/transforms/d523ef8becc4f3de1c2e286b3aadd23c/transformed/profileinstaller-1.3.1/AndroidManifest.xml:44:17-85
-259-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/ragarnob/.gradle/caches/9.6.0/transforms/d523ef8becc4f3de1c2e286b3aadd23c/transformed/profileinstaller-1.3.1/AndroidManifest.xml:44:25-82
-260            </intent-filter>
-261            <intent-filter>
-261-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/ragarnob/.gradle/caches/9.6.0/transforms/d523ef8becc4f3de1c2e286b3aadd23c/transformed/profileinstaller-1.3.1/AndroidManifest.xml:46:13-48:29
-262                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
-262-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/ragarnob/.gradle/caches/9.6.0/transforms/d523ef8becc4f3de1c2e286b3aadd23c/transformed/profileinstaller-1.3.1/AndroidManifest.xml:47:17-88
-262-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/ragarnob/.gradle/caches/9.6.0/transforms/d523ef8becc4f3de1c2e286b3aadd23c/transformed/profileinstaller-1.3.1/AndroidManifest.xml:47:25-85
-263            </intent-filter>
-264            <intent-filter>
-264-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/ragarnob/.gradle/caches/9.6.0/transforms/d523ef8becc4f3de1c2e286b3aadd23c/transformed/profileinstaller-1.3.1/AndroidManifest.xml:49:13-51:29
-265                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
-265-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/ragarnob/.gradle/caches/9.6.0/transforms/d523ef8becc4f3de1c2e286b3aadd23c/transformed/profileinstaller-1.3.1/AndroidManifest.xml:50:17-95
-265-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/ragarnob/.gradle/caches/9.6.0/transforms/d523ef8becc4f3de1c2e286b3aadd23c/transformed/profileinstaller-1.3.1/AndroidManifest.xml:50:25-92
-266            </intent-filter>
-267        </receiver>
-268    </application>
-269
-270</manifest>
+199-->[androidx.work:work-runtime:2.9.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/2db19d340f07b44e86e85740965d4b87/transformed/work-runtime-2.9.0/AndroidManifest.xml:64:13-35
+200            android:exported="false" />
+200-->[androidx.work:work-runtime:2.9.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/2db19d340f07b44e86e85740965d4b87/transformed/work-runtime-2.9.0/AndroidManifest.xml:65:13-37
+201        <receiver
+201-->[androidx.work:work-runtime:2.9.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/2db19d340f07b44e86e85740965d4b87/transformed/work-runtime-2.9.0/AndroidManifest.xml:67:9-77:20
+202            android:name="androidx.work.impl.background.systemalarm.ConstraintProxy$BatteryChargingProxy"
+202-->[androidx.work:work-runtime:2.9.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/2db19d340f07b44e86e85740965d4b87/transformed/work-runtime-2.9.0/AndroidManifest.xml:68:13-106
+203            android:directBootAware="false"
+203-->[androidx.work:work-runtime:2.9.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/2db19d340f07b44e86e85740965d4b87/transformed/work-runtime-2.9.0/AndroidManifest.xml:69:13-44
+204            android:enabled="false"
+204-->[androidx.work:work-runtime:2.9.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/2db19d340f07b44e86e85740965d4b87/transformed/work-runtime-2.9.0/AndroidManifest.xml:70:13-36
+205            android:exported="false" >
+205-->[androidx.work:work-runtime:2.9.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/2db19d340f07b44e86e85740965d4b87/transformed/work-runtime-2.9.0/AndroidManifest.xml:71:13-37
+206            <intent-filter>
+206-->[androidx.work:work-runtime:2.9.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/2db19d340f07b44e86e85740965d4b87/transformed/work-runtime-2.9.0/AndroidManifest.xml:73:13-76:29
+207                <action android:name="android.intent.action.ACTION_POWER_CONNECTED" />
+207-->[androidx.work:work-runtime:2.9.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/2db19d340f07b44e86e85740965d4b87/transformed/work-runtime-2.9.0/AndroidManifest.xml:74:17-87
+207-->[androidx.work:work-runtime:2.9.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/2db19d340f07b44e86e85740965d4b87/transformed/work-runtime-2.9.0/AndroidManifest.xml:74:25-84
+208                <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED" />
+208-->[androidx.work:work-runtime:2.9.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/2db19d340f07b44e86e85740965d4b87/transformed/work-runtime-2.9.0/AndroidManifest.xml:75:17-90
+208-->[androidx.work:work-runtime:2.9.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/2db19d340f07b44e86e85740965d4b87/transformed/work-runtime-2.9.0/AndroidManifest.xml:75:25-87
+209            </intent-filter>
+210        </receiver>
+211        <receiver
+211-->[androidx.work:work-runtime:2.9.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/2db19d340f07b44e86e85740965d4b87/transformed/work-runtime-2.9.0/AndroidManifest.xml:78:9-88:20
+212            android:name="androidx.work.impl.background.systemalarm.ConstraintProxy$BatteryNotLowProxy"
+212-->[androidx.work:work-runtime:2.9.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/2db19d340f07b44e86e85740965d4b87/transformed/work-runtime-2.9.0/AndroidManifest.xml:79:13-104
+213            android:directBootAware="false"
+213-->[androidx.work:work-runtime:2.9.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/2db19d340f07b44e86e85740965d4b87/transformed/work-runtime-2.9.0/AndroidManifest.xml:80:13-44
+214            android:enabled="false"
+214-->[androidx.work:work-runtime:2.9.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/2db19d340f07b44e86e85740965d4b87/transformed/work-runtime-2.9.0/AndroidManifest.xml:81:13-36
+215            android:exported="false" >
+215-->[androidx.work:work-runtime:2.9.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/2db19d340f07b44e86e85740965d4b87/transformed/work-runtime-2.9.0/AndroidManifest.xml:82:13-37
+216            <intent-filter>
+216-->[androidx.work:work-runtime:2.9.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/2db19d340f07b44e86e85740965d4b87/transformed/work-runtime-2.9.0/AndroidManifest.xml:84:13-87:29
+217                <action android:name="android.intent.action.BATTERY_OKAY" />
+217-->[androidx.work:work-runtime:2.9.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/2db19d340f07b44e86e85740965d4b87/transformed/work-runtime-2.9.0/AndroidManifest.xml:85:17-77
+217-->[androidx.work:work-runtime:2.9.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/2db19d340f07b44e86e85740965d4b87/transformed/work-runtime-2.9.0/AndroidManifest.xml:85:25-74
+218                <action android:name="android.intent.action.BATTERY_LOW" />
+218-->[androidx.work:work-runtime:2.9.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/2db19d340f07b44e86e85740965d4b87/transformed/work-runtime-2.9.0/AndroidManifest.xml:86:17-76
+218-->[androidx.work:work-runtime:2.9.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/2db19d340f07b44e86e85740965d4b87/transformed/work-runtime-2.9.0/AndroidManifest.xml:86:25-73
+219            </intent-filter>
+220        </receiver>
+221        <receiver
+221-->[androidx.work:work-runtime:2.9.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/2db19d340f07b44e86e85740965d4b87/transformed/work-runtime-2.9.0/AndroidManifest.xml:89:9-99:20
+222            android:name="androidx.work.impl.background.systemalarm.ConstraintProxy$StorageNotLowProxy"
+222-->[androidx.work:work-runtime:2.9.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/2db19d340f07b44e86e85740965d4b87/transformed/work-runtime-2.9.0/AndroidManifest.xml:90:13-104
+223            android:directBootAware="false"
+223-->[androidx.work:work-runtime:2.9.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/2db19d340f07b44e86e85740965d4b87/transformed/work-runtime-2.9.0/AndroidManifest.xml:91:13-44
+224            android:enabled="false"
+224-->[androidx.work:work-runtime:2.9.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/2db19d340f07b44e86e85740965d4b87/transformed/work-runtime-2.9.0/AndroidManifest.xml:92:13-36
+225            android:exported="false" >
+225-->[androidx.work:work-runtime:2.9.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/2db19d340f07b44e86e85740965d4b87/transformed/work-runtime-2.9.0/AndroidManifest.xml:93:13-37
+226            <intent-filter>
+226-->[androidx.work:work-runtime:2.9.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/2db19d340f07b44e86e85740965d4b87/transformed/work-runtime-2.9.0/AndroidManifest.xml:95:13-98:29
+227                <action android:name="android.intent.action.DEVICE_STORAGE_LOW" />
+227-->[androidx.work:work-runtime:2.9.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/2db19d340f07b44e86e85740965d4b87/transformed/work-runtime-2.9.0/AndroidManifest.xml:96:17-83
+227-->[androidx.work:work-runtime:2.9.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/2db19d340f07b44e86e85740965d4b87/transformed/work-runtime-2.9.0/AndroidManifest.xml:96:25-80
+228                <action android:name="android.intent.action.DEVICE_STORAGE_OK" />
+228-->[androidx.work:work-runtime:2.9.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/2db19d340f07b44e86e85740965d4b87/transformed/work-runtime-2.9.0/AndroidManifest.xml:97:17-82
+228-->[androidx.work:work-runtime:2.9.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/2db19d340f07b44e86e85740965d4b87/transformed/work-runtime-2.9.0/AndroidManifest.xml:97:25-79
+229            </intent-filter>
+230        </receiver>
+231        <receiver
+231-->[androidx.work:work-runtime:2.9.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/2db19d340f07b44e86e85740965d4b87/transformed/work-runtime-2.9.0/AndroidManifest.xml:100:9-109:20
+232            android:name="androidx.work.impl.background.systemalarm.ConstraintProxy$NetworkStateProxy"
+232-->[androidx.work:work-runtime:2.9.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/2db19d340f07b44e86e85740965d4b87/transformed/work-runtime-2.9.0/AndroidManifest.xml:101:13-103
+233            android:directBootAware="false"
+233-->[androidx.work:work-runtime:2.9.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/2db19d340f07b44e86e85740965d4b87/transformed/work-runtime-2.9.0/AndroidManifest.xml:102:13-44
+234            android:enabled="false"
+234-->[androidx.work:work-runtime:2.9.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/2db19d340f07b44e86e85740965d4b87/transformed/work-runtime-2.9.0/AndroidManifest.xml:103:13-36
+235            android:exported="false" >
+235-->[androidx.work:work-runtime:2.9.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/2db19d340f07b44e86e85740965d4b87/transformed/work-runtime-2.9.0/AndroidManifest.xml:104:13-37
+236            <intent-filter>
+236-->[androidx.work:work-runtime:2.9.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/2db19d340f07b44e86e85740965d4b87/transformed/work-runtime-2.9.0/AndroidManifest.xml:106:13-108:29
+237                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+237-->[androidx.work:work-runtime:2.9.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/2db19d340f07b44e86e85740965d4b87/transformed/work-runtime-2.9.0/AndroidManifest.xml:107:17-79
+237-->[androidx.work:work-runtime:2.9.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/2db19d340f07b44e86e85740965d4b87/transformed/work-runtime-2.9.0/AndroidManifest.xml:107:25-76
+238            </intent-filter>
+239        </receiver>
+240        <receiver
+240-->[androidx.work:work-runtime:2.9.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/2db19d340f07b44e86e85740965d4b87/transformed/work-runtime-2.9.0/AndroidManifest.xml:110:9-121:20
+241            android:name="androidx.work.impl.background.systemalarm.RescheduleReceiver"
+241-->[androidx.work:work-runtime:2.9.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/2db19d340f07b44e86e85740965d4b87/transformed/work-runtime-2.9.0/AndroidManifest.xml:111:13-88
+242            android:directBootAware="false"
+242-->[androidx.work:work-runtime:2.9.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/2db19d340f07b44e86e85740965d4b87/transformed/work-runtime-2.9.0/AndroidManifest.xml:112:13-44
+243            android:enabled="false"
+243-->[androidx.work:work-runtime:2.9.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/2db19d340f07b44e86e85740965d4b87/transformed/work-runtime-2.9.0/AndroidManifest.xml:113:13-36
+244            android:exported="false" >
+244-->[androidx.work:work-runtime:2.9.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/2db19d340f07b44e86e85740965d4b87/transformed/work-runtime-2.9.0/AndroidManifest.xml:114:13-37
+245            <intent-filter>
+245-->[androidx.work:work-runtime:2.9.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/2db19d340f07b44e86e85740965d4b87/transformed/work-runtime-2.9.0/AndroidManifest.xml:116:13-120:29
+246                <action android:name="android.intent.action.BOOT_COMPLETED" />
+246-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:78:17-78
+246-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:78:25-76
+247                <action android:name="android.intent.action.TIME_SET" />
+247-->[androidx.work:work-runtime:2.9.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/2db19d340f07b44e86e85740965d4b87/transformed/work-runtime-2.9.0/AndroidManifest.xml:118:17-73
+247-->[androidx.work:work-runtime:2.9.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/2db19d340f07b44e86e85740965d4b87/transformed/work-runtime-2.9.0/AndroidManifest.xml:118:25-70
+248                <action android:name="android.intent.action.TIMEZONE_CHANGED" />
+248-->[androidx.work:work-runtime:2.9.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/2db19d340f07b44e86e85740965d4b87/transformed/work-runtime-2.9.0/AndroidManifest.xml:119:17-81
+248-->[androidx.work:work-runtime:2.9.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/2db19d340f07b44e86e85740965d4b87/transformed/work-runtime-2.9.0/AndroidManifest.xml:119:25-78
+249            </intent-filter>
+250        </receiver>
+251        <receiver
+251-->[androidx.work:work-runtime:2.9.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/2db19d340f07b44e86e85740965d4b87/transformed/work-runtime-2.9.0/AndroidManifest.xml:122:9-131:20
+252            android:name="androidx.work.impl.background.systemalarm.ConstraintProxyUpdateReceiver"
+252-->[androidx.work:work-runtime:2.9.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/2db19d340f07b44e86e85740965d4b87/transformed/work-runtime-2.9.0/AndroidManifest.xml:123:13-99
+253            android:directBootAware="false"
+253-->[androidx.work:work-runtime:2.9.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/2db19d340f07b44e86e85740965d4b87/transformed/work-runtime-2.9.0/AndroidManifest.xml:124:13-44
+254            android:enabled="@bool/enable_system_alarm_service_default"
+254-->[androidx.work:work-runtime:2.9.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/2db19d340f07b44e86e85740965d4b87/transformed/work-runtime-2.9.0/AndroidManifest.xml:125:13-72
+255            android:exported="false" >
+255-->[androidx.work:work-runtime:2.9.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/2db19d340f07b44e86e85740965d4b87/transformed/work-runtime-2.9.0/AndroidManifest.xml:126:13-37
+256            <intent-filter>
+256-->[androidx.work:work-runtime:2.9.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/2db19d340f07b44e86e85740965d4b87/transformed/work-runtime-2.9.0/AndroidManifest.xml:128:13-130:29
+257                <action android:name="androidx.work.impl.background.systemalarm.UpdateProxies" />
+257-->[androidx.work:work-runtime:2.9.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/2db19d340f07b44e86e85740965d4b87/transformed/work-runtime-2.9.0/AndroidManifest.xml:129:17-98
+257-->[androidx.work:work-runtime:2.9.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/2db19d340f07b44e86e85740965d4b87/transformed/work-runtime-2.9.0/AndroidManifest.xml:129:25-95
+258            </intent-filter>
+259        </receiver>
+260        <receiver
+260-->[androidx.work:work-runtime:2.9.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/2db19d340f07b44e86e85740965d4b87/transformed/work-runtime-2.9.0/AndroidManifest.xml:132:9-142:20
+261            android:name="androidx.work.impl.diagnostics.DiagnosticsReceiver"
+261-->[androidx.work:work-runtime:2.9.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/2db19d340f07b44e86e85740965d4b87/transformed/work-runtime-2.9.0/AndroidManifest.xml:133:13-78
+262            android:directBootAware="false"
+262-->[androidx.work:work-runtime:2.9.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/2db19d340f07b44e86e85740965d4b87/transformed/work-runtime-2.9.0/AndroidManifest.xml:134:13-44
+263            android:enabled="true"
+263-->[androidx.work:work-runtime:2.9.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/2db19d340f07b44e86e85740965d4b87/transformed/work-runtime-2.9.0/AndroidManifest.xml:135:13-35
+264            android:exported="true"
+264-->[androidx.work:work-runtime:2.9.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/2db19d340f07b44e86e85740965d4b87/transformed/work-runtime-2.9.0/AndroidManifest.xml:136:13-36
+265            android:permission="android.permission.DUMP" >
+265-->[androidx.work:work-runtime:2.9.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/2db19d340f07b44e86e85740965d4b87/transformed/work-runtime-2.9.0/AndroidManifest.xml:137:13-57
+266            <intent-filter>
+266-->[androidx.work:work-runtime:2.9.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/2db19d340f07b44e86e85740965d4b87/transformed/work-runtime-2.9.0/AndroidManifest.xml:139:13-141:29
+267                <action android:name="androidx.work.diagnostics.REQUEST_DIAGNOSTICS" />
+267-->[androidx.work:work-runtime:2.9.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/2db19d340f07b44e86e85740965d4b87/transformed/work-runtime-2.9.0/AndroidManifest.xml:140:17-88
+267-->[androidx.work:work-runtime:2.9.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/2db19d340f07b44e86e85740965d4b87/transformed/work-runtime-2.9.0/AndroidManifest.xml:140:25-85
+268            </intent-filter>
+269        </receiver>
+270
+271        <service
+271-->[androidx.room:room-runtime:2.6.1] /Users/ragarnob/.gradle/caches/9.6.0/transforms/ccd9bce075dab20c95f20040dd7fc0fd/transformed/room-runtime-2.6.1/AndroidManifest.xml:24:9-28:63
+272            android:name="androidx.room.MultiInstanceInvalidationService"
+272-->[androidx.room:room-runtime:2.6.1] /Users/ragarnob/.gradle/caches/9.6.0/transforms/ccd9bce075dab20c95f20040dd7fc0fd/transformed/room-runtime-2.6.1/AndroidManifest.xml:25:13-74
+273            android:directBootAware="true"
+273-->[androidx.room:room-runtime:2.6.1] /Users/ragarnob/.gradle/caches/9.6.0/transforms/ccd9bce075dab20c95f20040dd7fc0fd/transformed/room-runtime-2.6.1/AndroidManifest.xml:26:13-43
+274            android:exported="false" />
+274-->[androidx.room:room-runtime:2.6.1] /Users/ragarnob/.gradle/caches/9.6.0/transforms/ccd9bce075dab20c95f20040dd7fc0fd/transformed/room-runtime-2.6.1/AndroidManifest.xml:27:13-37
+275
+276        <activity
+276-->[com.google.firebase:firebase-auth:23.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/0180cfb4a22ce4f0640eacba76091814/transformed/firebase-auth-23.0.0/AndroidManifest.xml:29:9-46:20
+277            android:name="com.google.firebase.auth.internal.GenericIdpActivity"
+277-->[com.google.firebase:firebase-auth:23.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/0180cfb4a22ce4f0640eacba76091814/transformed/firebase-auth-23.0.0/AndroidManifest.xml:30:13-80
+278            android:excludeFromRecents="true"
+278-->[com.google.firebase:firebase-auth:23.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/0180cfb4a22ce4f0640eacba76091814/transformed/firebase-auth-23.0.0/AndroidManifest.xml:31:13-46
+279            android:exported="true"
+279-->[com.google.firebase:firebase-auth:23.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/0180cfb4a22ce4f0640eacba76091814/transformed/firebase-auth-23.0.0/AndroidManifest.xml:32:13-36
+280            android:launchMode="singleTask"
+280-->[com.google.firebase:firebase-auth:23.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/0180cfb4a22ce4f0640eacba76091814/transformed/firebase-auth-23.0.0/AndroidManifest.xml:33:13-44
+281            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+281-->[com.google.firebase:firebase-auth:23.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/0180cfb4a22ce4f0640eacba76091814/transformed/firebase-auth-23.0.0/AndroidManifest.xml:34:13-72
+282            <intent-filter>
+282-->[com.google.firebase:firebase-auth:23.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/0180cfb4a22ce4f0640eacba76091814/transformed/firebase-auth-23.0.0/AndroidManifest.xml:35:13-45:29
+283                <action android:name="android.intent.action.VIEW" />
+283-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:60:17-69
+283-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:60:25-66
+284
+285                <category android:name="android.intent.category.DEFAULT" />
+285-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:61:17-76
+285-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:61:27-73
+286                <category android:name="android.intent.category.BROWSABLE" />
+286-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:62:17-78
+286-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:62:27-75
+287
+288                <data
+288-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:63:17-106
+289                    android:host="firebase.auth"
+289-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:63:46-73
+290                    android:path="/"
+291                    android:scheme="genericidp" />
+291-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:63:23-45
+292            </intent-filter>
+293        </activity>
+294        <activity
+294-->[com.google.firebase:firebase-auth:23.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/0180cfb4a22ce4f0640eacba76091814/transformed/firebase-auth-23.0.0/AndroidManifest.xml:47:9-64:20
+295            android:name="com.google.firebase.auth.internal.RecaptchaActivity"
+295-->[com.google.firebase:firebase-auth:23.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/0180cfb4a22ce4f0640eacba76091814/transformed/firebase-auth-23.0.0/AndroidManifest.xml:48:13-79
+296            android:excludeFromRecents="true"
+296-->[com.google.firebase:firebase-auth:23.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/0180cfb4a22ce4f0640eacba76091814/transformed/firebase-auth-23.0.0/AndroidManifest.xml:49:13-46
+297            android:exported="true"
+297-->[com.google.firebase:firebase-auth:23.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/0180cfb4a22ce4f0640eacba76091814/transformed/firebase-auth-23.0.0/AndroidManifest.xml:50:13-36
+298            android:launchMode="singleTask"
+298-->[com.google.firebase:firebase-auth:23.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/0180cfb4a22ce4f0640eacba76091814/transformed/firebase-auth-23.0.0/AndroidManifest.xml:51:13-44
+299            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+299-->[com.google.firebase:firebase-auth:23.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/0180cfb4a22ce4f0640eacba76091814/transformed/firebase-auth-23.0.0/AndroidManifest.xml:52:13-72
+300            <intent-filter>
+300-->[com.google.firebase:firebase-auth:23.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/0180cfb4a22ce4f0640eacba76091814/transformed/firebase-auth-23.0.0/AndroidManifest.xml:53:13-63:29
+301                <action android:name="android.intent.action.VIEW" />
+301-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:60:17-69
+301-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:60:25-66
+302
+303                <category android:name="android.intent.category.DEFAULT" />
+303-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:61:17-76
+303-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:61:27-73
+304                <category android:name="android.intent.category.BROWSABLE" />
+304-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:62:17-78
+304-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:62:27-75
+305
+306                <data
+306-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:63:17-106
+307                    android:host="firebase.auth"
+307-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:63:46-73
+308                    android:path="/"
+309                    android:scheme="recaptcha" />
+309-->/Users/ragarnob/Desktop/Crescent/app/src/main/AndroidManifest.xml:63:23-45
+310            </intent-filter>
+311        </activity>
+312
+313        <service
+313-->[com.google.firebase:firebase-auth:23.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/0180cfb4a22ce4f0640eacba76091814/transformed/firebase-auth-23.0.0/AndroidManifest.xml:66:9-72:19
+314            android:name="com.google.firebase.components.ComponentDiscoveryService"
+314-->[com.google.firebase:firebase-auth:23.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/0180cfb4a22ce4f0640eacba76091814/transformed/firebase-auth-23.0.0/AndroidManifest.xml:67:13-84
+315            android:directBootAware="true"
+315-->[com.google.firebase:firebase-common:21.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/5b1b54cfdf55b7b25ed228d160b17a81/transformed/firebase-common-21.0.0/AndroidManifest.xml:32:13-43
+316            android:exported="false" >
+316-->[com.google.firebase:firebase-auth:23.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/0180cfb4a22ce4f0640eacba76091814/transformed/firebase-auth-23.0.0/AndroidManifest.xml:68:13-37
+317            <meta-data
+317-->[com.google.firebase:firebase-auth:23.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/0180cfb4a22ce4f0640eacba76091814/transformed/firebase-auth-23.0.0/AndroidManifest.xml:69:13-71:85
+318                android:name="com.google.firebase.components:com.google.firebase.auth.FirebaseAuthRegistrar"
+318-->[com.google.firebase:firebase-auth:23.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/0180cfb4a22ce4f0640eacba76091814/transformed/firebase-auth-23.0.0/AndroidManifest.xml:70:17-109
+319                android:value="com.google.firebase.components.ComponentRegistrar" />
+319-->[com.google.firebase:firebase-auth:23.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/0180cfb4a22ce4f0640eacba76091814/transformed/firebase-auth-23.0.0/AndroidManifest.xml:71:17-82
+320            <meta-data
+320-->[com.google.firebase:firebase-firestore:25.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/b6fb6a98fa0c2dcfd6744dabe1645756/transformed/firebase-firestore-25.0.0/AndroidManifest.xml:17:13-19:85
+321                android:name="com.google.firebase.components:com.google.firebase.firestore.FirebaseFirestoreKtxRegistrar"
+321-->[com.google.firebase:firebase-firestore:25.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/b6fb6a98fa0c2dcfd6744dabe1645756/transformed/firebase-firestore-25.0.0/AndroidManifest.xml:18:17-122
+322                android:value="com.google.firebase.components.ComponentRegistrar" />
+322-->[com.google.firebase:firebase-firestore:25.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/b6fb6a98fa0c2dcfd6744dabe1645756/transformed/firebase-firestore-25.0.0/AndroidManifest.xml:19:17-82
+323            <meta-data
+323-->[com.google.firebase:firebase-firestore:25.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/b6fb6a98fa0c2dcfd6744dabe1645756/transformed/firebase-firestore-25.0.0/AndroidManifest.xml:20:13-22:85
+324                android:name="com.google.firebase.components:com.google.firebase.firestore.FirestoreRegistrar"
+324-->[com.google.firebase:firebase-firestore:25.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/b6fb6a98fa0c2dcfd6744dabe1645756/transformed/firebase-firestore-25.0.0/AndroidManifest.xml:21:17-111
+325                android:value="com.google.firebase.components.ComponentRegistrar" />
+325-->[com.google.firebase:firebase-firestore:25.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/b6fb6a98fa0c2dcfd6744dabe1645756/transformed/firebase-firestore-25.0.0/AndroidManifest.xml:22:17-82
+326            <meta-data
+326-->[com.google.firebase:firebase-storage:21.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/66d55b72bc1a4517a175f7e22eb02dc7/transformed/firebase-storage-21.0.0/AndroidManifest.xml:30:13-32:85
+327                android:name="com.google.firebase.components:com.google.firebase.storage.FirebaseStorageKtxRegistrar"
+327-->[com.google.firebase:firebase-storage:21.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/66d55b72bc1a4517a175f7e22eb02dc7/transformed/firebase-storage-21.0.0/AndroidManifest.xml:31:17-118
+328                android:value="com.google.firebase.components.ComponentRegistrar" />
+328-->[com.google.firebase:firebase-storage:21.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/66d55b72bc1a4517a175f7e22eb02dc7/transformed/firebase-storage-21.0.0/AndroidManifest.xml:32:17-82
+329            <meta-data
+329-->[com.google.firebase:firebase-storage:21.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/66d55b72bc1a4517a175f7e22eb02dc7/transformed/firebase-storage-21.0.0/AndroidManifest.xml:33:13-35:85
+330                android:name="com.google.firebase.components:com.google.firebase.storage.StorageRegistrar"
+330-->[com.google.firebase:firebase-storage:21.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/66d55b72bc1a4517a175f7e22eb02dc7/transformed/firebase-storage-21.0.0/AndroidManifest.xml:34:17-107
+331                android:value="com.google.firebase.components.ComponentRegistrar" />
+331-->[com.google.firebase:firebase-storage:21.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/66d55b72bc1a4517a175f7e22eb02dc7/transformed/firebase-storage-21.0.0/AndroidManifest.xml:35:17-82
+332            <meta-data
+332-->[com.google.firebase:firebase-database:21.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/9d1b3d5a6fd7545a0569c6ca57d7f936/transformed/firebase-database-21.0.0/AndroidManifest.xml:29:13-31:85
+333                android:name="com.google.firebase.components:com.google.firebase.database.FirebaseDatabaseKtxRegistrar"
+333-->[com.google.firebase:firebase-database:21.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/9d1b3d5a6fd7545a0569c6ca57d7f936/transformed/firebase-database-21.0.0/AndroidManifest.xml:30:17-120
+334                android:value="com.google.firebase.components.ComponentRegistrar" />
+334-->[com.google.firebase:firebase-database:21.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/9d1b3d5a6fd7545a0569c6ca57d7f936/transformed/firebase-database-21.0.0/AndroidManifest.xml:31:17-82
+335            <meta-data
+335-->[com.google.firebase:firebase-database:21.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/9d1b3d5a6fd7545a0569c6ca57d7f936/transformed/firebase-database-21.0.0/AndroidManifest.xml:32:13-34:85
+336                android:name="com.google.firebase.components:com.google.firebase.database.DatabaseRegistrar"
+336-->[com.google.firebase:firebase-database:21.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/9d1b3d5a6fd7545a0569c6ca57d7f936/transformed/firebase-database-21.0.0/AndroidManifest.xml:33:17-109
+337                android:value="com.google.firebase.components.ComponentRegistrar" />
+337-->[com.google.firebase:firebase-database:21.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/9d1b3d5a6fd7545a0569c6ca57d7f936/transformed/firebase-database-21.0.0/AndroidManifest.xml:34:17-82
+338            <meta-data
+338-->[com.google.firebase:firebase-appcheck:18.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/dcf49723fdca45ed7aa4b584f71903cc/transformed/firebase-appcheck-18.0.0/AndroidManifest.xml:25:13-27:85
+339                android:name="com.google.firebase.components:com.google.firebase.appcheck.FirebaseAppCheckKtxRegistrar"
+339-->[com.google.firebase:firebase-appcheck:18.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/dcf49723fdca45ed7aa4b584f71903cc/transformed/firebase-appcheck-18.0.0/AndroidManifest.xml:26:17-120
+340                android:value="com.google.firebase.components.ComponentRegistrar" />
+340-->[com.google.firebase:firebase-appcheck:18.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/dcf49723fdca45ed7aa4b584f71903cc/transformed/firebase-appcheck-18.0.0/AndroidManifest.xml:27:17-82
+341            <meta-data
+341-->[com.google.firebase:firebase-appcheck:18.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/dcf49723fdca45ed7aa4b584f71903cc/transformed/firebase-appcheck-18.0.0/AndroidManifest.xml:28:13-30:85
+342                android:name="com.google.firebase.components:com.google.firebase.appcheck.FirebaseAppCheckRegistrar"
+342-->[com.google.firebase:firebase-appcheck:18.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/dcf49723fdca45ed7aa4b584f71903cc/transformed/firebase-appcheck-18.0.0/AndroidManifest.xml:29:17-117
+343                android:value="com.google.firebase.components.ComponentRegistrar" />
+343-->[com.google.firebase:firebase-appcheck:18.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/dcf49723fdca45ed7aa4b584f71903cc/transformed/firebase-appcheck-18.0.0/AndroidManifest.xml:30:17-82
+344            <meta-data
+344-->[com.google.firebase:firebase-common-ktx:21.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/d32d1a6d60c3dc1510ae87322645eb76/transformed/firebase-common-ktx-21.0.0/AndroidManifest.xml:12:13-14:85
+345                android:name="com.google.firebase.components:com.google.firebase.ktx.FirebaseCommonLegacyRegistrar"
+345-->[com.google.firebase:firebase-common-ktx:21.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/d32d1a6d60c3dc1510ae87322645eb76/transformed/firebase-common-ktx-21.0.0/AndroidManifest.xml:13:17-116
+346                android:value="com.google.firebase.components.ComponentRegistrar" />
+346-->[com.google.firebase:firebase-common-ktx:21.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/d32d1a6d60c3dc1510ae87322645eb76/transformed/firebase-common-ktx-21.0.0/AndroidManifest.xml:14:17-82
+347            <meta-data
+347-->[com.google.firebase:firebase-common:21.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/5b1b54cfdf55b7b25ed228d160b17a81/transformed/firebase-common-21.0.0/AndroidManifest.xml:35:13-37:85
+348                android:name="com.google.firebase.components:com.google.firebase.FirebaseCommonKtxRegistrar"
+348-->[com.google.firebase:firebase-common:21.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/5b1b54cfdf55b7b25ed228d160b17a81/transformed/firebase-common-21.0.0/AndroidManifest.xml:36:17-109
+349                android:value="com.google.firebase.components.ComponentRegistrar" />
+349-->[com.google.firebase:firebase-common:21.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/5b1b54cfdf55b7b25ed228d160b17a81/transformed/firebase-common-21.0.0/AndroidManifest.xml:37:17-82
+350        </service>
+351        <service
+351-->[androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /Users/ragarnob/.gradle/caches/9.6.0/transforms/43cabb06353e95ac6a7c2aa18fbbe849/transformed/credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:24:9-32:19
+352            android:name="androidx.credentials.playservices.CredentialProviderMetadataHolder"
+352-->[androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /Users/ragarnob/.gradle/caches/9.6.0/transforms/43cabb06353e95ac6a7c2aa18fbbe849/transformed/credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:25:13-94
+353            android:enabled="true"
+353-->[androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /Users/ragarnob/.gradle/caches/9.6.0/transforms/43cabb06353e95ac6a7c2aa18fbbe849/transformed/credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:26:13-35
+354            android:exported="false" >
+354-->[androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /Users/ragarnob/.gradle/caches/9.6.0/transforms/43cabb06353e95ac6a7c2aa18fbbe849/transformed/credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:27:13-37
+355            <meta-data
+355-->[androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /Users/ragarnob/.gradle/caches/9.6.0/transforms/43cabb06353e95ac6a7c2aa18fbbe849/transformed/credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:29:13-31:104
+356                android:name="androidx.credentials.CREDENTIAL_PROVIDER_KEY"
+356-->[androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /Users/ragarnob/.gradle/caches/9.6.0/transforms/43cabb06353e95ac6a7c2aa18fbbe849/transformed/credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:30:17-76
+357                android:value="androidx.credentials.playservices.CredentialProviderPlayServicesImpl" />
+357-->[androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /Users/ragarnob/.gradle/caches/9.6.0/transforms/43cabb06353e95ac6a7c2aa18fbbe849/transformed/credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:31:17-101
+358        </service>
+359
+360        <activity
+360-->[androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /Users/ragarnob/.gradle/caches/9.6.0/transforms/43cabb06353e95ac6a7c2aa18fbbe849/transformed/credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:34:9-41:20
+361            android:name="androidx.credentials.playservices.HiddenActivity"
+361-->[androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /Users/ragarnob/.gradle/caches/9.6.0/transforms/43cabb06353e95ac6a7c2aa18fbbe849/transformed/credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:35:13-76
+362            android:configChanges="orientation|screenSize|screenLayout|keyboardHidden"
+362-->[androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /Users/ragarnob/.gradle/caches/9.6.0/transforms/43cabb06353e95ac6a7c2aa18fbbe849/transformed/credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:36:13-87
+363            android:enabled="true"
+363-->[androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /Users/ragarnob/.gradle/caches/9.6.0/transforms/43cabb06353e95ac6a7c2aa18fbbe849/transformed/credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:37:13-35
+364            android:exported="false"
+364-->[androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /Users/ragarnob/.gradle/caches/9.6.0/transforms/43cabb06353e95ac6a7c2aa18fbbe849/transformed/credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:38:13-37
+365            android:fitsSystemWindows="true"
+365-->[androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /Users/ragarnob/.gradle/caches/9.6.0/transforms/43cabb06353e95ac6a7c2aa18fbbe849/transformed/credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:39:13-45
+366            android:theme="@style/Theme.Hidden" >
+366-->[androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /Users/ragarnob/.gradle/caches/9.6.0/transforms/43cabb06353e95ac6a7c2aa18fbbe849/transformed/credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:40:13-48
+367        </activity>
+368        <activity
+368-->[com.google.android.gms:play-services-auth:21.2.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/0deca01d817409454055987d57b4fe2e/transformed/play-services-auth-21.2.0/AndroidManifest.xml:23:9-27:75
+369            android:name="com.google.android.gms.auth.api.signin.internal.SignInHubActivity"
+369-->[com.google.android.gms:play-services-auth:21.2.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/0deca01d817409454055987d57b4fe2e/transformed/play-services-auth-21.2.0/AndroidManifest.xml:24:13-93
+370            android:excludeFromRecents="true"
+370-->[com.google.android.gms:play-services-auth:21.2.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/0deca01d817409454055987d57b4fe2e/transformed/play-services-auth-21.2.0/AndroidManifest.xml:25:13-46
+371            android:exported="false"
+371-->[com.google.android.gms:play-services-auth:21.2.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/0deca01d817409454055987d57b4fe2e/transformed/play-services-auth-21.2.0/AndroidManifest.xml:26:13-37
+372            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+372-->[com.google.android.gms:play-services-auth:21.2.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/0deca01d817409454055987d57b4fe2e/transformed/play-services-auth-21.2.0/AndroidManifest.xml:27:13-72
+373        <!--
+374            Service handling Google Sign-In user revocation. For apps that do not integrate with
+375            Google Sign-In, this service will never be started.
+376        -->
+377        <service
+377-->[com.google.android.gms:play-services-auth:21.2.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/0deca01d817409454055987d57b4fe2e/transformed/play-services-auth-21.2.0/AndroidManifest.xml:33:9-37:51
+378            android:name="com.google.android.gms.auth.api.signin.RevocationBoundService"
+378-->[com.google.android.gms:play-services-auth:21.2.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/0deca01d817409454055987d57b4fe2e/transformed/play-services-auth-21.2.0/AndroidManifest.xml:34:13-89
+379            android:exported="true"
+379-->[com.google.android.gms:play-services-auth:21.2.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/0deca01d817409454055987d57b4fe2e/transformed/play-services-auth-21.2.0/AndroidManifest.xml:35:13-36
+380            android:permission="com.google.android.gms.auth.api.signin.permission.REVOCATION_NOTIFICATION"
+380-->[com.google.android.gms:play-services-auth:21.2.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/0deca01d817409454055987d57b4fe2e/transformed/play-services-auth-21.2.0/AndroidManifest.xml:36:13-107
+381            android:visibleToInstantApps="true" />
+381-->[com.google.android.gms:play-services-auth:21.2.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/0deca01d817409454055987d57b4fe2e/transformed/play-services-auth-21.2.0/AndroidManifest.xml:37:13-48
+382
+383        <activity
+383-->[com.google.android.gms:play-services-base:18.3.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/212608d61e072883fbf1f8c82cf8574f/transformed/play-services-base-18.3.0/AndroidManifest.xml:20:9-22:45
+384            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+384-->[com.google.android.gms:play-services-base:18.3.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/212608d61e072883fbf1f8c82cf8574f/transformed/play-services-base-18.3.0/AndroidManifest.xml:20:19-85
+385            android:exported="false"
+385-->[com.google.android.gms:play-services-base:18.3.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/212608d61e072883fbf1f8c82cf8574f/transformed/play-services-base-18.3.0/AndroidManifest.xml:22:19-43
+386            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+386-->[com.google.android.gms:play-services-base:18.3.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/212608d61e072883fbf1f8c82cf8574f/transformed/play-services-base-18.3.0/AndroidManifest.xml:21:19-78
+387
+388        <provider
+388-->[com.google.firebase:firebase-common:21.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/5b1b54cfdf55b7b25ed228d160b17a81/transformed/firebase-common-21.0.0/AndroidManifest.xml:23:9-28:39
+389            android:name="com.google.firebase.provider.FirebaseInitProvider"
+389-->[com.google.firebase:firebase-common:21.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/5b1b54cfdf55b7b25ed228d160b17a81/transformed/firebase-common-21.0.0/AndroidManifest.xml:24:13-77
+390            android:authorities="com.crescent.app.firebaseinitprovider"
+390-->[com.google.firebase:firebase-common:21.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/5b1b54cfdf55b7b25ed228d160b17a81/transformed/firebase-common-21.0.0/AndroidManifest.xml:25:13-72
+391            android:directBootAware="true"
+391-->[com.google.firebase:firebase-common:21.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/5b1b54cfdf55b7b25ed228d160b17a81/transformed/firebase-common-21.0.0/AndroidManifest.xml:26:13-43
+392            android:exported="false"
+392-->[com.google.firebase:firebase-common:21.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/5b1b54cfdf55b7b25ed228d160b17a81/transformed/firebase-common-21.0.0/AndroidManifest.xml:27:13-37
+393            android:initOrder="100" />
+393-->[com.google.firebase:firebase-common:21.0.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/5b1b54cfdf55b7b25ed228d160b17a81/transformed/firebase-common-21.0.0/AndroidManifest.xml:28:13-36
+394
+395        <meta-data
+395-->[com.google.android.gms:play-services-basement:18.3.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/30cd372cd55f1fb4a40da84177a611cb/transformed/play-services-basement-18.3.0/AndroidManifest.xml:21:9-23:69
+396            android:name="com.google.android.gms.version"
+396-->[com.google.android.gms:play-services-basement:18.3.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/30cd372cd55f1fb4a40da84177a611cb/transformed/play-services-basement-18.3.0/AndroidManifest.xml:22:13-58
+397            android:value="@integer/google_play_services_version" />
+397-->[com.google.android.gms:play-services-basement:18.3.0] /Users/ragarnob/.gradle/caches/9.6.0/transforms/30cd372cd55f1fb4a40da84177a611cb/transformed/play-services-basement-18.3.0/AndroidManifest.xml:23:13-66
+398
+399        <receiver
+399-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/ragarnob/.gradle/caches/9.6.0/transforms/d523ef8becc4f3de1c2e286b3aadd23c/transformed/profileinstaller-1.3.1/AndroidManifest.xml:34:9-52:20
+400            android:name="androidx.profileinstaller.ProfileInstallReceiver"
+400-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/ragarnob/.gradle/caches/9.6.0/transforms/d523ef8becc4f3de1c2e286b3aadd23c/transformed/profileinstaller-1.3.1/AndroidManifest.xml:35:13-76
+401            android:directBootAware="false"
+401-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/ragarnob/.gradle/caches/9.6.0/transforms/d523ef8becc4f3de1c2e286b3aadd23c/transformed/profileinstaller-1.3.1/AndroidManifest.xml:36:13-44
+402            android:enabled="true"
+402-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/ragarnob/.gradle/caches/9.6.0/transforms/d523ef8becc4f3de1c2e286b3aadd23c/transformed/profileinstaller-1.3.1/AndroidManifest.xml:37:13-35
+403            android:exported="true"
+403-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/ragarnob/.gradle/caches/9.6.0/transforms/d523ef8becc4f3de1c2e286b3aadd23c/transformed/profileinstaller-1.3.1/AndroidManifest.xml:38:13-36
+404            android:permission="android.permission.DUMP" >
+404-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/ragarnob/.gradle/caches/9.6.0/transforms/d523ef8becc4f3de1c2e286b3aadd23c/transformed/profileinstaller-1.3.1/AndroidManifest.xml:39:13-57
+405            <intent-filter>
+405-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/ragarnob/.gradle/caches/9.6.0/transforms/d523ef8becc4f3de1c2e286b3aadd23c/transformed/profileinstaller-1.3.1/AndroidManifest.xml:40:13-42:29
+406                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
+406-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/ragarnob/.gradle/caches/9.6.0/transforms/d523ef8becc4f3de1c2e286b3aadd23c/transformed/profileinstaller-1.3.1/AndroidManifest.xml:41:17-91
+406-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/ragarnob/.gradle/caches/9.6.0/transforms/d523ef8becc4f3de1c2e286b3aadd23c/transformed/profileinstaller-1.3.1/AndroidManifest.xml:41:25-88
+407            </intent-filter>
+408            <intent-filter>
+408-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/ragarnob/.gradle/caches/9.6.0/transforms/d523ef8becc4f3de1c2e286b3aadd23c/transformed/profileinstaller-1.3.1/AndroidManifest.xml:43:13-45:29
+409                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
+409-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/ragarnob/.gradle/caches/9.6.0/transforms/d523ef8becc4f3de1c2e286b3aadd23c/transformed/profileinstaller-1.3.1/AndroidManifest.xml:44:17-85
+409-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/ragarnob/.gradle/caches/9.6.0/transforms/d523ef8becc4f3de1c2e286b3aadd23c/transformed/profileinstaller-1.3.1/AndroidManifest.xml:44:25-82
+410            </intent-filter>
+411            <intent-filter>
+411-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/ragarnob/.gradle/caches/9.6.0/transforms/d523ef8becc4f3de1c2e286b3aadd23c/transformed/profileinstaller-1.3.1/AndroidManifest.xml:46:13-48:29
+412                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
+412-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/ragarnob/.gradle/caches/9.6.0/transforms/d523ef8becc4f3de1c2e286b3aadd23c/transformed/profileinstaller-1.3.1/AndroidManifest.xml:47:17-88
+412-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/ragarnob/.gradle/caches/9.6.0/transforms/d523ef8becc4f3de1c2e286b3aadd23c/transformed/profileinstaller-1.3.1/AndroidManifest.xml:47:25-85
+413            </intent-filter>
+414            <intent-filter>
+414-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/ragarnob/.gradle/caches/9.6.0/transforms/d523ef8becc4f3de1c2e286b3aadd23c/transformed/profileinstaller-1.3.1/AndroidManifest.xml:49:13-51:29
+415                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
+415-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/ragarnob/.gradle/caches/9.6.0/transforms/d523ef8becc4f3de1c2e286b3aadd23c/transformed/profileinstaller-1.3.1/AndroidManifest.xml:50:17-95
+415-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/ragarnob/.gradle/caches/9.6.0/transforms/d523ef8becc4f3de1c2e286b3aadd23c/transformed/profileinstaller-1.3.1/AndroidManifest.xml:50:25-92
+416            </intent-filter>
+417        </receiver>
+418    </application>
+419
+420</manifest>

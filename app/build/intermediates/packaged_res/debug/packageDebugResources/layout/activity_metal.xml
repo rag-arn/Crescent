@@ -14,6 +14,11 @@
         </LinearLayout>
     </FrameLayout>
 
+    <!-- Shown by MetalActivity when airplane mode is on or there is no internet -->
+    <include android:id="@+id/offlineBanner" layout="@layout/view_offline_banner" android:visibility="gone"
+        android:layout_marginStart="16dp" android:layout_marginEnd="16dp" android:layout_marginTop="4dp"
+        android:layout_width="match_parent" android:layout_height="wrap_content"/>
+
     <ScrollView android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1">
         <LinearLayout android:orientation="vertical" android:padding="16dp" android:layout_width="match_parent" android:layout_height="wrap_content">
             <LinearLayout android:orientation="horizontal" android:gravity="center_vertical" android:layout_width="match_parent" android:layout_height="wrap_content">

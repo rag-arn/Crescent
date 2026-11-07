@@ -15,9 +15,14 @@
     </FrameLayout>
 
     <FrameLayout android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1">
-        <ScrollView android:layout_width="match_parent" android:layout_height="match_parent">
-            <LinearLayout android:id="@+id/expertsContainer" android:orientation="vertical" android:padding="16dp" android:layout_width="match_parent" android:layout_height="wrap_content"/>
-        </ScrollView>
+        <!-- Replaced ScrollView with RecyclerView -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/expertsRecyclerView"
+            android:padding="16dp"
+            android:clipToPadding="false"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
         <ProgressBar android:id="@+id/loadingProgress" android:layout_gravity="center" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
         <TextView android:id="@+id/emptyText" android:text="No experts available right now." android:textSize="15sp" android:textColor="@color/sage_text_soft" android:layout_gravity="center" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
     </FrameLayout>

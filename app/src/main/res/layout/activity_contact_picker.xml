@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rootLayout" android:orientation="vertical" android:background="@drawable/bg_dash_screen"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <FrameLayout android:id="@+id/headerBar" android:layout_width="match_parent" android:layout_height="wrap_content">
+        <LinearLayout android:orientation="horizontal" android:gravity="center_vertical" android:paddingStart="20dp" android:paddingEnd="10dp" android:paddingTop="14dp" android:paddingBottom="12dp" android:layout_width="match_parent" android:layout_height="wrap_content">
+            <ImageButton android:id="@+id/backButton" style="?android:attr/borderlessButtonStyle" android:src="@drawable/ic_back_arrow" android:tint="@color/sage_text" android:contentDescription="Back" android:layout_marginEnd="12dp" android:layout_width="44dp" android:layout_height="44dp"/>
+            <LinearLayout android:orientation="vertical" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content">
+                <TextView android:text="Share estimate with" android:textSize="11sp" android:textStyle="bold" android:textAllCaps="true" android:letterSpacing="0.1" android:textColor="@color/sage_text_soft" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                <TextView android:text="Choose a contact" android:fontFamily="serif" android:textSize="26sp" android:textStyle="bold" android:textColor="@color/sage_text" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+            </LinearLayout>
+        </LinearLayout>
+    </FrameLayout>
+
+    <EditText android:id="@+id/searchInput" style="@style/Widget.Crescent.EditText" android:hint="Search name or number" android:inputType="text" android:maxLines="1"
+        android:visibility="gone" android:layout_marginStart="16dp" android:layout_marginEnd="16dp"
+        android:layout_width="match_parent" android:layout_height="wrap_content"/>
+
+    <FrameLayout android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1">
+        <androidx.recyclerview.widget.RecyclerView android:id="@+id/contactsRecyclerView" android:padding="16dp" android:clipToPadding="false"
+            android:visibility="gone" android:layout_width="match_parent" android:layout_height="match_parent"/>
+
+        <ProgressBar android:id="@+id/loadingProgress" android:layout_gravity="center" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+        <TextView android:id="@+id/emptyText" android:text="No contacts with a phone number found." android:textSize="15sp" android:textColor="@color/sage_text_soft"
+            android:layout_gravity="center" android:gravity="center" android:padding="24dp" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+
+        <!-- Shown until contacts access is granted -->
+        <LinearLayout android:id="@+id/permissionPanel" android:orientation="vertical" android:padding="20dp" android:background="@drawable/bg_dash_card"
+            android:layout_gravity="center" android:layout_margin="24dp" android:visibility="gone"
+            android:layout_width="match_parent" android:layout_height="wrap_content">
+            <TextView android:text="Allow access to contacts" android:textSize="18sp" android:textStyle="bold" android:textColor="@color/sage_text"
+                android:layout_width="match_parent" android:layout_height="wrap_content"/>
+            <TextView android:id="@+id/permissionMessage" android:textSize="14sp" android:textColor="@color/sage_text_soft" android:lineSpacingExtra="4dp"
+                android:layout_marginTop="10dp" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+            <Button android:id="@+id/permissionButton" style="@style/Widget.Crescent.Button" android:text="Allow access" android:layout_marginTop="18dp"
+                android:layout_width="match_parent" android:layout_height="wrap_content"/>
+        </LinearLayout>
+    </FrameLayout>
+</LinearLayout>
