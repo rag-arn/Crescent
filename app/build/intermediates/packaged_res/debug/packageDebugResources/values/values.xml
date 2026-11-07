@@ -15,15 +15,22 @@
     <color name="sage_button">#8DAA94</color>
     <color name="sage_card">#F6F1E2</color>
     <color name="sage_card_stroke">#E4DCC3</color>
+    <color name="sage_header_edge">#A9C2AB</color>
+    <color name="sage_header_glow">#E6F0E3</color>
+    <color name="sage_header_mid">#A6C0AC</color>
     <color name="sage_hill_back">#A9C1AE</color>
     <color name="sage_hill_front">#5A8068</color>
     <color name="sage_hill_mid">#7FA08A</color>
     <color name="sage_lantern">#7E9A86</color>
     <color name="sage_mid">#DCE5D1</color>
+    <color name="sage_moon_cream">#F1EEDA</color>
     <color name="sage_moon_gold">#D9C98F</color>
     <color name="sage_ornament">#FFFFFF</color>
     <color name="sage_ring">#8DAA94</color>
     <color name="sage_ring_track">#E2D8BC</color>
+    <color name="sage_shade_clear">#0035523F</color>
+    <color name="sage_shade_dark">#35523F</color>
+    <color name="sage_shade_strong">#7335523F</color>
     <color name="sage_shadow_ambient">#5E8470</color>
     <color name="sage_shadow_spot">#3F6450</color>
     <color name="sage_text">#2F4A3C</color>
@@ -35,6 +42,7 @@
     <color name="warm_sand">#D6BE8B</color>
     <string name="app_name">Crescent</string>
     <string name="default_web_client_id" translatable="false">588175183367-edbbr5fo5rq0g5ajfp3k9ummgag1mtcq.apps.googleusercontent.com</string>
+    <string name="firebase_database_url" translatable="false">https://crescent-arnob-default-rtdb.asia-southeast1.firebasedatabase.app</string>
     <string name="gcm_defaultSenderId" translatable="false">588175183367</string>
     <string name="google_api_key" translatable="false">AIzaSyBbIvDR9leF6bsjSMm1kZ8Rzs3ZA07EWM0</string>
     <string name="google_app_id" translatable="false">1:588175183367:android:3c75aee99e1627e31264a2</string>

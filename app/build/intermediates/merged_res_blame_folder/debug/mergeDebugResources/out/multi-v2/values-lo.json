@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.crescent.app-mergeDebugResources-39:/values-lo/values-lo.xml",
+            "outputFile": "com.crescent.app-mergeDebugResources-43:/values-lo/values-lo.xml",
             "map": [
                 {
                     "source": "/Users/ragarnob/.gradle/caches/9.6.0/transforms/4a06fca7b66dc15217699c2ccc7babdf/transformed/browser-1.4.0/res/values-lo/values-lo.xml",

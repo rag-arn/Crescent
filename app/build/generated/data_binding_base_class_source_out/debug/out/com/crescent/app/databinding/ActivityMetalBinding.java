@@ -40,6 +40,9 @@ public final class ActivityMetalBinding implements ViewBinding {
   public final Button nextButton;
 
   @NonNull
+  public final ViewOfflineBannerBinding offlineBanner;
+
+  @NonNull
   public final Button previousButton;
 
   @NonNull
@@ -80,7 +83,8 @@ public final class ActivityMetalBinding implements ViewBinding {
 
   private ActivityMetalBinding(@NonNull LinearLayout rootView, @NonNull Button addMoreButton,
       @NonNull ImageButton backButton, @NonNull LinearLayout bottomBar,
-      @NonNull FrameLayout headerBar, @NonNull Button nextButton, @NonNull Button previousButton,
+      @NonNull FrameLayout headerBar, @NonNull Button nextButton,
+      @NonNull ViewOfflineBannerBinding offlineBanner, @NonNull Button previousButton,
       @NonNull ImageButton priceInfoButton, @NonNull EditText priceInput,
       @NonNull TextView priceLabel, @NonNull TextView priceStatus,
       @NonNull Spinner priceUnitSpinner, @NonNull Button refreshPriceButton,
@@ -93,6 +97,7 @@ public final class ActivityMetalBinding implements ViewBinding {
     this.bottomBar = bottomBar;
     this.headerBar = headerBar;
     this.nextButton = nextButton;
+    this.offlineBanner = offlineBanner;
     this.previousButton = previousButton;
     this.priceInfoButton = priceInfoButton;
     this.priceInput = priceInput;
@@ -164,6 +169,13 @@ public final class ActivityMetalBinding implements ViewBinding {
       if (nextButton == null) {
         break missingId;
       }
+
+      id = R.id.offlineBanner;
+      View offlineBanner = ViewBindings.findChildViewById(rootView, id);
+      if (offlineBanner == null) {
+        break missingId;
+      }
+      ViewOfflineBannerBinding binding_offlineBanner = ViewOfflineBannerBinding.bind(offlineBanner);
 
       id = R.id.previousButton;
       Button previousButton = ViewBindings.findChildViewById(rootView, id);
@@ -244,8 +256,8 @@ public final class ActivityMetalBinding implements ViewBinding {
       }
 
       return new ActivityMetalBinding((LinearLayout) rootView, addMoreButton, backButton, bottomBar,
-          headerBar, nextButton, previousButton, priceInfoButton, priceInput, priceLabel,
-          priceStatus, priceUnitSpinner, refreshPriceButton, rowsContainer, stepText,
+          headerBar, nextButton, binding_offlineBanner, previousButton, priceInfoButton, priceInput,
+          priceLabel, priceStatus, priceUnitSpinner, refreshPriceButton, rowsContainer, stepText,
           titleInfoButton, titleText, totalText, useLivePriceButton);
     }
     String missingId = rootView.getResources().getResourceName(id);

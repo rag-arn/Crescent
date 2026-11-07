@@ -49,6 +49,9 @@ public final class ActivityResultBinding implements ViewBinding {
   public final TableLayout resultTable;
 
   @NonNull
+  public final Button shareContactButton;
+
+  @NonNull
   public final MaterialCardView verdictCard;
 
   @NonNull
@@ -57,8 +60,8 @@ public final class ActivityResultBinding implements ViewBinding {
   private ActivityResultBinding(@NonNull LinearLayout rootView, @NonNull ImageButton backButton,
       @NonNull LinearLayout bottomBar, @NonNull FrameLayout headerBar, @NonNull Button homeButton,
       @NonNull ImageButton infoButton, @NonNull Button pdfButton, @NonNull Button previousButton,
-      @NonNull TableLayout resultTable, @NonNull MaterialCardView verdictCard,
-      @NonNull TextView verdictText) {
+      @NonNull TableLayout resultTable, @NonNull Button shareContactButton,
+      @NonNull MaterialCardView verdictCard, @NonNull TextView verdictText) {
     this.rootView = rootView;
     this.backButton = backButton;
     this.bottomBar = bottomBar;
@@ -68,6 +71,7 @@ public final class ActivityResultBinding implements ViewBinding {
     this.pdfButton = pdfButton;
     this.previousButton = previousButton;
     this.resultTable = resultTable;
+    this.shareContactButton = shareContactButton;
     this.verdictCard = verdictCard;
     this.verdictText = verdictText;
   }
@@ -147,6 +151,12 @@ public final class ActivityResultBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.shareContactButton;
+      Button shareContactButton = ViewBindings.findChildViewById(rootView, id);
+      if (shareContactButton == null) {
+        break missingId;
+      }
+
       id = R.id.verdictCard;
       MaterialCardView verdictCard = ViewBindings.findChildViewById(rootView, id);
       if (verdictCard == null) {
@@ -160,7 +170,8 @@ public final class ActivityResultBinding implements ViewBinding {
       }
 
       return new ActivityResultBinding((LinearLayout) rootView, backButton, bottomBar, headerBar,
-          homeButton, infoButton, pdfButton, previousButton, resultTable, verdictCard, verdictText);
+          homeButton, infoButton, pdfButton, previousButton, resultTable, shareContactButton,
+          verdictCard, verdictText);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

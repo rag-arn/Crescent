@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.crescent.app-mergeDebugResources-39:/values-hi/values-hi.xml",
+            "outputFile": "com.crescent.app-mergeDebugResources-43:/values-hi/values-hi.xml",
             "map": [
                 {
                     "source": "/Users/ragarnob/.gradle/caches/9.6.0/transforms/92224237bbbfe40cf7b6361b0302b2d5/transformed/credentials-1.2.0-rc01/res/values-hi/values-hi.xml",

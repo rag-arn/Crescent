@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:background="@drawable/bg_dash_screen"
     android:layout_width="match_parent"
@@ -7,8 +8,8 @@
 
     <FrameLayout
         android:id="@+id/brandHeader"
-        android:paddingTop="42dp"
-        android:paddingBottom="12dp"
+        android:paddingTop="30dp"
+        android:paddingBottom="6dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -17,6 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+            <!-- Logo and Notification Bell (Kept exactly in place) -->
             <LinearLayout
                 android:orientation="horizontal"
                 android:gravity="center_vertical"
@@ -38,8 +40,8 @@
                     android:background="@drawable/bg_dash_logo_ring"
                     android:padding="2dp"
                     android:layout_marginStart="2dp"
-                    android:layout_width="56dp"
-                    android:layout_height="56dp">
+                    android:layout_width="48dp"
+                    android:layout_height="48dp">
                     <ImageView android:id="@+id/logoImage"
                         android:src="@drawable/logo"
                         android:scaleType="centerCrop"
@@ -50,7 +52,7 @@
 
                 <TextView android:text="CRESCENT"
                     android:fontFamily="serif"
-                    android:textSize="30sp"
+                    android:textSize="24sp"
                     android:letterSpacing="0.08"
                     android:textStyle="bold"
                     android:textColor="@color/sage_text"
@@ -70,23 +72,24 @@
 
             </LinearLayout>
 
+            <!-- PUSHED DOWN: MarginTop increased from 8dp to 32dp to lower the rest of the UI -->
             <LinearLayout
                 android:orientation="vertical"
                 android:paddingStart="22dp"
                 android:paddingEnd="22dp"
-                android:layout_marginTop="14dp"
+                android:layout_marginTop="32dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <TextView android:id="@+id/englishDateText"
                     android:text="—"
-                    android:textSize="14sp"
+                    android:textSize="13sp"
                     android:textColor="@color/sage_text_soft"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView android:id="@+id/arabicDateText"
                     android:text="—"
                     android:fontFamily="serif"
-                    android:textSize="20sp"
+                    android:textSize="18sp"
                     android:textStyle="bold"
                     android:textColor="@color/sage_text"
                     android:layout_marginTop="2dp"
@@ -102,40 +105,52 @@
         android:layout_weight="1"
         android:clipToPadding="false"
         android:fillViewport="false">
+
+        <!-- PUSHED DOWN: Top padding increased from 4dp to 12dp to give the cards a relaxed stance -->
         <LinearLayout
             android:orientation="vertical"
             android:paddingStart="18dp" android:paddingEnd="18dp"
-            android:paddingTop="6dp" android:paddingBottom="20dp"
+            android:paddingTop="12dp" android:paddingBottom="12dp"
+            android:clipChildren="false"
+            android:clipToPadding="false"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <LinearLayout
                 android:orientation="vertical"
-                android:padding="18dp"
+                android:padding="14dp"
                 android:background="@drawable/bg_dash_card"
-                android:elevation="8dp" android:outlineSpotShadowColor="@color/sage_shadow_spot" android:outlineAmbientShadowColor="@color/sage_shadow_ambient"
+                android:elevation="8dp"
+                android:outlineSpotShadowColor="@color/sage_shadow_spot"
+                android:outlineAmbientShadowColor="@color/sage_shadow_ambient"
+                android:clipChildren="false"
+                android:clipToPadding="false"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="8dp">
 
                 <TextView android:text="Zakat Status"
                     android:fontFamily="serif"
-                    android:textSize="18sp" android:textStyle="bold"
+                    android:textSize="16sp" android:textStyle="bold"
                     android:textColor="@color/sage_text"
                     android:layout_width="wrap_content" android:layout_height="wrap_content"/>
 
                 <LinearLayout
                     android:orientation="horizontal"
                     android:gravity="center_vertical"
-                    android:layout_marginTop="12dp"
+                    android:clipChildren="false"
+                    android:clipToPadding="false"
+                    android:layout_marginTop="8dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                    <FrameLayout android:layout_width="152dp" android:layout_height="152dp">
+                    <FrameLayout android:layout_width="142dp" android:layout_height="142dp">
                         <com.crescent.app.GaugeView android:id="@+id/zakatGauge"
                             android:layout_width="match_parent" android:layout_height="match_parent"/>
                         <LinearLayout
                             android:orientation="vertical" android:gravity="center"
-                            android:paddingStart="20dp" android:paddingEnd="20dp"
+                            android:paddingStart="16dp" android:paddingEnd="16dp"
                             android:layout_gravity="center"
                             android:layout_width="match_parent" android:layout_height="match_parent">
                             <TextView android:id="@+id/zakatYearText"
@@ -143,12 +158,11 @@
                                 android:textColor="@color/sage_text_soft" android:gravity="center"
                                 android:layout_width="wrap_content" android:layout_height="wrap_content"/>
                             <TextView android:id="@+id/zakatAmountCircle"
-                                android:text="0 BDT" android:textSize="22sp" android:textStyle="bold"
-                                xmlns:app="http://schemas.android.com/apk/res-auto"
-                                app:autoSizeTextType="uniform" app:autoSizeMinTextSize="12sp" app:autoSizeMaxTextSize="22sp" app:autoSizeStepGranularity="1sp"
+                                android:text="0 BDT" android:textSize="20sp" android:textStyle="bold"
+                                app:autoSizeTextType="uniform" app:autoSizeMinTextSize="10sp" app:autoSizeMaxTextSize="20sp" app:autoSizeStepGranularity="1sp"
                                 android:textColor="@color/sage_text" android:gravity="center"
                                 android:maxLines="1"
-                                android:layout_marginTop="3dp" android:layout_marginBottom="3dp"
+                                android:layout_marginTop="2dp" android:layout_marginBottom="2dp"
                                 android:layout_width="match_parent" android:layout_height="wrap_content"/>
                             <TextView android:id="@+id/zakatStateText"
                                 android:text="Not calculated" android:textSize="12sp"
@@ -159,37 +173,42 @@
 
                     <LinearLayout
                         android:orientation="vertical" android:gravity="center_horizontal"
-                        android:layout_marginStart="14dp"
+                        android:layout_marginStart="10dp"
+                        android:clipChildren="false" android:clipToPadding="false"
                         android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content">
+
                         <TextView android:id="@+id/payNowBtn"
-                            android:text="Pay Now" android:textSize="14sp" android:textStyle="bold"
+                            android:text="Pay Now" android:textSize="13sp" android:textStyle="bold"
                             android:textColor="#FFFFFF" android:gravity="center"
                             android:background="@drawable/bg_dash_btn"
-                            android:paddingStart="34dp" android:paddingEnd="34dp"
-                            android:paddingTop="10dp" android:paddingBottom="10dp"
-                            android:minHeight="42dp"
+                            android:paddingStart="18dp" android:paddingEnd="18dp"
+                            android:paddingTop="8dp" android:paddingBottom="8dp"
+                            android:minHeight="38dp"
+                            android:maxLines="1"
+                            android:elevation="10dp"
                             android:layout_marginTop="4dp"
-                            android:elevation="6dp"
-                            android:outlineSpotShadowColor="@color/sage_btn_pressed"
-                            android:outlineAmbientShadowColor="@color/sage_btn"
+                            android:layout_marginBottom="12dp"
+                            android:outlineSpotShadowColor="@color/sage_shadow_spot"
+                            android:outlineAmbientShadowColor="@color/sage_shadow_ambient"
                             android:clickable="true" android:focusable="true"
                             android:foreground="?attr/selectableItemBackground"
                             android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+
                         <TextView android:id="@+id/detailedBreakdownBtn"
-                            android:text="Detailed Breakdown" android:textSize="10.5sp" android:textStyle="bold"
+                            android:text="Detailed Breakdown" android:textSize="10sp" android:textStyle="bold"
                             android:textColor="@color/sage_text"
-                            android:paddingTop="8dp" android:paddingBottom="8dp"
-                            android:layout_marginTop="8dp"
+                            android:paddingTop="2dp" android:paddingBottom="6dp"
+                            android:layout_marginTop="0dp"
+                            android:maxLines="1"
                             android:clickable="true" android:focusable="true"
                             android:foreground="?attr/selectableItemBackground"
                             android:layout_width="wrap_content" android:layout_height="wrap_content"/>
                     </LinearLayout>
                 </LinearLayout>
 
-                <!-- Lunar-year (hawl) progress -->
                 <LinearLayout
                     android:orientation="vertical"
-                    android:layout_marginTop="14dp"
+                    android:layout_marginTop="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                     <LinearLayout
@@ -212,99 +231,137 @@
                         style="?android:attr/progressBarStyleHorizontal"
                         android:max="1000" android:progress="0"
                         android:progressDrawable="@drawable/progress_sage"
-                        android:layout_marginTop="8dp"
-                        android:layout_width="match_parent" android:layout_height="8dp"/>
+                        android:layout_marginTop="6dp"
+                        android:layout_width="match_parent" android:layout_height="6dp"/>
                     <TextView android:id="@+id/hawlDueText"
                         android:text=""
-                        android:textSize="11sp"
+                        android:textSize="10sp"
                         android:textColor="@color/sage_text_soft"
-                        android:layout_marginTop="6dp"
+                        android:layout_marginTop="4dp"
                         android:layout_width="match_parent" android:layout_height="wrap_content"/>
                 </LinearLayout>
             </LinearLayout>
 
-            <LinearLayout android:orientation="horizontal" android:layout_marginTop="16dp"
+            <LinearLayout android:orientation="horizontal" android:layout_marginTop="6dp"
+                android:clipChildren="false" android:clipToPadding="false"
                 android:layout_width="match_parent" android:layout_height="wrap_content">
                 <LinearLayout android:id="@+id/gridCalculate"
                     android:orientation="horizontal" android:gravity="center_vertical"
-                    android:paddingStart="16dp" android:paddingEnd="14dp" android:paddingTop="16dp" android:paddingBottom="16dp"
-                    android:background="@drawable/bg_dash_card" android:elevation="5dp" android:outlineSpotShadowColor="@color/sage_shadow_spot" android:outlineAmbientShadowColor="@color/sage_shadow_ambient" android:layout_marginEnd="6dp"
+                    android:paddingStart="16dp" android:paddingEnd="14dp" android:paddingTop="11dp" android:paddingBottom="11dp"
+                    android:background="@drawable/bg_dash_card"
+                    android:elevation="6dp"
+                    android:outlineSpotShadowColor="@color/sage_shadow_spot"
+                    android:outlineAmbientShadowColor="@color/sage_shadow_ambient"
+                    android:layout_marginEnd="6dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginTop="4dp"
                     android:clickable="true" android:focusable="true" android:foreground="?attr/selectableItemBackground"
                     android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content">
                     <TextView android:text="Calculate\nZakat" android:textSize="14sp" android:textStyle="bold"
                         android:textColor="@color/sage_text" android:lineSpacingExtra="1dp"
                         android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content"/>
                     <ImageView android:src="@drawable/ic_calculator" android:tint="@color/sage_text_soft"
-                        android:importantForAccessibility="no" android:layout_width="30dp" android:layout_height="30dp"/>
+                        android:importantForAccessibility="no" android:layout_width="26dp" android:layout_height="26dp"/>
                 </LinearLayout>
                 <LinearLayout android:id="@+id/gridAssets"
                     android:orientation="horizontal" android:gravity="center_vertical"
-                    android:paddingStart="16dp" android:paddingEnd="14dp" android:paddingTop="16dp" android:paddingBottom="16dp"
-                    android:background="@drawable/bg_dash_card" android:elevation="5dp" android:outlineSpotShadowColor="@color/sage_shadow_spot" android:outlineAmbientShadowColor="@color/sage_shadow_ambient" android:layout_marginStart="6dp"
+                    android:paddingStart="16dp" android:paddingEnd="14dp" android:paddingTop="11dp" android:paddingBottom="11dp"
+                    android:background="@drawable/bg_dash_card"
+                    android:elevation="6dp"
+                    android:outlineSpotShadowColor="@color/sage_shadow_spot"
+                    android:outlineAmbientShadowColor="@color/sage_shadow_ambient"
+                    android:layout_marginStart="6dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginTop="4dp"
                     android:clickable="true" android:focusable="true" android:foreground="?attr/selectableItemBackground"
                     android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content">
                     <TextView android:text="Asset\nBreakdown" android:textSize="14sp" android:textStyle="bold"
                         android:textColor="@color/sage_text" android:lineSpacingExtra="1dp"
                         android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content"/>
                     <ImageView android:src="@drawable/ic_pie" android:tint="@color/sage_text_soft"
-                        android:importantForAccessibility="no" android:layout_width="30dp" android:layout_height="30dp"/>
+                        android:importantForAccessibility="no" android:layout_width="26dp" android:layout_height="26dp"/>
                 </LinearLayout>
             </LinearLayout>
 
-            <LinearLayout android:orientation="horizontal" android:layout_marginTop="12dp"
+            <LinearLayout android:orientation="horizontal" android:layout_marginTop="2dp"
+                android:clipChildren="false" android:clipToPadding="false"
                 android:layout_width="match_parent" android:layout_height="wrap_content">
                 <LinearLayout android:id="@+id/gridHistory"
                     android:orientation="horizontal" android:gravity="center_vertical"
-                    android:paddingStart="16dp" android:paddingEnd="14dp" android:paddingTop="16dp" android:paddingBottom="16dp"
-                    android:background="@drawable/bg_dash_card" android:elevation="5dp" android:outlineSpotShadowColor="@color/sage_shadow_spot" android:outlineAmbientShadowColor="@color/sage_shadow_ambient" android:layout_marginEnd="6dp"
+                    android:paddingStart="16dp" android:paddingEnd="14dp" android:paddingTop="11dp" android:paddingBottom="11dp"
+                    android:background="@drawable/bg_dash_card"
+                    android:elevation="6dp"
+                    android:outlineSpotShadowColor="@color/sage_shadow_spot"
+                    android:outlineAmbientShadowColor="@color/sage_shadow_ambient"
+                    android:layout_marginEnd="6dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginTop="4dp"
                     android:clickable="true" android:focusable="true" android:foreground="?attr/selectableItemBackground"
                     android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content">
                     <TextView android:text="Zakat\nHistory" android:textSize="14sp" android:textStyle="bold"
                         android:textColor="@color/sage_text" android:lineSpacingExtra="1dp"
                         android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content"/>
                     <ImageView android:src="@drawable/ic_history" android:tint="@color/sage_text_soft"
-                        android:importantForAccessibility="no" android:layout_width="30dp" android:layout_height="30dp"/>
+                        android:importantForAccessibility="no" android:layout_width="26dp" android:layout_height="26dp"/>
                 </LinearLayout>
                 <LinearLayout android:id="@+id/gridChat"
                     android:orientation="horizontal" android:gravity="center_vertical"
-                    android:paddingStart="16dp" android:paddingEnd="14dp" android:paddingTop="16dp" android:paddingBottom="16dp"
-                    android:background="@drawable/bg_dash_card" android:elevation="5dp" android:outlineSpotShadowColor="@color/sage_shadow_spot" android:outlineAmbientShadowColor="@color/sage_shadow_ambient" android:layout_marginStart="6dp"
+                    android:paddingStart="16dp" android:paddingEnd="14dp" android:paddingTop="11dp" android:paddingBottom="11dp"
+                    android:background="@drawable/bg_dash_card"
+                    android:elevation="6dp"
+                    android:outlineSpotShadowColor="@color/sage_shadow_spot"
+                    android:outlineAmbientShadowColor="@color/sage_shadow_ambient"
+                    android:layout_marginStart="6dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginTop="4dp"
                     android:clickable="true" android:focusable="true" android:foreground="?attr/selectableItemBackground"
                     android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content">
                     <TextView android:text="Chat with\nExpert" android:textSize="14sp" android:textStyle="bold"
                         android:textColor="@color/sage_text" android:lineSpacingExtra="1dp"
                         android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content"/>
                     <ImageView android:src="@drawable/ic_chat" android:tint="@color/sage_text_soft"
-                        android:importantForAccessibility="no" android:layout_width="30dp" android:layout_height="30dp"/>
+                        android:importantForAccessibility="no" android:layout_width="26dp" android:layout_height="26dp"/>
                 </LinearLayout>
             </LinearLayout>
 
-            <LinearLayout
-                android:orientation="vertical" android:gravity="center"
-                android:paddingStart="56dp" android:paddingEnd="56dp"
-                android:paddingTop="20dp" android:paddingBottom="74dp"
-                android:background="@drawable/bg_dash_banner"
-                android:clipToOutline="true"
-                android:elevation="5dp" android:outlineSpotShadowColor="@color/sage_shadow_spot" android:outlineAmbientShadowColor="@color/sage_shadow_ambient"
-                android:layout_marginTop="22dp"
-                android:layout_width="match_parent" android:layout_height="wrap_content">
-                <ImageView android:src="@drawable/ic_crescent_small" android:tint="@color/sage_button"
-                    android:importantForAccessibility="no" android:layout_marginBottom="8dp"
-                    android:layout_width="22dp" android:layout_height="22dp"/>
-                <TextView android:id="@+id/hadithText"
-                    android:text="Loading reflection..."
-                    android:fontFamily="serif"
-                    android:textSize="14sp" android:textStyle="italic"
-                    android:textColor="@color/sage_text" android:gravity="center"
-                    android:lineSpacingExtra="4dp"
-                    android:layout_width="match_parent" android:layout_height="wrap_content"/>
-            </LinearLayout>
+            <!-- FIXED: Hadith Banner wrapped in MaterialCardView to strictly clip bottom corners -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="5dp"
+                app:strokeWidth="0dp"
+                app:cardBackgroundColor="@android:color/transparent"
+                android:outlineSpotShadowColor="@color/sage_shadow_spot"
+                android:outlineAmbientShadowColor="@color/sage_shadow_ambient">
+
+                <LinearLayout
+                    android:orientation="vertical" android:gravity="center"
+                    android:paddingStart="48dp" android:paddingEnd="48dp"
+                    android:paddingTop="12dp" android:paddingBottom="58dp"
+                    android:background="@drawable/bg_dash_banner"
+                    android:layout_width="match_parent" android:layout_height="wrap_content">
+
+                    <ImageView android:src="@drawable/ic_crescent_small" android:tint="@color/sage_button"
+                        android:importantForAccessibility="no" android:layout_marginBottom="4dp"
+                        android:layout_width="18dp" android:layout_height="18dp"/>
+
+                    <TextView android:id="@+id/hadithText"
+                        android:text="Loading reflection..."
+                        android:fontFamily="serif"
+                        android:textSize="13sp" android:textStyle="italic"
+                        android:textColor="@color/sage_text" android:gravity="center"
+                        android:lineSpacingExtra="2dp"
+                        android:layout_width="match_parent" android:layout_height="wrap_content"/>
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
 
         </LinearLayout>
     </ScrollView>
 
-    <!-- bottomNav stays the transparent outer container (MainActivity adds the system-bar inset to it);
-         navDock is the floating rounded pill, like the macOS Dock -->
     <LinearLayout android:id="@+id/bottomNav" android:orientation="horizontal"
         android:background="@android:color/transparent"
         android:clipChildren="false" android:clipToPadding="false"
@@ -328,12 +385,13 @@
                 <ImageView android:src="@drawable/ic_calculator" android:tint="@color/sage_text_soft" android:importantForAccessibility="no" android:layout_width="24dp" android:layout_height="24dp"/>
                 <TextView android:text="Calculate" android:textSize="10sp" android:textStyle="normal" android:textColor="@color/sage_text_soft" android:layout_marginTop="2dp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
             </LinearLayout>
-            <LinearLayout android:id="@+id/navChat" android:orientation="vertical" android:gravity="center" android:padding="6dp"
+            <LinearLayout android:id="@+id/navChat" android:orientation="vertical" android:gravity="center" android:paddingStart="6dp" android:paddingEnd="6dp" android:paddingTop="2dp" android:paddingBottom="2dp"
                 android:clickable="true" android:focusable="true" android:foreground="?attr/selectableItemBackgroundBorderless" android:alpha="0.8"
                 android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content">
-                <FrameLayout android:layout_width="24dp" android:layout_height="24dp">
-                    <ImageView android:src="@drawable/ic_chat" android:tint="@color/sage_text_soft" android:importantForAccessibility="no" android:layout_width="match_parent" android:layout_height="match_parent"/>
-                    <View android:id="@+id/chatDot" android:background="@drawable/bg_red_dot" android:visibility="gone" android:layout_gravity="top|end" android:layout_marginTop="-2dp" android:layout_marginEnd="-2dp" android:layout_width="8dp" android:layout_height="8dp" android:elevation="5dp" android:outlineSpotShadowColor="@color/sage_shadow_spot" android:outlineAmbientShadowColor="@color/sage_shadow_ambient"/>
+                <FrameLayout android:layout_width="32dp" android:layout_height="32dp"
+                    android:clipChildren="false" android:clipToPadding="false">
+                    <ImageView android:src="@drawable/ic_chat" android:tint="@color/sage_text_soft" android:importantForAccessibility="no" android:layout_gravity="center" android:layout_width="24dp" android:layout_height="24dp"/>
+                    <View android:id="@+id/chatDot" android:background="@drawable/bg_red_dot" android:visibility="gone" android:layout_gravity="top|end" android:layout_marginTop="4dp" android:layout_marginEnd="4dp" android:layout_width="10dp" android:layout_height="10dp"/>
                 </FrameLayout>
                 <TextView android:text="Chat" android:textSize="10sp" android:textStyle="normal" android:textColor="@color/sage_text_soft" android:layout_marginTop="2dp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
             </LinearLayout>

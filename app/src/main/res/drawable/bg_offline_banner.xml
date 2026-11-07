@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Warning banner in the Crescent palette: cream card with an amber outline -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle">
+    <solid android:color="@color/sage_card"/>
+    <corners android:radius="16dp"/>
+    <stroke android:width="1.5dp" android:color="@color/amber_gold"/>
+</shape>

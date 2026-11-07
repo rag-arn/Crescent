@@ -18,8 +18,8 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 /**
- * Shows the generated PDF before anything is saved. Download copies it to the Downloads folder;
- * Discard deletes it and returns to the previous screen.
+ * Shows the generated PDF before anything is saved. Download hands it to PdfDownloadService (a foreground
+ * service that saves it to Downloads with a progress notification); Discard deletes it and returns.
  */
 public class PdfPreviewActivity extends AppCompatActivity {
     public static final String EXTRA_PDF_PATH = "pdf_path";
@@ -28,7 +28,7 @@ public class PdfPreviewActivity extends AppCompatActivity {
     private File pdf;
     private final ExecutorService io = Executors.newSingleThreadExecutor();
     private final List<Bitmap> bitmaps = new ArrayList<>();
-    private boolean saving;
+    private boolean handedOff;   // the foreground service now owns the temp file and deletes it after saving
 
     @Override protected void onCreate(Bundle state) {
         super.onCreate(state);
@@ -95,40 +95,26 @@ public class PdfPreviewActivity extends AppCompatActivity {
     }
 
     private void download() {
-        if (saving) return;
-        saving = true;
+        if (handedOff) return;
+        handedOff = true;
         b.downloadButton.setEnabled(false);
         b.discardButton.setEnabled(false);
-        final android.content.Context app = getApplicationContext();
-        final File src = pdf;
-        io.execute(() -> {
-            String msg;
-            boolean ok = false;
-            try {
-                PdfReportWriter.saveToDownloads(app, src);
-                msg = "Saved PDF to Downloads.";
-                ok = true;
-            } catch (Exception e) {
-                msg = "Could not save PDF: " + e.getMessage();
-            }
-            final String m = msg;
-            final boolean success = ok;
-            runOnUiThread(() -> {
-                Toast.makeText(app, m, Toast.LENGTH_LONG).show();
-                if (success) {
-                    finish();
-                } else if (!isFinishing()) {                        // let the person retry or discard
-                    saving = false;
-                    b.downloadButton.setEnabled(true);
-                    b.discardButton.setEnabled(true);
-                }
-            });
-        });
+        try {
+            PdfDownloadService.saveReport(getApplicationContext(), pdf);
+        } catch (RuntimeException e) {                              // e.g. the system refused to start the service
+            handedOff = false;
+            b.downloadButton.setEnabled(true);
+            b.discardButton.setEnabled(true);
+            Toast.makeText(this, "Could not start saving: " + e.getMessage(), Toast.LENGTH_LONG).show();
+            return;
+        }
+        Toast.makeText(this, "Saving report to Downloads. Check the notification for progress.", Toast.LENGTH_LONG).show();
+        finish();
     }
 
     @Override protected void onDestroy() {
         super.onDestroy();
-        if (isFinishing()) {                                        // not a rotation: the temp file is no longer needed
+        if (isFinishing() && !handedOff) {                          // discarded: the temp file is no longer needed
             final File f = pdf;
             io.execute(() -> { if (f != null) f.delete(); });
         }

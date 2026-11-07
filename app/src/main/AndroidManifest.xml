@@ -2,9 +2,17 @@
 
     <!-- Install-Time and Runtime Permissions -->
     <uses-permission android:name="android.permission.INTERNET"/>
+    <!-- Needed to observe connectivity changes (offline banner on the price screens) -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <!-- Runtime permission: lets the person pick a contact to send a Zakat estimate to (never uploaded or stored) -->
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.CAMERA" />
+    <!-- Read contacts to pick a recipient when sharing an expert profile -->
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC" />
 
     <!-- DISABLED Auto-Backup so data is strictly isolated per install -->
     <application
@@ -14,6 +22,11 @@
         android:label="Crescent"
         android:theme="@style/Theme.Crescent"
         android:supportsRtl="true">
+
+        <service
+            android:name=".PdfDownloadService"
+            android:exported="false"
+            android:foregroundServiceType="dataSync" />
 
         <activity android:name=".HistoryActivity" android:exported="false"/>
         <activity android:name=".InfoActivity" android:exported="false"/>
@@ -28,16 +41,35 @@
         <activity android:name=".ExpertRegistrationActivity" android:exported="false"/>
         <activity android:name=".ExpertListActivity" android:exported="false"/>
         <activity android:name=".ProfileActivity" android:exported="false"/>
+        <activity android:name=".ContactPickerActivity" android:exported="false"/>
         <activity android:name=".NotificationsActivity" android:exported="false"/>
         <activity android:name=".ChatActivity" android:exported="false" android:windowSoftInputMode="adjustResize"/>
         <activity android:name=".ChatListActivity" android:exported="false"/>
         <activity android:name=".AssetBreakdownActivity" android:exported="false"/>
         <activity android:name=".SettingsActivity" android:exported="false"/>
 
-        <activity android:name=".MainActivity" android:exported="true">
+        <!-- SingleTop and standard HTTPS deep linking intent-filter -->
+        <activity android:name=".MainActivity" android:exported="true" android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+
+            <!-- Standard HTTPS Deep Linking Intent Filter -->
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="https" android:host="crescent.app" android:pathPrefix="/expert/" />
+            </intent-filter>
+
+            <!-- Custom-scheme fallback: crescent://expert/<uid>. Needs no domain verification,
+                 so it opens the app even when https App Links are not verified. -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="crescent" android:host="expert" />
             </intent-filter>
         </activity>
 
@@ -46,5 +78,13 @@
                 <action android:name="android.intent.action.BOOT_COMPLETED"/>
             </intent-filter>
         </receiver>
+
+        <!-- Zakat Data Content Provider -->
+        <provider
+            android:name=".ZakatDataProvider"
+            android:authorities="com.crescent.app.provider"
+            android:exported="true"
+            android:grantUriPermissions="true" />
+
     </application>
 </manifest>

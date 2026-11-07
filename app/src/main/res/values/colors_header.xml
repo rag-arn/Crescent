@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Extra shades for the screen header (bg_green_arc.xml). Existing sage_top / sage_button / sage_bottom are reused. -->
+<resources>
+    <color name="sage_header_mid">#A6C0AC</color>      <!-- middle of the header gradient -->
+    <color name="sage_shade_dark">#35523F</color>      <!-- darker green: rosettes, domes, shading -->
+    <color name="sage_shade_clear">#0035523F</color>   <!-- same dark green, fully transparent (gradient start) -->
+    <color name="sage_shade_strong">#7335523F</color>  <!-- same dark green, 45% opaque (gradient end) -->
+    <color name="sage_header_edge">#A9C2AB</color>     <!-- light stroke band along the curved edge -->
+    <color name="sage_header_glow">#E6F0E3</color>     <!-- light pattern lines -->
+    <color name="sage_moon_cream">#F1EEDA</color>      <!-- crescents and sparkles -->
+</resources>

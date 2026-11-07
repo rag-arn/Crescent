@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.crescent.app-mergeDebugResources-39:/values-fa/values-fa.xml",
+            "outputFile": "com.crescent.app-mergeDebugResources-43:/values-fa/values-fa.xml",
             "map": [
                 {
                     "source": "/Users/ragarnob/.gradle/caches/9.6.0/transforms/6f03cb364c5c5a28ff6d7c1820918f85/transformed/material-1.12.0/res/values-fa/values-fa.xml",
