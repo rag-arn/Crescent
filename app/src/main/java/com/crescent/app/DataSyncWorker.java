@@ -15,9 +15,6 @@ import java.nio.charset.StandardCharsets;
 
 public class DataSyncWorker extends Worker {
 
-    private static final String GOLD_URL = "https://api.gold-api.com/price/XAU";
-    private static final String SILVER_URL = "https://api.gold-api.com/price/XAG";
-    private static final String FX_URL = "https://open.er-api.com/v6/latest/USD";
     private static final String HADITH_URL = "https://random-hadith-generator.vercel.app/bukhari/";
 
     public DataSyncWorker(@NonNull Context context, @NonNull WorkerParameters params) {
@@ -33,31 +30,19 @@ public class DataSyncWorker extends Worker {
 
         boolean success = true;
 
-        // 1. Fetch Market Prices (Gold, Silver, FX)
+        // 1. Fetch Market Prices (Gold, Silver, FX). No placeholder prices: on failure nothing is saved and the work retries.
+        PriceFetcher.purgeLegacyMockCache(pricesPrefs);
         try {
-            String goldJson;
-            try { goldJson = httpGet(GOLD_URL); } catch (Exception e) { goldJson = "{ \"price\": 2745.50 }"; }
-
-            String silverJson;
-            try { silverJson = httpGet(SILVER_URL); } catch (Exception e) { silverJson = "{ \"price\": 34.20 }"; }
-
-            String fxJson;
-            try { fxJson = httpGet(FX_URL); } catch (Exception e) { fxJson = "{ \"rates\": { \"BDT\": 120.00 } }"; }
-
-            double goldUsd = new JSONObject(goldJson).getDouble("price");
-            double silverUsd = new JSONObject(silverJson).getDouble("price");
-            double fxBdt = new JSONObject(fxJson).getJSONObject("rates").getDouble("BDT");
-
-            if (goldUsd > 0 && silverUsd > 0 && fxBdt > 0) {
-                long now = System.currentTimeMillis();
-                pricesPrefs.edit()
-                        .putString("xau_usd", String.valueOf(goldUsd))
-                        .putLong("xau_usd_at", now)
-                        .putString("xag_usd", String.valueOf(silverUsd))
-                        .putLong("xag_usd_at", now)
-                        .putString("usd_bdt", String.valueOf(fxBdt))
-                        .apply();
-            }
+            PriceFetcher.Quote gold = PriceFetcher.fetch("XAU");
+            PriceFetcher.Quote silver = PriceFetcher.fetch("XAG");
+            long now = System.currentTimeMillis();
+            pricesPrefs.edit()
+                    .putString("xau_usd", String.valueOf(gold.usdPerOunce))
+                    .putLong("xau_usd_at", now)
+                    .putString("xag_usd", String.valueOf(silver.usdPerOunce))
+                    .putLong("xag_usd_at", now)
+                    .putString("usd_bdt", String.valueOf(gold.usdBdt))
+                    .apply();
         } catch (Exception e) {
             success = false;
         }

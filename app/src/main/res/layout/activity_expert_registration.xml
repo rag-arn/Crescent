@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/rootLayout" android:orientation="vertical" android:background="@drawable/bg_dash_screen" android:layout_width="match_parent" android:layout_height="match_parent">
+    android:id="@+id/rootLayout" android:orientation="vertical" android:background="@drawable/bg_dash_screen_soft" android:layout_width="match_parent" android:layout_height="match_parent">
 
     <FrameLayout android:id="@+id/headerBar" android:layout_width="match_parent" android:layout_height="wrap_content">
         <LinearLayout android:orientation="horizontal" android:gravity="center_vertical" android:paddingStart="20dp" android:paddingEnd="10dp" android:paddingTop="42dp" android:paddingBottom="12dp" android:layout_width="match_parent" android:layout_height="wrap_content">
@@ -14,16 +14,16 @@
 
     <ScrollView android:id="@+id/formLayout" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1">
         <LinearLayout android:orientation="vertical" android:padding="24dp" android:layout_width="match_parent" android:layout_height="wrap_content">
-            <TextView android:text="Join the directory to help users verify their calculations." android:textSize="15sp" android:textColor="@color/sage_text" android:layout_marginBottom="24dp" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+            <TextView android:text="Apply to join the directory and help users verify their calculations. The admin reviews every application." android:textSize="15sp" android:textColor="@color/sage_text" android:layout_marginBottom="24dp" android:layout_width="match_parent" android:layout_height="wrap_content"/>
             <TextView android:text="Your Qualifications / Bio" android:textSize="13sp" android:textStyle="bold" android:textColor="@color/sage_text" android:layout_marginBottom="8dp" android:layout_width="match_parent" android:layout_height="wrap_content"/>
             <EditText android:id="@+id/bioInput" style="@style/Widget.Crescent.EditText" android:hint="e.g. Certified Islamic Finance Scholar..." android:lines="5" android:gravity="top" android:inputType="textMultiLine" android:layout_width="match_parent" android:layout_height="wrap_content"/>
-            <Button android:id="@+id/submitBtn" style="@style/Widget.Crescent.Button" android:text="Register as Expert" android:layout_marginTop="24dp" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+            <Button android:id="@+id/submitBtn" style="@style/Widget.Crescent.Button" android:text="Apply to become an Expert" android:layout_marginTop="24dp" android:layout_width="match_parent" android:layout_height="wrap_content"/>
         </LinearLayout>
     </ScrollView>
 
     <LinearLayout android:id="@+id/alreadyExpertLayout" android:orientation="vertical" android:gravity="center" android:visibility="gone" android:padding="32dp" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1">
         <ImageView android:src="@drawable/ic_gem" android:tint="@color/amber_gold" android:layout_marginBottom="16dp" android:layout_width="48dp" android:layout_height="48dp"/>
-        <TextView android:text="You are already listed" android:textSize="20sp" android:textStyle="bold" android:textColor="@color/sage_text" android:layout_marginBottom="8dp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
-        <TextView android:text="Your expert profile is active in the directory. You can manage your status or resign in your Profile Settings." android:textSize="14sp" android:gravity="center" android:textColor="@color/sage_text_soft" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+        <TextView android:id="@+id/alreadyTitle" android:text="You are already listed" android:textSize="20sp" android:textStyle="bold" android:textColor="@color/sage_text" android:layout_marginBottom="8dp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+        <TextView android:id="@+id/alreadyMessage" android:text="Your expert profile is active in the directory. You can manage your status or resign in your Profile Settings." android:textSize="14sp" android:gravity="center" android:textColor="@color/sage_text_soft" android:layout_width="match_parent" android:layout_height="wrap_content"/>
     </LinearLayout>
 </LinearLayout>

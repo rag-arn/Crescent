@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:padding="16dp" android:gravity="center_vertical"
+    android:background="@drawable/bg_dash_card" android:elevation="4dp" android:outlineSpotShadowColor="@color/sage_shadow_spot" android:outlineAmbientShadowColor="@color/sage_shadow_ambient"
+    android:layout_marginBottom="12dp"
+    android:clickable="true" android:focusable="true" android:foreground="?attr/selectableItemBackground"
+    android:layout_width="match_parent" android:layout_height="wrap_content">
+    <LinearLayout android:orientation="vertical" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content">
+        <TextView android:id="@+id/userItemName" android:textSize="16sp" android:textStyle="bold" android:textColor="@color/sage_text" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+        <TextView android:id="@+id/userItemEmail" android:textSize="12sp" android:textColor="@color/sage_text_soft" android:layout_marginTop="2dp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+        <TextView android:id="@+id/userItemStatus" android:textSize="12sp" android:textStyle="bold" android:textColor="@color/sage_text_soft" android:layout_marginTop="6dp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+    </LinearLayout>
+    <TextView android:text="›" android:textSize="26sp" android:textColor="@color/sage_text_soft" android:layout_marginStart="12dp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+</LinearLayout>

@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/rootLayout"
     android:orientation="vertical"
-    android:background="@drawable/bg_dash_screen"
+    android:background="@drawable/bg_dash_screen_soft"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:background="@drawable/bg_dash_screen"
+    android:orientation="vertical" android:background="@drawable/bg_dash_screen_soft"
     android:layout_width="match_parent" android:layout_height="match_parent">
 
     <FrameLayout android:id="@+id/headerBar" android:layout_width="match_parent" android:layout_height="wrap_content">
@@ -21,24 +21,28 @@
 
     <ScrollView android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1">
         <LinearLayout android:orientation="vertical" android:padding="16dp" android:layout_width="match_parent" android:layout_height="wrap_content">
-            <LinearLayout android:orientation="horizontal" android:gravity="center_vertical" android:layout_width="match_parent" android:layout_height="wrap_content">
-                <TextView android:id="@+id/priceLabel" android:textSize="14sp" android:textStyle="bold" android:textColor="@color/sage_text" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content"/>
-                <ImageButton android:id="@+id/priceInfoButton" style="?android:attr/borderlessButtonStyle" android:src="@drawable/ic_info" android:tint="@color/sage_text_soft" android:padding="10dp" android:layout_width="40dp" android:layout_height="40dp"/>
-            </LinearLayout>
-            <LinearLayout android:orientation="horizontal" android:gravity="center_vertical" android:layout_marginTop="4dp" android:layout_width="match_parent" android:layout_height="wrap_content">
-                <EditText android:id="@+id/priceInput" style="@style/Widget.Crescent.EditText" android:hint="Price (৳)" android:inputType="numberDecimal" android:layout_marginEnd="8dp" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content"/>
-                <Spinner android:id="@+id/priceUnitSpinner" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content"/>
-            </LinearLayout>
-            <TextView android:id="@+id/priceStatus" android:textSize="12sp" android:textColor="@color/sage_text_soft" android:lineSpacingExtra="3dp" android:layout_marginTop="6dp" android:layout_width="match_parent" android:layout_height="wrap_content"/>
-            <LinearLayout android:orientation="horizontal" android:layout_marginTop="8dp" android:layout_width="match_parent" android:layout_height="wrap_content">
-                <Button android:id="@+id/refreshPriceButton" style="@style/Widget.Crescent.Button.Outlined" android:text="Refresh price" android:layout_marginEnd="6dp" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content"/>
-                <Button android:id="@+id/useLivePriceButton" style="@style/Widget.Crescent.Button.Outlined" android:text="Use live price" android:layout_marginStart="6dp" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content"/>
+
+            <!-- Holdings: the main input -->
+            <TextView style="@style/CrescentFieldLabel" android:text="Your holdings" android:textSize="12sp"/>
+            <LinearLayout android:id="@+id/rowsContainer" android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+
+            <Button android:id="@+id/addMoreButton" style="@style/Widget.Crescent.Button.Outlined" android:text="+ Add another entry" android:layout_marginTop="12dp" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+
+            <!-- Price (secondary) -->
+            <LinearLayout android:orientation="vertical" android:padding="14dp" android:background="@drawable/bg_asset_card" android:layout_marginTop="20dp" android:layout_width="match_parent" android:layout_height="wrap_content">
+                <LinearLayout android:orientation="horizontal" android:gravity="center_vertical" android:layout_width="match_parent" android:layout_height="wrap_content">
+                    <TextView android:id="@+id/priceLabel" android:textSize="13sp" android:textStyle="bold" android:textColor="@color/sage_text" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content"/>
+                    <ImageButton android:id="@+id/refreshPriceButton" style="?android:attr/borderlessButtonStyle" android:src="@drawable/ic_refresh" android:tint="@color/sage_text" android:padding="10dp" android:contentDescription="Refresh live price" android:layout_width="40dp" android:layout_height="40dp"/>
+                    <ImageButton android:id="@+id/priceInfoButton" style="?android:attr/borderlessButtonStyle" android:src="@drawable/ic_info" android:tint="@color/sage_text_soft" android:padding="10dp" android:contentDescription="About the price" android:layout_width="40dp" android:layout_height="40dp"/>
+                </LinearLayout>
+                <LinearLayout android:orientation="horizontal" android:gravity="center_vertical" android:layout_marginTop="6dp" android:layout_width="match_parent" android:layout_height="wrap_content">
+                    <EditText android:id="@+id/priceInput" style="@style/Widget.Crescent.EditText" android:hint="Price (৳)" android:inputType="numberDecimal" android:layout_marginEnd="10dp" android:layout_width="0dp" android:layout_weight="1" android:layout_height="48dp"/>
+                    <Spinner android:id="@+id/priceUnitSpinner" style="@style/Widget.Crescent.Spinner" android:layout_width="0dp" android:layout_weight="1" android:layout_height="48dp"/>
+                </LinearLayout>
+                <TextView android:id="@+id/priceStatus" android:textSize="12sp" android:textColor="@color/sage_text_soft" android:lineSpacingExtra="3dp" android:layout_marginTop="8dp" android:layout_width="match_parent" android:layout_height="wrap_content"/>
             </LinearLayout>
 
-            <LinearLayout android:id="@+id/rowsContainer" android:orientation="vertical" android:layout_marginTop="4dp" android:layout_width="match_parent" android:layout_height="wrap_content"/>
-
-            <Button android:id="@+id/addMoreButton" style="@style/Widget.Crescent.Button.Outlined" android:text="+ Add more" android:layout_marginTop="12dp" android:layout_width="match_parent" android:layout_height="wrap_content"/>
-
+            <!-- Total -->
             <LinearLayout android:orientation="vertical" android:padding="16dp" android:background="@drawable/bg_summary_card" android:layout_marginTop="16dp" android:layout_width="match_parent" android:layout_height="wrap_content">
                 <TextView android:text="Total" android:textSize="12sp" android:textStyle="bold" android:textAllCaps="true" android:letterSpacing="0.08" android:textColor="@color/sage_text_soft" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
                 <TextView android:id="@+id/totalText" android:textSize="17sp" android:textStyle="bold" android:textColor="@color/sage_text" android:layout_marginTop="2dp" android:layout_width="match_parent" android:layout_height="wrap_content"/>

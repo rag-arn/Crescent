@@ -154,8 +154,17 @@ public class ProfileActivity extends AppCompatActivity {
 
         dialog.findViewById(R.id.cancelBtn).setOnClickListener(v -> dialog.dismiss());
         dialog.findViewById(R.id.resignBtn).setOnClickListener(v -> {
-            db.collection("users").document(user.getUid()).update("isExpert", false).addOnSuccessListener(a -> {
+            // Resigning wipes the rating. "ratingEpoch" marks a new rating period, so everyone who rated before
+            // may rate again if this person becomes an expert again.
+            java.util.Map<String, Object> resign = new java.util.HashMap<>();
+            resign.put("isExpert", false);
+            resign.put("expertStatus", "resigned");
+            resign.put("rating", 0.0);
+            resign.put("ratingCount", 0);
+            resign.put("ratingEpoch", System.currentTimeMillis());
+            db.collection("users").document(user.getUid()).update(resign).addOnSuccessListener(a -> {
                 ratingLayout.setVisibility(View.GONE);
+                ExpertResignNotifier.notifyChatPartners(user.getUid());   // notify everyone who chatted with this expert
                 Toast.makeText(this, "Resigned from expert directory.", Toast.LENGTH_LONG).show();
             });
             dialog.dismiss();

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/rootLayout" android:orientation="vertical" android:background="@drawable/bg_dash_screen" android:layout_width="match_parent" android:layout_height="match_parent">
+    android:id="@+id/rootLayout" android:orientation="vertical" android:background="@drawable/bg_dash_screen_soft" android:layout_width="match_parent" android:layout_height="match_parent">
 
     <FrameLayout android:id="@+id/headerBar" android:layout_width="match_parent" android:layout_height="wrap_content">
         <LinearLayout android:orientation="horizontal" android:gravity="center_vertical" android:paddingStart="20dp" android:paddingEnd="10dp" android:paddingTop="42dp" android:paddingBottom="12dp" android:layout_width="match_parent" android:layout_height="wrap_content">
@@ -30,7 +30,7 @@
                 <RatingBar android:id="@+id/expertRatingBar" style="?android:attr/ratingBarStyleIndicator" android:numStars="5" android:stepSize="0.1" android:progressTint="@color/amber_gold" android:progressBackgroundTint="#995B7B7A" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
                 <TextView android:id="@+id/expertRatingCount" android:text="(0 ratings)" android:textSize="12sp" android:textColor="@color/sage_text_soft" android:layout_marginTop="4dp" android:layout_marginBottom="32dp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
 
-                <Button android:id="@+id/resignBtn" style="@style/Widget.Crescent.Button.Outlined" android:text="Resign as Expert" android:textColor="#D32F2F" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                <Button android:id="@+id/resignBtn" style="@style/Widget.Crescent.Button.Outlined" android:text="Deactivate Expert Status" android:textColor="#D32F2F" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
