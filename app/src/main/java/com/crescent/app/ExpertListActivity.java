@@ -22,6 +22,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
 
@@ -33,6 +35,11 @@ public class ExpertListActivity extends AppCompatActivity {
     private ProgressBar progress;
     private TextView emptyText;
 
+    private static final int SORT_RATING = 0;   // highest star rating first
+    private static final int SORT_COUNT = 1;    // most reviews (star count) first
+    private int sortMode = SORT_RATING;
+    private TextView sortByRating, sortByCount;
+
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_expert_list);
@@ -42,6 +49,13 @@ public class ExpertListActivity extends AppCompatActivity {
 
         progress = findViewById(R.id.loadingProgress);
         emptyText = findViewById(R.id.emptyText);
+
+        if (savedInstanceState != null) sortMode = savedInstanceState.getInt("sortMode", SORT_RATING);
+        sortByRating = findViewById(R.id.sortByRating);
+        sortByCount = findViewById(R.id.sortByCount);
+        sortByRating.setOnClickListener(v -> setSortMode(SORT_RATING));
+        sortByCount.setOnClickListener(v -> setSortMode(SORT_COUNT));
+        updateSortChips();
 
         // 1. Setup the RecyclerView
         recyclerView = findViewById(R.id.expertsRecyclerView);
@@ -60,13 +74,68 @@ public class ExpertListActivity extends AppCompatActivity {
                         return;
                     }
                     // Load the documents into our list and tell the adapter to refresh
-                    expertList.addAll(query.getDocuments());
-                    adapter.notifyDataSetChanged();
+                    for (DocumentSnapshot d : query.getDocuments()) {
+                        if (!Boolean.TRUE.equals(d.getBoolean("disabled"))) expertList.add(d);   // disabled accounts are hidden
+                    }
+                    applySort();
                 })
                 .addOnFailureListener(e -> {
                     progress.setVisibility(View.GONE);
                     Toast.makeText(this, "Failed to load experts: " + e.getMessage(), Toast.LENGTH_LONG).show();
                 });
+    }
+
+    @Override protected void onSaveInstanceState(@NonNull Bundle out) {
+        super.onSaveInstanceState(out);
+        out.putInt("sortMode", sortMode);
+    }
+
+    // --- SORTING ---
+
+    private void setSortMode(int mode) {
+        if (sortMode == mode) return;
+        sortMode = mode;
+        updateSortChips();
+        applySort();
+        recyclerView.scrollToPosition(0);
+    }
+
+    private void updateSortChips() {
+        styleChip(sortByRating, sortMode == SORT_RATING);
+        styleChip(sortByCount, sortMode == SORT_COUNT);
+    }
+
+    private void styleChip(TextView chip, boolean selected) {
+        chip.setBackgroundResource(selected ? R.drawable.bg_sort_chip_selected : R.drawable.bg_sort_chip);
+        chip.setTextColor(selected ? 0xFFFFFFFF : getColor(R.color.sage_text));
+    }
+
+    /** Same defaults as the list item: no stored rating shows as 5.0, no stored count as 0. */
+    private static double ratingOf(DocumentSnapshot d) {
+        Double r = d.getDouble("rating");
+        return r != null ? r : 5.0;
+    }
+
+    private static long countOf(DocumentSnapshot d) {
+        Long c = d.getLong("ratingCount");
+        return c != null ? c : 0;
+    }
+
+    private static String nameOf(DocumentSnapshot d) {
+        String n = d.getString("name");
+        return n != null ? n.toLowerCase(Locale.ROOT) : "";
+    }
+
+    private void applySort() {
+        Comparator<DocumentSnapshot> byRating = (a, b) -> Double.compare(ratingOf(b), ratingOf(a));   // high to low
+        Comparator<DocumentSnapshot> byCount = (a, b) -> Long.compare(countOf(b), countOf(a));        // high to low
+        Comparator<DocumentSnapshot> byName = (a, b) -> nameOf(a).compareTo(nameOf(b));
+
+        Comparator<DocumentSnapshot> cmp = sortMode == SORT_COUNT
+                ? byCount.thenComparing(byRating).thenComparing(byName)
+                : byRating.thenComparing(byCount).thenComparing(byName);
+        Collections.sort(expertList, cmp);
+        adapter.notifyDataSetChanged();
     }
 
     // --- RECYCLER VIEW ADAPTER & VIEWHOLDER ---

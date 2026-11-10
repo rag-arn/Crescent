@@ -4,8 +4,8 @@ package com.crescent.app.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -26,10 +26,16 @@ public final class ItemMetalRowBinding implements ViewBinding {
   public final EditText amountInput;
 
   @NonNull
+  public final TextView entryTitle;
+
+  @NonNull
+  public final TextView purityLabel;
+
+  @NonNull
   public final Spinner puritySpinner;
 
   @NonNull
-  public final Button removeButton;
+  public final ImageButton removeButton;
 
   @NonNull
   public final TextView rowValue;
@@ -38,10 +44,12 @@ public final class ItemMetalRowBinding implements ViewBinding {
   public final Spinner unitSpinner;
 
   private ItemMetalRowBinding(@NonNull LinearLayout rootView, @NonNull EditText amountInput,
-      @NonNull Spinner puritySpinner, @NonNull Button removeButton, @NonNull TextView rowValue,
-      @NonNull Spinner unitSpinner) {
+      @NonNull TextView entryTitle, @NonNull TextView purityLabel, @NonNull Spinner puritySpinner,
+      @NonNull ImageButton removeButton, @NonNull TextView rowValue, @NonNull Spinner unitSpinner) {
     this.rootView = rootView;
     this.amountInput = amountInput;
+    this.entryTitle = entryTitle;
+    this.purityLabel = purityLabel;
     this.puritySpinner = puritySpinner;
     this.removeButton = removeButton;
     this.rowValue = rowValue;
@@ -81,6 +89,18 @@ public final class ItemMetalRowBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.entryTitle;
+      TextView entryTitle = ViewBindings.findChildViewById(rootView, id);
+      if (entryTitle == null) {
+        break missingId;
+      }
+
+      id = R.id.purityLabel;
+      TextView purityLabel = ViewBindings.findChildViewById(rootView, id);
+      if (purityLabel == null) {
+        break missingId;
+      }
+
       id = R.id.puritySpinner;
       Spinner puritySpinner = ViewBindings.findChildViewById(rootView, id);
       if (puritySpinner == null) {
@@ -88,7 +108,7 @@ public final class ItemMetalRowBinding implements ViewBinding {
       }
 
       id = R.id.removeButton;
-      Button removeButton = ViewBindings.findChildViewById(rootView, id);
+      ImageButton removeButton = ViewBindings.findChildViewById(rootView, id);
       if (removeButton == null) {
         break missingId;
       }
@@ -105,8 +125,8 @@ public final class ItemMetalRowBinding implements ViewBinding {
         break missingId;
       }
 
-      return new ItemMetalRowBinding((LinearLayout) rootView, amountInput, puritySpinner,
-          removeButton, rowValue, unitSpinner);
+      return new ItemMetalRowBinding((LinearLayout) rootView, amountInput, entryTitle, purityLabel,
+          puritySpinner, removeButton, rowValue, unitSpinner);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

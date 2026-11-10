@@ -61,7 +61,7 @@ public final class ActivityMetalBinding implements ViewBinding {
   public final Spinner priceUnitSpinner;
 
   @NonNull
-  public final Button refreshPriceButton;
+  public final ImageButton refreshPriceButton;
 
   @NonNull
   public final LinearLayout rowsContainer;
@@ -78,19 +78,16 @@ public final class ActivityMetalBinding implements ViewBinding {
   @NonNull
   public final TextView totalText;
 
-  @NonNull
-  public final Button useLivePriceButton;
-
   private ActivityMetalBinding(@NonNull LinearLayout rootView, @NonNull Button addMoreButton,
       @NonNull ImageButton backButton, @NonNull LinearLayout bottomBar,
       @NonNull FrameLayout headerBar, @NonNull Button nextButton,
       @NonNull ViewOfflineBannerBinding offlineBanner, @NonNull Button previousButton,
       @NonNull ImageButton priceInfoButton, @NonNull EditText priceInput,
       @NonNull TextView priceLabel, @NonNull TextView priceStatus,
-      @NonNull Spinner priceUnitSpinner, @NonNull Button refreshPriceButton,
+      @NonNull Spinner priceUnitSpinner, @NonNull ImageButton refreshPriceButton,
       @NonNull LinearLayout rowsContainer, @NonNull TextView stepText,
       @NonNull ImageButton titleInfoButton, @NonNull TextView titleText,
-      @NonNull TextView totalText, @NonNull Button useLivePriceButton) {
+      @NonNull TextView totalText) {
     this.rootView = rootView;
     this.addMoreButton = addMoreButton;
     this.backButton = backButton;
@@ -110,7 +107,6 @@ public final class ActivityMetalBinding implements ViewBinding {
     this.titleInfoButton = titleInfoButton;
     this.titleText = titleText;
     this.totalText = totalText;
-    this.useLivePriceButton = useLivePriceButton;
   }
 
   @Override
@@ -214,7 +210,7 @@ public final class ActivityMetalBinding implements ViewBinding {
       }
 
       id = R.id.refreshPriceButton;
-      Button refreshPriceButton = ViewBindings.findChildViewById(rootView, id);
+      ImageButton refreshPriceButton = ViewBindings.findChildViewById(rootView, id);
       if (refreshPriceButton == null) {
         break missingId;
       }
@@ -249,16 +245,10 @@ public final class ActivityMetalBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.useLivePriceButton;
-      Button useLivePriceButton = ViewBindings.findChildViewById(rootView, id);
-      if (useLivePriceButton == null) {
-        break missingId;
-      }
-
       return new ActivityMetalBinding((LinearLayout) rootView, addMoreButton, backButton, bottomBar,
           headerBar, nextButton, binding_offlineBanner, previousButton, priceInfoButton, priceInput,
           priceLabel, priceStatus, priceUnitSpinner, refreshPriceButton, rowsContainer, stepText,
-          titleInfoButton, titleText, totalText, useLivePriceButton);
+          titleInfoButton, titleText, totalText);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Same as bg_dash_screen, but the green ornamental header is faded to ~50%.
+     Used by every inner screen; the dashboard, login/sign-up and slide menu keep bg_dash_screen.
+     Layer 3 is the cream page colour at 50% alpha laid over the header, which is
+     visually identical to drawing the header at 50% opacity.
+     To change the strength, edit the alpha (first two hex digits) of the colour in layer 3:
+     #80 = 50% faded, #66 = 40% faded (header stronger), #99 = 60% faded (header lighter). -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@color/sage_bottom"/>
+        </shape>
+    </item>
+    <item
+        android:drawable="@drawable/bg_green_arc"
+        android:gravity="top|fill_horizontal"/>
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="#80F5F1E4"/>
+        </shape>
+    </item>
+</layer-list>

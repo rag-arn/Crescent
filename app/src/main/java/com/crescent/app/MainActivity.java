@@ -71,6 +71,8 @@ import java.util.concurrent.TimeUnit;
 
 public class MainActivity extends AppCompatActivity {
     private static final float MENU_WIDTH_FRACTION = 0.78f;
+    private static final int MENU_MAX_WIDTH_DP = 340;     // keeps the side menu a sensible width in landscape and on tablets
+    private static final String S_MENU_OPEN = "menuOpen";
     private static final long ANIM_DURATION_MS = 320L;
     private static final float GAUGE_CALCULATED = 0.75f;
     private static final int NOTIF_PERMISSION_CODE = 101;
@@ -89,8 +91,6 @@ public class MainActivity extends AppCompatActivity {
     private WindowInsetsControllerCompat insetsController;
 
     public static String activeRoomId = null;
-    private boolean isFirstNotifLoad = true;
-    private boolean isFirstChatLoad = true;
 
     private String taka(double v) { return nf.format(Math.round(v)); }
 
@@ -115,6 +115,12 @@ public class MainActivity extends AppCompatActivity {
             Intent login = new Intent(this, LoginActivity.class);
             if (getIntent().getData() != null) login.setData(getIntent().getData());
             startActivity(login);
+            finish();
+            return;
+        }
+
+        if (Admin.isAdmin(this, currentUser)) {
+            startActivity(new Intent(this, AdminDashboardActivity.class));
             finish();
             return;
         }
@@ -161,6 +167,13 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
+        if (!currentUser.isAnonymous()) {
+            // If the admin disables this account while the app is open, sign out immediately
+            selfStatusReg = db.collection("users").document(currentUser.getUid()).addSnapshotListener((snap, err) -> {
+                if (snap != null && Boolean.TRUE.equals(snap.getBoolean("disabled"))) signOutDisabledAccount();
+            });
+        }
 
         setupSystemBars();
         setupSlideMenu();
@@ -243,6 +256,13 @@ public class MainActivity extends AppCompatActivity {
     @Override protected void onResume() {
         super.onResume();
         if (mAuth != null && mAuth.getCurrentUser() != null) {
+            if (mAuth.getCurrentUser() != null && !mAuth.getCurrentUser().isAnonymous()) {
+                ChatNotificationService.start(this);     // keeps chat notifications alive when the app is closed
+                boolean canNotify = Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU
+                        || ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED;
+                if (canNotify) ChatNotificationService.askBatteryExemptionOnce(this);
+            }
+            updateHawl();          // instant: draws the local countdown (e.g. cleared after a delete) before the cloud answers
             loadDashboard();
             HawlTracker.syncFromCloud(this, () -> {
                 HawlTracker.schedule(this);
@@ -253,6 +273,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override protected void onDestroy() {
+        if (selfStatusReg != null) selfStatusReg.remove();
         super.onDestroy();
         io.shutdown();
     }
@@ -264,6 +285,8 @@ public class MainActivity extends AppCompatActivity {
         final int menuFooterBottom = b.slideMenu.menuFooter.getPaddingBottom();
         ViewCompat.setOnApplyWindowInsetsListener(b.getRoot(), (v, insets) -> {
             Insets bars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            Insets sides = insets.getInsets(WindowInsetsCompat.Type.systemBars() | WindowInsetsCompat.Type.displayCutout());
+            b.dashboard.getRoot().setPadding(sides.left, 0, sides.right, 0);
             b.dashboard.brandHeader.setPadding(b.dashboard.brandHeader.getPaddingLeft(), headerTop + bars.top, b.dashboard.brandHeader.getPaddingRight(), b.dashboard.brandHeader.getPaddingBottom());
             b.dashboard.bottomNav.setPadding(b.dashboard.bottomNav.getPaddingLeft(), b.dashboard.bottomNav.getPaddingTop(), b.dashboard.bottomNav.getPaddingRight(), navBottom + bars.bottom);
             b.slideMenu.menuHeader.setPadding(b.slideMenu.menuHeader.getPaddingLeft(), menuHeaderTop + bars.top, b.slideMenu.menuHeader.getPaddingRight(), b.slideMenu.menuHeader.getPaddingBottom());
@@ -280,7 +303,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void setupSlideMenu() {
         int screenW = getResources().getDisplayMetrics().widthPixels;
-        menuWidthPx = Math.round(screenW * MENU_WIDTH_FRACTION);
+        menuWidthPx = menuWidthFor(screenW);
         FrameLayout.LayoutParams lp = (FrameLayout.LayoutParams) b.slideMenu.getRoot().getLayoutParams();
         lp.width = menuWidthPx;
         lp.gravity = Gravity.START;
@@ -289,7 +312,7 @@ public class MainActivity extends AppCompatActivity {
         b.drawerRoot.post(() -> {
             int measuredW = b.drawerRoot.getWidth();
             if (measuredW > 0) {
-                int newWidth = Math.round(measuredW * MENU_WIDTH_FRACTION);
+                int newWidth = menuWidthFor(measuredW);
                 if (newWidth != menuWidthPx) {
                     menuWidthPx = newWidth;
                     ViewGroup.LayoutParams params = b.slideMenu.getRoot().getLayoutParams();
@@ -301,6 +324,26 @@ public class MainActivity extends AppCompatActivity {
         });
         backCallback = new OnBackPressedCallback(false) { @Override public void handleOnBackPressed() { closeMenu(null); } };
         getOnBackPressedDispatcher().addCallback(this, backCallback);
+    }
+
+    private int menuWidthFor(int availableWidthPx) {
+        int cap = Math.round(MENU_MAX_WIDTH_DP * getResources().getDisplayMetrics().density);
+        return Math.min(Math.round(availableWidthPx * MENU_WIDTH_FRACTION), cap);
+    }
+
+    @Override protected void onSaveInstanceState(Bundle out) {
+        super.onSaveInstanceState(out);
+        out.putBoolean(S_MENU_OPEN, menuOpen);
+    }
+
+    @Override protected void onRestoreInstanceState(Bundle state) {
+        super.onRestoreInstanceState(state);
+        // Rotating with the menu open keeps it open (b is null when the user was sent to the login screen instead).
+        if (b != null && backCallback != null && state.getBoolean(S_MENU_OPEN)) {
+            menuOpen = true;
+            backCallback.setEnabled(true);
+            applyMenuProgress(1f);
+        }
     }
 
     private void applyMenuProgress(float p) {
@@ -385,6 +428,7 @@ public class MainActivity extends AppCompatActivity {
                 if (isGuest) {
                     CrescentDatabase.get(MainActivity.this).clearAllTables();
                     getSharedPreferences("crescent_hawl", MODE_PRIVATE).edit().clear().apply();
+                    ZakatWidgetProvider.updateAll(MainActivity.this);
                     getSharedPreferences("crescent_prices", MODE_PRIVATE).edit().clear().apply();
                 }
 
@@ -405,7 +449,23 @@ public class MainActivity extends AppCompatActivity {
         }));
     }
 
+    private com.google.firebase.firestore.ListenerRegistration selfStatusReg;
+    private boolean disabledHandled = false;
+
+    private void signOutDisabledAccount() {
+        if (disabledHandled || isFinishing() || isDestroyed()) return;
+        disabledHandled = true;
+        ChatNotificationService.stop(this);
+        mAuth.signOut();
+        Intent login = new Intent(this, LoginActivity.class);
+        login.putExtra("disabled", true);
+        login.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(login);
+        finish();
+    }
+
     private void completeSignOut() {
+        ChatNotificationService.stop(this);
         mAuth.signOut();
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).build();
         GoogleSignIn.getClient(MainActivity.this, gso).signOut().addOnCompleteListener(task -> {
@@ -419,65 +479,32 @@ public class MainActivity extends AppCompatActivity {
         if (user != null && !user.isAnonymous()) {
             String uid = user.getUid();
 
-            // 1. System Notifications (Firestore)
+            // 1. Notification dot (Firestore). The notifications themselves are shown by ChatNotificationService,
+            //    so they also arrive when the app is closed or the person was signed out at the time.
             FirebaseFirestore.getInstance().collection("users").document(uid).collection("notifications")
                     .whereEqualTo("read", false).addSnapshotListener((value, error) -> {
                         if (value == null) return;
                         b.dashboard.notifDot.setVisibility(value.isEmpty() ? View.GONE : View.VISIBLE);
-                        if (!isFirstNotifLoad) {
-                            for (com.google.firebase.firestore.DocumentChange dc : value.getDocumentChanges()) {
-                                if (dc.getType() == com.google.firebase.firestore.DocumentChange.Type.ADDED) {
-                                    String title = dc.getDocument().getString("title");
-                                    String msg = dc.getDocument().getString("message");
-                                    showSystemNotification(title != null ? title : "Alert", msg != null ? msg : "New update.", dc.getDocument().getId().hashCode());
-                                }
-                            }
-                        }
-                        isFirstNotifLoad = false;
                     });
 
-            // 2. Chat Notifications (Realtime Database)
+            // 2. Chat unread dot (Realtime Database).
+            // Chat message notifications are posted by ChatNotificationService, which keeps running
+            // when this screen or the whole app is closed, so they are not duplicated here.
             FirebaseDatabase.getInstance().getReference("user_chats").child(uid)
                     .addValueEventListener(new ValueEventListener() {
                         @Override public void onDataChange(@NonNull DataSnapshot snapshot) {
                             boolean hasUnread = false;
                             for (DataSnapshot doc : snapshot.getChildren()) {
-                                Boolean unread = doc.child("hasUnread").getValue(Boolean.class);
-                                if (Boolean.TRUE.equals(unread)) {
+                                if (Boolean.TRUE.equals(doc.child("hasUnread").getValue(Boolean.class))) {
                                     hasUnread = true;
-                                    if (!isFirstChatLoad) {
-                                        String roomId = doc.getKey();
-                                        if (!roomId.equals(activeRoomId)) {
-                                            String msg = doc.child("lastMessage").getValue(String.class);
-                                            showSystemNotification("New Message", msg != null ? msg : "You received a new message.", roomId.hashCode());
-                                        }
-                                    }
+                                    break;
                                 }
                             }
-                            b.dashboard.chatDot.setVisibility(hasUnread ? View.VISIBLE : View.GONE);
-                            isFirstChatLoad = false;
+                            if (b != null) b.dashboard.chatDot.setVisibility(hasUnread ? View.VISIBLE : View.GONE);
                         }
                         @Override public void onCancelled(@NonNull DatabaseError error) {}
                     });
         }
-    }
-
-    private void showSystemNotification(String title, String message, int notifId) {
-        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
-        String channelId = "crescent_alerts";
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            NotificationChannel channel = new NotificationChannel(channelId, "Crescent Alerts", NotificationManager.IMPORTANCE_HIGH);
-            channel.setLockscreenVisibility(android.app.Notification.VISIBILITY_PUBLIC);
-            notificationManager.createNotificationChannel(channel);
-        }
-        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, new Intent(this, MainActivity.class), PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT);
-        RemoteViews customView = new RemoteViews(getPackageName(), R.layout.custom_notification);
-        customView.setTextViewText(R.id.notifTitle, title);
-        customView.setTextViewText(R.id.notifText, message);
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, channelId)
-                .setSmallIcon(R.drawable.ic_bell).setStyle(new NotificationCompat.DecoratedCustomViewStyle()).setCustomContentView(customView)
-                .setPriority(NotificationCompat.PRIORITY_MAX).setVisibility(NotificationCompat.VISIBILITY_PUBLIC).setAutoCancel(true).setContentIntent(pendingIntent);
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED) notificationManager.notify(notifId, builder.build());
     }
 
     private void updateHawl() {

@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/rootLayout"
     android:orientation="vertical"
-    android:background="@drawable/bg_dash_screen"
+    android:background="@drawable/bg_dash_screen_soft"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -16,8 +16,10 @@
   </LinearLayout>
  </FrameLayout>
 
+ <TextView android:id="@+id/historyHint" android:text="Swipe a calculation left to delete it" android:textSize="12sp" android:textColor="@color/sage_text_soft" android:paddingStart="22dp" android:paddingEnd="22dp" android:visibility="gone" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+
  <FrameLayout android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1">
-  <ListView android:id="@+id/historyList" android:divider="@android:color/transparent" android:dividerHeight="10dp" android:padding="16dp" android:clipToPadding="false" android:scrollbars="vertical" android:layout_width="match_parent" android:layout_height="match_parent"/>
+  <androidx.recyclerview.widget.RecyclerView android:id="@+id/historyList" android:padding="16dp" android:clipToPadding="false" android:scrollbars="vertical" android:layout_width="match_parent" android:layout_height="match_parent"/>
 
   <LinearLayout android:id="@+id/emptyCard" android:orientation="vertical" android:padding="16dp" android:layout_margin="16dp" android:background="@drawable/bg_asset_card" android:visibility="gone" android:layout_width="match_parent" android:layout_height="wrap_content">
    <TextView android:id="@+id/historyText" android:text="No snapshots saved yet. Complete a Zakat calculation to save one." android:textSize="15sp" android:textColor="@color/sage_text" android:lineSpacingExtra="3dp" android:layout_width="match_parent" android:layout_height="wrap_content"/>

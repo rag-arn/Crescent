@@ -18,7 +18,7 @@ public class SettingsActivity extends AppCompatActivity {
         // Redirects to Email App
         findViewById(R.id.reportBtn).setOnClickListener(v -> {
             Intent intent = new Intent(Intent.ACTION_SENDTO);
-            intent.setData(Uri.parse("mailto:arnob4669@gmail.com"));
+            intent.setData(Uri.parse("mailto:arnob4669@icloud.com"));
             intent.putExtra(Intent.EXTRA_SUBJECT, "Crescent App Feedback/Report");
             try {
                 startActivity(intent);

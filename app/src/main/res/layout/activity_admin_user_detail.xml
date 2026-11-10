@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rootLayout" android:orientation="vertical"
+    android:background="@drawable/bg_dash_screen_soft"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <FrameLayout android:id="@+id/headerBar" android:layout_width="match_parent" android:layout_height="wrap_content">
+        <LinearLayout android:orientation="horizontal" android:gravity="center_vertical" android:paddingStart="20dp" android:paddingEnd="10dp" android:paddingTop="42dp" android:paddingBottom="12dp" android:layout_width="match_parent" android:layout_height="wrap_content">
+            <ImageButton android:id="@+id/backButton" style="?android:attr/borderlessButtonStyle" android:src="@drawable/ic_back_arrow" android:tint="@color/sage_text" android:layout_marginEnd="12dp" android:layout_width="44dp" android:layout_height="44dp"/>
+            <LinearLayout android:orientation="vertical" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content">
+                <TextView android:text="Admin" android:textSize="11sp" android:textStyle="bold" android:textAllCaps="true" android:letterSpacing="0.1" android:textColor="@color/sage_text_soft" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                <TextView android:text="User" android:fontFamily="serif" android:textSize="26sp" android:textStyle="bold" android:textColor="@color/sage_text" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+            </LinearLayout>
+        </LinearLayout>
+    </FrameLayout>
+
+    <ScrollView android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1">
+        <LinearLayout android:orientation="vertical" android:padding="16dp" android:layout_width="match_parent" android:layout_height="wrap_content">
+
+            <LinearLayout android:orientation="vertical" android:padding="18dp"
+                android:background="@drawable/bg_dash_card" android:elevation="4dp" android:outlineSpotShadowColor="@color/sage_shadow_spot" android:outlineAmbientShadowColor="@color/sage_shadow_ambient"
+                android:layout_marginBottom="20dp" android:layout_width="match_parent" android:layout_height="wrap_content">
+                <TextView android:id="@+id/detailName" android:fontFamily="serif" android:textSize="22sp" android:textStyle="bold" android:textColor="@color/sage_text" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                <TextView android:id="@+id/detailEmail" android:textSize="13sp" android:textColor="@color/sage_text_soft" android:layout_marginTop="2dp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                <TextView android:id="@+id/detailRole" android:textSize="14sp" android:textColor="@color/sage_text" android:layout_marginTop="14dp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                <TextView android:id="@+id/detailStatus" android:textSize="14sp" android:textStyle="bold" android:layout_marginTop="4dp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                <TextView android:id="@+id/detailUid" android:textSize="10sp" android:textColor="@color/sage_text_soft" android:layout_marginTop="14dp" android:textIsSelectable="true" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+            <Button android:id="@+id/toggleDisableBtn" style="@style/Widget.Crescent.Button" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+            <TextView android:id="@+id/disableInfo" android:textSize="12sp" android:textColor="@color/sage_text_soft" android:layout_marginTop="8dp" android:layout_marginBottom="24dp" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+
+            <Button android:id="@+id/deleteDataBtn" style="@style/Widget.Crescent.Button.Outlined" android:text="Delete this user's data" android:textColor="#E53935" app:strokeColor="#E53935" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+            <TextView android:text="Deletes their calculation history, notifications, profile details (expert status, rating, picture) and all their chats, including the other person's copy of those chats. Their sign-in account is not deleted; disable the account to block it."
+                android:textSize="12sp" android:textColor="@color/sage_text_soft" android:layout_marginTop="8dp" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+            <ProgressBar android:id="@+id/detailProgress" android:visibility="gone" android:layout_gravity="center_horizontal" android:layout_marginTop="16dp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

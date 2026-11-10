@@ -48,6 +48,19 @@ public class ChatActivity extends AppCompatActivity {
     private DatabaseReference roomRef;
 
     private boolean isCurrentUserExpert = false;
+    // Who may chat with whom: a resigned expert may only chat with ACTIVE experts.
+    private boolean otherLoaded = false, otherActive = false, otherWasExpert = false;
+    private boolean meLoaded = false, meActive = false, meWasExpert = false;
+    private boolean chatBlocked = false;
+    private boolean otherDisabled = false;
+    // Rating: one rating per person per "rating period" of an expert (a new period starts when he resigns / re-registers)
+    private long otherEpoch = 0;            // the expert's current rating period
+    private Long myRatedEpoch = null;       // the period in which the current user last rated this expert (null = never)
+    private boolean myRatingKnown = false;  // true once the current user's record was read successfully
+    private com.google.firebase.firestore.ListenerRegistration expertStatusReg;
+
+    // True only while this chat is actually on screen (resumed). Messages are marked "seen" only then.
+    private boolean isResumed = false;
 
     private static final int TYPE_SENT = 1;
     private static final int TYPE_RECEIVED = 2;
@@ -68,53 +81,39 @@ public class ChatActivity extends AppCompatActivity {
         expertStatusWarning = findViewById(R.id.expertStatusWarning);
         if (nameTitle != null) nameTitle.setText(expertName != null ? expertName : "Expert");
 
-        // 1. Fetch Other User: Did THEY resign?
+        // 1. Other person: is he/she an active expert, a former expert, or a general user? (live)
         if (expertUid != null) {
-            FirebaseFirestore.getInstance().collection("users").document(expertUid).get()
-                    .addOnSuccessListener(doc -> {
-                        if (doc.exists()) {
-                            Boolean isStillExpert = doc.getBoolean("isExpert");
-                            // Determine if they were ever an expert by checking for bio/rating fields
-                            boolean wasExpert = doc.contains("bio") || doc.contains("rating");
-
-                            // Only show warning if they WERE an expert, but are no longer active
-                            if (wasExpert && (isStillExpert == null || !isStillExpert)) {
-                                if (expertStatusWarning != null) {
-                                    expertStatusWarning.setVisibility(View.VISIBLE);
-                                    expertStatusWarning.setText("No longer an active expert");
-                                }
-                                disableChatInput();
-                            }
-                        }
+            expertStatusReg = FirebaseFirestore.getInstance().collection("users").document(expertUid)
+                    .addSnapshotListener((doc, error) -> {
+                        if (doc == null || !doc.exists()) return;
+                        otherActive = Boolean.TRUE.equals(doc.getBoolean("isExpert"));
+                        // Was ever an expert if the expert profile fields exist
+                        otherWasExpert = doc.contains("rating");
+                        otherDisabled = Boolean.TRUE.equals(doc.getBoolean("disabled"));
+                        Long ep = doc.getLong("ratingEpoch");
+                        otherEpoch = ep != null ? ep : 0L;
+                        otherLoaded = true;
+                        applyChatPolicy();
                     });
         }
 
-        // 2. Fetch Current User: Did WE resign?
+        // 2. Current user: active expert, former expert (resigned), or general user?
         if (currentUid != null && expertUid != null) {
             FirebaseFirestore.getInstance().collection("users").document(currentUid).get()
                     .addOnSuccessListener(doc -> {
-                        if (!doc.exists()) return;
+                        if (doc.exists()) {
+                            meActive = Boolean.TRUE.equals(doc.getBoolean("isExpert"));
+                            meWasExpert = doc.contains("rating");
+                            isCurrentUserExpert = meActive;
 
-                        Boolean amIActive = doc.getBoolean("isExpert");
-                        boolean meWasExpert = doc.contains("bio") || doc.contains("rating");
-
-                        if (Boolean.TRUE.equals(amIActive)) {
-                            isCurrentUserExpert = true;
-                        } else if (meWasExpert) {
-                            // If the current user resigned, tell them they are inactive and block them sending messages
-                            if (expertStatusWarning != null) {
-                                expertStatusWarning.setVisibility(View.VISIBLE);
-                                expertStatusWarning.setText("You are no longer an active expert");
-                            }
-                            disableChatInput();
+                            Object rated = doc.get("ratedExperts");
+                            if (rated instanceof Map) myRatedEpoch = epochOf(((Map<?, ?>) rated).get(expertUid));
                         }
-
-                        // Rating prompt logic
-                        Object rated = doc.get("ratedExperts");
-                        if (rated instanceof Map && Boolean.TRUE.equals(((Map<?, ?>) rated).get(expertUid))) {
-                            getSharedPreferences("crescent_ratings", MODE_PRIVATE).edit().putBoolean(ratedKey(), true).apply();
-                        }
-                    });
+                        myRatingKnown = true;
+                        meLoaded = true;
+                        applyChatPolicy();
+                    })
+                    .addOnFailureListener(e -> { meLoaded = true; applyChatPolicy(); });
         }
 
         View backBtn = findViewById(R.id.backButton);
@@ -136,7 +135,6 @@ public class ChatActivity extends AppCompatActivity {
         }
 
         roomId = currentUid.compareTo(expertUid) < 0 ? currentUid + "_" + expertUid : expertUid + "_" + currentUid;
-        MainActivity.activeRoomId = roomId;
 
         roomRef = FirebaseDatabase.getInstance().getReference("chats").child(roomId);
 
@@ -151,8 +149,6 @@ public class ChatActivity extends AppCompatActivity {
             adapter = new ChatAdapter();
             recyclerView.setAdapter(adapter);
         }
-
-        FirebaseDatabase.getInstance().getReference("user_chats").child(currentUid).child(roomId).child("hasUnread").setValue(false);
 
         typingListener = new ValueEventListener() {
             @Override public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -181,13 +177,10 @@ public class ChatActivity extends AppCompatActivity {
                 adapter.notifyDataSetChanged();
                 if (recyclerView != null) recyclerView.scrollToPosition(messages.size() - 1);
 
-                FirebaseDatabase.getInstance().getReference("user_chats").child(currentUid).child(roomId).child("hasUnread").setValue(false);
-
-                String sender = snapshot.child("senderId").getValue(String.class);
-                Boolean isSeen = snapshot.child("seen").getValue(Boolean.class);
-
-                if (sender != null && !sender.equals(currentUid) && !Boolean.TRUE.equals(isSeen)) {
-                    snapshot.getRef().child("seen").setValue(true);
+                // Only count it as read if this person's chat is open and on screen right now.
+                if (isResumed) {
+                    markIncomingAsSeen(snapshot);
+                    clearUnreadFlag();
                 }
             }
 
@@ -211,15 +204,90 @@ public class ChatActivity extends AppCompatActivity {
         if (sendBtn != null) sendBtn.setOnClickListener(v -> sendMessage());
     }
 
-    private void disableChatInput() {
-        View inputArea = findViewById(R.id.inputArea);
-        if (inputArea != null) {
-            inputArea.setVisibility(View.GONE); // Completely hides the input box
+    @Override
+    protected void onResume() {
+        super.onResume();
+        isResumed = true;
+        if (roomId == null) return;
+        MainActivity.activeRoomId = roomId;               // tells the background service: do not notify for this chat
+        androidx.core.app.NotificationManagerCompat.from(this)
+                .cancel(ChatNotificationService.notificationId(roomId));
+        clearUnreadFlag();
+        for (DataSnapshot m : messages) markIncomingAsSeen(m);   // messages that arrived while the chat was not visible
+    }
+
+    @Override
+    protected void onPause() {
+        isResumed = false;
+        if (roomId != null && roomId.equals(MainActivity.activeRoomId)) MainActivity.activeRoomId = null;
+        super.onPause();
+    }
+
+    private void clearUnreadFlag() {
+        if (currentUid == null || roomId == null) return;
+        FirebaseDatabase.getInstance().getReference("user_chats").child(currentUid).child(roomId).child("hasUnread").setValue(false);
+    }
+
+    private void markIncomingAsSeen(DataSnapshot snapshot) {
+        String sender = snapshot.child("senderId").getValue(String.class);
+        Boolean isSeen = snapshot.child("seen").getValue(Boolean.class);
+        if (sender != null && !sender.equals(currentUid) && !Boolean.TRUE.equals(isSeen)) {
+            snapshot.getRef().child("seen").setValue(true);
         }
     }
 
+    /**
+     * Rules, decided from both people's current status:
+     *  - A resigned (former) expert cannot chat with general users.
+     *  - A resigned expert CAN chat with active experts (and they can reply).
+     *  - A general user cannot chat with a resigned expert.
+     */
+    private void applyChatPolicy() {
+        if (!otherLoaded || !meLoaded) return;
+
+        boolean otherResigned = otherWasExpert && !otherActive;
+        boolean meResigned = meWasExpert && !meActive;
+
+        String reason = null;
+        if (otherDisabled) {
+            reason = "This account has been disabled";
+        } else if (otherResigned && !meActive) {
+            reason = "No longer an active expert";
+        } else if (meResigned && !otherActive) {
+            reason = "You are no longer an active expert. You can only message active experts.";
+        }
+
+        chatBlocked = reason != null;
+        if (expertStatusWarning != null) {
+            expertStatusWarning.setVisibility(chatBlocked ? View.VISIBLE : View.GONE);
+            if (chatBlocked) expertStatusWarning.setText(reason);
+        }
+        View inputArea = findViewById(R.id.inputArea);
+        if (inputArea != null) inputArea.setVisibility(chatBlocked ? View.GONE : View.VISIBLE);
+        if (chatBlocked && isResumed) clearUnreadFlag();   // the person is looking at it, so no unread dot
+    }
+
     private String ratedKey() {
-        return "rated_" + currentUid + "_" + expertUid;
+        return "rated_" + currentUid + "_" + expertUid + "_" + otherEpoch;
+    }
+
+    /** Old data stored "true" (= rating period 0); new data stores the period number. */
+    private static Long epochOf(Object v) {
+        if (Boolean.TRUE.equals(v)) return 0L;
+        if (v instanceof Number) return ((Number) v).longValue();
+        return null;
+    }
+
+    /**
+     * Anyone (a general user or another expert) is asked to rate an ACTIVE expert when leaving the chat,
+     * once per rating period, after having sent at least one message.
+     */
+    private boolean canShowRating() {
+        if (currentUid == null || expertUid == null || currentUid.equals(expertUid)) return false;
+        if (!otherLoaded || !myRatingKnown || !otherActive) return false;           // only active experts are rated
+        if (myRatedEpoch != null && myRatedEpoch == otherEpoch) return false;       // already rated in this period
+        if (getSharedPreferences("crescent_ratings", MODE_PRIVATE).getBoolean(ratedKey(), false)) return false;
+        return hasSentMessage();
     }
 
     private boolean hasSentMessage() {
@@ -231,10 +299,7 @@ public class ChatActivity extends AppCompatActivity {
     }
 
     private void handleExit(String expertName) {
-        boolean hasRated = currentUid != null && expertUid != null
-                && getSharedPreferences("crescent_ratings", MODE_PRIVATE).getBoolean(ratedKey(), false);
-
-        if (!isCurrentUserExpert && !hasRated && expertUid != null && hasSentMessage()) {
+        if (canShowRating()) {
             showRatingDialogAndExit(expertName);
         } else {
             finish();
@@ -291,7 +356,7 @@ public class ChatActivity extends AppCompatActivity {
     }
 
     private void sendMessage() {
-        if (messageInput == null) return;
+        if (messageInput == null || chatBlocked) return;
         String text = messageInput.getText().toString().trim();
         if (text.isEmpty()) return;
 
@@ -350,9 +415,15 @@ public class ChatActivity extends AppCompatActivity {
                     com.google.firebase.firestore.DocumentSnapshot expertSnap = transaction.get(expertRef);
                     com.google.firebase.firestore.DocumentSnapshot mySnap = transaction.get(myRef);
 
+                    if (!Boolean.TRUE.equals(expertSnap.getBoolean("isExpert"))) return false;   // resigned meanwhile
+
+                    Long epochObj = expertSnap.getLong("ratingEpoch");
+                    long epoch = epochObj != null ? epochObj : 0L;
+
                     Object rated = mySnap.get("ratedExperts");
-                    if (rated instanceof Map && Boolean.TRUE.equals(((Map<?, ?>) rated).get(eUid))) {
-                        return false;
+                    if (rated instanceof Map) {
+                        Long mine = epochOf(((Map<?, ?>) rated).get(eUid));
+                        if (mine != null && mine == epoch) return false;   // already rated in this rating period
                     }
 
                     Double current = expertSnap.getDouble("rating");
@@ -364,14 +435,37 @@ public class ChatActivity extends AppCompatActivity {
                     transaction.update(expertRef, "rating", updatedRating, "ratingCount", count + 1);
 
                     Map<String, Object> inner = new HashMap<>();
-                    inner.put(eUid, true);
+                    inner.put(eUid, epoch);
                     Map<String, Object> outer = new HashMap<>();
                     outer.put("ratedExperts", inner);
+
+                    // Full record (visible to the admin only): how many stars and when
+                    Map<String, Object> detail = new HashMap<>();
+                    detail.put("stars", (double) newRating);
+                    detail.put("epoch", epoch);
+                    detail.put("timestamp", System.currentTimeMillis());
+                    Map<String, Object> detailByExpert = new HashMap<>();
+                    detailByExpert.put(eUid, detail);
+                    outer.put("ratingsGiven", detailByExpert);
                     transaction.set(myRef, outer, com.google.firebase.firestore.SetOptions.merge());
                     return true;
                 }).addOnSuccessListener(applied -> {
                     if (Boolean.TRUE.equals(applied)) {
                         Toast.makeText(app, "Thank you for your feedback!", Toast.LENGTH_SHORT).show();
+
+                        // Tell the expert about the rating. Only the stars are included, never who gave them.
+                        // It is stored for the expert, so it is delivered when they are next signed in.
+                        int whole = Math.round(newRating);
+                        String value = Math.abs(newRating - whole) < 0.01f ? String.valueOf(whole) : String.format(Locale.US, "%.1f", newRating);
+                        StringBuilder stars = new StringBuilder();
+                        for (int i = 1; i <= 5; i++) stars.append(i <= Math.round(newRating) ? "\u2605" : "\u2606");
+                        Map<String, Object> notif = new HashMap<>();
+                        notif.put("title", "New rating received");
+                        notif.put("message", "A user rated you " + value + " out of 5  " + stars);
+                        notif.put("type", "rating");
+                        notif.put("timestamp", System.currentTimeMillis());
+                        notif.put("read", false);
+                        expertRef.collection("notifications").add(notif);
                     }
                 })
                 .addOnFailureListener(e -> {
@@ -385,6 +479,7 @@ public class ChatActivity extends AppCompatActivity {
         super.onDestroy();
         MainActivity.activeRoomId = null;
 
+        if (expertStatusReg != null) expertStatusReg.remove();
         if (roomRef != null) {
             if (currentUid != null) {
                 roomRef.child("typing").child(currentUid).setValue(false);

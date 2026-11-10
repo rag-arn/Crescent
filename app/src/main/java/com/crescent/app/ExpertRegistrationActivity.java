@@ -10,6 +10,7 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.auth.FirebaseAuth;
@@ -35,9 +36,17 @@ public class ExpertRegistrationActivity extends AppCompatActivity {
 
         if (user != null) {
             db.collection("users").document(user.getUid()).get().addOnSuccessListener(doc -> {
-                if (doc.exists() && Boolean.TRUE.equals(doc.getBoolean("isExpert"))) {
+                if (!doc.exists()) return;
+                if (Boolean.TRUE.equals(doc.getBoolean("isExpert"))) {
                     formLayout.setVisibility(View.GONE);
                     alreadyExpertLayout.setVisibility(View.VISIBLE);
+                } else if ("pending".equals(doc.getString("expertStatus"))) {
+                    // Applied already: waiting for the admin
+                    formLayout.setVisibility(View.GONE);
+                    alreadyExpertLayout.setVisibility(View.VISIBLE);
+                    ((TextView) findViewById(R.id.alreadyTitle)).setText("Application under review");
+                    ((TextView) findViewById(R.id.alreadyMessage)).setText(
+                            "Your application was sent to the admin. You will get a notification as soon as it is approved.");
                 }
             });
         }
@@ -80,20 +89,12 @@ public class ExpertRegistrationActivity extends AppCompatActivity {
 
                 String uid = user.getUid();
                 Map<String, Object> data = new HashMap<>();
-                data.put("isExpert", true);
+                data.put("expertStatus", "pending");      // not an expert until the admin approves
                 data.put("bio", bio);
-                data.put("rating", 0.0);
-                data.put("ratingCount", 0);
+                data.put("expertRequestedAt", System.currentTimeMillis());
 
                 db.collection("users").document(uid).set(data, SetOptions.merge()).addOnSuccessListener(a -> {
-                    Map<String, Object> notif = new HashMap<>();
-                    notif.put("title", "Congratulations!");
-                    notif.put("message", "You are now an expert of Zakat. Users can now view your profile.");
-                    notif.put("timestamp", System.currentTimeMillis());
-                    notif.put("read", false);
-
-                    db.collection("users").document(uid).collection("notifications").add(notif);
-                    Toast.makeText(this, "Application submitted!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Application sent. The admin will review it.", Toast.LENGTH_LONG).show();
                     finish();
                 }).addOnFailureListener(e -> {
                     submitBtn.setEnabled(true);

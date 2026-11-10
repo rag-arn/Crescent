@@ -13,6 +13,9 @@
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC" />
+    <!-- Chat notifications while the app is closed (background listener service) -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE" />
+    <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
 
     <!-- DISABLED Auto-Backup so data is strictly isolated per install -->
     <application
@@ -27,6 +30,23 @@
             android:name=".PdfDownloadService"
             android:exported="false"
             android:foregroundServiceType="dataSync" />
+
+        <!-- Keeps the chat inbox listener alive so message notifications arrive even when the app is closed -->
+        <service
+            android:name=".ChatNotificationService"
+            android:exported="false"
+            android:foregroundServiceType="specialUse">
+            <property
+                android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE"
+                android:value="Listens to the user's own chat inbox to show new message notifications without a paid push server." />
+        </service>
+
+        <receiver android:name=".ChatBootReceiver" android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED"/>
+            </intent-filter>
+        </receiver>
 
         <activity android:name=".HistoryActivity" android:exported="false"/>
         <activity android:name=".InfoActivity" android:exported="false"/>
@@ -47,6 +67,14 @@
         <activity android:name=".ChatListActivity" android:exported="false"/>
         <activity android:name=".AssetBreakdownActivity" android:exported="false"/>
         <activity android:name=".SettingsActivity" android:exported="false"/>
+        <activity android:name=".AdminDashboardActivity" android:exported="false"/>
+        <activity android:name=".AdminApplicationsActivity" android:exported="false"/>
+        <activity android:name=".AdminRatingsActivity" android:exported="false"/>
+        <activity android:name=".AdminExpertRatingsActivity" android:exported="false"/>
+        <activity android:name=".AdminNotifyActivity" android:exported="false"/>
+        <activity android:name=".AdminUsersActivity" android:exported="false"/>
+        <activity android:name=".AdminUserDetailActivity" android:exported="false" android:windowSoftInputMode="adjustResize"/>
+        <activity android:name=".AdminAccountActivity" android:exported="false" android:windowSoftInputMode="adjustResize"/>
 
         <!-- SingleTop and standard HTTPS deep linking intent-filter -->
         <activity android:name=".MainActivity" android:exported="true" android:launchMode="singleTop">
@@ -76,7 +104,24 @@
         <receiver android:name=".HawlReceiver" android:exported="false">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED"/>
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED"/>
+                <action android:name="android.intent.action.DATE_CHANGED"/>
+                <action android:name="android.intent.action.TIME_SET"/>
+                <action android:name="android.intent.action.TIMEZONE_CHANGED"/>
             </intent-filter>
+        </receiver>
+
+        <!-- Home-screen widget: Zakat countdown + Islamic date -->
+        <receiver android:name=".ZakatWidgetProvider" android:exported="true" android:label="Zakat Countdown">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
+                <action android:name="android.intent.action.DATE_CHANGED"/>
+                <action android:name="android.intent.action.TIME_SET"/>
+                <action android:name="android.intent.action.TIMEZONE_CHANGED"/>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED"/>
+            </intent-filter>
+            <meta-data android:name="android.appwidget.provider" android:resource="@xml/zakat_widget_info"/>
         </receiver>
 
         <!-- Zakat Data Content Provider -->

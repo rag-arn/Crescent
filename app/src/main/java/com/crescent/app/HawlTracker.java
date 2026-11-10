@@ -69,6 +69,7 @@ final class HawlTracker {
                     cancelAlarm(ctx);
                 }
             }
+            ZakatWidgetProvider.updateAll(ctx);
             if (onComplete != null) onComplete.run();
         }).addOnFailureListener(e -> {
             if (onComplete != null) onComplete.run();
@@ -101,6 +102,7 @@ final class HawlTracker {
             }
         }
         schedule(ctx);
+        ZakatWidgetProvider.updateAll(ctx);
     }
 
     static void startNewCycle(Context ctx) {
@@ -114,6 +116,7 @@ final class HawlTracker {
             FirebaseFirestore.getInstance().collection("users").document(uid).set(data, SetOptions.merge());
         }
         schedule(ctx);
+        ZakatWidgetProvider.updateAll(ctx);
     }
 
     static long dueDay(long startDay) {
@@ -152,13 +155,20 @@ final class HawlTracker {
         if (am != null) am.cancel(alarmIntent(ctx));
     }
 
+    /** The countdown notification is shown on the due day at 9:00 AM (never at midnight). */
+    private static long notifyTime(State s) {
+        return LocalDate.ofEpochDay(s.dueDay).atTime(9, 0).atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
+    }
+
     static void schedule(Context ctx) {
         State s = state(ctx);
         AlarmManager am = (AlarmManager) ctx.getSystemService(Context.ALARM_SERVICE);
         if (am == null) return;
         if (!s.active || prefs(ctx).getBoolean(KEY_NOTIFIED, false)) { cancelAlarm(ctx); return; }
-        long trigger = LocalDate.ofEpochDay(s.dueDay).atTime(9, 0).atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
-        if (trigger <= System.currentTimeMillis()) { cancelAlarm(ctx); return; }
+        long now = System.currentTimeMillis();
+        long trigger = notifyTime(s);
+        // The due time already passed (phone was off, clock changed, alarm lost): fire shortly instead of never.
+        if (trigger <= now) trigger = now + 3000;
         am.setAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, trigger, alarmIntent(ctx));
     }
 
@@ -167,6 +177,7 @@ final class HawlTracker {
         State s = state(app);
         SharedPreferences p = prefs(app);
         if (!s.active || !s.complete || p.getBoolean(KEY_NOTIFIED, false)) return;
+        if (System.currentTimeMillis() < notifyTime(s)) return;   // due day, but before 9:00 AM: the alarm will handle it
 
         if (Build.VERSION.SDK_INT >= 33
                 && ActivityCompat.checkSelfPermission(app, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
@@ -187,7 +198,7 @@ final class HawlTracker {
                 PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT);
 
         NotificationCompat.Builder nb = new NotificationCompat.Builder(app, CHANNEL_ID)
-                .setSmallIcon(R.drawable.ic_bell)
+                .setSmallIcon(R.drawable.ic_crescent_small)
                 .setContentTitle(title)
                 .setContentText(body)
                 .setStyle(new NotificationCompat.BigTextStyle().bigText(body))
@@ -197,6 +208,19 @@ final class HawlTracker {
                 .setContentIntent(open);
         nm.notify(NOTIF_ID, nb.build());
         p.edit().putBoolean(KEY_NOTIFIED, true).apply();
+
+        // Keep it on the Notifications screen too. "silent" tells ChatNotificationService not to show it a second time.
+        String uid = getUid();
+        if (uid != null) {
+            Map<String, Object> rec = new HashMap<>();
+            rec.put("title", title);
+            rec.put("message", "Your hawl (one lunar year) is complete. Zakat is now due on your eligible wealth.");
+            rec.put("type", "hawl_due");
+            rec.put("timestamp", System.currentTimeMillis());
+            rec.put("read", false);
+            rec.put("silent", true);
+            FirebaseFirestore.getInstance().collection("users").document(uid).collection("notifications").add(rec);
+        }
         cancelAlarm(app);
     }
 }

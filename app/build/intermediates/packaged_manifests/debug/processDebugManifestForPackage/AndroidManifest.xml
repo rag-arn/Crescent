@@ -21,6 +21,9 @@
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC" />
+    <!-- Chat notifications while the app is closed (background listener service) -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE" />
+    <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
 
@@ -44,6 +47,25 @@
             android:name="com.crescent.app.PdfDownloadService"
             android:exported="false"
             android:foregroundServiceType="dataSync" />
+
+        <!-- Keeps the chat inbox listener alive so message notifications arrive even when the app is closed -->
+        <service
+            android:name="com.crescent.app.ChatNotificationService"
+            android:exported="false"
+            android:foregroundServiceType="specialUse" >
+            <property
+                android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE"
+                android:value="Listens to the user&apos;s own chat inbox to show new message notifications without a paid push server." />
+        </service>
+
+        <receiver
+            android:name="com.crescent.app.ChatBootReceiver"
+            android:exported="false" >
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
+            </intent-filter>
+        </receiver>
 
         <activity
             android:name="com.crescent.app.HistoryActivity"
@@ -103,6 +125,32 @@
         <activity
             android:name="com.crescent.app.SettingsActivity"
             android:exported="false" />
+        <activity
+            android:name="com.crescent.app.AdminDashboardActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.crescent.app.AdminApplicationsActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.crescent.app.AdminRatingsActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.crescent.app.AdminExpertRatingsActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.crescent.app.AdminNotifyActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.crescent.app.AdminUsersActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.crescent.app.AdminUserDetailActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name="com.crescent.app.AdminAccountActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
 
         <!-- SingleTop and standard HTTPS deep linking intent-filter -->
         <activity
@@ -149,7 +197,30 @@
             android:exported="false" >
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
+                <action android:name="android.intent.action.DATE_CHANGED" />
+                <action android:name="android.intent.action.TIME_SET" />
+                <action android:name="android.intent.action.TIMEZONE_CHANGED" />
             </intent-filter>
+        </receiver>
+
+        <!-- Home-screen widget: Zakat countdown + Islamic date -->
+        <receiver
+            android:name="com.crescent.app.ZakatWidgetProvider"
+            android:exported="true"
+            android:label="Zakat Countdown" >
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="android.intent.action.DATE_CHANGED" />
+                <action android:name="android.intent.action.TIME_SET" />
+                <action android:name="android.intent.action.TIMEZONE_CHANGED" />
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/zakat_widget_info" />
         </receiver>
 
         <!-- Zakat Data Content Provider -->

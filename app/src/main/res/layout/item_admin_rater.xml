@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:padding="16dp"
+    android:background="@drawable/bg_dash_card" android:elevation="4dp" android:outlineSpotShadowColor="@color/sage_shadow_spot" android:outlineAmbientShadowColor="@color/sage_shadow_ambient"
+    android:layout_marginBottom="12dp"
+    android:layout_width="match_parent" android:layout_height="wrap_content">
+    <LinearLayout android:orientation="horizontal" android:gravity="center_vertical" android:layout_width="match_parent" android:layout_height="wrap_content">
+        <TextView android:id="@+id/raterName" android:textSize="16sp" android:textStyle="bold" android:textColor="@color/sage_text" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content"/>
+        <TextView android:id="@+id/raterStars" android:textSize="15sp" android:textStyle="bold" android:textColor="#F57F17" android:layout_marginStart="12dp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+    </LinearLayout>
+    <TextView android:id="@+id/raterEmail" android:textSize="12sp" android:textColor="@color/sage_text_soft" android:layout_marginTop="2dp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+    <TextView android:id="@+id/raterDate" android:textSize="11sp" android:textColor="@color/sage_text_soft" android:layout_marginTop="4dp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+</LinearLayout>

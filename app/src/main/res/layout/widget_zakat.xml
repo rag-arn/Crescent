@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/widgetRoot"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingStart="14dp" android:paddingEnd="14dp"
+    android:paddingTop="10dp" android:paddingBottom="10dp"
+    android:background="@drawable/bg_widget">
+
+    <!-- Header: logo, name, status -->
+    <LinearLayout
+        android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="horizontal" android:gravity="center_vertical">
+
+        <!-- Circular logo (the PNG itself is a circle with transparent corners) -->
+        <ImageView
+            android:layout_width="34dp" android:layout_height="34dp"
+            android:src="@drawable/widget_logo"
+            android:scaleType="fitCenter"
+            android:contentDescription="@null"/>
+
+        <LinearLayout
+            android:layout_width="0dp" android:layout_height="wrap_content"
+            android:layout_weight="1" android:layout_marginStart="9dp"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="CRESCENT"
+                android:textSize="13sp" android:textStyle="bold"
+                android:letterSpacing="0.14"
+                android:includeFontPadding="false"
+                android:textColor="@color/sage_text"/>
+            <TextView
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:text="Zakat Hawl Tracker"
+                android:textSize="10sp"
+                android:includeFontPadding="false"
+                android:textColor="@color/sage_text_soft"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/widgetChip"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:paddingStart="9dp" android:paddingEnd="9dp"
+            android:paddingTop="3dp" android:paddingBottom="3dp"
+            android:background="@drawable/bg_widget_chip"
+            android:text="IN PROGRESS"
+            android:textSize="9sp" android:textStyle="bold"
+            android:letterSpacing="0.08"
+            android:singleLine="true"
+            android:textColor="@color/sage_btn_pressed"/>
+    </LinearLayout>
+
+    <!-- Divider (a FrameLayout: a plain View is not allowed in widget layouts) -->
+    <FrameLayout
+        android:layout_width="match_parent" android:layout_height="1dp"
+        android:layout_marginTop="8dp" android:layout_marginBottom="8dp"
+        android:background="@color/sage_card_stroke"/>
+
+    <!-- Middle: dates (left) and countdown boxes (right) -->
+    <LinearLayout
+        android:layout_width="match_parent" android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal" android:gravity="center_vertical">
+
+        <LinearLayout
+            android:layout_width="0dp" android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/widgetHijri"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:text="14 Rajab"
+                android:textSize="16sp" android:textStyle="bold"
+                android:maxLines="2" android:ellipsize="end"
+                android:includeFontPadding="false"
+                android:textColor="@color/sage_text"/>
+            <TextView
+                android:id="@+id/widgetHijriYear"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="1448 AH"
+                android:textSize="11sp" android:textStyle="bold"
+                android:includeFontPadding="false"
+                android:textColor="@color/sage_btn_pressed"/>
+            <TextView
+                android:id="@+id/widgetGregorian"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:text="Mon, 9 Nov 2026"
+                android:textSize="11sp"
+                android:singleLine="true" android:ellipsize="end"
+                android:includeFontPadding="false"
+                android:textColor="@color/sage_text_soft"/>
+        </LinearLayout>
+
+        <!-- Countdown boxes -->
+        <LinearLayout
+            android:layout_width="wrap_content" android:layout_height="match_parent"
+            android:layout_marginStart="8dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="40dp" android:layout_height="match_parent"
+                android:orientation="vertical" android:gravity="center"
+                android:background="@drawable/bg_widget_box">
+                <TextView
+                    android:id="@+id/widgetMonths"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="2"
+                    android:textSize="20sp" android:textStyle="bold"
+                    android:includeFontPadding="false"
+                    android:textColor="@color/sage_text"/>
+                <TextView
+                    android:id="@+id/widgetMonthsLabel"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="MONTHS"
+                    android:textSize="7sp" android:textStyle="bold"
+                    android:letterSpacing="0.06"
+                    android:includeFontPadding="false"
+                    android:textColor="@color/sage_text_soft"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="40dp" android:layout_height="match_parent"
+                android:layout_marginStart="4dp"
+                android:orientation="vertical" android:gravity="center"
+                android:background="@drawable/bg_widget_box">
+                <TextView
+                    android:id="@+id/widgetWeeks"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="3"
+                    android:textSize="20sp" android:textStyle="bold"
+                    android:includeFontPadding="false"
+                    android:textColor="@color/sage_text"/>
+                <TextView
+                    android:id="@+id/widgetWeeksLabel"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="WEEKS"
+                    android:textSize="7sp" android:textStyle="bold"
+                    android:letterSpacing="0.06"
+                    android:includeFontPadding="false"
+                    android:textColor="@color/sage_text_soft"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="40dp" android:layout_height="match_parent"
+                android:layout_marginStart="4dp"
+                android:orientation="vertical" android:gravity="center"
+                android:background="@drawable/bg_widget_box_accent">
+                <TextView
+                    android:id="@+id/widgetDays"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="5"
+                    android:textSize="20sp" android:textStyle="bold"
+                    android:includeFontPadding="false"
+                    android:textColor="#FFFFFF"/>
+                <TextView
+                    android:id="@+id/widgetDaysLabel"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="DAYS"
+                    android:textSize="7sp" android:textStyle="bold"
+                    android:letterSpacing="0.06"
+                    android:includeFontPadding="false"
+                    android:textColor="#E6FFFFFF"/>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Footer: progress, summary and due date -->
+    <ProgressBar
+        android:id="@+id/widgetProgress"
+        style="@android:style/Widget.ProgressBar.Horizontal"
+        android:layout_width="match_parent" android:layout_height="6dp"
+        android:layout_marginTop="8dp"
+        android:max="1000" android:progress="760"
+        android:progressDrawable="@drawable/progress_sage"/>
+
+    <LinearLayout
+        android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/widgetSummary"
+            android:layout_width="0dp" android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="76% complete · 86 days left"
+            android:textSize="11sp" android:textStyle="bold"
+            android:singleLine="true" android:ellipsize="end"
+            android:includeFontPadding="false"
+            android:textColor="@color/sage_text"/>
+        <TextView
+            android:id="@+id/widgetDue"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="Due 12 Nov 2027"
+            android:textSize="11sp"
+            android:singleLine="true" android:ellipsize="end"
+            android:includeFontPadding="false"
+            android:textColor="@color/sage_text_soft"/>
+    </LinearLayout>
+</LinearLayout>

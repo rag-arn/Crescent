@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/rootLayout" android:orientation="vertical"
-    android:background="@drawable/bg_dash_screen"
+    android:background="@drawable/bg_dash_screen_soft"
     android:layout_width="match_parent" android:layout_height="match_parent">
 
     <FrameLayout android:id="@+id/headerBar" android:layout_width="match_parent" android:layout_height="wrap_content">
         <LinearLayout android:orientation="horizontal" android:gravity="center_vertical" android:paddingStart="20dp" android:paddingEnd="10dp" android:paddingTop="42dp" android:paddingBottom="12dp" android:layout_width="match_parent" android:layout_height="wrap_content">
             <ImageButton android:id="@+id/backButton" style="?android:attr/borderlessButtonStyle" android:src="@drawable/ic_back_arrow" android:tint="@color/sage_text" android:layout_marginEnd="12dp" android:layout_width="44dp" android:layout_height="44dp"/>
-            <TextView android:text="Notifications" android:fontFamily="serif" android:textSize="26sp" android:textStyle="bold" android:textColor="@color/sage_text" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+            <TextView android:text="Notifications" android:fontFamily="serif" android:textSize="26sp" android:textStyle="bold" android:textColor="@color/sage_text" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content"/>
+            <ImageButton android:id="@+id/clearButton" style="?android:attr/borderlessButtonStyle" android:src="@drawable/ic_delete" android:tint="@color/sage_text" android:contentDescription="Clear notifications" android:visibility="gone" android:layout_width="44dp" android:layout_height="44dp"/>
         </LinearLayout>
     </FrameLayout>
 

@@ -11,6 +11,9 @@ public interface CrescentDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE) void putAsset(Asset asset);
     @Query("SELECT * FROM assets ORDER BY updatedAt DESC") List<Asset> getAssets();
     @Insert void insertSnapshot(Snapshot snapshot);
+    @Insert void insertSnapshots(List<Snapshot> snapshots);
+    @Query("DELETE FROM snapshots") void clearSnapshots();
+    @Query("DELETE FROM snapshots WHERE createdAt = :createdAt") void deleteSnapshotByCreatedAt(long createdAt);
     @Query("SELECT * FROM snapshots ORDER BY createdAt DESC") List<Snapshot> getSnapshots();
     @Insert(onConflict = OnConflictStrategy.REPLACE) void putPrice(PriceRecord price);
     @Query("SELECT * FROM prices") List<PriceRecord> getPrices();

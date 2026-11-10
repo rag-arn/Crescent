@@ -7,10 +7,10 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.crescent.app.R;
@@ -32,7 +32,10 @@ public final class ActivityHistoryBinding implements ViewBinding {
   public final FrameLayout headerBar;
 
   @NonNull
-  public final ListView historyList;
+  public final TextView historyHint;
+
+  @NonNull
+  public final RecyclerView historyList;
 
   @NonNull
   public final TextView historyText;
@@ -42,12 +45,13 @@ public final class ActivityHistoryBinding implements ViewBinding {
 
   private ActivityHistoryBinding(@NonNull LinearLayout rootView, @NonNull ImageButton backButton,
       @NonNull LinearLayout emptyCard, @NonNull FrameLayout headerBar,
-      @NonNull ListView historyList, @NonNull TextView historyText,
-      @NonNull LinearLayout rootLayout) {
+      @NonNull TextView historyHint, @NonNull RecyclerView historyList,
+      @NonNull TextView historyText, @NonNull LinearLayout rootLayout) {
     this.rootView = rootView;
     this.backButton = backButton;
     this.emptyCard = emptyCard;
     this.headerBar = headerBar;
+    this.historyHint = historyHint;
     this.historyList = historyList;
     this.historyText = historyText;
     this.rootLayout = rootLayout;
@@ -98,8 +102,14 @@ public final class ActivityHistoryBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.historyHint;
+      TextView historyHint = ViewBindings.findChildViewById(rootView, id);
+      if (historyHint == null) {
+        break missingId;
+      }
+
       id = R.id.historyList;
-      ListView historyList = ViewBindings.findChildViewById(rootView, id);
+      RecyclerView historyList = ViewBindings.findChildViewById(rootView, id);
       if (historyList == null) {
         break missingId;
       }
@@ -113,7 +123,7 @@ public final class ActivityHistoryBinding implements ViewBinding {
       LinearLayout rootLayout = (LinearLayout) rootView;
 
       return new ActivityHistoryBinding((LinearLayout) rootView, backButton, emptyCard, headerBar,
-          historyList, historyText, rootLayout);
+          historyHint, historyList, historyText, rootLayout);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

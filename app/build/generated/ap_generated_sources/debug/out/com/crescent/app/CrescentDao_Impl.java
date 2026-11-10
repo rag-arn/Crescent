@@ -5,6 +5,7 @@ import androidx.annotation.NonNull;
 import androidx.room.EntityInsertionAdapter;
 import androidx.room.RoomDatabase;
 import androidx.room.RoomSQLiteQuery;
+import androidx.room.SharedSQLiteStatement;
 import androidx.room.util.CursorUtil;
 import androidx.room.util.DBUtil;
 import androidx.sqlite.db.SupportSQLiteStatement;
@@ -27,6 +28,10 @@ public final class CrescentDao_Impl implements CrescentDao {
   private final EntityInsertionAdapter<PriceRecord> __insertionAdapterOfPriceRecord;
 
   private final EntityInsertionAdapter<PaymentLog> __insertionAdapterOfPaymentLog;
+
+  private final SharedSQLiteStatement __preparedStmtOfClearSnapshots;
+
+  private final SharedSQLiteStatement __preparedStmtOfDeleteSnapshotByCreatedAt;
 
   public CrescentDao_Impl(@NonNull final RoomDatabase __db) {
     this.__db = __db;
@@ -114,6 +119,22 @@ public final class CrescentDao_Impl implements CrescentDao {
         }
       }
     };
+    this.__preparedStmtOfClearSnapshots = new SharedSQLiteStatement(__db) {
+      @Override
+      @NonNull
+      public String createQuery() {
+        final String _query = "DELETE FROM snapshots";
+        return _query;
+      }
+    };
+    this.__preparedStmtOfDeleteSnapshotByCreatedAt = new SharedSQLiteStatement(__db) {
+      @Override
+      @NonNull
+      public String createQuery() {
+        final String _query = "DELETE FROM snapshots WHERE createdAt = ?";
+        return _query;
+      }
+    };
   }
 
   @Override
@@ -141,6 +162,18 @@ public final class CrescentDao_Impl implements CrescentDao {
   }
 
   @Override
+  public void insertSnapshots(final List<Snapshot> snapshots) {
+    __db.assertNotSuspendingTransaction();
+    __db.beginTransaction();
+    try {
+      __insertionAdapterOfSnapshot.insert(snapshots);
+      __db.setTransactionSuccessful();
+    } finally {
+      __db.endTransaction();
+    }
+  }
+
+  @Override
   public void putPrice(final PriceRecord price) {
     __db.assertNotSuspendingTransaction();
     __db.beginTransaction();
@@ -161,6 +194,42 @@ public final class CrescentDao_Impl implements CrescentDao {
       __db.setTransactionSuccessful();
     } finally {
       __db.endTransaction();
+    }
+  }
+
+  @Override
+  public void clearSnapshots() {
+    __db.assertNotSuspendingTransaction();
+    final SupportSQLiteStatement _stmt = __preparedStmtOfClearSnapshots.acquire();
+    try {
+      __db.beginTransaction();
+      try {
+        _stmt.executeUpdateDelete();
+        __db.setTransactionSuccessful();
+      } finally {
+        __db.endTransaction();
+      }
+    } finally {
+      __preparedStmtOfClearSnapshots.release(_stmt);
+    }
+  }
+
+  @Override
+  public void deleteSnapshotByCreatedAt(final long createdAt) {
+    __db.assertNotSuspendingTransaction();
+    final SupportSQLiteStatement _stmt = __preparedStmtOfDeleteSnapshotByCreatedAt.acquire();
+    int _argIndex = 1;
+    _stmt.bindLong(_argIndex, createdAt);
+    try {
+      __db.beginTransaction();
+      try {
+        _stmt.executeUpdateDelete();
+        __db.setTransactionSuccessful();
+      } finally {
+        __db.endTransaction();
+      }
+    } finally {
+      __preparedStmtOfDeleteSnapshotByCreatedAt.release(_stmt);
     }
   }
 

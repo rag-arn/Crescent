@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/rootLayout" android:orientation="vertical"
-    android:background="@drawable/bg_dash_screen"
+    android:background="@drawable/bg_dash_screen_soft"
     android:layout_width="match_parent" android:layout_height="match_parent">
 
     <FrameLayout android:id="@+id/headerBar" android:layout_width="match_parent" android:layout_height="wrap_content">
@@ -13,6 +13,13 @@
             </LinearLayout>
         </LinearLayout>
     </FrameLayout>
+
+    <!-- Sort options -->
+    <LinearLayout android:orientation="horizontal" android:gravity="center_vertical" android:paddingStart="20dp" android:paddingEnd="20dp" android:paddingBottom="4dp" android:layout_width="match_parent" android:layout_height="wrap_content">
+        <TextView android:text="Sort by" android:textSize="12sp" android:textStyle="bold" android:textColor="@color/sage_text_soft" android:layout_marginEnd="10dp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+        <TextView android:id="@+id/sortByRating" android:text="★ Star rating" android:textSize="13sp" android:textStyle="bold" android:textColor="@color/sage_text" android:background="@drawable/bg_sort_chip" android:paddingStart="14dp" android:paddingEnd="14dp" android:paddingTop="8dp" android:paddingBottom="8dp" android:layout_marginEnd="8dp" android:clickable="true" android:focusable="true" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+        <TextView android:id="@+id/sortByCount" android:text="Most reviews" android:textSize="13sp" android:textStyle="bold" android:textColor="@color/sage_text" android:background="@drawable/bg_sort_chip" android:paddingStart="14dp" android:paddingEnd="14dp" android:paddingTop="8dp" android:paddingBottom="8dp" android:clickable="true" android:focusable="true" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+    </LinearLayout>
 
     <FrameLayout android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1">
         <!-- Replaced ScrollView with RecyclerView -->

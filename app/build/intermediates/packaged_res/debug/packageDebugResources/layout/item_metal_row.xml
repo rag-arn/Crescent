@@ -1,22 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:padding="12dp" android:background="@drawable/bg_asset_card" android:layout_marginTop="10dp"
+    android:orientation="vertical" android:padding="14dp" android:background="@drawable/bg_asset_card" android:layout_marginTop="12dp"
     android:layout_width="match_parent" android:layout_height="wrap_content">
 
+    <!-- Entry header -->
     <LinearLayout android:orientation="horizontal" android:gravity="center_vertical"
         android:layout_width="match_parent" android:layout_height="wrap_content">
-        <EditText android:id="@+id/amountInput" style="@style/Widget.Crescent.EditText" android:hint="Amount" android:inputType="numberDecimal"
-            android:layout_marginEnd="8dp" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content"/>
-        <Spinner android:id="@+id/unitSpinner" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content"/>
+        <TextView android:id="@+id/entryTitle" style="@style/CrescentFieldLabel" android:text="Entry 1"
+            android:layout_width="0dp" android:layout_weight="1"/>
+        <ImageButton android:id="@+id/removeButton" style="?android:attr/borderlessButtonStyle" android:src="@drawable/ic_close"
+            android:tint="@color/sage_text_soft" android:padding="8dp" android:contentDescription="Remove entry"
+            android:layout_width="36dp" android:layout_height="36dp"/>
     </LinearLayout>
 
-    <LinearLayout android:orientation="horizontal" android:gravity="center_vertical" android:layout_marginTop="4dp"
+    <!-- Amount + unit -->
+    <LinearLayout android:orientation="horizontal" android:layout_marginTop="4dp"
         android:layout_width="match_parent" android:layout_height="wrap_content">
-        <Spinner android:id="@+id/puritySpinner" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content"/>
-        <Button android:id="@+id/removeButton" style="@style/Widget.Crescent.Button.Text" android:text="Remove"
-            android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+        <LinearLayout android:orientation="vertical" android:layout_marginEnd="10dp"
+            android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content">
+            <TextView style="@style/CrescentFieldLabel" android:text="Amount"/>
+            <EditText android:id="@+id/amountInput" style="@style/Widget.Crescent.EditText" android:hint="0.00"
+                android:inputType="numberDecimal" android:textSize="18sp" android:textStyle="bold"
+                android:layout_marginTop="6dp" android:layout_width="match_parent" android:layout_height="48dp"/>
+        </LinearLayout>
+        <LinearLayout android:orientation="vertical"
+            android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content">
+            <TextView style="@style/CrescentFieldLabel" android:text="Unit"/>
+            <Spinner android:id="@+id/unitSpinner" style="@style/Widget.Crescent.Spinner"
+                android:layout_marginTop="6dp" android:layout_width="match_parent" android:layout_height="48dp"/>
+        </LinearLayout>
     </LinearLayout>
 
+    <!-- Purity -->
+    <TextView android:id="@+id/purityLabel" style="@style/CrescentFieldLabel" android:text="Purity" android:layout_marginTop="12dp"/>
+    <Spinner android:id="@+id/puritySpinner" style="@style/Widget.Crescent.Spinner"
+        android:layout_marginTop="6dp" android:layout_width="match_parent" android:layout_height="48dp"/>
+
+    <View android:background="@color/sage_card_stroke" android:layout_marginTop="12dp"
+        android:layout_width="match_parent" android:layout_height="1dp"/>
     <TextView android:id="@+id/rowValue" android:text="—" android:textSize="13sp" android:textStyle="bold" android:textColor="@color/sage_text"
-        android:layout_marginTop="4dp" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+        android:layout_marginTop="10dp" android:layout_width="match_parent" android:layout_height="wrap_content"/>
 </LinearLayout>

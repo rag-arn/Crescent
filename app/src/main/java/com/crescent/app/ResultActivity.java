@@ -38,12 +38,18 @@ public class ResultActivity extends AppCompatActivity {
     private final List<String[]> lines = new ArrayList<>();
     private long calculatedAt = System.currentTimeMillis();   // history mode overrides this with the saved time
 
+    // Share dialog state, kept across rotation
+    private static final String S_CALC_AT = "calculatedAt", S_SHARE_NAME = "shareName", S_SHARE_NUMBER = "shareNumber", S_SHARE_FULL = "shareFull";
+    private Dialog shareDialog;
+    private String shareName, shareNumber;
+    private boolean shareFull;
+
     // The contact picker returns the chosen contact's name and phone number.
     private final ActivityResultLauncher<Intent> contactPicker = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(), r -> {
                 Intent d = r.getData();
                 if (r.getResultCode() == RESULT_OK && d != null) {
-                    showShareConfirm(d.getStringExtra(ContactPickerActivity.EXTRA_NAME), d.getStringExtra(ContactPickerActivity.EXTRA_NUMBER));
+                    showShareConfirm(d.getStringExtra(ContactPickerActivity.EXTRA_NAME), d.getStringExtra(ContactPickerActivity.EXTRA_NUMBER), false);
                 }
             });
 
@@ -57,6 +63,7 @@ public class ResultActivity extends AppCompatActivity {
 
     @Override protected void onCreate(Bundle state) {
         super.onCreate(state);
+        if (state != null) calculatedAt = state.getLong(S_CALC_AT, calculatedAt);   // keep the original time after a rotation
         b = ActivityResultBinding.inflate(getLayoutInflater());
         setContentView(b.getRoot());
         Ui.insets(this, b.getRoot(), b.headerBar, b.bottomBar);
@@ -165,7 +172,7 @@ public class ResultActivity extends AppCompatActivity {
     // ---------------- Share with a contact ----------------
 
     /** Shows exactly what will be sent, lets the person choose how much to include, then opens their messages app. */
-    private void showShareConfirm(String name, String number) {
+    private void showShareConfirm(String name, String number, boolean initialFull) {
         if (isFinishing() || isDestroyed()) return;
         if (number == null || number.trim().isEmpty()) {
             Toast.makeText(this, "That contact has no phone number.", Toast.LENGTH_SHORT).show();
@@ -187,8 +194,14 @@ public class ResultActivity extends AppCompatActivity {
         ((TextView) dialog.findViewById(R.id.shareNumber)).setText(number);
         final TextView preview = dialog.findViewById(R.id.sharePreview);
         final CheckBox full = dialog.findViewById(R.id.includeBreakdownCheckbox);   // off by default: share the summary only
-        preview.setText(buildShareMessage(false));
-        full.setOnCheckedChangeListener((v, checked) -> preview.setText(buildShareMessage(checked)));
+        full.setChecked(initialFull);
+        preview.setText(buildShareMessage(initialFull));
+        full.setOnCheckedChangeListener((v, checked) -> { shareFull = checked; preview.setText(buildShareMessage(checked)); });
+        shareDialog = dialog;
+        shareName = name;
+        shareNumber = number;
+        shareFull = initialFull;
+        dialog.setOnDismissListener(d -> { if (shareDialog == dialog) shareDialog = null; });
 
         dialog.findViewById(R.id.shareCancelBtn).setOnClickListener(v -> dialog.dismiss());
         dialog.findViewById(R.id.shareConfirmBtn).setOnClickListener(v -> {
@@ -228,6 +241,28 @@ public class ResultActivity extends AppCompatActivity {
         } catch (ActivityNotFoundException e) {
             Toast.makeText(this, "No messaging app found on this device.", Toast.LENGTH_LONG).show();
         }
+    }
+
+    @Override protected void onSaveInstanceState(Bundle out) {
+        super.onSaveInstanceState(out);
+        out.putLong(S_CALC_AT, calculatedAt);
+        if (shareDialog != null && shareDialog.isShowing()) {      // reopen the same confirmation after the rotation
+            out.putString(S_SHARE_NAME, shareName);
+            out.putString(S_SHARE_NUMBER, shareNumber);
+            out.putBoolean(S_SHARE_FULL, shareFull);
+        }
+    }
+
+    @Override protected void onPostCreate(Bundle state) {
+        super.onPostCreate(state);
+        if (state != null && !isFinishing() && state.getString(S_SHARE_NUMBER) != null) {
+            showShareConfirm(state.getString(S_SHARE_NAME), state.getString(S_SHARE_NUMBER), state.getBoolean(S_SHARE_FULL));
+        }
+    }
+
+    @Override protected void onDestroy() {
+        super.onDestroy();
+        if (shareDialog != null) { shareDialog.dismiss(); shareDialog = null; }   // avoid a leaked window
     }
 
     private void renderFromHistory(Intent in) {

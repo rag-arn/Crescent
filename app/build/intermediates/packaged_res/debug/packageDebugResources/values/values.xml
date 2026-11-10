@@ -49,6 +49,16 @@
     <string name="google_crash_reporting_api_key" translatable="false">AIzaSyBbIvDR9leF6bsjSMm1kZ8Rzs3ZA07EWM0</string>
     <string name="google_storage_bucket" translatable="false">crescent-arnob.firebasestorage.app</string>
     <string name="project_id" translatable="false">crescent-arnob</string>
+    <string name="widget_description">Zakat Hawl countdown with Islamic and Gregorian dates</string>
+    <style name="CrescentFieldLabel">
+        <item name="android:textSize">11sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:letterSpacing">0.08</item>
+        <item name="android:textColor">@color/sage_text_soft</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
     <style name="Theme.Crescent" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="colorPrimary">@color/sage_text</item>
         <item name="colorPrimaryVariant">@color/sage_text</item>
@@ -109,5 +119,10 @@
         <item name="android:textColorHint">@color/sage_text_soft</item>
         <item name="android:textSize">15sp</item>
         <item name="android:minHeight">48dp</item>
+    </style>
+    <style name="Widget.Crescent.Spinner" parent="Widget.AppCompat.Spinner">
+        <item name="android:background">@drawable/bg_spinner</item>
+        <item name="android:popupBackground">@drawable/bg_spinner_popup</item>
+        <item name="android:spinnerMode">dropdown</item>
     </style>
 </resources>
