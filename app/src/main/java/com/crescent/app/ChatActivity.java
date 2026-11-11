@@ -1,6 +1,9 @@
 package com.crescent.app;
 
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.Rect;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -13,6 +16,11 @@ import android.widget.Toast;
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowCompat;
+import androidx.core.view.WindowInsetsCompat;
+import androidx.core.view.WindowInsetsControllerCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -68,10 +76,73 @@ public class ChatActivity extends AppCompatActivity {
     private ChildEventListener messagesListener;
     private ValueEventListener typingListener;
 
+    // ---- Keyboard / system-bar handling -------------------------------------------------------
+    // Some phones (and many third-party keyboards) do not resize the window or do not report IME
+    // insets correctly, which left the message box and send button hidden behind the keyboard.
+    // Here the input bar is lifted by the larger of: the IME inset, a keyboard height measured from
+    // the visible window frame (fallback for keyboards that do not report insets), and the
+    // navigation-bar inset.
+    private int barTop = 0, barBottom = 0, imeBottom = 0, frameKeyboard = 0;
+
+    private void setupKeyboardInsets() {
+        final View root = findViewById(R.id.rootLayout);
+        final View header = findViewById(R.id.headerBar);
+        final View input = findViewById(R.id.inputArea);
+        if (root == null || header == null || input == null) return;
+
+        final int headerTop = header.getPaddingTop();
+        final int inputBottom = input.getPaddingBottom();
+
+        WindowCompat.setDecorFitsSystemWindows(getWindow(), false);
+        getWindow().setStatusBarColor(Color.TRANSPARENT);
+        getWindow().setNavigationBarColor(Color.TRANSPARENT);
+        WindowInsetsControllerCompat c = WindowCompat.getInsetsController(getWindow(), root);
+        c.setAppearanceLightStatusBars(true);
+        c.setAppearanceLightNavigationBars(true);
+
+        final Runnable apply = () -> {
+            int keyboard = Math.max(imeBottom, frameKeyboard);
+            int bottom = Math.max(barBottom, keyboard);
+            header.setPadding(header.getPaddingLeft(), headerTop + barTop, header.getPaddingRight(), header.getPaddingBottom());
+            input.setPadding(input.getPaddingLeft(), input.getPaddingTop(), input.getPaddingRight(), inputBottom + bottom);
+            if (keyboard > 0 && recyclerView != null && !messages.isEmpty()) {
+                recyclerView.post(() -> recyclerView.scrollToPosition(messages.size() - 1));
+            }
+        };
+
+        ViewCompat.setOnApplyWindowInsetsListener(root, (v, insets) -> {
+            Insets bars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            Insets ime = insets.getInsets(WindowInsetsCompat.Type.ime());
+            barTop = bars.top;
+            barBottom = bars.bottom;
+            imeBottom = ime.bottom;
+            apply.run();
+            return insets;
+        });
+
+        // Fallback for Android 10 and below, where IME insets are only estimated and third-party
+        // keyboards often defeat that estimate.
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.R) {
+            root.getViewTreeObserver().addOnGlobalLayoutListener(() -> {
+                Rect r = new Rect();
+                root.getWindowVisibleDisplayFrame(r);
+                int full = root.getRootView().getHeight();
+                int obstructed = full - r.bottom;
+                int kb = (full > 0 && obstructed > full * 0.15f) ? obstructed : 0;
+                if (kb != frameKeyboard) {
+                    frameKeyboard = kb;
+                    apply.run();
+                }
+            });
+        }
+        ViewCompat.requestApplyInsets(root);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
+        setupKeyboardInsets();
 
         currentUid = FirebaseAuth.getInstance().getUid();
         expertUid = getIntent().getStringExtra("expertUid");
